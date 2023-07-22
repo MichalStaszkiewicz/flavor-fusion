@@ -20,9 +20,7 @@ class _ApplyButtonState extends State<ApplyButton> {
       bouncingType: BouncingType.bounceInOnly,
       scaleFactor: 2,
       duration: Duration(milliseconds: 50),
-      onPressed: () {
-        context.router.pop();
-      },
+      onPressed: widget.onPressed,
       child: Container(
         margin: const EdgeInsets.only(left: 7),
         height: 150,

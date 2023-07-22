@@ -17,7 +17,8 @@ class App extends StatelessWidget {
       title: 'recipe-app',
       theme: ThemeData(
         textTheme: GoogleFonts.robotoMonoTextTheme(),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 53, 219, 2)),
         useMaterial3: true,
       ),
       routerConfig: locator<AppRouter>().config(),

@@ -22,7 +22,6 @@ class Global {
     DishType.preps,
     DishType.preserve,
     DishType.salad,
-    DishType.salad,
     DishType.sandwitches,
     DishType.sauces,
     DishType.soup,

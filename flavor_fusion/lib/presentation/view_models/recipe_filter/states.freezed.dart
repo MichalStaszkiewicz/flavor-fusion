@@ -21,7 +21,7 @@ mixin _$RecipeFilterState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() ready,
+    required TResult Function(List<String> activeFilters) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$RecipeFilterState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? ready,
+    TResult? Function(List<String> activeFilters)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$RecipeFilterState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? ready,
+    TResult Function(List<String> activeFilters)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() ready,
+    required TResult Function(List<String> activeFilters) ready,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? ready,
+    TResult? Function(List<String> activeFilters)? ready,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? ready,
+    TResult Function(List<String> activeFilters)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() ready,
+    required TResult Function(List<String> activeFilters) ready,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? ready,
+    TResult? Function(List<String> activeFilters)? ready,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? ready,
+    TResult Function(List<String> activeFilters)? ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -355,7 +355,7 @@ class _$RecipeFilterError implements RecipeFilterError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() ready,
+    required TResult Function(List<String> activeFilters) ready,
   }) {
     return error();
   }
@@ -366,7 +366,7 @@ class _$RecipeFilterError implements RecipeFilterError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? ready,
+    TResult? Function(List<String> activeFilters)? ready,
   }) {
     return error?.call();
   }
@@ -377,7 +377,7 @@ class _$RecipeFilterError implements RecipeFilterError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? ready,
+    TResult Function(List<String> activeFilters)? ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -433,6 +433,8 @@ abstract class _$$RecipeFilterReadyCopyWith<$Res> {
   factory _$$RecipeFilterReadyCopyWith(
           _$RecipeFilterReady value, $Res Function(_$RecipeFilterReady) then) =
       __$$RecipeFilterReadyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<String> activeFilters});
 }
 
 /// @nodoc
@@ -442,26 +444,58 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
   __$$RecipeFilterReadyCopyWithImpl(
       _$RecipeFilterReady _value, $Res Function(_$RecipeFilterReady) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? activeFilters = null,
+  }) {
+    return _then(_$RecipeFilterReady(
+      null == activeFilters
+          ? _value._activeFilters
+          : activeFilters // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$RecipeFilterReady implements RecipeFilterReady {
-  _$RecipeFilterReady();
+  _$RecipeFilterReady(final List<String> activeFilters)
+      : _activeFilters = activeFilters;
+
+  final List<String> _activeFilters;
+  @override
+  List<String> get activeFilters {
+    if (_activeFilters is EqualUnmodifiableListView) return _activeFilters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_activeFilters);
+  }
 
   @override
   String toString() {
-    return 'RecipeFilterState.ready()';
+    return 'RecipeFilterState.ready(activeFilters: $activeFilters)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeFilterReady);
+        (other.runtimeType == runtimeType &&
+            other is _$RecipeFilterReady &&
+            const DeepCollectionEquality()
+                .equals(other._activeFilters, _activeFilters));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_activeFilters));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecipeFilterReadyCopyWith<_$RecipeFilterReady> get copyWith =>
+      __$$RecipeFilterReadyCopyWithImpl<_$RecipeFilterReady>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -469,9 +503,9 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() ready,
+    required TResult Function(List<String> activeFilters) ready,
   }) {
-    return ready();
+    return ready(activeFilters);
   }
 
   @override
@@ -480,9 +514,9 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? ready,
+    TResult? Function(List<String> activeFilters)? ready,
   }) {
-    return ready?.call();
+    return ready?.call(activeFilters);
   }
 
   @override
@@ -491,11 +525,11 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? ready,
+    TResult Function(List<String> activeFilters)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready();
+      return ready(activeFilters);
     }
     return orElse();
   }
@@ -539,5 +573,11 @@ class _$RecipeFilterReady implements RecipeFilterReady {
 }
 
 abstract class RecipeFilterReady implements RecipeFilterState {
-  factory RecipeFilterReady() = _$RecipeFilterReady;
+  factory RecipeFilterReady(final List<String> activeFilters) =
+      _$RecipeFilterReady;
+
+  List<String> get activeFilters;
+  @JsonKey(ignore: true)
+  _$$RecipeFilterReadyCopyWith<_$RecipeFilterReady> get copyWith =>
+      throw _privateConstructorUsedError;
 }

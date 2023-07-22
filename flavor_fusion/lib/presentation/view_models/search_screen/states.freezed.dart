@@ -22,7 +22,7 @@ mixin _$SearchScreenState {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -32,7 +32,7 @@ mixin _$SearchScreenState {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ mixin _$SearchScreenState {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -140,7 +140,7 @@ class _$SearchScreenInitial implements SearchScreenInitial {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) {
     return initial();
@@ -153,7 +153,7 @@ class _$SearchScreenInitial implements SearchScreenInitial {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -166,7 +166,7 @@ class _$SearchScreenInitial implements SearchScreenInitial {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -266,7 +266,7 @@ class _$SearchScreenLoading implements SearchScreenLoading {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) {
     return loading();
@@ -279,7 +279,7 @@ class _$SearchScreenLoading implements SearchScreenLoading {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -292,7 +292,7 @@ class _$SearchScreenLoading implements SearchScreenLoading {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -392,7 +392,7 @@ class _$SearchingInProgress implements SearchingInProgress {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) {
     return searchingInProgress();
@@ -405,7 +405,7 @@ class _$SearchingInProgress implements SearchingInProgress {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) {
     return searchingInProgress?.call();
@@ -418,7 +418,7 @@ class _$SearchingInProgress implements SearchingInProgress {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -518,7 +518,7 @@ class _$ChoosingFilters implements ChoosingFilters {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) {
     return choosingFilters();
@@ -531,7 +531,7 @@ class _$ChoosingFilters implements ChoosingFilters {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) {
     return choosingFilters?.call();
@@ -544,7 +544,7 @@ class _$ChoosingFilters implements ChoosingFilters {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -607,6 +607,8 @@ abstract class _$$SearchScreenReadyCopyWith<$Res> {
   factory _$$SearchScreenReadyCopyWith(
           _$SearchScreenReady value, $Res Function(_$SearchScreenReady) then) =
       __$$SearchScreenReadyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Recipe> recipies});
 }
 
 /// @nodoc
@@ -616,26 +618,56 @@ class __$$SearchScreenReadyCopyWithImpl<$Res>
   __$$SearchScreenReadyCopyWithImpl(
       _$SearchScreenReady _value, $Res Function(_$SearchScreenReady) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? recipies = null,
+  }) {
+    return _then(_$SearchScreenReady(
+      null == recipies
+          ? _value._recipies
+          : recipies // ignore: cast_nullable_to_non_nullable
+              as List<Recipe>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SearchScreenReady implements SearchScreenReady {
-  _$SearchScreenReady();
+  _$SearchScreenReady(final List<Recipe> recipies) : _recipies = recipies;
+
+  final List<Recipe> _recipies;
+  @override
+  List<Recipe> get recipies {
+    if (_recipies is EqualUnmodifiableListView) return _recipies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_recipies);
+  }
 
   @override
   String toString() {
-    return 'SearchScreenState.ready()';
+    return 'SearchScreenState.ready(recipies: $recipies)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchScreenReady);
+        (other.runtimeType == runtimeType &&
+            other is _$SearchScreenReady &&
+            const DeepCollectionEquality().equals(other._recipies, _recipies));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_recipies));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchScreenReadyCopyWith<_$SearchScreenReady> get copyWith =>
+      __$$SearchScreenReadyCopyWithImpl<_$SearchScreenReady>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -644,10 +676,10 @@ class _$SearchScreenReady implements SearchScreenReady {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) {
-    return ready();
+    return ready(recipies);
   }
 
   @override
@@ -657,10 +689,10 @@ class _$SearchScreenReady implements SearchScreenReady {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) {
-    return ready?.call();
+    return ready?.call(recipies);
   }
 
   @override
@@ -670,12 +702,12 @@ class _$SearchScreenReady implements SearchScreenReady {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready();
+      return ready(recipies);
     }
     return orElse();
   }
@@ -725,7 +757,12 @@ class _$SearchScreenReady implements SearchScreenReady {
 }
 
 abstract class SearchScreenReady implements SearchScreenState {
-  factory SearchScreenReady() = _$SearchScreenReady;
+  factory SearchScreenReady(final List<Recipe> recipies) = _$SearchScreenReady;
+
+  List<Recipe> get recipies;
+  @JsonKey(ignore: true)
+  _$$SearchScreenReadyCopyWith<_$SearchScreenReady> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -770,7 +807,7 @@ class _$SearchScreenError implements SearchScreenError {
     required TResult Function() loading,
     required TResult Function() searchingInProgress,
     required TResult Function() choosingFilters,
-    required TResult Function() ready,
+    required TResult Function(List<Recipe> recipies) ready,
     required TResult Function() error,
   }) {
     return error();
@@ -783,7 +820,7 @@ class _$SearchScreenError implements SearchScreenError {
     TResult? Function()? loading,
     TResult? Function()? searchingInProgress,
     TResult? Function()? choosingFilters,
-    TResult? Function()? ready,
+    TResult? Function(List<Recipe> recipies)? ready,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -796,7 +833,7 @@ class _$SearchScreenError implements SearchScreenError {
     TResult Function()? loading,
     TResult Function()? searchingInProgress,
     TResult Function()? choosingFilters,
-    TResult Function()? ready,
+    TResult Function(List<Recipe> recipies)? ready,
     TResult Function()? error,
     required TResult orElse(),
   }) {

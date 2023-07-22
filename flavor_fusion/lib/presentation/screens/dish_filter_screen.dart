@@ -1,24 +1,31 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/presentation/view_models/recipe_filter/recipe_filter_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/apply_button.dart';
 import 'package:flavor_fusion/presentation/widgets/filter_check_box.dart';
 import 'package:flavor_fusion/presentation/widgets/filter_check_box_list.dart';
+import 'package:flavor_fusion/utility/dialog_manager.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 
 import '../../utility/enums.dart';
 import '../../utility/global.dart';
+import '../view_models/recipe_filter/states.dart';
+import '../view_models/search_screen/states.dart';
 
 @RoutePage()
-class DishFilterScreen extends StatefulWidget {
+class DishFilterScreen extends ConsumerStatefulWidget {
   const DishFilterScreen({super.key});
 
   @override
-  State<DishFilterScreen> createState() => _DishFilterScreenState();
+  DishFilterScreenState createState() => DishFilterScreenState();
 }
 
-class _DishFilterScreenState extends State<DishFilterScreen> {
+class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   //temporary before implementing backend
+
   List<Widget> generateDishTypes() {
     List<Widget> result = [];
     for (DishType dishType in locator<Global>().dishTypes) {
@@ -53,10 +60,19 @@ class _DishFilterScreenState extends State<DishFilterScreen> {
   }
 
   @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(recipeFilterViewModel.notifier).init();
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: _buildAppBar(),
+      appBar: _buildAppBar(ref),
       body: Container(
         child: SingleChildScrollView(
             child: Container(
@@ -75,8 +91,17 @@ class _DishFilterScreenState extends State<DishFilterScreen> {
                 items: [...generateDishTypes()],
                 label: 'Dish Type',
               ),
-              //TODO implement filter methog callback here
-              ApplyButton(onPressed: () {})
+              ApplyButton(onPressed: () {
+                ref.read(recipeFilterViewModel).when(
+                    initial: () => (),
+                    loading: () => (),
+                    error: () => (),
+                    ready: (filters) => ref
+                        .read(searchScreenViewModel.notifier)
+                        .applyFilters(filters));
+
+                context.router.pop();
+              })
             ],
           ),
         )),
@@ -84,7 +109,7 @@ class _DishFilterScreenState extends State<DishFilterScreen> {
     );
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(WidgetRef ref) {
     return AppBar(
       automaticallyImplyLeading: false,
       title: Container(
@@ -96,7 +121,21 @@ class _DishFilterScreenState extends State<DishFilterScreen> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  context.router.pop();
+                  DialogManager.confirmDialog(
+                      'You did not apply filters',
+                      'Do you want to apply changes before quit ?',
+                      context, () {
+                    context.router.pop().then((value) => context.router.pop());
+                  }, () {
+                    context.router.pop().then((value) => context.router.pop());
+                    ref.read(recipeFilterViewModel).when(
+                        initial: () => (),
+                        loading: () => (),
+                        error: () => (),
+                        ready: (filters) => ref
+                            .read(searchScreenViewModel.notifier)
+                            .applyFilters(filters));
+                  });
                 },
               ),
             )),

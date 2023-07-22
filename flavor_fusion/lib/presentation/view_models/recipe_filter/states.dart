@@ -8,5 +8,6 @@ abstract class RecipeFilterState with _$RecipeFilterState {
   factory RecipeFilterState.loading() = RecipeFilterLoading;
   factory RecipeFilterState.error() = RecipeFilterError;
 
-  factory RecipeFilterState.ready() = RecipeFilterReady;
+  factory RecipeFilterState.ready(List<String> activeFilters) =
+      RecipeFilterReady;
 }

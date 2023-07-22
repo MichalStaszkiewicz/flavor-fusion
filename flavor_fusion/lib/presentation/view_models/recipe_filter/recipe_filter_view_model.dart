@@ -8,13 +8,17 @@ var recipeFilterViewModel =
 class RecipeFilterViewModel extends StateNotifier<RecipeFilterState> {
   RecipeFilterViewModel(super._state);
   List<String> activeFilters = [];
+  void init() {
+    state = RecipeFilterState.ready(activeFilters);
+  }
+
   void addFilter(String filter) {
     activeFilters.add(filter);
-    state = RecipeFilterState.ready();
+    state = RecipeFilterState.ready(activeFilters);
   }
 
   void removeFilter(String filter) {
     activeFilters.remove(filter);
-    state = RecipeFilterState.ready();
+    state = RecipeFilterState.ready(activeFilters);
   }
 }

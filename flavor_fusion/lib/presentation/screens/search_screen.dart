@@ -42,7 +42,6 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(searchScreenViewModel);
-    List<Recipe> recipes = ref.watch(searchScreenViewModel.notifier).recipies;
 
     return Container(
       child: Column(
@@ -56,7 +55,6 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
                 ref
                     .read(searchScreenViewModel.notifier)
                     .searchRecipies(userSearchText);
-                setState(() {});
               },
               controller: _searchController,
               hintText: "Search dish name...",
@@ -73,7 +71,8 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               },
               loading: () => _buildLoadingModel(),
               searchingInProgress: () => _buildSearchingInProgress(),
-              ready: () => _buildReadyModel(context, recipes),
+              ready: (recipies) =>
+                  _buildReadyModel(context, recipies, _searchController),
               error: () => _buildErrorModel(),
               choosingFilters: () => Container()),
         ],
@@ -95,13 +94,14 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
     );
   }
 
-  Expanded _buildReadyModel(BuildContext context, List<Recipe> recipes) {
+  Expanded _buildReadyModel(BuildContext context, List<Recipe> recipes,
+      TextEditingController searchBarController) {
     return Expanded(
       flex: 8,
       child: Container(
           child: Column(
         children: [
-          _buildSearchScreenFilterOptionsBar(context),
+          _buildSearchScreenFilterOptionsBar(context, searchBarController),
           _buildRecipiesListView(recipes),
         ],
       )),
@@ -133,20 +133,21 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
         ));
   }
 
-  Expanded _buildSearchScreenFilterOptionsBar(BuildContext context) {
+  Expanded _buildSearchScreenFilterOptionsBar(
+      BuildContext context, TextEditingController searchBarController) {
     return Expanded(
         child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         GestureDetector(
           onTap: () {
+            searchBarController.clear();
             locator<AppRouter>().push(DishSortRoute());
           },
           child: Chip(
             side: BorderSide(color: Colors.transparent),
             elevation: 2,
             shadowColor: Colors.grey.withOpacity(1),
-            backgroundColor: Colors.white,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             label: const Text(
@@ -163,13 +164,13 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
         ),
         GestureDetector(
           onTap: () {
+            searchBarController.clear();
             locator<AppRouter>().push(DishFilterRoute());
           },
           child: Chip(
             side: BorderSide(color: Colors.transparent),
             elevation: 2,
             shadowColor: Colors.grey.withOpacity(1),
-            backgroundColor: Colors.white,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             labelStyle: Theme.of(context)

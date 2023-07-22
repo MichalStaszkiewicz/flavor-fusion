@@ -11,6 +11,13 @@ List<String> temporaryNames = [
   "Apples",
   "Eggs"
 ];
+List<String> temporaryDishesTypes = [
+  'bread',
+  'salad',
+  'preps',
+  'cookies',
+  'cookies'
+];
 final searchScreenViewModel =
     StateNotifierProvider<SearchScreenViewModel, SearchScreenState>(
         (ref) => SearchScreenViewModel());
@@ -19,7 +26,6 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
   SearchScreenViewModel() : super(SearchScreenInitial());
 
   final List<Recipe> _recipies = [];
-  List<Recipe> recipies = [];
 
   void loadRecipies() {
     state = SearchScreenState.loading();
@@ -43,32 +49,63 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
           totalWeight: random.nextInt(5).toDouble(),
           totalTime: random.nextInt(90),
           url: ''));
+      _recipies[i] =
+          _recipies[i].copyWith(dishType: [temporaryDishesTypes[randomIndex]]);
     }
 
-    recipies.addAll(_recipies);
-
-    state = SearchScreenState.ready();
+    state = SearchScreenState.ready(List.from(_recipies));
   }
 
   void searchRecipies(String text) {
-    state = SearchScreenState.searchingInProgress();
+    if (state is SearchScreenReady) {
+      final state = this.state as SearchScreenReady;
+      final List<Recipe> tempRecipies = List.from(state.recipies);
+      if (text.isNotEmpty) {
+        List<Recipe> filteredRecipies = [];
 
-    if (text.isNotEmpty) {
+        for (Recipe recipe in tempRecipies) {
+          if (recipe.label.toLowerCase().contains(text.toLowerCase())) {
+            filteredRecipies.add(recipe);
+          }
+        }
+
+        this.state = SearchScreenState.ready(filteredRecipies);
+      } else {
+        this.state = SearchScreenState.ready(_recipies);
+      }
+    } else {
+      print("state is not ready");
+    }
+  }
+
+  void applyFilters(List<String> filters) {
+    if (state is SearchScreenReady) {
+      final state = this.state as SearchScreenReady;
+
       List<Recipe> filteredRecipies = [];
 
-      for (Recipe recipe in recipies) {
-        if (recipe.label.toLowerCase().contains(text.toLowerCase())) {
+      for (Recipe recipe in _recipies) {
+        print(recipe.dishType.length);
+        for (int i = 0; i < recipe.dishType.length; i++) {
+          print("Recipe dishType " + recipe.dishType[i]);
+        }
+
+        bool recipeIsValid = true;
+        for (String filter in filters) {
+          print(filter);
+          if (!recipe.dishType.contains(filter) &&
+              !recipe.dietLabels.contains(filter) &&
+              !recipe.mealType.contains(filter)) {
+            recipeIsValid = false;
+          }
+        }
+        if (recipeIsValid) {
           filteredRecipies.add(recipe);
         }
       }
-
-      recipies.clear();
-      recipies.addAll(filteredRecipies);
+      this.state = SearchScreenState.ready(filteredRecipies);
     } else {
-      recipies.clear();
-      recipies.addAll(_recipies);
+      print("state is not ready");
     }
-
-    state = SearchScreenState.ready();
   }
 }

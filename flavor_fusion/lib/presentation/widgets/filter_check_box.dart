@@ -12,9 +12,14 @@ class FilterCheckBox extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<String> filters =
-        ref.watch(recipeFilterViewModel.notifier).activeFilters;
+    return ref.watch(recipeFilterViewModel).when(
+        initial: () => _buildInitial(),
+        loading: () => _buildLoading(),
+        error: () => _buildError(),
+        ready: (filters) => _buildReady(filters, ref));
+  }
 
+  Container _buildReady(List<String> filters, WidgetRef ref) {
     return Container(
       child: Row(
         children: [
@@ -27,6 +32,24 @@ class FilterCheckBox extends ConsumerWidget {
                         .removeFilter(label)
                     : ref.read(recipeFilterViewModel.notifier).addFilter(label);
               }),
+          SizedBox(
+            width: 5,
+          ),
+          Text(label),
+        ],
+      ),
+    );
+  }
+
+  Container _buildLoading() => Container();
+
+  Container _buildError() => Container();
+
+  Container _buildInitial() {
+    return Container(
+      child: Row(
+        children: [
+          Checkbox(value: false, onChanged: (value) {}),
           SizedBox(
             width: 5,
           ),
