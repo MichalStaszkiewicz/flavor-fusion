@@ -10,7 +10,8 @@ class Global {
     SortBy.alphabetical,
     SortBy.caloriesAsc,
     SortBy.caloriesDesc,
-    SortBy.time
+    SortBy.time,
+    SortBy.none
   ];
   List<DishType> dishTypes = [
     DishType.bread,
@@ -42,4 +43,16 @@ class Global {
     Diet.lowFat,
     Diet.lowSodium
   ];
+  String capitalize(String text) {
+    if (text.isEmpty) {
+      return '';
+    }
+
+    return text[0].toUpperCase() + text.substring(1);
+  }
+
+  SortBy stringToSortBy(String text) {
+    return sortBy.firstWhere(
+        (element) => element.name.toLowerCase() == text.toLowerCase());
+  }
 }
