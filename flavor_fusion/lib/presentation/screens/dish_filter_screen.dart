@@ -30,7 +30,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
     List<Widget> result = [];
     for (DishType dishType in locator<Global>().dishTypes) {
       result.add(FilterCheckBox(
-        label: dishType.name,
+        label: locator<Global>().capitalize(dishType.name),
         options: SearchOptions.filter,
       ));
     }
@@ -41,7 +41,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
     List<Widget> result = [];
     for (MealType dishType in locator<Global>().mealTypes) {
       result.add(FilterCheckBox(
-        label: dishType.name,
+        label: locator<Global>().capitalize(dishType.name),
         options: SearchOptions.filter,
       ));
     }
@@ -52,7 +52,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
     List<Widget> result = [];
     for (Diet dishType in locator<Global>().diets) {
       result.add(FilterCheckBox(
-        label: dishType.name,
+        label: locator<Global>().capitalize(dishType.name),
         options: SearchOptions.filter,
       ));
     }
@@ -62,7 +62,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(recipeFilterViewModel.notifier).init();
+      ref.watch(recipeFilterViewModel.notifier).init();
     });
 
     super.initState();
@@ -99,7 +99,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                     ready: (filters) => ref
                         .read(searchScreenViewModel.notifier)
                         .applyFilters(filters));
-
+                ref.read(recipeFilterViewModel.notifier).confirmFilters();
                 context.router.pop();
               })
             ],
@@ -121,21 +121,34 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
               child: IconButton(
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
-                  DialogManager.confirmDialog(
-                      'You did not apply filters',
-                      'Do you want to apply changes before quit ?',
-                      context, () {
-                    context.router.pop().then((value) => context.router.pop());
-                  }, () {
-                    context.router.pop().then((value) => context.router.pop());
-                    ref.read(recipeFilterViewModel).when(
-                        initial: () => (),
-                        loading: () => (),
-                        error: () => (),
-                        ready: (filters) => ref
-                            .read(searchScreenViewModel.notifier)
-                            .applyFilters(filters));
-                  });
+                  if (ref
+                      .read(recipeFilterViewModel.notifier)
+                      .filterListChanged()) {
+                    ref.read(recipeFilterViewModel.notifier).confirmFilters();
+                    context.router.pop();
+                  } else {
+                    DialogManager.confirmDialog('You did not apply changes',
+                        'Do you want to apply them before quit ?', context, () {
+                      context.router.pop().then((value) {
+                        context.router.pop();
+                        ref
+                            .read(recipeFilterViewModel.notifier)
+                            .rejectFilters();
+                      });
+                    }, () {
+                      context.router
+                          .pop()
+                          .then((value) => context.router.pop());
+                      ref.read(recipeFilterViewModel).when(
+                          initial: () => (),
+                          loading: () => (),
+                          error: () => (),
+                          ready: (filters) => ref
+                              .read(searchScreenViewModel.notifier)
+                              .applyFilters(filters));
+                      ref.read(recipeFilterViewModel.notifier).confirmFilters();
+                    });
+                  }
                 },
               ),
             )),

@@ -31,7 +31,7 @@ class DialogManager {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         textAlign: TextAlign.center,
                         header,
@@ -42,7 +42,7 @@ class DialogManager {
                       height: 20,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         textAlign: TextAlign.center,
                         message,

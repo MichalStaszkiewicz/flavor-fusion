@@ -4,6 +4,8 @@ import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/search_screen/states.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../utility/enums.dart';
+
 List<String> temporaryNames = [
   "Sphagetti",
   "Potatos",
@@ -78,21 +80,35 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
     }
   }
 
-  void applyFilters(List<String> filters) {
+  void applySort(SortBy sortBy) {
     if (state is SearchScreenReady) {
       final state = this.state as SearchScreenReady;
+      final List<Recipe> tempRecipies = List.from(state.recipies);
+      if (sortBy == SortBy.alphabetical) {
+        tempRecipies.sort(((a, b) => a.label.compareTo(b.label)));
+      } else if (sortBy == SortBy.caloriesAsc) {
+        tempRecipies.sort(((a, b) => a.calories.compareTo(b.calories)));
+      } else if (sortBy == SortBy.caloriesDesc) {
+        tempRecipies.sort(((a, b) => b.calories.compareTo(a.calories)));
+      } else if (sortBy == SortBy.time) {
+        tempRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
+      }
 
+      this.state = SearchScreenReady(tempRecipies);
+    } else {
+      print("state is not ready");
+    }
+  }
+
+  void applyFilters(List<String> filters) {
+    if (state is SearchScreenReady) {
       List<Recipe> filteredRecipies = [];
 
       for (Recipe recipe in _recipies) {
-        print(recipe.dishType.length);
-        for (int i = 0; i < recipe.dishType.length; i++) {
-          print("Recipe dishType " + recipe.dishType[i]);
-        }
+        for (int i = 0; i < recipe.dishType.length; i++) {}
 
         bool recipeIsValid = true;
         for (String filter in filters) {
-          print(filter);
           if (!recipe.dishType.contains(filter) &&
               !recipe.dietLabels.contains(filter) &&
               !recipe.mealType.contains(filter)) {
@@ -103,7 +119,7 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
           filteredRecipies.add(recipe);
         }
       }
-      this.state = SearchScreenState.ready(filteredRecipies);
+      state = SearchScreenState.ready(filteredRecipies);
     } else {
       print("state is not ready");
     }
