@@ -20,8 +20,7 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      final data = ref.watch(searchScreenViewModel.notifier);
-      data.loadRecipies();
+      ref.watch(searchScreenViewModel.notifier).loadRecipies();
     });
     super.initState();
   }
@@ -42,7 +41,39 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(searchScreenViewModel);
+    return state.when(
+        initial: () {
+          return _buildInitialModel();
+        },
+        loading: () => _buildLoadingModel(),
+        searchingInProgress: () => _buildSearchingInProgress(),
+        ready: (recipies) =>
+            _buildReadyModel(context, recipies, _searchController),
+        error: () => _buildErrorModel(),
+        choosingFilters: () => Container());
+  }
 
+  Container _buildErrorModel() => Container(
+          child: Center(
+        child: CircularProgressIndicator(),
+      ));
+
+  Container _buildInitialModel() {
+    return Container(
+        child: Center(
+      child: CircularProgressIndicator(),
+    ));
+  }
+
+  Container _buildLoadingModel() {
+    return Container(
+        child: Center(
+      child: CircularProgressIndicator(),
+    ));
+  }
+
+  Container _buildReadyModel(BuildContext context, List<Recipe> recipes,
+      TextEditingController searchBarController) {
     return Container(
       child: Column(
         children: [
@@ -65,46 +96,19 @@ class SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             )),
           )),
-          state.when(
-              initial: () {
-                return _buildInitialModel();
-              },
-              loading: () => _buildLoadingModel(),
-              searchingInProgress: () => _buildSearchingInProgress(),
-              ready: (recipies) =>
-                  _buildReadyModel(context, recipies, _searchController),
-              error: () => _buildErrorModel(),
-              choosingFilters: () => Container()),
+          Expanded(
+            flex: 8,
+            child: Container(
+                child: Column(
+              children: [
+                _buildSearchScreenFilterOptionsBar(
+                    context, searchBarController),
+                _buildRecipiesListView(recipes),
+              ],
+            )),
+          )
         ],
       ),
-    );
-  }
-
-  Container _buildErrorModel() => Container();
-
-  Center _buildInitialModel() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-
-  Center _buildLoadingModel() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-  }
-
-  Expanded _buildReadyModel(BuildContext context, List<Recipe> recipes,
-      TextEditingController searchBarController) {
-    return Expanded(
-      flex: 8,
-      child: Container(
-          child: Column(
-        children: [
-          _buildSearchScreenFilterOptionsBar(context, searchBarController),
-          _buildRecipiesListView(recipes),
-        ],
-      )),
     );
   }
 
