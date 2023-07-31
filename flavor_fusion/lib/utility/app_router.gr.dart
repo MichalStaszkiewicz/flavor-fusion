@@ -25,19 +25,16 @@ abstract class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<DishDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: DishDetailsScreen(name: args.name),
+        child: DishDetailsScreen(
+          name: args.name,
+          recipe: args.recipe,
+        ),
       );
     },
     DishFilterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const DishFilterScreen(),
-      );
-    },
-    DishSortRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DishSortScreen(),
       );
     },
   };
@@ -62,10 +59,14 @@ class MainRoute extends PageRouteInfo<void> {
 class DishDetailsRoute extends PageRouteInfo<DishDetailsRouteArgs> {
   DishDetailsRoute({
     required String name,
+    required Recipe recipe,
     List<PageRouteInfo>? children,
   }) : super(
           DishDetailsRoute.name,
-          args: DishDetailsRouteArgs(name: name),
+          args: DishDetailsRouteArgs(
+            name: name,
+            recipe: recipe,
+          ),
           initialChildren: children,
         );
 
@@ -76,13 +77,18 @@ class DishDetailsRoute extends PageRouteInfo<DishDetailsRouteArgs> {
 }
 
 class DishDetailsRouteArgs {
-  const DishDetailsRouteArgs({required this.name});
+  const DishDetailsRouteArgs({
+    required this.name,
+    required this.recipe,
+  });
 
   final String name;
 
+  final Recipe recipe;
+
   @override
   String toString() {
-    return 'DishDetailsRouteArgs{name: $name}';
+    return 'DishDetailsRouteArgs{name: $name, recipe: $recipe}';
   }
 }
 
@@ -96,20 +102,6 @@ class DishFilterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DishFilterRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [DishSortScreen]
-class DishSortRoute extends PageRouteInfo<void> {
-  const DishSortRoute({List<PageRouteInfo>? children})
-      : super(
-          DishSortRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'DishSortRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

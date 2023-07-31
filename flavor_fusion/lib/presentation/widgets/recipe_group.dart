@@ -1,10 +1,12 @@
+import 'package:flavor_fusion/presentation/widgets/recipe_item.dart';
 import 'package:flutter/material.dart';
 
-class RecipeGroup extends StatelessWidget {
-  const RecipeGroup({
-    super.key,
-  });
+import '../../data/models/recipe.dart';
 
+class RecipeGroup extends StatelessWidget {
+  RecipeGroup({super.key, required this.recipes, required this.label});
+  String label;
+  List<Recipe> recipes;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,51 +18,21 @@ class RecipeGroup extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 25),
             child: Text(
                 textAlign: TextAlign.left,
-                'Diet',
+                label,
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
                     .copyWith(fontWeight: FontWeight.bold)),
           ),
           Container(
-            height: 200,
+            height: 280,
             width: double.infinity,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: recipes.length,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => Container(
-                  margin: EdgeInsets.all(20),
-                  width: 150,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 0),
-                        ),
-                      ]),
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          child: Icon(Icons.food_bank),
-                        ),
-                        Text(
-                          "Vegetarian",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium!
-                              .copyWith(letterSpacing: 0.1),
-                        )
-                      ],
-                    ),
-                  )),
+              itemBuilder: (context, index) => RecipeItem(
+                recipe: recipes[index],
+              ),
             ),
           )
         ],

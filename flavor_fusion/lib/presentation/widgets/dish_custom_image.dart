@@ -1,18 +1,39 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/bubble_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DishCustomImage extends StatefulWidget {
-  DishCustomImage({required this.opacity});
+import '../../data/models/recipe.dart';
+
+class DishCustomImage extends ConsumerStatefulWidget {
+  DishCustomImage({required this.opacity, required this.recipe});
   double opacity;
+  Recipe recipe;
 
   @override
-  State<DishCustomImage> createState() => _DishCustomImageState();
+  DishCustomImageState createState() => DishCustomImageState();
 }
 
-class _DishCustomImageState extends State<DishCustomImage> {
+class DishCustomImageState extends ConsumerState<DishCustomImage> {
   @override
   Widget build(BuildContext context) {
+    final dishDetailsState = ref.watch(recipeDetailsViewModel);
+    print(dishDetailsState);
+    return dishDetailsState.when(
+        initial: () => _buildInitial(),
+        loading: () => _buildLoading(),
+        error: () => _buildError(),
+        ready: (expanded, isFavorite) => _buildReady(context, isFavorite));
+  }
+
+  Container _buildError() => Container();
+
+  Container _buildLoading() => Container();
+
+  Container _buildInitial() => Container();
+
+  Opacity _buildReady(BuildContext context, bool isFavorite) {
     return Opacity(
       opacity: widget.opacity,
       child: Container(
@@ -41,9 +62,16 @@ class _DishCustomImageState extends State<DishCustomImage> {
                 const SizedBox(
                   width: 80,
                 ),
-                BubbleIconButton(
-                  icon: Icons.favorite,
-                  iconColor: Colors.red,
+                GestureDetector(
+                  onTap: () {
+                    ref
+                        .read(recipeDetailsViewModel.notifier)
+                        .setFavorite(widget.recipe);
+                  },
+                  child: BubbleIconButton(
+                    icon: Icons.favorite,
+                    iconColor: isFavorite ? Colors.red : Colors.grey,
+                  ),
                 ),
               ],
             ),

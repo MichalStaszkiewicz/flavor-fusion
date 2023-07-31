@@ -21,7 +21,7 @@ mixin _$RecipesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipeGroups) ready,
+    required TResult Function(List<Recipe> recipes) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$RecipesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipeGroups)? ready,
+    TResult? Function(List<Recipe> recipes)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$RecipesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipeGroups)? ready,
+    TResult Function(List<Recipe> recipes)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipeGroups) ready,
+    required TResult Function(List<Recipe> recipes) ready,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipeGroups)? ready,
+    TResult? Function(List<Recipe> recipes)? ready,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipeGroups)? ready,
+    TResult Function(List<Recipe> recipes)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipeGroups) ready,
+    required TResult Function(List<Recipe> recipes) ready,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipeGroups)? ready,
+    TResult? Function(List<Recipe> recipes)? ready,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipeGroups)? ready,
+    TResult Function(List<Recipe> recipes)? ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -355,7 +355,7 @@ class _$RecipesError implements RecipesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipeGroups) ready,
+    required TResult Function(List<Recipe> recipes) ready,
   }) {
     return error();
   }
@@ -366,7 +366,7 @@ class _$RecipesError implements RecipesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipeGroups)? ready,
+    TResult? Function(List<Recipe> recipes)? ready,
   }) {
     return error?.call();
   }
@@ -377,7 +377,7 @@ class _$RecipesError implements RecipesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipeGroups)? ready,
+    TResult Function(List<Recipe> recipes)? ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -434,7 +434,7 @@ abstract class _$$RecipesReadyCopyWith<$Res> {
           _$RecipesReady value, $Res Function(_$RecipesReady) then) =
       __$$RecipesReadyCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Recipe> recipeGroups});
+  $Res call({List<Recipe> recipes});
 }
 
 /// @nodoc
@@ -448,12 +448,12 @@ class __$$RecipesReadyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? recipeGroups = null,
+    Object? recipes = null,
   }) {
     return _then(_$RecipesReady(
-      null == recipeGroups
-          ? _value._recipeGroups
-          : recipeGroups // ignore: cast_nullable_to_non_nullable
+      null == recipes
+          ? _value._recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
               as List<Recipe>,
     ));
   }
@@ -462,20 +462,19 @@ class __$$RecipesReadyCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipesReady implements RecipesReady {
-  _$RecipesReady(final List<Recipe> recipeGroups)
-      : _recipeGroups = recipeGroups;
+  _$RecipesReady(final List<Recipe> recipes) : _recipes = recipes;
 
-  final List<Recipe> _recipeGroups;
+  final List<Recipe> _recipes;
   @override
-  List<Recipe> get recipeGroups {
-    if (_recipeGroups is EqualUnmodifiableListView) return _recipeGroups;
+  List<Recipe> get recipes {
+    if (_recipes is EqualUnmodifiableListView) return _recipes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recipeGroups);
+    return EqualUnmodifiableListView(_recipes);
   }
 
   @override
   String toString() {
-    return 'RecipesState.ready(recipeGroups: $recipeGroups)';
+    return 'RecipesState.ready(recipes: $recipes)';
   }
 
   @override
@@ -483,13 +482,12 @@ class _$RecipesReady implements RecipesReady {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipesReady &&
-            const DeepCollectionEquality()
-                .equals(other._recipeGroups, _recipeGroups));
+            const DeepCollectionEquality().equals(other._recipes, _recipes));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_recipeGroups));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_recipes));
 
   @JsonKey(ignore: true)
   @override
@@ -503,9 +501,9 @@ class _$RecipesReady implements RecipesReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipeGroups) ready,
+    required TResult Function(List<Recipe> recipes) ready,
   }) {
-    return ready(recipeGroups);
+    return ready(recipes);
   }
 
   @override
@@ -514,9 +512,9 @@ class _$RecipesReady implements RecipesReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipeGroups)? ready,
+    TResult? Function(List<Recipe> recipes)? ready,
   }) {
-    return ready?.call(recipeGroups);
+    return ready?.call(recipes);
   }
 
   @override
@@ -525,11 +523,11 @@ class _$RecipesReady implements RecipesReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipeGroups)? ready,
+    TResult Function(List<Recipe> recipes)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(recipeGroups);
+      return ready(recipes);
     }
     return orElse();
   }
@@ -573,9 +571,9 @@ class _$RecipesReady implements RecipesReady {
 }
 
 abstract class RecipesReady implements RecipesState {
-  factory RecipesReady(final List<Recipe> recipeGroups) = _$RecipesReady;
+  factory RecipesReady(final List<Recipe> recipes) = _$RecipesReady;
 
-  List<Recipe> get recipeGroups;
+  List<Recipe> get recipes;
   @JsonKey(ignore: true)
   _$$RecipesReadyCopyWith<_$RecipesReady> get copyWith =>
       throw _privateConstructorUsedError;

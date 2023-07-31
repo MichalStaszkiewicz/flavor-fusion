@@ -5,6 +5,10 @@ import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+
+import 'data/models/recipe.dart';
+import 'data/source/local/hive_data_provider.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -12,6 +16,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     locator<Global>().mediaQuery = MediaQuery.of(context);
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'recipe-app',

@@ -1,5 +1,3 @@
-enum SearchOptions { filter, sort }
-
 enum MealType {
   breakfast,
   dinner,

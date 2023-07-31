@@ -1,23 +1,48 @@
+import 'package:flavor_fusion/data/models/recipe.dart';
+import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/states.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/services/favorite_recipe.dart';
+
 var recipeDetailsViewModel =
     StateNotifierProvider<RecipeDetailsViewModel, RecipeDetailsState>(
-        (ref) => RecipeDetailsViewModel(RecipeDetailsCollapsed()));
+        (ref) => RecipeDetailsViewModel(RecipeDetailsState.initial(), ref));
 
 class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
-  RecipeDetailsViewModel(super._state);
+  RecipeDetailsViewModel(super._state, this.ref);
   double descriptionHeight = 40;
-  void setDescriptionExpand(String text) {
-    if (state is RecipeDetailsExpanded) {
-      descriptionHeight = calculateContainerHeight(text);
-      state = RecipeDetailsCollapsed();
+  Ref ref;
+
+  void loadDetails(Recipe recipe) {
+    bool isFavorite = locator<FavoriteRecipeService>().isFavorite(recipe.id);
+    state = RecipeDetailsState.ready(false, isFavorite);
+  }
+
+  void setFavorite(Recipe recipe) {
+    final state = this.state as RecipeDetailsReady;
+    bool isFavorite = locator<FavoriteRecipeService>().isFavorite(recipe.id);
+    if (isFavorite) {
+      print("this recipe is favorite");
+      locator<FavoriteRecipeService>().removeFavoriteRecipe(recipe.id);
+      ref.read(favoriteViewModel.notifier).refreshLocalData();
+      this.state = RecipeDetailsState.ready(state.expanded, !isFavorite);
     } else {
+      print("this recipe is not favorite");
+      locator<FavoriteRecipeService>().addFavoriteRecipe(recipe);
+      ref.read(favoriteViewModel.notifier).refreshLocalData();
+      this.state = RecipeDetailsState.ready(state.expanded, !isFavorite);
+    }
+  }
+
+  void setDescriptionExpand(String text) {
+    if (state is RecipeDetailsReady) {
+      final state = this.state as RecipeDetailsReady;
       descriptionHeight = calculateContainerHeight(text);
-      state = RecipeDetailsExpanded();
+      this.state = RecipeDetailsState.ready(!state.expanded, state.isFavorite);
     }
   }
 
@@ -26,22 +51,27 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
   }
 
   double calculateContainerHeight(String text) {
-    if (state is RecipeDetailsCollapsed) {
-      final textPainter = TextPainter(
-        text: TextSpan(text: text, style: const TextStyle(fontSize: 16)),
-        maxLines: 1000,
-        textDirection: TextDirection.ltr,
-      )..layout(maxWidth: locator<Global>().deviceDimenstions.width - 40);
+    if (state is RecipeDetailsReady) {
+      final state = this.state as RecipeDetailsReady;
+      if (!state.expanded) {
+        final textPainter = TextPainter(
+          text: TextSpan(text: text, style: const TextStyle(fontSize: 16)),
+          maxLines: 1000,
+          textDirection: TextDirection.ltr,
+        )..layout(maxWidth: locator<Global>().deviceDimenstions.width - 40);
 
-      return textPainter.size.height;
+        return textPainter.size.height;
+      } else {
+        final textPainter = TextPainter(
+          text: TextSpan(text: text, style: const TextStyle(fontSize: 16)),
+          maxLines: 4,
+          textDirection: TextDirection.ltr,
+        )..layout(maxWidth: locator<Global>().deviceDimenstions.width - 40);
+
+        return textPainter.size.height;
+      }
     } else {
-      final textPainter = TextPainter(
-        text: TextSpan(text: text, style: const TextStyle(fontSize: 16)),
-        maxLines: 4,
-        textDirection: TextDirection.ltr,
-      )..layout(maxWidth: locator<Global>().deviceDimenstions.width - 40);
-
-      return textPainter.size.height;
+      return 0;
     }
   }
 }

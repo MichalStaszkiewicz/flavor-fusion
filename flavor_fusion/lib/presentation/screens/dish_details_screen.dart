@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/widgets/bubble_icon_button.dart';
 import 'package:flavor_fusion/presentation/widgets/custom_button.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_custom_image.dart';
@@ -7,18 +8,20 @@ import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
 
 @RoutePage()
-class DishDetailsScreen extends StatefulWidget {
-  DishDetailsScreen({required this.name});
+class DishDetailsScreen extends ConsumerStatefulWidget {
+  DishDetailsScreen({required this.name, required this.recipe});
   String name;
+  Recipe recipe;
   @override
-  State<DishDetailsScreen> createState() => _DishDetailsScreenState();
+  DishDetailsScreenState createState() => DishDetailsScreenState();
 }
 
-class _DishDetailsScreenState extends State<DishDetailsScreen>
+class DishDetailsScreenState extends ConsumerState<DishDetailsScreen>
     with TickerProviderStateMixin {
   String lorem =
       'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.';
@@ -47,7 +50,9 @@ class _DishDetailsScreenState extends State<DishDetailsScreen>
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(recipeDetailsViewModel.notifier).loadDetails(widget.recipe);
+    });
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       if (_scrollController.position.userScrollDirection ==
@@ -80,24 +85,36 @@ class _DishDetailsScreenState extends State<DishDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(  resizeToAvoidBottomInset: false,
-      body: Stack(children: [
-        Container(
-          decoration: const BoxDecoration(),
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Stack(children: [
-              DishCustomImage(
-                opacity: imageOpacity,
-              ),
-              DishDetails(
-                description: lorem,
-                name: widget.name,
-              ),
-            ]),
-          ),
+    final recipeDetailsState = ref.watch(recipeDetailsViewModel);
+
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: recipeDetailsState.when(
+          error: () => Container(),
+          initial: () => Container(),
+          loading: () => Container(),
+          ready: (bool expanded, bool isFavorite) => _buildReady(),
+        ));
+  }
+
+  Stack _buildReady() {
+    return Stack(children: [
+      Container(
+        decoration: const BoxDecoration(),
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Stack(children: [
+            DishCustomImage(
+              opacity: imageOpacity,
+              recipe: widget.recipe,
+            ),
+            DishDetails(
+              description: lorem,
+              name: widget.name,
+            ),
+          ]),
         ),
-      ]),
-    );
+      ),
+    ]);
   }
 }

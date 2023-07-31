@@ -15,7 +15,15 @@ class DishDetails extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final recipeDetailsState = ref.watch(recipeDetailsViewModel);
+    return recipeDetailsState.when(
+        error: () => _buildError(),
+        initial: () => _buildInitial(),
+        loading: () => _buildLoading(),
+        ready: (bool expanded, bool isFavorite) =>
+            _buildReady(context, expanded, ref));
+  }
 
+  Column _buildReady(BuildContext context, bool expanded, WidgetRef ref) {
     return Column(
       children: [
         IgnorePointer(
@@ -74,7 +82,7 @@ class DishDetails extends ConsumerWidget {
                   Column(
                     children: [
                       AnimatedContainer(
-                          height: recipeDetailsState is RecipeDetailsExpanded
+                          height: expanded
                               ? ref
                                   .read(recipeDetailsViewModel.notifier)
                                   .descriptionHeight
@@ -89,10 +97,7 @@ class DishDetails extends ConsumerWidget {
                                   color: locator<Global>().greyText,
                                 ),
                             maxLines: null,
-                            overflow:
-                                recipeDetailsState is RecipeDetailsCollapsed
-                                    ? TextOverflow.fade
-                                    : null,
+                            overflow: expanded ? TextOverflow.fade : null,
                           )),
                       Container(
                           alignment: Alignment.topRight,
@@ -106,10 +111,8 @@ class DishDetails extends ConsumerWidget {
                               child: Container(
                                   alignment: Alignment.bottomRight,
                                   height: 30,
-                                  child: Text(recipeDetailsState
-                                          is RecipeDetailsCollapsed
-                                      ? "View more"
-                                      : "View less"))))
+                                  child: Text(
+                                      !expanded ? "View more" : "View less"))))
                     ],
                   ),
                   Container(
@@ -151,6 +154,12 @@ class DishDetails extends ConsumerWidget {
       ],
     );
   }
+
+  Container _buildInitial() => Container();
+
+  Container _buildLoading() => Container();
+
+  Container _buildError() => Container();
 
   Container _buildBasicInfo(BuildContext context, String label, IconData icon) {
     return Container(

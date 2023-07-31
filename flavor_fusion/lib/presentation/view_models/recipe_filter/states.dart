@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/utility/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'states.freezed.dart';
@@ -8,6 +9,6 @@ abstract class RecipeFilterState with _$RecipeFilterState {
   factory RecipeFilterState.loading() = RecipeFilterLoading;
   factory RecipeFilterState.error() = RecipeFilterError;
 
-  factory RecipeFilterState.ready(List<String> activeFilters) =
+  factory RecipeFilterState.ready(List<String> activeFilters, SortBy sortBy) =
       RecipeFilterReady;
 }

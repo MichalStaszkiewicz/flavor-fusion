@@ -4,17 +4,17 @@ import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/models/recipe.dart';
+
 class DishItemWidget extends StatelessWidget {
-  DishItemWidget(
-      {required this.name, required this.time, required this.calories});
-  String name;
-  String time;
-  String calories;
+  DishItemWidget({required this.recipe});
+  Recipe recipe;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        locator<AppRouter>().push(DishDetailsRoute(name: name));
+        locator<AppRouter>()
+            .push(DishDetailsRoute(name: recipe.label, recipe: recipe));
       },
       child: Card(
         margin: EdgeInsets.all(10),
@@ -56,15 +56,15 @@ class DishItemWidget extends StatelessWidget {
                     Expanded(
                       child: Container(
                         child: Text(
-                          name,
+                          recipe.label,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                     ),
-                    _buildRecipeBasicInformations(
-                        context, "$time minutes", Icons.timer),
-                    _buildRecipeBasicInformations(
-                        context, "$calories kcal", Icons.fire_hydrant),
+                    _buildRecipeBasicInformations(context,
+                        "${recipe.totalTime.round()} minutes", Icons.timer),
+                    _buildRecipeBasicInformations(context,
+                        "${recipe.calories.round()} kcal", Icons.fire_hydrant),
                   ],
                 ),
               ))

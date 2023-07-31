@@ -1,4 +1,3 @@
-import 'package:flavor_fusion/presentation/view_models/recipe_sort/recipe_sort_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
@@ -9,45 +8,44 @@ import '../../utility/service_locator.dart';
 import '../view_models/recipe_filter/recipe_filter_view_model.dart';
 
 class FilterCheckBox extends ConsumerWidget {
-  FilterCheckBox({required this.label, required this.options});
+  FilterCheckBox({
+    required this.label,
+  });
   String label;
-  SearchOptions options;
+
+  bool selected(
+    SortBy sortBy,
+    List<String> filters,
+  ) {
+    if (label.toLowerCase() == sortBy.name.toLowerCase()) {
+      return true;
+    }
+    for (String filter in filters) {
+      if (label.toLowerCase() == filter.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (options == SearchOptions.filter) {
-      return ref.watch(recipeFilterViewModel).when(
-          initial: () => _buildInitialFilter(),
-          loading: () => _buildLoadingFilter(),
-          error: () => _buildErrorFilter(),
-          ready: (filters) => _buildReadyFilter(filters, ref));
-    } else {
-      return ref.watch(recipeSortViewModel).when(
-          initial: () => _buildInitialSort(),
-          loading: () => _buildLoadingSort(),
-          error: () => _buildErrorSort(),
-          ready: (sort) => _buildReadySort(sort, ref));
-    }
+    return ref.watch(recipeFilterViewModel).when(
+        initial: () => _buildInitialFilter(),
+        loading: () => _buildLoadingFilter(),
+        error: () => _buildErrorFilter(),
+        ready: (filters, sortBy) => _buildReadyFilter(sortBy, filters, ref));
   }
 
-  Container _buildReadySort(SortBy sort, WidgetRef ref) {
+  Container _buildReadyFilter(
+      SortBy sortBy, List<String> filters, WidgetRef ref) {
     return Container(
       child: Row(
         children: [
           Checkbox(
-              value:
-                  sort.name.toLowerCase() == label.toLowerCase() ? true : false,
+              value: selected(sortBy, filters),
               onChanged: (value) {
-                print("changed");
-                if (sort.name.toLowerCase() == label.toLowerCase()) {
-                  ref
-                      .read(recipeSortViewModel.notifier)
-                      .selectSortType(SortBy.none);
-                } else {
-                  ref
-                      .read(recipeSortViewModel.notifier)
-                      .selectSortType(locator<Global>().stringToSortBy(label));
-                }
+                ref.read(recipeFilterViewModel.notifier).selectCheckBox(label);
               }),
           SizedBox(
             width: 5,
@@ -58,31 +56,6 @@ class FilterCheckBox extends ConsumerWidget {
     );
   }
 
-  Container _buildReadyFilter(List<String> filters, WidgetRef ref) {
-    return Container(
-      child: Row(
-        children: [
-          Checkbox(
-              value: filters.contains(label) ? true : false,
-              onChanged: (value) {
-                filters.contains(label)
-                    ? ref
-                        .read(recipeFilterViewModel.notifier)
-                        .removeFilter(label)
-                    : ref.read(recipeFilterViewModel.notifier).addFilter(label);
-              }),
-          SizedBox(
-            width: 5,
-          ),
-          Text(label),
-        ],
-      ),
-    );
-  }
-
-  Container _buildLoadingSort() => Container();
-  Container _buildInitialSort() => Container();
-  Container _buildErrorSort() => Container();
   Container _buildLoadingFilter() => Container();
 
   Container _buildErrorFilter() => Container();

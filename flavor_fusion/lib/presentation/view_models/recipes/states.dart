@@ -8,5 +8,5 @@ abstract class RecipesState with _$RecipesState {
   factory RecipesState.initial() = RecipesInitial;
   factory RecipesState.loading() = RecipesLoading;
   factory RecipesState.error() = RecipesError;
-  factory RecipesState.ready(List<Recipe> recipeGroups) = RecipesReady;
+  factory RecipesState.ready(List<Recipe> recipes) = RecipesReady;
 }

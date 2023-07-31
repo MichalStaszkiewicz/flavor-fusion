@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_filter/recipe_filter_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/apply_button.dart';
@@ -31,7 +32,6 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
     for (DishType dishType in locator<Global>().dishTypes) {
       result.add(FilterCheckBox(
         label: locator<Global>().capitalize(dishType.name),
-        options: SearchOptions.filter,
       ));
     }
     return result;
@@ -42,7 +42,6 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
     for (MealType dishType in locator<Global>().mealTypes) {
       result.add(FilterCheckBox(
         label: locator<Global>().capitalize(dishType.name),
-        options: SearchOptions.filter,
       ));
     }
     return result;
@@ -53,8 +52,19 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
     for (Diet dishType in locator<Global>().diets) {
       result.add(FilterCheckBox(
         label: locator<Global>().capitalize(dishType.name),
-        options: SearchOptions.filter,
       ));
+    }
+    return result;
+  }
+
+  List<Widget> generateSortMethods() {
+    List<Widget> result = [];
+    for (SortBy sortMethod in locator<Global>().sortBy) {
+      if (sortMethod != SortBy.none) {
+        result.add(FilterCheckBox(
+          label: locator<Global>().capitalize(sortMethod.name),
+        ));
+      }
     }
     return result;
   }
@@ -91,15 +101,19 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                 items: [...generateDishTypes()],
                 label: 'Dish Type',
               ),
+              FilterCheckBoxList(
+                items: [...generateSortMethods()],
+                label: 'Sort By',
+              ),
               ApplyButton(onPressed: () {
                 ref.read(recipeFilterViewModel).when(
                     initial: () => (),
                     loading: () => (),
                     error: () => (),
-                    ready: (filters) => ref
-                        .read(searchScreenViewModel.notifier)
-                        .applyFilters(filters));
-                ref.read(recipeFilterViewModel.notifier).confirmFilters();
+                    ready: (filters, sortBy) => ref
+                        .read(favoriteViewModel.notifier)
+                        .apply(filters, sortBy));
+                ref.read(recipeFilterViewModel.notifier).confirmChanges();
                 context.router.pop();
               })
             ],
@@ -122,9 +136,12 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                 icon: Icon(Icons.arrow_back),
                 onPressed: () {
                   if (ref
-                      .read(recipeFilterViewModel.notifier)
-                      .filterListChanged()) {
-                    ref.read(recipeFilterViewModel.notifier).confirmFilters();
+                          .read(recipeFilterViewModel.notifier)
+                          .filterListChanged() &&
+                      ref
+                          .read(recipeFilterViewModel.notifier)
+                          .sortMethodChanged()) {
+                    ref.read(recipeFilterViewModel.notifier).confirmChanges();
                     context.router.pop();
                   } else {
                     DialogManager.confirmDialog('You did not apply changes',
@@ -133,7 +150,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                         context.router.pop();
                         ref
                             .read(recipeFilterViewModel.notifier)
-                            .rejectFilters();
+                            .rejectChanges();
                       });
                     }, () {
                       context.router
@@ -143,10 +160,10 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                           initial: () => (),
                           loading: () => (),
                           error: () => (),
-                          ready: (filters) => ref
-                              .read(searchScreenViewModel.notifier)
-                              .applyFilters(filters));
-                      ref.read(recipeFilterViewModel.notifier).confirmFilters();
+                          ready: (filters, sortBy) => ref
+                              .read(favoriteViewModel.notifier)
+                              .apply(filters, sortBy));
+                      ref.read(recipeFilterViewModel.notifier).confirmChanges();
                     });
                   }
                 },

@@ -18,39 +18,51 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RecipeDetailsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() collapsed,
-    required TResult Function() expanded,
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(bool expanded, bool isFavorite) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? collapsed,
-    TResult? Function()? expanded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(bool expanded, bool isFavorite)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? expanded,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool expanded, bool isFavorite)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipeDetailsCollapsed value) collapsed,
-    required TResult Function(RecipeDetailsExpanded value) expanded,
+    required TResult Function(RecipeDetailsInitial value) initial,
+    required TResult Function(RecipeDetailsLoading value) loading,
+    required TResult Function(RecipeDetailsError value) error,
+    required TResult Function(RecipeDetailsReady value) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipeDetailsCollapsed value)? collapsed,
-    TResult? Function(RecipeDetailsExpanded value)? expanded,
+    TResult? Function(RecipeDetailsInitial value)? initial,
+    TResult? Function(RecipeDetailsLoading value)? loading,
+    TResult? Function(RecipeDetailsError value)? error,
+    TResult? Function(RecipeDetailsReady value)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipeDetailsCollapsed value)? collapsed,
-    TResult Function(RecipeDetailsExpanded value)? expanded,
+    TResult Function(RecipeDetailsInitial value)? initial,
+    TResult Function(RecipeDetailsLoading value)? loading,
+    TResult Function(RecipeDetailsError value)? error,
+    TResult Function(RecipeDetailsReady value)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,35 +87,35 @@ class _$RecipeDetailsStateCopyWithImpl<$Res, $Val extends RecipeDetailsState>
 }
 
 /// @nodoc
-abstract class _$$RecipeDetailsCollapsedCopyWith<$Res> {
-  factory _$$RecipeDetailsCollapsedCopyWith(_$RecipeDetailsCollapsed value,
-          $Res Function(_$RecipeDetailsCollapsed) then) =
-      __$$RecipeDetailsCollapsedCopyWithImpl<$Res>;
+abstract class _$$RecipeDetailsInitialCopyWith<$Res> {
+  factory _$$RecipeDetailsInitialCopyWith(_$RecipeDetailsInitial value,
+          $Res Function(_$RecipeDetailsInitial) then) =
+      __$$RecipeDetailsInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeDetailsCollapsedCopyWithImpl<$Res>
-    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsCollapsed>
-    implements _$$RecipeDetailsCollapsedCopyWith<$Res> {
-  __$$RecipeDetailsCollapsedCopyWithImpl(_$RecipeDetailsCollapsed _value,
-      $Res Function(_$RecipeDetailsCollapsed) _then)
+class __$$RecipeDetailsInitialCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsInitial>
+    implements _$$RecipeDetailsInitialCopyWith<$Res> {
+  __$$RecipeDetailsInitialCopyWithImpl(_$RecipeDetailsInitial _value,
+      $Res Function(_$RecipeDetailsInitial) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeDetailsCollapsed implements RecipeDetailsCollapsed {
-  _$RecipeDetailsCollapsed();
+class _$RecipeDetailsInitial implements RecipeDetailsInitial {
+  _$RecipeDetailsInitial();
 
   @override
   String toString() {
-    return 'RecipeDetailsState.collapsed()';
+    return 'RecipeDetailsState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeDetailsCollapsed);
+        (other.runtimeType == runtimeType && other is _$RecipeDetailsInitial);
   }
 
   @override
@@ -112,30 +124,36 @@ class _$RecipeDetailsCollapsed implements RecipeDetailsCollapsed {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() collapsed,
-    required TResult Function() expanded,
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(bool expanded, bool isFavorite) ready,
   }) {
-    return collapsed();
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? collapsed,
-    TResult? Function()? expanded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(bool expanded, bool isFavorite)? ready,
   }) {
-    return collapsed?.call();
+    return initial?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? expanded,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool expanded, bool isFavorite)? ready,
     required TResult orElse(),
   }) {
-    if (collapsed != null) {
-      return collapsed();
+    if (initial != null) {
+      return initial();
     }
     return orElse();
   }
@@ -143,69 +161,75 @@ class _$RecipeDetailsCollapsed implements RecipeDetailsCollapsed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipeDetailsCollapsed value) collapsed,
-    required TResult Function(RecipeDetailsExpanded value) expanded,
+    required TResult Function(RecipeDetailsInitial value) initial,
+    required TResult Function(RecipeDetailsLoading value) loading,
+    required TResult Function(RecipeDetailsError value) error,
+    required TResult Function(RecipeDetailsReady value) ready,
   }) {
-    return collapsed(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipeDetailsCollapsed value)? collapsed,
-    TResult? Function(RecipeDetailsExpanded value)? expanded,
+    TResult? Function(RecipeDetailsInitial value)? initial,
+    TResult? Function(RecipeDetailsLoading value)? loading,
+    TResult? Function(RecipeDetailsError value)? error,
+    TResult? Function(RecipeDetailsReady value)? ready,
   }) {
-    return collapsed?.call(this);
+    return initial?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipeDetailsCollapsed value)? collapsed,
-    TResult Function(RecipeDetailsExpanded value)? expanded,
+    TResult Function(RecipeDetailsInitial value)? initial,
+    TResult Function(RecipeDetailsLoading value)? loading,
+    TResult Function(RecipeDetailsError value)? error,
+    TResult Function(RecipeDetailsReady value)? ready,
     required TResult orElse(),
   }) {
-    if (collapsed != null) {
-      return collapsed(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
 }
 
-abstract class RecipeDetailsCollapsed implements RecipeDetailsState {
-  factory RecipeDetailsCollapsed() = _$RecipeDetailsCollapsed;
+abstract class RecipeDetailsInitial implements RecipeDetailsState {
+  factory RecipeDetailsInitial() = _$RecipeDetailsInitial;
 }
 
 /// @nodoc
-abstract class _$$RecipeDetailsExpandedCopyWith<$Res> {
-  factory _$$RecipeDetailsExpandedCopyWith(_$RecipeDetailsExpanded value,
-          $Res Function(_$RecipeDetailsExpanded) then) =
-      __$$RecipeDetailsExpandedCopyWithImpl<$Res>;
+abstract class _$$RecipeDetailsLoadingCopyWith<$Res> {
+  factory _$$RecipeDetailsLoadingCopyWith(_$RecipeDetailsLoading value,
+          $Res Function(_$RecipeDetailsLoading) then) =
+      __$$RecipeDetailsLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeDetailsExpandedCopyWithImpl<$Res>
-    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsExpanded>
-    implements _$$RecipeDetailsExpandedCopyWith<$Res> {
-  __$$RecipeDetailsExpandedCopyWithImpl(_$RecipeDetailsExpanded _value,
-      $Res Function(_$RecipeDetailsExpanded) _then)
+class __$$RecipeDetailsLoadingCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsLoading>
+    implements _$$RecipeDetailsLoadingCopyWith<$Res> {
+  __$$RecipeDetailsLoadingCopyWithImpl(_$RecipeDetailsLoading _value,
+      $Res Function(_$RecipeDetailsLoading) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeDetailsExpanded implements RecipeDetailsExpanded {
-  _$RecipeDetailsExpanded();
+class _$RecipeDetailsLoading implements RecipeDetailsLoading {
+  _$RecipeDetailsLoading();
 
   @override
   String toString() {
-    return 'RecipeDetailsState.expanded()';
+    return 'RecipeDetailsState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeDetailsExpanded);
+        (other.runtimeType == runtimeType && other is _$RecipeDetailsLoading);
   }
 
   @override
@@ -214,30 +238,36 @@ class _$RecipeDetailsExpanded implements RecipeDetailsExpanded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() collapsed,
-    required TResult Function() expanded,
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(bool expanded, bool isFavorite) ready,
   }) {
-    return expanded();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? collapsed,
-    TResult? Function()? expanded,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(bool expanded, bool isFavorite)? ready,
   }) {
-    return expanded?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? expanded,
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool expanded, bool isFavorite)? ready,
     required TResult orElse(),
   }) {
-    if (expanded != null) {
-      return expanded();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -245,35 +275,313 @@ class _$RecipeDetailsExpanded implements RecipeDetailsExpanded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipeDetailsCollapsed value) collapsed,
-    required TResult Function(RecipeDetailsExpanded value) expanded,
+    required TResult Function(RecipeDetailsInitial value) initial,
+    required TResult Function(RecipeDetailsLoading value) loading,
+    required TResult Function(RecipeDetailsError value) error,
+    required TResult Function(RecipeDetailsReady value) ready,
   }) {
-    return expanded(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipeDetailsCollapsed value)? collapsed,
-    TResult? Function(RecipeDetailsExpanded value)? expanded,
+    TResult? Function(RecipeDetailsInitial value)? initial,
+    TResult? Function(RecipeDetailsLoading value)? loading,
+    TResult? Function(RecipeDetailsError value)? error,
+    TResult? Function(RecipeDetailsReady value)? ready,
   }) {
-    return expanded?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipeDetailsCollapsed value)? collapsed,
-    TResult Function(RecipeDetailsExpanded value)? expanded,
+    TResult Function(RecipeDetailsInitial value)? initial,
+    TResult Function(RecipeDetailsLoading value)? loading,
+    TResult Function(RecipeDetailsError value)? error,
+    TResult Function(RecipeDetailsReady value)? ready,
     required TResult orElse(),
   }) {
-    if (expanded != null) {
-      return expanded(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
 }
 
-abstract class RecipeDetailsExpanded implements RecipeDetailsState {
-  factory RecipeDetailsExpanded() = _$RecipeDetailsExpanded;
+abstract class RecipeDetailsLoading implements RecipeDetailsState {
+  factory RecipeDetailsLoading() = _$RecipeDetailsLoading;
+}
+
+/// @nodoc
+abstract class _$$RecipeDetailsErrorCopyWith<$Res> {
+  factory _$$RecipeDetailsErrorCopyWith(_$RecipeDetailsError value,
+          $Res Function(_$RecipeDetailsError) then) =
+      __$$RecipeDetailsErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RecipeDetailsErrorCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsError>
+    implements _$$RecipeDetailsErrorCopyWith<$Res> {
+  __$$RecipeDetailsErrorCopyWithImpl(
+      _$RecipeDetailsError _value, $Res Function(_$RecipeDetailsError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RecipeDetailsError implements RecipeDetailsError {
+  _$RecipeDetailsError();
+
+  @override
+  String toString() {
+    return 'RecipeDetailsState.error()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RecipeDetailsError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(bool expanded, bool isFavorite) ready,
+  }) {
+    return error();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(bool expanded, bool isFavorite)? ready,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool expanded, bool isFavorite)? ready,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RecipeDetailsInitial value) initial,
+    required TResult Function(RecipeDetailsLoading value) loading,
+    required TResult Function(RecipeDetailsError value) error,
+    required TResult Function(RecipeDetailsReady value) ready,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RecipeDetailsInitial value)? initial,
+    TResult? Function(RecipeDetailsLoading value)? loading,
+    TResult? Function(RecipeDetailsError value)? error,
+    TResult? Function(RecipeDetailsReady value)? ready,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RecipeDetailsInitial value)? initial,
+    TResult Function(RecipeDetailsLoading value)? loading,
+    TResult Function(RecipeDetailsError value)? error,
+    TResult Function(RecipeDetailsReady value)? ready,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RecipeDetailsError implements RecipeDetailsState {
+  factory RecipeDetailsError() = _$RecipeDetailsError;
+}
+
+/// @nodoc
+abstract class _$$RecipeDetailsReadyCopyWith<$Res> {
+  factory _$$RecipeDetailsReadyCopyWith(_$RecipeDetailsReady value,
+          $Res Function(_$RecipeDetailsReady) then) =
+      __$$RecipeDetailsReadyCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool expanded, bool isFavorite});
+}
+
+/// @nodoc
+class __$$RecipeDetailsReadyCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsReady>
+    implements _$$RecipeDetailsReadyCopyWith<$Res> {
+  __$$RecipeDetailsReadyCopyWithImpl(
+      _$RecipeDetailsReady _value, $Res Function(_$RecipeDetailsReady) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? expanded = null,
+    Object? isFavorite = null,
+  }) {
+    return _then(_$RecipeDetailsReady(
+      null == expanded
+          ? _value.expanded
+          : expanded // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RecipeDetailsReady implements RecipeDetailsReady {
+  _$RecipeDetailsReady(this.expanded, this.isFavorite);
+
+  @override
+  final bool expanded;
+  @override
+  final bool isFavorite;
+
+  @override
+  String toString() {
+    return 'RecipeDetailsState.ready(expanded: $expanded, isFavorite: $isFavorite)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecipeDetailsReady &&
+            (identical(other.expanded, expanded) ||
+                other.expanded == expanded) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, expanded, isFavorite);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RecipeDetailsReadyCopyWith<_$RecipeDetailsReady> get copyWith =>
+      __$$RecipeDetailsReadyCopyWithImpl<_$RecipeDetailsReady>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(bool expanded, bool isFavorite) ready,
+  }) {
+    return ready(expanded, isFavorite);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(bool expanded, bool isFavorite)? ready,
+  }) {
+    return ready?.call(expanded, isFavorite);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(bool expanded, bool isFavorite)? ready,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(expanded, isFavorite);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RecipeDetailsInitial value) initial,
+    required TResult Function(RecipeDetailsLoading value) loading,
+    required TResult Function(RecipeDetailsError value) error,
+    required TResult Function(RecipeDetailsReady value) ready,
+  }) {
+    return ready(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RecipeDetailsInitial value)? initial,
+    TResult? Function(RecipeDetailsLoading value)? loading,
+    TResult? Function(RecipeDetailsError value)? error,
+    TResult? Function(RecipeDetailsReady value)? ready,
+  }) {
+    return ready?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RecipeDetailsInitial value)? initial,
+    TResult Function(RecipeDetailsLoading value)? loading,
+    TResult Function(RecipeDetailsError value)? error,
+    TResult Function(RecipeDetailsReady value)? ready,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RecipeDetailsReady implements RecipeDetailsState {
+  factory RecipeDetailsReady(final bool expanded, final bool isFavorite) =
+      _$RecipeDetailsReady;
+
+  bool get expanded;
+  bool get isFavorite;
+  @JsonKey(ignore: true)
+  _$$RecipeDetailsReadyCopyWith<_$RecipeDetailsReady> get copyWith =>
+      throw _privateConstructorUsedError;
 }

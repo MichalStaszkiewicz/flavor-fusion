@@ -20,20 +20,38 @@ Recipe _$RecipeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Recipe {
+  @HiveField(0)
   String get label => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get image => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get url => throw _privateConstructorUsedError;
+  @HiveField(3)
   List<String> get dietLabels => throw _privateConstructorUsedError;
+  @HiveField(4)
   List<String> get healthLabels => throw _privateConstructorUsedError;
+  @HiveField(5)
   List<String> get cautions => throw _privateConstructorUsedError;
+  @HiveField(6)
   List<String> get ingredientLines => throw _privateConstructorUsedError;
+  @HiveField(7)
   List<Ingredient> get ingredients => throw _privateConstructorUsedError;
+  @HiveField(8)
   double get calories => throw _privateConstructorUsedError;
+  @HiveField(9)
   double get totalWeight => throw _privateConstructorUsedError;
+  @HiveField(10)
   int get totalTime => throw _privateConstructorUsedError;
+  @HiveField(11)
   List<String> get cuisineType => throw _privateConstructorUsedError;
+  @HiveField(12)
   List<String> get mealType => throw _privateConstructorUsedError;
+  @HiveField(13)
   List<String> get dishType => throw _privateConstructorUsedError;
+  @HiveField(14)
+  int get id => throw _privateConstructorUsedError;
+  @HiveField(15)
+  String get author => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,20 +64,22 @@ abstract class $RecipeCopyWith<$Res> {
       _$RecipeCopyWithImpl<$Res, Recipe>;
   @useResult
   $Res call(
-      {String label,
-      String image,
-      String url,
-      List<String> dietLabels,
-      List<String> healthLabels,
-      List<String> cautions,
-      List<String> ingredientLines,
-      List<Ingredient> ingredients,
-      double calories,
-      double totalWeight,
-      int totalTime,
-      List<String> cuisineType,
-      List<String> mealType,
-      List<String> dishType});
+      {@HiveField(0) String label,
+      @HiveField(1) String image,
+      @HiveField(2) String url,
+      @HiveField(3) List<String> dietLabels,
+      @HiveField(4) List<String> healthLabels,
+      @HiveField(5) List<String> cautions,
+      @HiveField(6) List<String> ingredientLines,
+      @HiveField(7) List<Ingredient> ingredients,
+      @HiveField(8) double calories,
+      @HiveField(9) double totalWeight,
+      @HiveField(10) int totalTime,
+      @HiveField(11) List<String> cuisineType,
+      @HiveField(12) List<String> mealType,
+      @HiveField(13) List<String> dishType,
+      @HiveField(14) int id,
+      @HiveField(15) String author});
 }
 
 /// @nodoc
@@ -89,6 +109,8 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
     Object? cuisineType = null,
     Object? mealType = null,
     Object? dishType = null,
+    Object? id = null,
+    Object? author = null,
   }) {
     return _then(_value.copyWith(
       label: null == label
@@ -147,6 +169,14 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
           ? _value.dishType
           : dishType // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -158,20 +188,22 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String label,
-      String image,
-      String url,
-      List<String> dietLabels,
-      List<String> healthLabels,
-      List<String> cautions,
-      List<String> ingredientLines,
-      List<Ingredient> ingredients,
-      double calories,
-      double totalWeight,
-      int totalTime,
-      List<String> cuisineType,
-      List<String> mealType,
-      List<String> dishType});
+      {@HiveField(0) String label,
+      @HiveField(1) String image,
+      @HiveField(2) String url,
+      @HiveField(3) List<String> dietLabels,
+      @HiveField(4) List<String> healthLabels,
+      @HiveField(5) List<String> cautions,
+      @HiveField(6) List<String> ingredientLines,
+      @HiveField(7) List<Ingredient> ingredients,
+      @HiveField(8) double calories,
+      @HiveField(9) double totalWeight,
+      @HiveField(10) int totalTime,
+      @HiveField(11) List<String> cuisineType,
+      @HiveField(12) List<String> mealType,
+      @HiveField(13) List<String> dishType,
+      @HiveField(14) int id,
+      @HiveField(15) String author});
 }
 
 /// @nodoc
@@ -198,6 +230,8 @@ class __$$_RecipeCopyWithImpl<$Res>
     Object? cuisineType = null,
     Object? mealType = null,
     Object? dishType = null,
+    Object? id = null,
+    Object? author = null,
   }) {
     return _then(_$_Recipe(
       label: null == label
@@ -256,6 +290,14 @@ class __$$_RecipeCopyWithImpl<$Res>
           ? _value._dishType
           : dishType // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -264,20 +306,22 @@ class __$$_RecipeCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Recipe implements _Recipe {
   _$_Recipe(
-      {required this.label,
-      required this.image,
-      required this.url,
-      required final List<String> dietLabels,
-      required final List<String> healthLabels,
-      required final List<String> cautions,
-      required final List<String> ingredientLines,
-      required final List<Ingredient> ingredients,
-      required this.calories,
-      required this.totalWeight,
-      required this.totalTime,
-      required final List<String> cuisineType,
-      required final List<String> mealType,
-      required final List<String> dishType})
+      {@HiveField(0) required this.label,
+      @HiveField(1) required this.image,
+      @HiveField(2) required this.url,
+      @HiveField(3) required final List<String> dietLabels,
+      @HiveField(4) required final List<String> healthLabels,
+      @HiveField(5) required final List<String> cautions,
+      @HiveField(6) required final List<String> ingredientLines,
+      @HiveField(7) required final List<Ingredient> ingredients,
+      @HiveField(8) required this.calories,
+      @HiveField(9) required this.totalWeight,
+      @HiveField(10) required this.totalTime,
+      @HiveField(11) required final List<String> cuisineType,
+      @HiveField(12) required final List<String> mealType,
+      @HiveField(13) required final List<String> dishType,
+      @HiveField(14) required this.id,
+      @HiveField(15) required this.author})
       : _dietLabels = dietLabels,
         _healthLabels = healthLabels,
         _cautions = cautions,
@@ -291,13 +335,17 @@ class _$_Recipe implements _Recipe {
       _$$_RecipeFromJson(json);
 
   @override
+  @HiveField(0)
   final String label;
   @override
+  @HiveField(1)
   final String image;
   @override
+  @HiveField(2)
   final String url;
   final List<String> _dietLabels;
   @override
+  @HiveField(3)
   List<String> get dietLabels {
     if (_dietLabels is EqualUnmodifiableListView) return _dietLabels;
     // ignore: implicit_dynamic_type
@@ -306,6 +354,7 @@ class _$_Recipe implements _Recipe {
 
   final List<String> _healthLabels;
   @override
+  @HiveField(4)
   List<String> get healthLabels {
     if (_healthLabels is EqualUnmodifiableListView) return _healthLabels;
     // ignore: implicit_dynamic_type
@@ -314,6 +363,7 @@ class _$_Recipe implements _Recipe {
 
   final List<String> _cautions;
   @override
+  @HiveField(5)
   List<String> get cautions {
     if (_cautions is EqualUnmodifiableListView) return _cautions;
     // ignore: implicit_dynamic_type
@@ -322,6 +372,7 @@ class _$_Recipe implements _Recipe {
 
   final List<String> _ingredientLines;
   @override
+  @HiveField(6)
   List<String> get ingredientLines {
     if (_ingredientLines is EqualUnmodifiableListView) return _ingredientLines;
     // ignore: implicit_dynamic_type
@@ -330,6 +381,7 @@ class _$_Recipe implements _Recipe {
 
   final List<Ingredient> _ingredients;
   @override
+  @HiveField(7)
   List<Ingredient> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
@@ -337,13 +389,17 @@ class _$_Recipe implements _Recipe {
   }
 
   @override
+  @HiveField(8)
   final double calories;
   @override
+  @HiveField(9)
   final double totalWeight;
   @override
+  @HiveField(10)
   final int totalTime;
   final List<String> _cuisineType;
   @override
+  @HiveField(11)
   List<String> get cuisineType {
     if (_cuisineType is EqualUnmodifiableListView) return _cuisineType;
     // ignore: implicit_dynamic_type
@@ -352,6 +408,7 @@ class _$_Recipe implements _Recipe {
 
   final List<String> _mealType;
   @override
+  @HiveField(12)
   List<String> get mealType {
     if (_mealType is EqualUnmodifiableListView) return _mealType;
     // ignore: implicit_dynamic_type
@@ -360,6 +417,7 @@ class _$_Recipe implements _Recipe {
 
   final List<String> _dishType;
   @override
+  @HiveField(13)
   List<String> get dishType {
     if (_dishType is EqualUnmodifiableListView) return _dishType;
     // ignore: implicit_dynamic_type
@@ -367,8 +425,15 @@ class _$_Recipe implements _Recipe {
   }
 
   @override
+  @HiveField(14)
+  final int id;
+  @override
+  @HiveField(15)
+  final String author;
+
+  @override
   String toString() {
-    return 'Recipe(label: $label, image: $image, url: $url, dietLabels: $dietLabels, healthLabels: $healthLabels, cautions: $cautions, ingredientLines: $ingredientLines, ingredients: $ingredients, calories: $calories, totalWeight: $totalWeight, totalTime: $totalTime, cuisineType: $cuisineType, mealType: $mealType, dishType: $dishType)';
+    return 'Recipe(label: $label, image: $image, url: $url, dietLabels: $dietLabels, healthLabels: $healthLabels, cautions: $cautions, ingredientLines: $ingredientLines, ingredients: $ingredients, calories: $calories, totalWeight: $totalWeight, totalTime: $totalTime, cuisineType: $cuisineType, mealType: $mealType, dishType: $dishType, id: $id, author: $author)';
   }
 
   @override
@@ -397,7 +462,9 @@ class _$_Recipe implements _Recipe {
             const DeepCollectionEquality()
                 .equals(other._cuisineType, _cuisineType) &&
             const DeepCollectionEquality().equals(other._mealType, _mealType) &&
-            const DeepCollectionEquality().equals(other._dishType, _dishType));
+            const DeepCollectionEquality().equals(other._dishType, _dishType) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.author, author) || other.author == author));
   }
 
   @JsonKey(ignore: true)
@@ -417,7 +484,9 @@ class _$_Recipe implements _Recipe {
       totalTime,
       const DeepCollectionEquality().hash(_cuisineType),
       const DeepCollectionEquality().hash(_mealType),
-      const DeepCollectionEquality().hash(_dishType));
+      const DeepCollectionEquality().hash(_dishType),
+      id,
+      author);
 
   @JsonKey(ignore: true)
   @override
@@ -435,51 +504,73 @@ class _$_Recipe implements _Recipe {
 
 abstract class _Recipe implements Recipe {
   factory _Recipe(
-      {required final String label,
-      required final String image,
-      required final String url,
-      required final List<String> dietLabels,
-      required final List<String> healthLabels,
-      required final List<String> cautions,
-      required final List<String> ingredientLines,
-      required final List<Ingredient> ingredients,
-      required final double calories,
-      required final double totalWeight,
-      required final int totalTime,
-      required final List<String> cuisineType,
-      required final List<String> mealType,
-      required final List<String> dishType}) = _$_Recipe;
+      {@HiveField(0) required final String label,
+      @HiveField(1) required final String image,
+      @HiveField(2) required final String url,
+      @HiveField(3) required final List<String> dietLabels,
+      @HiveField(4) required final List<String> healthLabels,
+      @HiveField(5) required final List<String> cautions,
+      @HiveField(6) required final List<String> ingredientLines,
+      @HiveField(7) required final List<Ingredient> ingredients,
+      @HiveField(8) required final double calories,
+      @HiveField(9) required final double totalWeight,
+      @HiveField(10) required final int totalTime,
+      @HiveField(11) required final List<String> cuisineType,
+      @HiveField(12) required final List<String> mealType,
+      @HiveField(13) required final List<String> dishType,
+      @HiveField(14) required final int id,
+      @HiveField(15) required final String author}) = _$_Recipe;
 
   factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
 
   @override
+  @HiveField(0)
   String get label;
   @override
+  @HiveField(1)
   String get image;
   @override
+  @HiveField(2)
   String get url;
   @override
+  @HiveField(3)
   List<String> get dietLabels;
   @override
+  @HiveField(4)
   List<String> get healthLabels;
   @override
+  @HiveField(5)
   List<String> get cautions;
   @override
+  @HiveField(6)
   List<String> get ingredientLines;
   @override
+  @HiveField(7)
   List<Ingredient> get ingredients;
   @override
+  @HiveField(8)
   double get calories;
   @override
+  @HiveField(9)
   double get totalWeight;
   @override
+  @HiveField(10)
   int get totalTime;
   @override
+  @HiveField(11)
   List<String> get cuisineType;
   @override
+  @HiveField(12)
   List<String> get mealType;
   @override
+  @HiveField(13)
   List<String> get dishType;
+  @override
+  @HiveField(14)
+  int get id;
+  @override
+  @HiveField(15)
+  String get author;
   @override
   @JsonKey(ignore: true)
   _$$_RecipeCopyWith<_$_Recipe> get copyWith =>

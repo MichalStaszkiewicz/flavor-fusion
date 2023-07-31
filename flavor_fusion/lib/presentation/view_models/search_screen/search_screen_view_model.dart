@@ -50,7 +50,9 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
           healthLabels: [],
           totalWeight: random.nextInt(5).toDouble(),
           totalTime: random.nextInt(90),
-          url: ''));
+          url: '',
+          author: '',
+          id: 7));
       _recipies[i] =
           _recipies[i].copyWith(dishType: [temporaryDishesTypes[randomIndex]]);
     }
@@ -80,27 +82,7 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
     }
   }
 
-  void applySort(SortBy sortBy) {
-    if (state is SearchScreenReady) {
-      final state = this.state as SearchScreenReady;
-      final List<Recipe> tempRecipies = List.from(state.recipies);
-      if (sortBy == SortBy.alphabetical) {
-        tempRecipies.sort(((a, b) => a.label.compareTo(b.label)));
-      } else if (sortBy == SortBy.caloriesAsc) {
-        tempRecipies.sort(((a, b) => a.calories.compareTo(b.calories)));
-      } else if (sortBy == SortBy.caloriesDesc) {
-        tempRecipies.sort(((a, b) => b.calories.compareTo(a.calories)));
-      } else if (sortBy == SortBy.time) {
-        tempRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
-      }
-
-      this.state = SearchScreenReady(tempRecipies);
-    } else {
-      print("state is not ready");
-    }
-  }
-
-  void applyFilters(List<String> filters) {
+  void apply(List<String> filters, SortBy sortBy) {
     if (state is SearchScreenReady) {
       List<Recipe> filteredRecipies = [];
 
@@ -118,6 +100,16 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
         if (recipeIsValid) {
           filteredRecipies.add(recipe);
         }
+      }
+      final List<Recipe> tempRecipies = List.from(filteredRecipies);
+      if (sortBy == SortBy.alphabetical) {
+        tempRecipies.sort(((a, b) => a.label.compareTo(b.label)));
+      } else if (sortBy == SortBy.caloriesAsc) {
+        tempRecipies.sort(((a, b) => a.calories.compareTo(b.calories)));
+      } else if (sortBy == SortBy.caloriesDesc) {
+        tempRecipies.sort(((a, b) => b.calories.compareTo(a.calories)));
+      } else if (sortBy == SortBy.time) {
+        tempRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
       }
       state = SearchScreenState.ready(filteredRecipies);
     } else {
