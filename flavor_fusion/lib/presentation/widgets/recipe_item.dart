@@ -128,7 +128,7 @@ class _RecipeItemState extends State<RecipeItem> {
                             Icons.timer,
                           ),
                           SizedBox(
-                            width: 20,
+                            width: 5,
                           ),
                           Text(
                             '${widget.recipe.totalTime} minutes',

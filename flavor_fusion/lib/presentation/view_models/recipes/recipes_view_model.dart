@@ -8,6 +8,38 @@ var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
 
 class RecipesViewModel extends StateNotifier<RecipesState> {
   RecipesViewModel(super._state);
+  final List<String> _ingredientsList = [
+    'Onion',
+    'Garlic',
+    'Tomatoes',
+    'Carrots',
+    'Potatoes',
+    'Bell Pepper',
+    'Olive Oil',
+    'Salt',
+    'Pepper',
+    'Oregano',
+    'Basil',
+    'Cilantro',
+    'Ginger',
+    'Parsley',
+    'Spinach',
+    'Sugar',
+    'Flour',
+    'Eggs',
+    'Butter',
+    'Vegetable Oil',
+    'Radish',
+    'Lettuce',
+    'Soy Sauce',
+    'Milk',
+    'Cheese',
+    'Pasta',
+    'Rice',
+    'Celery',
+    'Sprouts',
+    'Lemon',
+  ];
 
   void loadRecipes() {
     List<Recipe> recipes = [];
@@ -64,5 +96,20 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         id: 3,
         author: 'author'));
     state = RecipesState.ready(recipes);
+  }
+
+  void seachRecipes(String search) {
+    state = RecipesState.search([]);
+    List<String> searchList = [];
+    if (search.isNotEmpty) {
+      for (String ingredient in _ingredientsList) {
+        if (ingredient.toLowerCase().contains(search.toLowerCase())) {
+          searchList.add(ingredient);
+        }
+      }
+      state = RecipesState.search(searchList);
+    } else {
+      state = RecipesState.search([]);
+    }
   }
 }
