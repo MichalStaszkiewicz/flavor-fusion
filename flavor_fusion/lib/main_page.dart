@@ -58,7 +58,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   void _onFocusChange() {
     //   print("_focusNode.hasFocus = " + _focusNode.hasFocus.toString());
 
-    if (_focusNode.hasFocus == true && !_focused) {
+    if (_focusNode.hasFocus == true &&
+        !_focused &&
+        _recipesSearchController.text.isNotEmpty) {
       ref
           .read(recipesViewModel.notifier)
           .seachRecipes(_recipesSearchController.text);
@@ -226,10 +228,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                 _opacityController.forward().then((value) {
                   _recipesSearchFocused = !_recipesSearchFocused;
                   _opacityController.reverse();
-                  _focusNode.nearestScope!.unfocus();
                 });
               },
               orElse: () => {});
+          _focusNode.nearestScope!.unfocus();
         },
         controller: _recipesSearchController,
       ),

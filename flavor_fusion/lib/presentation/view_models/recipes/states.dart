@@ -9,5 +9,7 @@ abstract class RecipesState with _$RecipesState {
   factory RecipesState.loading() = RecipesLoading;
   factory RecipesState.error() = RecipesError;
   factory RecipesState.ready(List<Recipe> recipes) = RecipesReady;
-  factory RecipesState.search(List<String> suggestions) = RecipeStateSearch;
+  factory RecipesState.search(
+          List<String> suggestions, List<String> selectedIngredients) =
+      RecipesSearch;
 }

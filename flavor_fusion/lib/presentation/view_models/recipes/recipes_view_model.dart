@@ -8,6 +8,7 @@ var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
 
 class RecipesViewModel extends StateNotifier<RecipesState> {
   RecipesViewModel(super._state);
+
   final List<String> _ingredientsList = [
     'Onion',
     'Garlic',
@@ -40,6 +41,25 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     'Sprouts',
     'Lemon',
   ];
+
+  void removeSelectedIngredient(String ingredient) {
+    final state = this.state as RecipesSearch;
+    this.state = RecipesState.search(
+      state.suggestions,
+      state.selectedIngredients.where((item) => item != ingredient).toList(),
+    );
+  }
+
+  void addSelectedIngredient(String ingredient) {
+    final state = this.state as RecipesSearch;
+    if (state.selectedIngredients.contains(ingredient)) {
+      this.state =
+          RecipesState.search(state.suggestions, state.selectedIngredients);
+    } else {
+      this.state = RecipesState.search(
+          state.suggestions, [...state.selectedIngredients, ingredient]);
+    }
+  }
 
   void loadRecipes() {
     List<Recipe> recipes = [];
@@ -99,17 +119,21 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void seachRecipes(String search) {
-    state = RecipesState.search([]);
-    List<String> searchList = [];
-    if (search.isNotEmpty) {
-      for (String ingredient in _ingredientsList) {
-        if (ingredient.toLowerCase().contains(search.toLowerCase())) {
-          searchList.add(ingredient);
+    if (state is RecipesSearch) {
+      final state = this.state as RecipesSearch;
+      List<String> searchList = [];
+      if (search.isNotEmpty) {
+        for (String ingredient in _ingredientsList) {
+          if (ingredient.toLowerCase().contains(search.toLowerCase())) {
+            searchList.add(ingredient);
+          }
         }
+        this.state = RecipesState.search(searchList, state.selectedIngredients);
+      } else {
+        this.state = RecipesState.search([], state.selectedIngredients);
       }
-      state = RecipesState.search(searchList);
     } else {
-      state = RecipesState.search([]);
+      state = RecipesState.search([], []);
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/models/recipe.dart';
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
+import '../widgets/ingredient_chip.dart';
 
 class RecipesScreen extends ConsumerStatefulWidget {
   const RecipesScreen({
@@ -34,6 +37,22 @@ class RecipesScreenState extends ConsumerState<RecipesScreen> {
     recipeGroups.add(RecipeGroup(recipes: lunch, label: 'Lunch'));
     recipeGroups.add(RecipeGroup(recipes: dinner, label: 'Dinner'));
     return recipeGroups;
+  }
+
+  List<IngredientChip> createSelectedIngredientsList(
+      List<String> selectedIngredients, WidgetRef ref) {
+    List<IngredientChip> chips = [];
+
+    for (String ingredient in selectedIngredients) {
+      chips.add(IngredientChip(
+          onDeleted: () {
+            ref
+                .read(recipesViewModel.notifier)
+                .removeSelectedIngredient(ingredient);
+          },
+          label: ingredient));
+    }
+    return chips;
   }
 
   @override
@@ -77,7 +96,8 @@ class RecipesScreenState extends ConsumerState<RecipesScreen> {
             );
           },
           child: recipesState.maybeWhen(
-            search: (suggestions) => _buildSearch(suggestions),
+            search: (suggestions, selectedIngredients) =>
+                _buildSearch(suggestions, selectedIngredients),
             orElse: () => Container(),
           ),
         ),
@@ -85,23 +105,50 @@ class RecipesScreenState extends ConsumerState<RecipesScreen> {
     );
   }
 
-  Container _buildSearch(List<String> suggestions) {
+  Container _buildSearch(
+      List<String> suggestions, List<String> selectedIngredients) {
     return Container(
       key: ValueKey('recipes_search'),
       color: Colors.white,
       child: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(
               height: 10,
             ),
             Container(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(child: Column(children: [
-                    
-                  ],),),
+                  Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: double.infinity,
+                          child: Text(
+                            "Ingredients",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .copyWith(color: Colors.black),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          width: double.infinity,
+                          child: Wrap(
+                            spacing: 15,
+                            children: [
+                              ...createSelectedIngredientsList(
+                                  selectedIngredients, ref),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   Container(
                     width: double.infinity,
                     child: Text(
@@ -120,10 +167,18 @@ class RecipesScreenState extends ConsumerState<RecipesScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: suggestions.length,
-                      itemBuilder: (context, index) => Container(
-                            height: 50,
-                            child: Text(locator<Global>()
-                                .capitalize(suggestions[index])),
+                      itemBuilder: (context, index) => GestureDetector(
+                            onTap: () {
+                              ref
+                                  .read(recipesViewModel.notifier)
+                                  .addSelectedIngredient(locator<Global>()
+                                      .capitalize(suggestions[index]));
+                            },
+                            child: Container(
+                              height: 50,
+                              child: Text(locator<Global>()
+                                  .capitalize(suggestions[index])),
+                            ),
                           ))
                 ],
               ),

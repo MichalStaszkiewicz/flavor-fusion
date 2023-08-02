@@ -22,7 +22,9 @@ mixin _$RecipesState {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Recipe> recipes) ready,
-    required TResult Function(List<String> suggestions) search,
+    required TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)
+        search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,7 +33,9 @@ mixin _$RecipesState {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Recipe> recipes)? ready,
-    TResult? Function(List<String> suggestions)? search,
+    TResult? Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,7 +44,9 @@ mixin _$RecipesState {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Recipe> recipes)? ready,
-    TResult Function(List<String> suggestions)? search,
+    TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -50,7 +56,7 @@ mixin _$RecipesState {
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
     required TResult Function(RecipesReady value) ready,
-    required TResult Function(RecipeStateSearch value) search,
+    required TResult Function(RecipesSearch value) search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,7 +65,7 @@ mixin _$RecipesState {
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
     TResult? Function(RecipesReady value)? ready,
-    TResult? Function(RecipeStateSearch value)? search,
+    TResult? Function(RecipesSearch value)? search,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +74,7 @@ mixin _$RecipesState {
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
     TResult Function(RecipesReady value)? ready,
-    TResult Function(RecipeStateSearch value)? search,
+    TResult Function(RecipesSearch value)? search,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,7 +140,9 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Recipe> recipes) ready,
-    required TResult Function(List<String> suggestions) search,
+    required TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)
+        search,
   }) {
     return initial();
   }
@@ -146,7 +154,9 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Recipe> recipes)? ready,
-    TResult? Function(List<String> suggestions)? search,
+    TResult? Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
   }) {
     return initial?.call();
   }
@@ -158,7 +168,9 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Recipe> recipes)? ready,
-    TResult Function(List<String> suggestions)? search,
+    TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -174,7 +186,7 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
     required TResult Function(RecipesReady value) ready,
-    required TResult Function(RecipeStateSearch value) search,
+    required TResult Function(RecipesSearch value) search,
   }) {
     return initial(this);
   }
@@ -186,7 +198,7 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
     TResult? Function(RecipesReady value)? ready,
-    TResult? Function(RecipeStateSearch value)? search,
+    TResult? Function(RecipesSearch value)? search,
   }) {
     return initial?.call(this);
   }
@@ -198,7 +210,7 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
     TResult Function(RecipesReady value)? ready,
-    TResult Function(RecipeStateSearch value)? search,
+    TResult Function(RecipesSearch value)? search,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -254,7 +266,9 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Recipe> recipes) ready,
-    required TResult Function(List<String> suggestions) search,
+    required TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)
+        search,
   }) {
     return loading();
   }
@@ -266,7 +280,9 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Recipe> recipes)? ready,
-    TResult? Function(List<String> suggestions)? search,
+    TResult? Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
   }) {
     return loading?.call();
   }
@@ -278,7 +294,9 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Recipe> recipes)? ready,
-    TResult Function(List<String> suggestions)? search,
+    TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -294,7 +312,7 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
     required TResult Function(RecipesReady value) ready,
-    required TResult Function(RecipeStateSearch value) search,
+    required TResult Function(RecipesSearch value) search,
   }) {
     return loading(this);
   }
@@ -306,7 +324,7 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
     TResult? Function(RecipesReady value)? ready,
-    TResult? Function(RecipeStateSearch value)? search,
+    TResult? Function(RecipesSearch value)? search,
   }) {
     return loading?.call(this);
   }
@@ -318,7 +336,7 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
     TResult Function(RecipesReady value)? ready,
-    TResult Function(RecipeStateSearch value)? search,
+    TResult Function(RecipesSearch value)? search,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -374,7 +392,9 @@ class _$RecipesError implements RecipesError {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Recipe> recipes) ready,
-    required TResult Function(List<String> suggestions) search,
+    required TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)
+        search,
   }) {
     return error();
   }
@@ -386,7 +406,9 @@ class _$RecipesError implements RecipesError {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Recipe> recipes)? ready,
-    TResult? Function(List<String> suggestions)? search,
+    TResult? Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
   }) {
     return error?.call();
   }
@@ -398,7 +420,9 @@ class _$RecipesError implements RecipesError {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Recipe> recipes)? ready,
-    TResult Function(List<String> suggestions)? search,
+    TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -414,7 +438,7 @@ class _$RecipesError implements RecipesError {
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
     required TResult Function(RecipesReady value) ready,
-    required TResult Function(RecipeStateSearch value) search,
+    required TResult Function(RecipesSearch value) search,
   }) {
     return error(this);
   }
@@ -426,7 +450,7 @@ class _$RecipesError implements RecipesError {
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
     TResult? Function(RecipesReady value)? ready,
-    TResult? Function(RecipeStateSearch value)? search,
+    TResult? Function(RecipesSearch value)? search,
   }) {
     return error?.call(this);
   }
@@ -438,7 +462,7 @@ class _$RecipesError implements RecipesError {
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
     TResult Function(RecipesReady value)? ready,
-    TResult Function(RecipeStateSearch value)? search,
+    TResult Function(RecipesSearch value)? search,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -526,7 +550,9 @@ class _$RecipesReady implements RecipesReady {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Recipe> recipes) ready,
-    required TResult Function(List<String> suggestions) search,
+    required TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)
+        search,
   }) {
     return ready(recipes);
   }
@@ -538,7 +564,9 @@ class _$RecipesReady implements RecipesReady {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Recipe> recipes)? ready,
-    TResult? Function(List<String> suggestions)? search,
+    TResult? Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
   }) {
     return ready?.call(recipes);
   }
@@ -550,7 +578,9 @@ class _$RecipesReady implements RecipesReady {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Recipe> recipes)? ready,
-    TResult Function(List<String> suggestions)? search,
+    TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -566,7 +596,7 @@ class _$RecipesReady implements RecipesReady {
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
     required TResult Function(RecipesReady value) ready,
-    required TResult Function(RecipeStateSearch value) search,
+    required TResult Function(RecipesSearch value) search,
   }) {
     return ready(this);
   }
@@ -578,7 +608,7 @@ class _$RecipesReady implements RecipesReady {
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
     TResult? Function(RecipesReady value)? ready,
-    TResult? Function(RecipeStateSearch value)? search,
+    TResult? Function(RecipesSearch value)? search,
   }) {
     return ready?.call(this);
   }
@@ -590,7 +620,7 @@ class _$RecipesReady implements RecipesReady {
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
     TResult Function(RecipesReady value)? ready,
-    TResult Function(RecipeStateSearch value)? search,
+    TResult Function(RecipesSearch value)? search,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -610,31 +640,36 @@ abstract class RecipesReady implements RecipesState {
 }
 
 /// @nodoc
-abstract class _$$RecipeStateSearchCopyWith<$Res> {
-  factory _$$RecipeStateSearchCopyWith(
-          _$RecipeStateSearch value, $Res Function(_$RecipeStateSearch) then) =
-      __$$RecipeStateSearchCopyWithImpl<$Res>;
+abstract class _$$RecipesSearchCopyWith<$Res> {
+  factory _$$RecipesSearchCopyWith(
+          _$RecipesSearch value, $Res Function(_$RecipesSearch) then) =
+      __$$RecipesSearchCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<String> suggestions});
+  $Res call({List<String> suggestions, List<String> selectedIngredients});
 }
 
 /// @nodoc
-class __$$RecipeStateSearchCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipeStateSearch>
-    implements _$$RecipeStateSearchCopyWith<$Res> {
-  __$$RecipeStateSearchCopyWithImpl(
-      _$RecipeStateSearch _value, $Res Function(_$RecipeStateSearch) _then)
+class __$$RecipesSearchCopyWithImpl<$Res>
+    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesSearch>
+    implements _$$RecipesSearchCopyWith<$Res> {
+  __$$RecipesSearchCopyWithImpl(
+      _$RecipesSearch _value, $Res Function(_$RecipesSearch) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? suggestions = null,
+    Object? selectedIngredients = null,
   }) {
-    return _then(_$RecipeStateSearch(
+    return _then(_$RecipesSearch(
       null == suggestions
           ? _value._suggestions
           : suggestions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      null == selectedIngredients
+          ? _value._selectedIngredients
+          : selectedIngredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
   }
@@ -642,9 +677,11 @@ class __$$RecipeStateSearchCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RecipeStateSearch implements RecipeStateSearch {
-  _$RecipeStateSearch(final List<String> suggestions)
-      : _suggestions = suggestions;
+class _$RecipesSearch implements RecipesSearch {
+  _$RecipesSearch(
+      final List<String> suggestions, final List<String> selectedIngredients)
+      : _suggestions = suggestions,
+        _selectedIngredients = selectedIngredients;
 
   final List<String> _suggestions;
   @override
@@ -654,29 +691,42 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     return EqualUnmodifiableListView(_suggestions);
   }
 
+  final List<String> _selectedIngredients;
+  @override
+  List<String> get selectedIngredients {
+    if (_selectedIngredients is EqualUnmodifiableListView)
+      return _selectedIngredients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedIngredients);
+  }
+
   @override
   String toString() {
-    return 'RecipesState.search(suggestions: $suggestions)';
+    return 'RecipesState.search(suggestions: $suggestions, selectedIngredients: $selectedIngredients)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecipeStateSearch &&
+            other is _$RecipesSearch &&
             const DeepCollectionEquality()
-                .equals(other._suggestions, _suggestions));
+                .equals(other._suggestions, _suggestions) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedIngredients, _selectedIngredients));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_suggestions));
+      runtimeType,
+      const DeepCollectionEquality().hash(_suggestions),
+      const DeepCollectionEquality().hash(_selectedIngredients));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RecipeStateSearchCopyWith<_$RecipeStateSearch> get copyWith =>
-      __$$RecipeStateSearchCopyWithImpl<_$RecipeStateSearch>(this, _$identity);
+  _$$RecipesSearchCopyWith<_$RecipesSearch> get copyWith =>
+      __$$RecipesSearchCopyWithImpl<_$RecipesSearch>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -685,9 +735,11 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     required TResult Function() loading,
     required TResult Function() error,
     required TResult Function(List<Recipe> recipes) ready,
-    required TResult Function(List<String> suggestions) search,
+    required TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)
+        search,
   }) {
-    return search(suggestions);
+    return search(suggestions, selectedIngredients);
   }
 
   @override
@@ -697,9 +749,11 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Recipe> recipes)? ready,
-    TResult? Function(List<String> suggestions)? search,
+    TResult? Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
   }) {
-    return search?.call(suggestions);
+    return search?.call(suggestions, selectedIngredients);
   }
 
   @override
@@ -709,11 +763,13 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Recipe> recipes)? ready,
-    TResult Function(List<String> suggestions)? search,
+    TResult Function(
+            List<String> suggestions, List<String> selectedIngredients)?
+        search,
     required TResult orElse(),
   }) {
     if (search != null) {
-      return search(suggestions);
+      return search(suggestions, selectedIngredients);
     }
     return orElse();
   }
@@ -725,7 +781,7 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
     required TResult Function(RecipesReady value) ready,
-    required TResult Function(RecipeStateSearch value) search,
+    required TResult Function(RecipesSearch value) search,
   }) {
     return search(this);
   }
@@ -737,7 +793,7 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
     TResult? Function(RecipesReady value)? ready,
-    TResult? Function(RecipeStateSearch value)? search,
+    TResult? Function(RecipesSearch value)? search,
   }) {
     return search?.call(this);
   }
@@ -749,7 +805,7 @@ class _$RecipeStateSearch implements RecipeStateSearch {
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
     TResult Function(RecipesReady value)? ready,
-    TResult Function(RecipeStateSearch value)? search,
+    TResult Function(RecipesSearch value)? search,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -759,12 +815,13 @@ class _$RecipeStateSearch implements RecipeStateSearch {
   }
 }
 
-abstract class RecipeStateSearch implements RecipesState {
-  factory RecipeStateSearch(final List<String> suggestions) =
-      _$RecipeStateSearch;
+abstract class RecipesSearch implements RecipesState {
+  factory RecipesSearch(final List<String> suggestions,
+      final List<String> selectedIngredients) = _$RecipesSearch;
 
   List<String> get suggestions;
+  List<String> get selectedIngredients;
   @JsonKey(ignore: true)
-  _$$RecipeStateSearchCopyWith<_$RecipeStateSearch> get copyWith =>
+  _$$RecipesSearchCopyWith<_$RecipesSearch> get copyWith =>
       throw _privateConstructorUsedError;
 }
