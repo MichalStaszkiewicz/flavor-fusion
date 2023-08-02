@@ -223,15 +223,14 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           ref.read(recipesViewModel.notifier).seachRecipes(text);
         },
         onTapOutside: (ptr) {
-          ref.read(recipesViewModel).maybeWhen(
-              ready: (recipes) {
-                _opacityController.forward().then((value) {
-                  _recipesSearchFocused = !_recipesSearchFocused;
-                  _opacityController.reverse();
-                });
-              },
-              orElse: () => {});
+          _opacityController.forward().then((value) {
+            _recipesSearchFocused = !_recipesSearchFocused;
+            _opacityController.reverse();
+          });
           _focusNode.nearestScope!.unfocus();
+          if (_recipesSearchController.text.isEmpty) {
+            ref.read(recipesViewModel.notifier).loadRecipes();
+          }
         },
         controller: _recipesSearchController,
       ),
@@ -249,6 +248,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                   child: GestureDetector(
                       onTap: () {
                         _opacityController.forward().then((value) {
+                          ref
+                              .read(recipesViewModel.notifier)
+                              .seachRecipes(_recipesSearchController.text);
                           _recipesSearchFocused = !_recipesSearchFocused;
                           _opacityController.reverse();
                         });

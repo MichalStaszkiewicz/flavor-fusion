@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/states.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,6 +9,7 @@ var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
 
 class RecipesViewModel extends StateNotifier<RecipesState> {
   RecipesViewModel(super._state);
+  List<String> _ingredientsCashed = [];
 
   final List<String> _ingredientsList = [
     'Onion',
@@ -41,31 +43,31 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     'Sprouts',
     'Lemon',
   ];
-
+  List<Recipe> _recipes = [];
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
+    _ingredientsCashed.removeWhere((element) => element == ingredient);
     this.state = RecipesState.search(
       state.suggestions,
-      state.selectedIngredients.where((item) => item != ingredient).toList(),
+      _ingredientsCashed,
       state.search,
     );
   }
 
   void addSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
-    if (state.selectedIngredients.contains(ingredient)) {
+    if (_ingredientsCashed.contains(ingredient)) {
       this.state = RecipesState.search(
-          state.suggestions, state.selectedIngredients, state.search);
+          state.suggestions, _ingredientsCashed, state.search);
     } else {
-      this.state = RecipesState.search(state.suggestions,
-          [...state.selectedIngredients, ingredient], state.search);
+      _ingredientsCashed.add(ingredient);
+      this.state = RecipesState.search(
+          state.suggestions, _ingredientsCashed, state.search);
     }
   }
 
-  void loadRecipes() {
-    List<Recipe> recipes = [];
-
-    recipes.add(Recipe(
+  void loadRecommendedRecipes() {
+    _recipes.add(Recipe(
         label: 'Sandwitches',
         image: 'image',
         url: 'url',
@@ -82,7 +84,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         dishType: [],
         id: 1,
         author: 'author'));
-    recipes.add(Recipe(
+    _recipes.add(Recipe(
         label: 'Spaghetti',
         image: 'image',
         url: 'url',
@@ -99,7 +101,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         dishType: [],
         id: 2,
         author: 'author'));
-    recipes.add(Recipe(
+    _recipes.add(Recipe(
         label: 'Chicken',
         image: 'image',
         url: 'url',
@@ -116,11 +118,44 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         dishType: [],
         id: 3,
         author: 'author'));
-    state = RecipesState.ready(recipes);
+    state = RecipesState.ready(_recipes);
+  }
+
+  void loadRecipes() {
+    if (state is RecipesSearch) {
+      final state = this.state as RecipesSearch;
+
+      if (state.selectedIngredients.isEmpty &&
+          state.suggestions.isEmpty &&
+          state.search.isEmpty) {
+        this.state = RecipesState.ready(_recipes);
+      } else {
+        List<Recipe> recipes = [
+          Recipe(
+              label: 'Chicken',
+              image: 'image',
+              url: 'url',
+              dietLabels: [],
+              healthLabels: [],
+              cautions: [],
+              ingredientLines: [],
+              ingredients: [],
+              calories: 350,
+              totalWeight: 34,
+              totalTime: 76,
+              cuisineType: [],
+              mealType: ['dinner'],
+              dishType: [],
+              id: 3,
+              author: 'author'),
+        ];
+
+        this.state = RecipesState.searching(recipes);
+      }
+    }
   }
 
   void seachRecipes(String search) {
-  
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
       List<String> searchList = [];
@@ -131,13 +166,12 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           }
         }
         this.state =
-            RecipesState.search(searchList, state.selectedIngredients, search);
+            RecipesState.search(searchList, _ingredientsCashed, search);
       } else {
-        this.state =
-            RecipesState.search([], state.selectedIngredients, state.search);
+        this.state = RecipesState.search([], _ingredientsCashed, state.search);
       }
     } else {
-      state = RecipesState.search([], [], '');
+      state = RecipesState.search([], _ingredientsCashed, '');
     }
   }
 }

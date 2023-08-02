@@ -7,8 +7,10 @@ part 'states.freezed.dart';
 abstract class RecipesState with _$RecipesState {
   factory RecipesState.initial() = RecipesInitial;
   factory RecipesState.loading() = RecipesLoading;
+
   factory RecipesState.error() = RecipesError;
   factory RecipesState.ready(List<Recipe> recipes) = RecipesReady;
   factory RecipesState.search(List<String> suggestions,
       List<String> selectedIngredients, String search) = RecipesSearch;
+  factory RecipesState.searching(List<Recipe> recipes) = RecipesSearching;
 }

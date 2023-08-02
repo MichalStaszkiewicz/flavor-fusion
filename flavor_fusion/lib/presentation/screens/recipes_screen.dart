@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -118,21 +119,21 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   @override
   void initState() {
     _ingredientsAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _ingredientsAnimation = Tween<double>(begin: 0.0, end: 1.0)
         .animate(_ingredientsAnimationController)
       ..addListener(() {
         setState(() {});
       });
     _suggestionsAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _suggestionsAnimation = Tween<double>(begin: 0.0, end: 1.0)
         .animate(_suggestionsAnimationController)
       ..addListener(() {
         setState(() {});
       });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(recipesViewModel.notifier).loadRecipes();
+      ref.read(recipesViewModel.notifier).loadRecommendedRecipes();
     });
 
     super.initState();
@@ -148,41 +149,84 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recipesViewModel);
 
-    return Stack(
-      children: [
-        AnimatedSwitcher(
-          duration: Duration(milliseconds: 400),
-          transitionBuilder: (child, animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          child: recipesState.maybeWhen(
-            ready: (List<Recipe> recipes) => _buildReady(recipes),
-            orElse: () => Container(),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Stack(
+        children: [
+          AnimatedSwitcher(
+            layoutBuilder: (_, __) => recipesState.maybeWhen(
+              ready: (List<Recipe> recipes) => _buildReady(recipes),
+              orElse: () => Container(),
+            ),
+            duration: Duration(milliseconds: 1150),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
           ),
-        ),
-        AnimatedSwitcher(
-          duration: Duration(milliseconds: 400),
-          transitionBuilder: (child, animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          child: recipesState.maybeWhen(
-            search: (suggestions, selectedIngredients, search) =>
-                _buildSearch(suggestions, selectedIngredients, search),
-            orElse: () => Container(),
+          AnimatedSwitcher(
+            layoutBuilder: (_, __) => recipesState.maybeWhen(
+              search: (suggestions, selectedIngredients, search) =>
+                  _buildSearch(suggestions, selectedIngredients, search),
+              orElse: () => Container(),
+            ),
+            duration: Duration(milliseconds: 1150),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
           ),
-        ),
-      ],
+          AnimatedSwitcher(
+            layoutBuilder: (_, __) => recipesState.maybeWhen(
+              searching: (recipes) => _buildSearching(recipes),
+              orElse: () => Container(),
+            ),
+            duration: Duration(milliseconds: 1150),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _buildSearching(List<Recipe> recipes) {
+    return Container(
+      key: ValueKey('recipes_searching'),
+      margin: EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 10),
+            height: 30,
+            width: double.infinity,
+            child: Text(
+              textAlign: TextAlign.left,
+              "Found 1,254 Recipes",
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+          ),
+          ListView.builder(
+              itemCount: recipes.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) =>
+                  DishItemWidget(recipe: recipes[index]))
+        ],
+      ),
     );
   }
 
   Container _buildSearch(List<String> suggestions,
       List<String> selectedIngredients, String search) {
+    print("_buildSearch extecuted");
     manageAnimations(suggestions, selectedIngredients);
     return Container(
       key: ValueKey('recipes_search'),
@@ -190,24 +234,27 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
       child: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  selectedIngredients.isNotEmpty
-                      ? _buildSelectedIngredientsList(selectedIngredients)
-                      : Container(),
-                  suggestions.isNotEmpty
-                      ? _buildSuggestionsList(suggestions, search)
-                      : Container(),
-                ],
-              ),
-            ),
-          ]),
+          child: Flex(
+              direction: Axis.vertical,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      selectedIngredients.isNotEmpty
+                          ? _buildSelectedIngredientsList(selectedIngredients)
+                          : Container(),
+                      suggestions.isNotEmpty
+                          ? _buildSuggestionsList(suggestions, search)
+                          : Container(),
+                    ],
+                  ),
+                ),
+              ]),
         ),
       ),
     );
@@ -264,6 +311,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
       opacity: _ingredientsAnimation.value,
       child: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               width: double.infinity,
