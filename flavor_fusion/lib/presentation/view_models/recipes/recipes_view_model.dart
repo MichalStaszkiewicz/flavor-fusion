@@ -11,6 +11,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   RecipesViewModel(super._state);
   List<String> _ingredientsCashed = [];
 
+  List<String> get selectedIngredients => _ingredientsCashed;
+
   final List<String> _ingredientsList = [
     'Onion',
     'Garlic',
@@ -124,10 +126,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   void loadRecipes() {
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
-
-      if (state.selectedIngredients.isEmpty &&
-          state.suggestions.isEmpty &&
-          state.search.isEmpty) {
+      print(selectedIngredients.length.toString());
+      if (selectedIngredients.isEmpty && state.search.isEmpty) {
         this.state = RecipesState.ready(_recipes);
       } else {
         List<Recipe> recipes = [

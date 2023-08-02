@@ -228,7 +228,8 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             _opacityController.reverse();
           });
           _focusNode.nearestScope!.unfocus();
-          if (_recipesSearchController.text.isEmpty) {
+          if (_recipesSearchController.text.isEmpty &&
+              ref.read(recipesViewModel.notifier).selectedIngredients.isEmpty) {
             ref.read(recipesViewModel.notifier).loadRecipes();
           }
         },

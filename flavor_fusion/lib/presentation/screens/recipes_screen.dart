@@ -88,9 +88,20 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     for (String ingredient in selectedIngredients) {
       chips.add(IngredientChip(
           onDeleted: () {
-            ref
-                .read(recipesViewModel.notifier)
-                .removeSelectedIngredient(ingredient);
+            if (ref
+                    .read(recipesViewModel.notifier)
+                    .selectedIngredients
+                    .length ==
+                1) {
+              ref
+                  .read(recipesViewModel.notifier)
+                  .removeSelectedIngredient(ingredient);
+              ref.read(recipesViewModel.notifier).loadRecipes();
+            } else {
+              ref
+                  .read(recipesViewModel.notifier)
+                  .removeSelectedIngredient(ingredient);
+            }
           },
           label: ingredient));
     }
@@ -158,7 +169,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
               ready: (List<Recipe> recipes) => _buildReady(recipes),
               orElse: () => Container(),
             ),
-            duration: Duration(milliseconds: 1150),
+            duration: Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
                 opacity: animation,
@@ -172,7 +183,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
                   _buildSearch(suggestions, selectedIngredients, search),
               orElse: () => Container(),
             ),
-            duration: Duration(milliseconds: 1150),
+            duration: Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
                 opacity: animation,
@@ -185,7 +196,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
               searching: (recipes) => _buildSearching(recipes),
               orElse: () => Container(),
             ),
-            duration: Duration(milliseconds: 1150),
+            duration: Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
                 opacity: animation,
@@ -226,7 +237,6 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
   Container _buildSearch(List<String> suggestions,
       List<String> selectedIngredients, String search) {
-    print("_buildSearch extecuted");
     manageAnimations(suggestions, selectedIngredients);
     return Container(
       key: ValueKey('recipes_search'),
