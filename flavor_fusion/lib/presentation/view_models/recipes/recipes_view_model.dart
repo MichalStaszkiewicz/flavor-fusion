@@ -47,17 +47,18 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     this.state = RecipesState.search(
       state.suggestions,
       state.selectedIngredients.where((item) => item != ingredient).toList(),
+      state.search,
     );
   }
 
   void addSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
     if (state.selectedIngredients.contains(ingredient)) {
-      this.state =
-          RecipesState.search(state.suggestions, state.selectedIngredients);
-    } else {
       this.state = RecipesState.search(
-          state.suggestions, [...state.selectedIngredients, ingredient]);
+          state.suggestions, state.selectedIngredients, state.search);
+    } else {
+      this.state = RecipesState.search(state.suggestions,
+          [...state.selectedIngredients, ingredient], state.search);
     }
   }
 
@@ -119,6 +120,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void seachRecipes(String search) {
+  
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
       List<String> searchList = [];
@@ -128,12 +130,14 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
             searchList.add(ingredient);
           }
         }
-        this.state = RecipesState.search(searchList, state.selectedIngredients);
+        this.state =
+            RecipesState.search(searchList, state.selectedIngredients, search);
       } else {
-        this.state = RecipesState.search([], state.selectedIngredients);
+        this.state =
+            RecipesState.search([], state.selectedIngredients, state.search);
       }
     } else {
-      state = RecipesState.search([], []);
+      state = RecipesState.search([], [], '');
     }
   }
 }
