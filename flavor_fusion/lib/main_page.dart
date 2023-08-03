@@ -201,6 +201,32 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         focusNode: _focusNode,
         autofocus: true,
         decoration: InputDecoration(
+          prefixIcon: Container(
+            alignment: Alignment.centerLeft,
+            width: 20,
+            child: GestureDetector(
+                onTap: () {
+                  _opacityController.forward().then((value) {
+                    _recipesSearchFocused = !_recipesSearchFocused;
+                    _opacityController.reverse();
+                  });
+                  _focusNode.nearestScope!.unfocus();
+                  ref
+                      .read(recipesViewModel.notifier)
+                      .loadRecipeRecommendation();
+                },
+                child: const Icon(Icons.arrow_back)),
+          ),
+          suffixIcon: GestureDetector(
+              onTap: () {
+                _opacityController.forward().then((value) {
+                  _recipesSearchFocused = !_recipesSearchFocused;
+                  _opacityController.reverse();
+                });
+                _focusNode.nearestScope!.unfocus();
+                ref.read(recipesViewModel.notifier).findRecipes();
+              },
+              child: _buildRecipesSearchSuffix()),
           hintText: 'Type ingredient or recipe',
           hintStyle: Theme.of(context).textTheme.labelMedium,
           border: const OutlineInputBorder(
@@ -215,26 +241,53 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         onSubmitted: (search) {
           _opacityController.forward().then((value) {
             _recipesSearchFocused = !_recipesSearchFocused;
-            ref.read(recipesViewModel.notifier).loadRecipes();
+            if (search.isEmpty &&
+                ref
+                    .read(recipesViewModel.notifier)
+                    .selectedIngredients
+                    .isEmpty) {
+              ref.read(recipesViewModel.notifier).loadRecipeRecommendation();
+            }
+
             _opacityController.reverse();
           });
         },
         onChanged: (text) {
           ref.read(recipesViewModel.notifier).seachRecipes(text);
         },
-        onTapOutside: (ptr) {
-          _opacityController.forward().then((value) {
-            _recipesSearchFocused = !_recipesSearchFocused;
-            _opacityController.reverse();
-          });
-          _focusNode.nearestScope!.unfocus();
-          if (_recipesSearchController.text.isEmpty &&
-              ref.read(recipesViewModel.notifier).selectedIngredients.isEmpty) {
-            ref.read(recipesViewModel.notifier).loadRecipes();
-          }
-        },
+        onTapOutside: (ptr) {},
         controller: _recipesSearchController,
       ),
+    );
+  }
+
+  Container _buildRecipesSearchSuffix() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      width: 100,
+      child: Center(
+          child: Container(
+        alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.fromARGB(255, 118, 233, 89),
+                Color.fromARGB(255, 118, 233, 89),
+              ]),
+          borderRadius: BorderRadius.circular(210),
+        ),
+        height: 30,
+        width: 80,
+        child: Text(
+          'Search',
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: Colors.white),
+        ),
+      )),
     );
   }
 

@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
+import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,6 +11,9 @@ import '../../data/models/recipe.dart';
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
 import '../widgets/ingredient_chip.dart';
+
+final GlobalKey<AnimatedListState> suggestionListKey =
+    GlobalKey<AnimatedListState>();
 
 class RecipesScreen extends ConsumerStatefulWidget {
   const RecipesScreen({
@@ -25,6 +29,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   late Animation _ingredientsAnimation;
   late AnimationController _suggestionsAnimationController;
   late Animation _suggestionsAnimation;
+
   List<RecipeGroup> createRecipeGroups(List<Recipe> recipes) {
     List<Recipe> breakfast = [];
     List<Recipe> lunch = [];
@@ -45,42 +50,6 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     return recipeGroups;
   }
 
-  List<TextSpan> boldSuggestion(
-      String suggestion, String subStr, BuildContext context) {
-    int start = suggestion.toLowerCase().indexOf(subStr.toLowerCase());
-    int end = start + subStr.length;
-
-    if (start == -1) {
-      return [TextSpan(text: suggestion)];
-    } else {
-      String beforeMatch = suggestion.substring(0, start);
-      String match = suggestion.substring(start, end);
-      String afterMatch = suggestion.substring(end);
-
-      return [
-        TextSpan(
-            text: beforeMatch,
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                letterSpacing: 0.2,
-                fontSize: 20,
-                color: const Color.fromRGBO(53, 57, 53, 1))),
-        TextSpan(
-            text: match,
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
-                fontSize: 20,
-                color: const Color.fromRGBO(53, 57, 53, 1))),
-        TextSpan(
-            text: afterMatch,
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                letterSpacing: 0.2,
-                fontSize: 20,
-                color: const Color.fromRGBO(53, 57, 53, 1))),
-      ];
-    }
-  }
-
   List<IngredientChip> createSelectedIngredientsList(
       List<String> selectedIngredients, WidgetRef ref) {
     List<IngredientChip> chips = [];
@@ -88,20 +57,9 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     for (String ingredient in selectedIngredients) {
       chips.add(IngredientChip(
           onDeleted: () {
-            if (ref
-                    .read(recipesViewModel.notifier)
-                    .selectedIngredients
-                    .length ==
-                1) {
-              ref
-                  .read(recipesViewModel.notifier)
-                  .removeSelectedIngredient(ingredient);
-              ref.read(recipesViewModel.notifier).loadRecipes();
-            } else {
-              ref
-                  .read(recipesViewModel.notifier)
-                  .removeSelectedIngredient(ingredient);
-            }
+            ref
+                .read(recipesViewModel.notifier)
+                .removeSelectedIngredient(ingredient);
           },
           label: ingredient));
     }
@@ -129,22 +87,24 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
   @override
   void initState() {
-    _ingredientsAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _ingredientsAnimationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
     _ingredientsAnimation = Tween<double>(begin: 0.0, end: 1.0)
         .animate(_ingredientsAnimationController)
       ..addListener(() {
         setState(() {});
       });
-    _suggestionsAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+
+    _suggestionsAnimationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
     _suggestionsAnimation = Tween<double>(begin: 0.0, end: 1.0)
         .animate(_suggestionsAnimationController)
       ..addListener(() {
         setState(() {});
       });
+
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(recipesViewModel.notifier).loadRecommendedRecipes();
+      ref.read(recipesViewModel.notifier).initRecommendedRecipes();
     });
 
     super.initState();
@@ -166,10 +126,11 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
         children: [
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              ready: (List<Recipe> recipes) => _buildReady(recipes),
+              recipesRecommendation: (List<Recipe> recipes) =>
+                  _buildReady(recipes),
               orElse: () => Container(),
             ),
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
                 opacity: animation,
@@ -183,7 +144,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
                   _buildSearch(suggestions, selectedIngredients, search),
               orElse: () => Container(),
             ),
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
                 opacity: animation,
@@ -193,10 +154,10 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              searching: (recipes) => _buildSearching(recipes),
+              searchDone: (recipes) => _buildSearchDone(recipes),
               orElse: () => Container(),
             ),
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
                 opacity: animation,
@@ -209,14 +170,14 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     );
   }
 
-  Container _buildSearching(List<Recipe> recipes) {
+  Container _buildSearchDone(List<Recipe> recipes) {
     return Container(
-      key: ValueKey('recipes_searching'),
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      key: const ValueKey('recipes_searching'),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(left: 10),
+            margin: const EdgeInsets.only(left: 10),
             height: 30,
             width: double.infinity,
             child: Text(
@@ -239,16 +200,16 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
       List<String> selectedIngredients, String search) {
     manageAnimations(suggestions, selectedIngredients);
     return Container(
-      key: ValueKey('recipes_search'),
+      key: const ValueKey('recipes_search'),
       color: Colors.white,
       child: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10),
           child: Flex(
               direction: Axis.vertical,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -286,31 +247,23 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
               textAlign: TextAlign.left,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          ListView.builder(
+          AnimatedList(
+              key: suggestionListKey,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: suggestions.length,
-              itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      ref.read(recipesViewModel.notifier).addSelectedIngredient(
-                          locator<Global>().capitalize(suggestions[index]));
-                    },
-                    child: Container(
-                      height: 50,
-                      child: RichText(
-                        text: TextSpan(
-                            text: '',
-                            style: DefaultTextStyle.of(context).style,
-                            children: <TextSpan>[
-                              ...boldSuggestion(
-                                  suggestions[index], search, context)
-                            ]),
-                      ),
-                    ),
-                  ))
+              initialItemCount: suggestions.length,
+              itemBuilder: (context, index, animation) => GestureDetector(
+                  onTap: () {
+                    ref.read(recipesViewModel.notifier).addSelectedIngredient(
+                        locator<Global>().capitalize(suggestions[index]));
+                  },
+                  child: SuggestionItem(
+                      suggestion: suggestions[index],
+                      animation: animation,
+                      search: search)))
         ],
       ),
     );
@@ -339,6 +292,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
               width: double.infinity,
               child: Wrap(
                 spacing: 15,
+                runSpacing: 15,
                 children: [
                   ...createSelectedIngredientsList(selectedIngredients, ref),
                 ],
@@ -352,7 +306,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
   Center _buildReady(List<Recipe> recipes) {
     return Center(
-      key: ValueKey('recipes_ready'),
+      key: const ValueKey('recipes_ready'),
       child: SingleChildScrollView(
         child: Container(
           child: Column(

@@ -51,6 +51,42 @@ class Global {
     return text[0].toUpperCase() + text.substring(1);
   }
 
+  List<TextSpan> boldSuggestion(
+      String suggestion, String subStr, BuildContext context) {
+    int start = suggestion.toLowerCase().indexOf(subStr.toLowerCase());
+    int end = start + subStr.length;
+
+    if (start == -1) {
+      return [TextSpan(text: suggestion)];
+    } else {
+      String beforeMatch = suggestion.substring(0, start);
+      String match = suggestion.substring(start, end);
+      String afterMatch = suggestion.substring(end);
+
+      return [
+        TextSpan(
+            text: beforeMatch,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                letterSpacing: 0.2,
+                fontSize: 15,
+                color: const Color.fromRGBO(53, 57, 53, 1))),
+        TextSpan(
+            text: match,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.2,
+                fontSize: 15,
+                color: Colors.blueAccent)),
+        TextSpan(
+            text: afterMatch,
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                letterSpacing: 0.2,
+                fontSize: 15,
+                color: const Color.fromRGBO(53, 57, 53, 1))),
+      ];
+    }
+  }
+
   SortBy stringToSortBy(String text) {
     return sortBy.firstWhere(
         (element) => element.name.toLowerCase() == text.toLowerCase());

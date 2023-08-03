@@ -1,8 +1,13 @@
 import 'package:flavor_fusion/data/models/ingredient.dart';
+import 'package:flavor_fusion/presentation/screens/recipes_screen.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/states.dart';
+import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../data/models/recipe.dart';
+import '../../../utility/global.dart';
+import '../../../utility/service_locator.dart';
 
 var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
     (ref) => RecipesViewModel(RecipesState.initial()));
@@ -63,12 +68,40 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           state.suggestions, _ingredientsCashed, state.search);
     } else {
       _ingredientsCashed.add(ingredient);
-      this.state = RecipesState.search(
-          state.suggestions, _ingredientsCashed, state.search);
+      List<String> tempList = [];
+      tempList.addAll(state.suggestions);
+      int selectedIngredientIndex = tempList.indexWhere(
+          (element) => element.toLowerCase() == ingredient.toLowerCase());
+      String suggestion = tempList[selectedIngredientIndex];
+      suggestionListKey.currentState?.removeItem(
+          selectedIngredientIndex,
+          (context, animation) => SizeTransition(
+                sizeFactor: animation,
+                child: Container(
+                  height: 50,
+                  child: RichText(
+                    text: TextSpan(
+                      text: '',
+                      style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        ...locator<Global>()
+                            .boldSuggestion(suggestion, state.search, context)
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          duration: const Duration(milliseconds: 300));
+      tempList.removeAt(selectedIngredientIndex);
+      this.state =
+          RecipesState.search(tempList, _ingredientsCashed, state.search);
     }
   }
 
-  void loadRecommendedRecipes() {
+  void initRecommendedRecipes() {
+    if (_recipes.isNotEmpty) {
+      return;
+    }
     _recipes.add(Recipe(
         label: 'Sandwitches',
         image: 'image',
@@ -120,56 +153,75 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         dishType: [],
         id: 3,
         author: 'author'));
-    state = RecipesState.ready(_recipes);
+    state = RecipesState.recipesRecommendation(_recipes);
   }
 
-  void loadRecipes() {
-    if (state is RecipesSearch) {
-      final state = this.state as RecipesSearch;
-      print(selectedIngredients.length.toString());
-      if (selectedIngredients.isEmpty && state.search.isEmpty) {
-        this.state = RecipesState.ready(_recipes);
-      } else {
-        List<Recipe> recipes = [
-          Recipe(
-              label: 'Chicken',
-              image: 'image',
-              url: 'url',
-              dietLabels: [],
-              healthLabels: [],
-              cautions: [],
-              ingredientLines: [],
-              ingredients: [],
-              calories: 350,
-              totalWeight: 34,
-              totalTime: 76,
-              cuisineType: [],
-              mealType: ['dinner'],
-              dishType: [],
-              id: 3,
-              author: 'author'),
-        ];
+  void loadRecipeRecommendation() {
+    state = RecipesRecipesRecommendation(_recipes);
+  }
 
-        this.state = RecipesState.searching(recipes);
-      }
-    }
+  void findRecipes() {
+    List<Recipe> recipes = [
+      Recipe(
+          label: 'Chicken',
+          image: 'image',
+          url: 'url',
+          dietLabels: [],
+          healthLabels: [],
+          cautions: [],
+          ingredientLines: [],
+          ingredients: [],
+          calories: 350,
+          totalWeight: 34,
+          totalTime: 76,
+          cuisineType: [],
+          mealType: ['dinner'],
+          dishType: [],
+          id: 3,
+          author: 'author'),
+    ];
+
+    state = RecipesState.searchDone(recipes);
   }
 
   void seachRecipes(String search) {
+    List<String> currentSuggestions = [];
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
-      List<String> searchList = [];
-      if (search.isNotEmpty) {
-        for (String ingredient in _ingredientsList) {
-          if (ingredient.toLowerCase().contains(search.toLowerCase())) {
-            searchList.add(ingredient);
-          }
-        }
-        this.state =
-            RecipesState.search(searchList, _ingredientsCashed, search);
-      } else {
-        this.state = RecipesState.search([], _ingredientsCashed, state.search);
+      if (search == '') {
+        this.state = RecipesState.search([], _ingredientsCashed, '');
+        return;
       }
+      currentSuggestions.addAll(state.suggestions);
+      for (int i = 0; i < _ingredientsList.length; i++) {
+        if (_ingredientsList[i].toLowerCase().contains(search.toLowerCase()) &&
+            !currentSuggestions.contains(_ingredientsList[i].toLowerCase()) &&
+            !_ingredientsCashed.contains(_ingredientsList[i])) {
+          suggestionListKey.currentState?.insertItem(currentSuggestions.length,
+              duration: const Duration(milliseconds: 300));
+          currentSuggestions.add(_ingredientsList[i].toLowerCase());
+        }
+      }
+      for (int i = 0; i < currentSuggestions.length; i++) {
+        if (!currentSuggestions[i]
+            .toLowerCase()
+            .contains(search.toLowerCase())) {
+          String suggestion = currentSuggestions[i];
+          suggestionListKey.currentState?.removeItem(
+              i,
+              (context, animation) => SuggestionItem(
+                    suggestion: suggestion,
+                    animation: animation,
+                    search: search,
+                  ),
+              duration: const Duration(milliseconds: 300));
+          currentSuggestions.removeAt(i);
+          i--;
+        }
+      }
+
+      this.state =
+          RecipesState.search(currentSuggestions, _ingredientsCashed, search);
     } else {
       state = RecipesState.search([], _ingredientsCashed, '');
     }
