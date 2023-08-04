@@ -57,7 +57,7 @@ class Global {
     int end = start + subStr.length;
 
     if (start == -1) {
-      return [TextSpan(text: suggestion)];
+      return [TextSpan(text: capitalize(suggestion))];
     } else {
       String beforeMatch = suggestion.substring(0, start);
       String match = suggestion.substring(start, end);
@@ -65,7 +65,7 @@ class Global {
 
       return [
         TextSpan(
-            text: beforeMatch,
+            text: capitalize(beforeMatch),
             style: Theme.of(context).textTheme.labelLarge!.copyWith(
                 letterSpacing: 0.2,
                 fontSize: 15,
