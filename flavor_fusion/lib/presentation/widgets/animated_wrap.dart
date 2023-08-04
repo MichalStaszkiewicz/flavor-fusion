@@ -15,25 +15,29 @@ class AnimatedWrap extends ConsumerStatefulWidget {
 
 class AnimatedWrapState extends ConsumerState<AnimatedWrap>
     with TickerProviderStateMixin {
+  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(recipesViewModel);
-    return state.maybeWhen(
-        search: (suggestions, ingredients, search) => Wrap(
-              spacing: 15,
-              runSpacing: 15,
-              children: List.generate(ingredients.length, (index) {
-                return IngredientChip(
-                  label: ingredients[index],
-                  onDeleted: () {
-                    ref
-                        .read(recipesViewModel.notifier)
-                        .removeSelectedIngredient(ingredients[index]);
-                  },
-                  key: Key(ingredients[index]),
-                );
-              }),
-            ),
-        orElse: () => Container());
+    var ingredients = state.maybeWhen(
+      search: (suggestions, ingredients, search) => ingredients,
+      orElse: () => [],
+    );
+
+    return Wrap(
+      spacing: 15,
+      runSpacing: 15,
+      children: List.generate(ingredients.length, (index) {
+        return IngredientChip(
+          label: ingredients[index],
+          onDeleted: () {
+            ref
+                .read(recipesViewModel.notifier)
+                .removeSelectedIngredient(ingredients[index]);
+          },
+          key: Key(ingredients[index]),
+        );
+      }),
+    );
   }
 }

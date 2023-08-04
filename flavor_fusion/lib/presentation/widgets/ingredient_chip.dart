@@ -37,44 +37,48 @@ class _IngredientChipState extends State<IngredientChip>
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _animation,
-      child: Container(
-        height: 40,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            width: 2,
+      child: SizeTransition(
+        axis: Axis.horizontal,
+        sizeFactor: _animation,
+        child: Container(
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: const Color.fromRGBO(51, 51, 51, 1),
+              width: 2,
+            ),
           ),
-        ),
-        child: IntrinsicWidth(
-          child: Container(
-            margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Text(
-                      widget.label,
-                      textAlign: TextAlign.center,
+          child: IntrinsicWidth(
+            child: Container(
+              margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: Text(
+                        widget.label,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    _animationController
-                        .reverse()
-                        .then((value) => widget.onDeleted());
-                  },
-                  child: Container(
-                      margin: EdgeInsets.only(bottom: 5),
-                      child: Icon(
-                        size: 20,
-                        Icons.close,
-                      )),
-                ),
-              ],
+                  GestureDetector(
+                    onTap: () {
+                      _animationController
+                          .reverse()
+                          .then((value) => widget.onDeleted());
+                    },
+                    child: Container(
+                        margin: EdgeInsets.only(bottom: 5),
+                        child: Icon(
+                          size: 20,
+                          Icons.close,
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
