@@ -1,6 +1,8 @@
 import 'dart:collection';
+import 'dart:ffi';
 
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/widgets/animated_wrap.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
@@ -48,22 +50,6 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     recipeGroups.add(RecipeGroup(recipes: lunch, label: 'Lunch'));
     recipeGroups.add(RecipeGroup(recipes: dinner, label: 'Dinner'));
     return recipeGroups;
-  }
-
-  List<IngredientChip> createSelectedIngredientsList(
-      List<String> selectedIngredients, WidgetRef ref) {
-    List<IngredientChip> chips = [];
-
-    for (String ingredient in selectedIngredients) {
-      chips.add(IngredientChip(
-          onDeleted: () {
-            ref
-                .read(recipesViewModel.notifier)
-                .removeSelectedIngredient(ingredient);
-          },
-          label: ingredient));
-    }
-    return chips;
   }
 
   void manageAnimations(List<String> suggestions, List<String> ingredients) {
@@ -290,13 +276,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               width: double.infinity,
-              child: Wrap(
-                spacing: 15,
-                runSpacing: 15,
-                children: [
-                  ...createSelectedIngredientsList(selectedIngredients, ref),
-                ],
-              ),
+              child: AnimatedWrap(),
             )
           ],
         ),

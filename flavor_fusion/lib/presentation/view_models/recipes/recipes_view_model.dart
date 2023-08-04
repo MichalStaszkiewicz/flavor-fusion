@@ -14,6 +14,7 @@ var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
 
 class RecipesViewModel extends StateNotifier<RecipesState> {
   RecipesViewModel(super._state);
+
   List<String> _ingredientsCashed = [];
 
   List<String> get selectedIngredients => _ingredientsCashed;
@@ -75,24 +76,13 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
       String suggestion = tempList[selectedIngredientIndex];
       suggestionListKey.currentState?.removeItem(
           selectedIngredientIndex,
-          (context, animation) => SizeTransition(
-                sizeFactor: animation,
-                child: Container(
-                  height: 50,
-                  child: RichText(
-                    text: TextSpan(
-                      text: '',
-                      style: DefaultTextStyle.of(context).style,
-                      children: <TextSpan>[
-                        ...locator<Global>()
-                            .boldSuggestion(suggestion, state.search, context)
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+          (context, animation) => SuggestionItem(
+              suggestion: suggestion,
+              animation: animation,
+              search: state.search),
           duration: const Duration(milliseconds: 300));
       tempList.removeAt(selectedIngredientIndex);
+
       this.state =
           RecipesState.search(tempList, _ingredientsCashed, state.search);
     }
