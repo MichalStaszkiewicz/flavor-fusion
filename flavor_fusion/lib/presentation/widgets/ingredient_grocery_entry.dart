@@ -38,7 +38,7 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientGroceryEntry>
         setState(() {});
       });
     _opacityAnimation =
-        Tween<double>(begin: 1, end: 0.2).animate(_opacityAnimationController)
+        Tween<double>(begin: 1, end: 0.1).animate(_opacityAnimationController)
           ..addListener(() {
             setState(() {});
             if (_opacityAnimationController.isCompleted) {
@@ -142,7 +142,7 @@ class AnimatedTextDecoration extends CustomPainter {
     final Paint paint = Paint()
       ..color = Colors.grey
       ..strokeWidth = 1;
-//TODO implement correct animation ( line through text and reverse)
+
     if (lineThrough) {
       canvas.translate(65, 13);
       canvas.drawLine(Offset.zero, Offset(progress * textWidth, 0), paint);

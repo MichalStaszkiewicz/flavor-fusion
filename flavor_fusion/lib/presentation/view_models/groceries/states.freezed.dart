@@ -21,7 +21,7 @@ mixin _$GroceriesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries) ready,
+    required TResult Function(List<Grocery> groceries, int selected) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$GroceriesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries)? ready,
+    TResult? Function(List<Grocery> groceries, int selected)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$GroceriesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries)? ready,
+    TResult Function(List<Grocery> groceries, int selected)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$GroceriesInitial implements GroceriesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries) ready,
+    required TResult Function(List<Grocery> groceries, int selected) ready,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$GroceriesInitial implements GroceriesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries)? ready,
+    TResult? Function(List<Grocery> groceries, int selected)? ready,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$GroceriesInitial implements GroceriesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries)? ready,
+    TResult Function(List<Grocery> groceries, int selected)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$GroceriesLoading implements GroceriesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries) ready,
+    required TResult Function(List<Grocery> groceries, int selected) ready,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$GroceriesLoading implements GroceriesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries)? ready,
+    TResult? Function(List<Grocery> groceries, int selected)? ready,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$GroceriesLoading implements GroceriesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries)? ready,
+    TResult Function(List<Grocery> groceries, int selected)? ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -355,7 +355,7 @@ class _$GroceriesError implements GroceriesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries) ready,
+    required TResult Function(List<Grocery> groceries, int selected) ready,
   }) {
     return error();
   }
@@ -366,7 +366,7 @@ class _$GroceriesError implements GroceriesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries)? ready,
+    TResult? Function(List<Grocery> groceries, int selected)? ready,
   }) {
     return error?.call();
   }
@@ -377,7 +377,7 @@ class _$GroceriesError implements GroceriesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries)? ready,
+    TResult Function(List<Grocery> groceries, int selected)? ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -434,7 +434,7 @@ abstract class _$$GroceriesReadyCopyWith<$Res> {
           _$GroceriesReady value, $Res Function(_$GroceriesReady) then) =
       __$$GroceriesReadyCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Grocery> groceries});
+  $Res call({List<Grocery> groceries, int selected});
 }
 
 /// @nodoc
@@ -449,12 +449,17 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groceries = null,
+    Object? selected = null,
   }) {
     return _then(_$GroceriesReady(
       null == groceries
           ? _value._groceries
           : groceries // ignore: cast_nullable_to_non_nullable
               as List<Grocery>,
+      null == selected
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -462,7 +467,8 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GroceriesReady implements GroceriesReady {
-  _$GroceriesReady(final List<Grocery> groceries) : _groceries = groceries;
+  _$GroceriesReady(final List<Grocery> groceries, this.selected)
+      : _groceries = groceries;
 
   final List<Grocery> _groceries;
   @override
@@ -473,8 +479,11 @@ class _$GroceriesReady implements GroceriesReady {
   }
 
   @override
+  final int selected;
+
+  @override
   String toString() {
-    return 'GroceriesState.ready(groceries: $groceries)';
+    return 'GroceriesState.ready(groceries: $groceries, selected: $selected)';
   }
 
   @override
@@ -483,12 +492,14 @@ class _$GroceriesReady implements GroceriesReady {
         (other.runtimeType == runtimeType &&
             other is _$GroceriesReady &&
             const DeepCollectionEquality()
-                .equals(other._groceries, _groceries));
+                .equals(other._groceries, _groceries) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_groceries));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_groceries), selected);
 
   @JsonKey(ignore: true)
   @override
@@ -502,9 +513,9 @@ class _$GroceriesReady implements GroceriesReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries) ready,
+    required TResult Function(List<Grocery> groceries, int selected) ready,
   }) {
-    return ready(groceries);
+    return ready(groceries, selected);
   }
 
   @override
@@ -513,9 +524,9 @@ class _$GroceriesReady implements GroceriesReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries)? ready,
+    TResult? Function(List<Grocery> groceries, int selected)? ready,
   }) {
-    return ready?.call(groceries);
+    return ready?.call(groceries, selected);
   }
 
   @override
@@ -524,11 +535,11 @@ class _$GroceriesReady implements GroceriesReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries)? ready,
+    TResult Function(List<Grocery> groceries, int selected)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(groceries);
+      return ready(groceries, selected);
     }
     return orElse();
   }
@@ -572,9 +583,11 @@ class _$GroceriesReady implements GroceriesReady {
 }
 
 abstract class GroceriesReady implements GroceriesState {
-  factory GroceriesReady(final List<Grocery> groceries) = _$GroceriesReady;
+  factory GroceriesReady(final List<Grocery> groceries, final int selected) =
+      _$GroceriesReady;
 
   List<Grocery> get groceries;
+  int get selected;
   @JsonKey(ignore: true)
   _$$GroceriesReadyCopyWith<_$GroceriesReady> get copyWith =>
       throw _privateConstructorUsedError;

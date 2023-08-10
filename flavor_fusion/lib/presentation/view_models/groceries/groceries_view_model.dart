@@ -16,15 +16,25 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
         RecipeIngredient(name: 'Pasta', owned: false),
         RecipeIngredient(name: 'Sauce', owned: false)
       ])
-    ]);
+    ], 0);
+  }
+
+  void removeSelected() {
+    final state = this.state as GroceriesReady;
+    List<Grocery> groceries = state.groceries;
+    for (Grocery grocery in groceries) {
+      grocery.ingredients.removeWhere((element) => element.owned == true);
+    }
+    this.state = GroceriesReady(groceries, 0);
   }
 
   void updateIngredientStatus(
       int recipeIndex, int ingredientIndex, bool status) {
     if (state is GroceriesReady) {
-      var groceries = (state as GroceriesReady).groceries;
+      final state = this.state as GroceriesReady;
+      var groceries = state.groceries;
       groceries[recipeIndex].ingredients[ingredientIndex].owned = status;
-      state = GroceriesReady(groceries);
+      this.state = GroceriesReady(groceries, state.selected + 1);
     }
   }
 }

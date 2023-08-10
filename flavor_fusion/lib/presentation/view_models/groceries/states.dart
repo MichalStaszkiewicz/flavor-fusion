@@ -10,5 +10,6 @@ abstract class GroceriesState with _$GroceriesState {
   factory GroceriesState.initial() = GroceriesInitial;
   factory GroceriesState.loading() = GroceriesLoading;
   factory GroceriesState.error() = GroceriesError;
-  factory GroceriesState.ready(List<Grocery> groceries) = GroceriesReady;
+  factory GroceriesState.ready(List<Grocery> groceries, int selected) =
+      GroceriesReady;
 }
