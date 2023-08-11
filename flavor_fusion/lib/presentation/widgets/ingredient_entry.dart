@@ -24,7 +24,10 @@ class _IngredientEntryState extends State<IngredientEntry> {
       padding: const EdgeInsets.symmetric(vertical: 5),
       margin: const EdgeInsets.symmetric(vertical: 15),
       decoration: const BoxDecoration(
-          border: Border.symmetric(vertical: BorderSide(color: Colors.black))),
+        border: Border(
+          left: BorderSide(color: Colors.black, width: 1.0),
+        ),
+      ),
       child: Center(
         child: IngredientGroceryEntry(
           key: ValueKey(widget.ingredient.name),

@@ -28,7 +28,6 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientGroceryEntry>
 
   @override
   void initState() {
-    print('INIT STATE EXECUTED');
     _sizeTransitionController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
     _sizeAnimation =
