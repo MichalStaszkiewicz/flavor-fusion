@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../data/models/grocery.dart';
@@ -10,6 +11,7 @@ abstract class GroceriesState with _$GroceriesState {
   factory GroceriesState.initial() = GroceriesInitial;
   factory GroceriesState.loading() = GroceriesLoading;
   factory GroceriesState.error() = GroceriesError;
-  factory GroceriesState.ready(List<Grocery> groceries, int selected) =
+  factory GroceriesState.ready(List<Grocery> groceries, int selected,
+          List<Map<int, AnimationController>> ingredinetsControllers) =
       GroceriesReady;
 }

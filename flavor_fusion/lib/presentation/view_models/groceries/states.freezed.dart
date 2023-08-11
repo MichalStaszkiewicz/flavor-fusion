@@ -21,7 +21,9 @@ mixin _$GroceriesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries, int selected) ready,
+    required TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +31,9 @@ mixin _$GroceriesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries, int selected)? ready,
+    TResult? Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +41,9 @@ mixin _$GroceriesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries, int selected)? ready,
+    TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +133,9 @@ class _$GroceriesInitial implements GroceriesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries, int selected) ready,
+    required TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)
+        ready,
   }) {
     return initial();
   }
@@ -138,7 +146,9 @@ class _$GroceriesInitial implements GroceriesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries, int selected)? ready,
+    TResult? Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
   }) {
     return initial?.call();
   }
@@ -149,7 +159,9 @@ class _$GroceriesInitial implements GroceriesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries, int selected)? ready,
+    TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +253,9 @@ class _$GroceriesLoading implements GroceriesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries, int selected) ready,
+    required TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)
+        ready,
   }) {
     return loading();
   }
@@ -252,7 +266,9 @@ class _$GroceriesLoading implements GroceriesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries, int selected)? ready,
+    TResult? Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
   }) {
     return loading?.call();
   }
@@ -263,7 +279,9 @@ class _$GroceriesLoading implements GroceriesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries, int selected)? ready,
+    TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -355,7 +373,9 @@ class _$GroceriesError implements GroceriesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries, int selected) ready,
+    required TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)
+        ready,
   }) {
     return error();
   }
@@ -366,7 +386,9 @@ class _$GroceriesError implements GroceriesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries, int selected)? ready,
+    TResult? Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
   }) {
     return error?.call();
   }
@@ -377,7 +399,9 @@ class _$GroceriesError implements GroceriesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries, int selected)? ready,
+    TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -434,7 +458,10 @@ abstract class _$$GroceriesReadyCopyWith<$Res> {
           _$GroceriesReady value, $Res Function(_$GroceriesReady) then) =
       __$$GroceriesReadyCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Grocery> groceries, int selected});
+  $Res call(
+      {List<Grocery> groceries,
+      int selected,
+      List<Map<int, AnimationController>> ingredinetsControllers});
 }
 
 /// @nodoc
@@ -450,6 +477,7 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
   $Res call({
     Object? groceries = null,
     Object? selected = null,
+    Object? ingredinetsControllers = null,
   }) {
     return _then(_$GroceriesReady(
       null == groceries
@@ -460,6 +488,10 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as int,
+      null == ingredinetsControllers
+          ? _value._ingredinetsControllers
+          : ingredinetsControllers // ignore: cast_nullable_to_non_nullable
+              as List<Map<int, AnimationController>>,
     ));
   }
 }
@@ -467,8 +499,10 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GroceriesReady implements GroceriesReady {
-  _$GroceriesReady(final List<Grocery> groceries, this.selected)
-      : _groceries = groceries;
+  _$GroceriesReady(final List<Grocery> groceries, this.selected,
+      final List<Map<int, AnimationController>> ingredinetsControllers)
+      : _groceries = groceries,
+        _ingredinetsControllers = ingredinetsControllers;
 
   final List<Grocery> _groceries;
   @override
@@ -480,10 +514,18 @@ class _$GroceriesReady implements GroceriesReady {
 
   @override
   final int selected;
+  final List<Map<int, AnimationController>> _ingredinetsControllers;
+  @override
+  List<Map<int, AnimationController>> get ingredinetsControllers {
+    if (_ingredinetsControllers is EqualUnmodifiableListView)
+      return _ingredinetsControllers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredinetsControllers);
+  }
 
   @override
   String toString() {
-    return 'GroceriesState.ready(groceries: $groceries, selected: $selected)';
+    return 'GroceriesState.ready(groceries: $groceries, selected: $selected, ingredinetsControllers: $ingredinetsControllers)';
   }
 
   @override
@@ -494,12 +536,17 @@ class _$GroceriesReady implements GroceriesReady {
             const DeepCollectionEquality()
                 .equals(other._groceries, _groceries) &&
             (identical(other.selected, selected) ||
-                other.selected == selected));
+                other.selected == selected) &&
+            const DeepCollectionEquality().equals(
+                other._ingredinetsControllers, _ingredinetsControllers));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_groceries), selected);
+      runtimeType,
+      const DeepCollectionEquality().hash(_groceries),
+      selected,
+      const DeepCollectionEquality().hash(_ingredinetsControllers));
 
   @JsonKey(ignore: true)
   @override
@@ -513,9 +560,11 @@ class _$GroceriesReady implements GroceriesReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Grocery> groceries, int selected) ready,
+    required TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)
+        ready,
   }) {
-    return ready(groceries, selected);
+    return ready(groceries, selected, ingredinetsControllers);
   }
 
   @override
@@ -524,9 +573,11 @@ class _$GroceriesReady implements GroceriesReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Grocery> groceries, int selected)? ready,
+    TResult? Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
   }) {
-    return ready?.call(groceries, selected);
+    return ready?.call(groceries, selected, ingredinetsControllers);
   }
 
   @override
@@ -535,11 +586,13 @@ class _$GroceriesReady implements GroceriesReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Grocery> groceries, int selected)? ready,
+    TResult Function(List<Grocery> groceries, int selected,
+            List<Map<int, AnimationController>> ingredinetsControllers)?
+        ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(groceries, selected);
+      return ready(groceries, selected, ingredinetsControllers);
     }
     return orElse();
   }
@@ -583,11 +636,13 @@ class _$GroceriesReady implements GroceriesReady {
 }
 
 abstract class GroceriesReady implements GroceriesState {
-  factory GroceriesReady(final List<Grocery> groceries, final int selected) =
+  factory GroceriesReady(final List<Grocery> groceries, final int selected,
+          final List<Map<int, AnimationController>> ingredinetsControllers) =
       _$GroceriesReady;
 
   List<Grocery> get groceries;
   int get selected;
+  List<Map<int, AnimationController>> get ingredinetsControllers;
   @JsonKey(ignore: true)
   _$$GroceriesReadyCopyWith<_$GroceriesReady> get copyWith =>
       throw _privateConstructorUsedError;

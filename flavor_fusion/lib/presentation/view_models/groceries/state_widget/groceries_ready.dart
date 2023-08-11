@@ -76,10 +76,11 @@ class GroceriesReadyWidgetState extends ConsumerState<GroceriesReadyWidget>
               left: locator<Global>().deviceDimenstions.width / 4,
               top: locator<Global>().deviceDimenstions.height / 1.4,
               child: RemoveSelectedIngredientsButton(
-                  ref: ref,
-                  opacity: _selectedIngredientsRemoveButtonAnimation,
-                  ignoreRemoveButton: ignoreRemoveButton,
-                  selectedIngredients: widget.selectedIngredients),
+                ref: ref,
+                opacity: _selectedIngredientsRemoveButtonAnimation,
+                selectedIngredients: widget.selectedIngredients,
+                groceries: widget.groceries,
+              ),
             )
           ],
         ));

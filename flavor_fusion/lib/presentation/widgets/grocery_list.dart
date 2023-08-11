@@ -10,7 +10,7 @@ class GroceryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 1,
+        itemCount: groceries.length,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) => RecipeIngredientsList(

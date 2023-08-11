@@ -39,7 +39,7 @@ class SearchScreenState extends ConsumerState<GroceriesScreen> {
         initial: () => _buildGroceriesInitial(),
         loading: () => _buildGroceriesLoading(),
         error: () => _buildGroceriesError(),
-        ready: (groceries, selected) => GroceriesReadyWidget(
+        ready: (groceries, selected, controllers) => GroceriesReadyWidget(
               groceries: groceries,
               selectedIngredients: selected,
             ));

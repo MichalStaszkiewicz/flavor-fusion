@@ -1,21 +1,23 @@
+import 'package:flavor_fusion/data/models/recipe_ingredient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/models/grocery.dart';
 import '../view_models/groceries/groceries_view_model.dart';
 
 class RemoveSelectedIngredientsButton extends StatelessWidget {
-  RemoveSelectedIngredientsButton({
-    super.key,
-    required this.ref,
-    required this.opacity,
-    required this.ignoreRemoveButton,
-    required this.selectedIngredients,
-  });
+  RemoveSelectedIngredientsButton(
+      {super.key,
+      required this.ref,
+      required this.opacity,
+      required this.selectedIngredients,
+      required this.groceries});
 
   final WidgetRef ref;
   final Animation<double> opacity;
-  final bool ignoreRemoveButton;
+
   int selectedIngredients;
+  List<Grocery> groceries;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class RemoveSelectedIngredientsButton extends StatelessWidget {
       child: FadeTransition(
         opacity: opacity,
         child: IgnorePointer(
-          ignoring: ignoreRemoveButton,
+          ignoring: selectedIngredients > 0 ? false : true,
           child: Container(
             alignment: Alignment.center,
             height: 50,
