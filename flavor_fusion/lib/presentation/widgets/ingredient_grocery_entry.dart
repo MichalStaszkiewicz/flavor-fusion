@@ -8,7 +8,8 @@ class IngredientGroceryEntry extends ConsumerStatefulWidget {
   IngredientGroceryEntry(
       {required this.ingredient,
       required this.recipeIndex,
-      required this.ingredientIndex});
+      required this.ingredientIndex,
+      super.key});
   RecipeIngredient ingredient;
   int recipeIndex;
   int ingredientIndex;
@@ -19,68 +20,53 @@ class IngredientGroceryEntry extends ConsumerStatefulWidget {
 
 class IngredientGroceryEntryState extends ConsumerState<IngredientGroceryEntry>
     with TickerProviderStateMixin {
-  late AnimationController _animatedTextDecorationController;
-  late AnimationController _opacityAnimationController;
-  late Animation _textDecorationAnimation;
+  late AnimationController _animationController;
+
   late Animation _opacityAnimation;
 
   @override
   void initState() {
-    _animatedTextDecorationController = AnimationController(
+    _animationController = AnimationController(
         vsync: this,
-        duration: Duration(milliseconds: 2),
-        reverseDuration: Duration(milliseconds: 300));
-    _opacityAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _textDecorationAnimation = Tween<double>(begin: 0.0, end: 1.0)
-        .animate(_animatedTextDecorationController)
-      ..addListener(() {
-        setState(() {});
-      });
+        duration: const Duration(milliseconds: 300),
+        reverseDuration: const Duration(milliseconds: 300));
+
     _opacityAnimation =
-        Tween<double>(begin: 1, end: 0.1).animate(_opacityAnimationController)
-          ..addListener(() {
+        Tween<double>(begin: 1, end: 0).animate(_animationController)
+          ..addListener(() async {
             setState(() {});
-            if (_opacityAnimationController.isCompleted) {
-              ref.read(groceryViewModel.notifier).updateIngredientStatus(
-                  widget.recipeIndex,
-                  widget.ingredientIndex,
-                  !widget.ingredient.owned);
-              _opacityAnimationController.reverse();
-            }
-            if (_opacityAnimationController.isDismissed) {}
           });
     super.initState();
   }
 
   @override
   void dispose() {
-    _animatedTextDecorationController.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         GestureDetector(
           onTap: () {
-            _opacityAnimationController.forward();
-
-            if (_animatedTextDecorationController.status ==
-                    AnimationStatus.forward ||
-                _animatedTextDecorationController.status ==
-                    AnimationStatus.completed) {
-              _animatedTextDecorationController.reverse();
+            ref.read(groceryViewModel.notifier).updateIngredientStatus(
+                widget.recipeIndex,
+                widget.ingredientIndex,
+                !widget.ingredient.owned);
+            if (widget.ingredient.owned) {
+              _animationController.forward();
             } else {
-              _animatedTextDecorationController.forward();
+              _animationController.reverse();
             }
           },
           child: CustomPaint(
             painter: AnimatedTextDecoration(
-                progress: _animatedTextDecorationController.value,
+                progress: _animationController.value,
                 text: widget.ingredient.name,
                 style: Theme.of(context).textTheme.labelLarge!,
                 lineThrough: widget.ingredient.owned),
@@ -94,10 +80,10 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientGroceryEntry>
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(
-                      color: Color.fromARGB(169, 44, 53, 57)
+                      color: const Color.fromARGB(169, 44, 53, 57)
                           .withOpacity(_opacityAnimation.value),
                       width: 2)),
-              child: Center(
+              child: const Center(
                 child: Icon(
                   size: 20,
                   Icons.check,
@@ -144,10 +130,10 @@ class AnimatedTextDecoration extends CustomPainter {
       ..strokeWidth = 1;
 
     if (lineThrough) {
-      canvas.translate(65, 13);
+      canvas.translate(65, 11);
       canvas.drawLine(Offset.zero, Offset(progress * textWidth, 0), paint);
     } else {
-      canvas.translate(65, 13);
+      canvas.translate(65, 11);
       canvas.drawLine(Offset(progress * textWidth, 0), Offset.zero, paint);
     }
   }

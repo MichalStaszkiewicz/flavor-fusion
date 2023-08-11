@@ -16,8 +16,8 @@ class _IngredientChipState extends State<IngredientChip>
   late Animation<double> _animation;
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 300));
     _animation =
         Tween<double>(begin: 0.1, end: 1.0).animate(_animationController)
           ..addListener(() {

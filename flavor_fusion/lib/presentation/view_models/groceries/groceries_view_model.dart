@@ -14,6 +14,7 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
     state = GroceriesState.ready([
       Grocery(recipeName: 'Spaghetti', ingredients: [
         RecipeIngredient(name: 'Pasta', owned: false),
+        RecipeIngredient(name: 'Sugar', owned: false),
         RecipeIngredient(name: 'Sauce', owned: false)
       ])
     ], 0);
@@ -25,6 +26,7 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
     for (Grocery grocery in groceries) {
       grocery.ingredients.removeWhere((element) => element.owned == true);
     }
+
     this.state = GroceriesReady(groceries, 0);
   }
 
@@ -34,7 +36,15 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
       final state = this.state as GroceriesReady;
       var groceries = state.groceries;
       groceries[recipeIndex].ingredients[ingredientIndex].owned = status;
-      this.state = GroceriesReady(groceries, state.selected + 1);
+
+      int selected = 0;
+      for (Grocery grocery in groceries) {
+        selected += grocery.ingredients
+            .where((element) => element.owned == true)
+            .toList()
+            .length;
+      }
+      this.state = GroceriesReady(groceries, selected);
     }
   }
 }
