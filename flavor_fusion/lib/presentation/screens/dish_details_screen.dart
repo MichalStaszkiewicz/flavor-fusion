@@ -110,7 +110,7 @@ class DishDetailsScreenState extends ConsumerState<DishDetailsScreen>
             ),
             DishDetails(
               description: lorem,
-              name: widget.name,
+              recipe: widget.recipe,
             ),
           ]),
         ),

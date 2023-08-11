@@ -1,4 +1,7 @@
+import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
+import 'package:flavor_fusion/data/models/recipe_ingredient.dart';
+import 'package:flavor_fusion/domain/services/grocery.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/states.dart';
 import 'package:flavor_fusion/utility/global.dart';
@@ -6,6 +9,7 @@ import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../data/models/grocery.dart';
 import '../../../domain/services/favorite_recipe.dart';
 
 var recipeDetailsViewModel =
@@ -46,8 +50,8 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
     }
   }
 
-  double getDescriptionHeight() {
-    return descriptionHeight;
+  void saveRecipeIngredients(Recipe recipe) {
+    locator<SavedGroceryService>().saveGrocery(recipe);
   }
 
   double calculateContainerHeight(String text) {

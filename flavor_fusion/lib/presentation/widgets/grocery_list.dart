@@ -15,7 +15,7 @@ class GroceryList extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) => RecipeIngredientsList(
               ingredients: groceries[index].ingredients,
-              recipeName: groceries[index].recipeName,
+              recipeName: groceries[index].recipe.label,
               recipeIndex: index,
             ));
   }

@@ -1,8 +1,13 @@
 import 'package:flavor_fusion/data/models/grocery.dart';
+import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/models/recipe_ingredient.dart';
+import 'package:flavor_fusion/domain/services/grocery.dart';
 import 'package:flavor_fusion/presentation/view_models/groceries/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../data/models/ingredient.dart';
+import '../../../utility/service_locator.dart';
 
 var groceryViewModel =
     StateNotifierProvider<GroceriesViewModel, GroceriesState>(
@@ -11,52 +16,89 @@ var groceryViewModel =
 class GroceriesViewModel extends StateNotifier<GroceriesState> {
   GroceriesViewModel(super.state);
 
-  void loadGroceries() {
-    state = GroceriesState.ready(
-        [
-          Grocery(recipeName: 'Spaghetti', ingredients: [
-            RecipeIngredient(name: 'Pasta', owned: false),
-            RecipeIngredient(name: 'Sugar', owned: false),
-            RecipeIngredient(name: 'Sauce', owned: false),
-            RecipeIngredient(name: 'Coca Cola', owned: false),
-            RecipeIngredient(name: 'Pepsi', owned: false)
-          ])
-        ],
-        0,
-        [{}]);
-  }
-
-  void addIngredientController(int index, AnimationController controller) {
-    final state = this.state as GroceriesReady;
-    List<Map<int, AnimationController>> tempControllers =
-        state.ingredinetsControllers;
-    tempControllers[0].addAll({index: controller});
-    this.state =
-        GroceriesReady(state.groceries, state.selected, tempControllers);
+  void loadGroceries() async {
+    await locator<SavedGroceryService>().getGroceryList().then((reciepes) {
+      List<Grocery> groceries = [];
+      for (Recipe recipe in reciepes) {
+        List<RecipeIngredient> ingredients = [];
+        for (String ingredient in recipe.ingredientLines) {
+          ingredients.add(RecipeIngredient(name: ingredient, owned: false));
+        }
+        groceries.add(Grocery(recipe: recipe, ingredients: ingredients));
+      }
+      print(groceries[0].ingredients);
+      List<Map<int, AnimationController>> controllers = [];
+      for (int i = 0; i < groceries.length; i++) {
+        controllers.add({});
+      }
+      state = GroceriesState.ready(groceries, 0, controllers);
+    });
   }
 
   void removeSelected() async {
     final state = this.state as GroceriesReady;
     List<Grocery> groceries = state.groceries;
+
     List<Map<int, AnimationController>> temporaryControllers =
-        state.ingredinetsControllers;
+        List.from(state.ingredinetsControllers);
 
-    List<int> indexesToRemove = [];
-
-    for (int i = 0; i < groceries[0].ingredients.length; i++) {
-      if (groceries[0].ingredients[i].owned) {
-        indexesToRemove.add(i);
+    List<List<int>> indexesToRemove = [];
+    for (Grocery grocery in groceries) {
+      List<int> indexes = [];
+      for (int i = 0; i < grocery.ingredients.length; i++) {
+        if (grocery.ingredients[i].owned) {
+          indexes.add(i);
+        }
       }
+      indexesToRemove.add(indexes);
     }
 
     for (int i = indexesToRemove.length - 1; i >= 0; i--) {
-      int indexToRemove = indexesToRemove[i];
-      await temporaryControllers[0][indexToRemove]!.forward();
-      groceries[0].ingredients.removeAt(indexToRemove);
-      temporaryControllers[0].remove(indexToRemove);
+      for (int j = indexesToRemove[i].length - 1; j >= 0; j--) {
+        int indexToRemove = indexesToRemove[i][j];
+        await temporaryControllers[i][indexToRemove]!.forward();
+      }
     }
-    print(temporaryControllers[0]);
-    this.state = GroceriesReady(groceries, 0, temporaryControllers);
+
+    List<List<RecipeIngredient>> updatedIngredients = [];
+    List<List<String>> updatedIngredientLines = [];
+
+    for (int i = 0; i < groceries.length; i++) {
+      List<RecipeIngredient> ingredients = List.from(groceries[i].ingredients);
+      List<String> ingredientLines =
+          List.from(groceries[i].recipe.ingredientLines);
+      updatedIngredients.add(ingredients);
+      updatedIngredientLines.add(ingredientLines);
+    }
+
+    for (int i = 0; i < indexesToRemove.length; i++) {
+      for (int j = indexesToRemove[i].length - 1; j >= 0; j--) {
+        updatedIngredients[i].removeAt(indexesToRemove[i][j]);
+        updatedIngredientLines[i].removeAt(indexesToRemove[i][j]);
+      }
+    }
+
+    for (int i = 0; i < groceries.length; i++) {
+      temporaryControllers[i]
+          .removeWhere((key, value) => indexesToRemove[i].contains(key));
+    }
+
+    List<Grocery> updatedGroceries = [];
+
+    for (int i = 0; i < groceries.length; i++) {
+      Recipe recipe = groceries[i]
+          .recipe
+          .copyWith(ingredientLines: updatedIngredientLines[i]);
+      updatedGroceries.add(groceries[i]
+          .copyWith(ingredients: updatedIngredients[i], recipe: recipe));
+      locator<SavedGroceryService>().saveGrocery(recipe);
+    }
+
+    this.state = GroceriesReady(
+      updatedGroceries,
+      0,
+      temporaryControllers,
+    );
   }
 
   void updateIngredientStatus(int recipeIndex, int ingredientIndex, bool status,
@@ -66,7 +108,7 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
       var groceries = state.groceries;
       List<Map<int, AnimationController>> tempControllers =
           state.ingredinetsControllers;
-      tempControllers[0].addAll({ingredientIndex: controller});
+      tempControllers[recipeIndex].addAll({ingredientIndex: controller});
       groceries[recipeIndex].ingredients[ingredientIndex].owned = status;
 
       int selected = 0;

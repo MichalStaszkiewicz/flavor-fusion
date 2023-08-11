@@ -33,7 +33,7 @@ class HiveDataProvider<T> {
     return _box?.values.toList() ?? [];
   }
 
-  Future<void> addData(T data, String key) async {
+  Future<void> put(T data, String key) async {
     await _box
         ?.put(key, data)
         .then((value) => print("added new value: " + _box!.keys.toString()));

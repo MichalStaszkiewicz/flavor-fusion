@@ -45,7 +45,7 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUI985op9Ux0GurEZLGuHMh9KAjYLZshg7Cw&usqp=CAU',
           cautions: [],
           label: temporaryNames[randomIndex],
-          ingredientLines: [],
+          ingredientLines: ['Pasta', 'Cheese'],
           mealType: [],
           healthLabels: [],
           totalWeight: random.nextInt(5).toDouble(),

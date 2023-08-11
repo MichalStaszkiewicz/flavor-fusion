@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/data/models/grocery.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/source/interfaces/source_repository.dart';
 import 'package:flavor_fusion/data/source/local/local_source.dart';
@@ -22,5 +23,20 @@ class SourceRepository implements ISourceRepository {
   @override
   bool isFavorite(int id) {
     return locator<LocalSource>().isFavorite(id);
+  }
+
+  @override
+  void removeGrocery(int id) {
+    return locator<LocalSource>().removeGrocery(id);
+  }
+
+  @override
+  void saveGrocery(Recipe grocery) {
+    return locator<LocalSource>().saveGrocery(grocery);
+  }
+
+  @override
+  Future<List<Recipe>> getGroceryList() async {
+    return await locator<LocalSource>().getGroceryList();
   }
 }
