@@ -20,13 +20,21 @@ Ingredient _$IngredientFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Ingredient {
+  @HiveField(0)
   String get text => throw _privateConstructorUsedError;
+  @HiveField(1)
   int get quantity => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get measure => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get food => throw _privateConstructorUsedError;
+  @HiveField(4)
   double get weight => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get foodCategory => throw _privateConstructorUsedError;
+  @HiveField(6)
   String get foodId => throw _privateConstructorUsedError;
+  @HiveField(7)
   String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,14 +50,14 @@ abstract class $IngredientCopyWith<$Res> {
       _$IngredientCopyWithImpl<$Res, Ingredient>;
   @useResult
   $Res call(
-      {String text,
-      int quantity,
-      String measure,
-      String food,
-      double weight,
-      String foodCategory,
-      String foodId,
-      String image});
+      {@HiveField(0) String text,
+      @HiveField(1) int quantity,
+      @HiveField(2) String measure,
+      @HiveField(3) String food,
+      @HiveField(4) double weight,
+      @HiveField(5) String foodCategory,
+      @HiveField(6) String foodId,
+      @HiveField(7) String image});
 }
 
 /// @nodoc
@@ -120,14 +128,14 @@ abstract class _$$_IngredientCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String text,
-      int quantity,
-      String measure,
-      String food,
-      double weight,
-      String foodCategory,
-      String foodId,
-      String image});
+      {@HiveField(0) String text,
+      @HiveField(1) int quantity,
+      @HiveField(2) String measure,
+      @HiveField(3) String food,
+      @HiveField(4) double weight,
+      @HiveField(5) String foodCategory,
+      @HiveField(6) String foodId,
+      @HiveField(7) String image});
 }
 
 /// @nodoc
@@ -191,33 +199,41 @@ class __$$_IngredientCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Ingredient implements _Ingredient {
   _$_Ingredient(
-      {required this.text,
-      required this.quantity,
-      required this.measure,
-      required this.food,
-      required this.weight,
-      required this.foodCategory,
-      required this.foodId,
-      required this.image});
+      {@HiveField(0) required this.text,
+      @HiveField(1) required this.quantity,
+      @HiveField(2) required this.measure,
+      @HiveField(3) required this.food,
+      @HiveField(4) required this.weight,
+      @HiveField(5) required this.foodCategory,
+      @HiveField(6) required this.foodId,
+      @HiveField(7) required this.image});
 
   factory _$_Ingredient.fromJson(Map<String, dynamic> json) =>
       _$$_IngredientFromJson(json);
 
   @override
+  @HiveField(0)
   final String text;
   @override
+  @HiveField(1)
   final int quantity;
   @override
+  @HiveField(2)
   final String measure;
   @override
+  @HiveField(3)
   final String food;
   @override
+  @HiveField(4)
   final double weight;
   @override
+  @HiveField(5)
   final String foodCategory;
   @override
+  @HiveField(6)
   final String foodId;
   @override
+  @HiveField(7)
   final String image;
 
   @override
@@ -263,33 +279,41 @@ class _$_Ingredient implements _Ingredient {
 
 abstract class _Ingredient implements Ingredient {
   factory _Ingredient(
-      {required final String text,
-      required final int quantity,
-      required final String measure,
-      required final String food,
-      required final double weight,
-      required final String foodCategory,
-      required final String foodId,
-      required final String image}) = _$_Ingredient;
+      {@HiveField(0) required final String text,
+      @HiveField(1) required final int quantity,
+      @HiveField(2) required final String measure,
+      @HiveField(3) required final String food,
+      @HiveField(4) required final double weight,
+      @HiveField(5) required final String foodCategory,
+      @HiveField(6) required final String foodId,
+      @HiveField(7) required final String image}) = _$_Ingredient;
 
   factory _Ingredient.fromJson(Map<String, dynamic> json) =
       _$_Ingredient.fromJson;
 
   @override
+  @HiveField(0)
   String get text;
   @override
+  @HiveField(1)
   int get quantity;
   @override
+  @HiveField(2)
   String get measure;
   @override
+  @HiveField(3)
   String get food;
   @override
+  @HiveField(4)
   double get weight;
   @override
+  @HiveField(5)
   String get foodCategory;
   @override
+  @HiveField(6)
   String get foodId;
   @override
+  @HiveField(7)
   String get image;
   @override
   @JsonKey(ignore: true)

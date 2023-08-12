@@ -225,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.0"
+  elegant_notification:
+    dependency: "direct main"
+    description:
+      name: elegant_notification
+      sha256: bcc9344c63391f938a7bc70622e1c8c36c7368e3f676004dc59918cc5adc0820
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.10.1"
   fake_async:
     dependency: transitive
     description:
@@ -296,6 +304,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      sha256: "5fb789145cae1f4c3245c58b3f8fb287d055c26323879eab57a7bf0cfd1e45f3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "10.5.0"
   freezed:
     dependency: "direct main"
     description:
@@ -320,6 +336,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
+  get:
+    dependency: "direct main"
+    description:
+      name: get
+      sha256: "2ba20a47c8f1f233bed775ba2dd0d3ac97b4cf32fc17731b3dfc672b06b0e92a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.6.5"
   get_it:
     dependency: "direct main"
     description:
@@ -536,6 +560,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  material_design_icons_flutter:
+    dependency: "direct main"
+    description:
+      name: material_design_icons_flutter
+      sha256: "6f986b7a51f3ad4c00e33c5c84e8de1bdd140489bbcdc8b66fc1283dad4dea5a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.7296"
   meta:
     dependency: transitive
     description:

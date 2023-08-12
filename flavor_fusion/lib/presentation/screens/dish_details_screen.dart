@@ -55,25 +55,17 @@ class DishDetailsScreenState extends ConsumerState<DishDetailsScreen>
     });
     _scrollController = ScrollController();
     _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-              ScrollDirection.reverse &&
-          _scrollController.offset >= opacityChangePoints[opacityIterator]) {
-        if (opacityIterator < opacityChangePoints.length - 1 &&
-            (imageOpacity - 0.066) > 0.0) {
-          opacityIterator++;
-          imageOpacity -= 0.066;
-          setState(() {});
-        }
-      }
-      if (_scrollController.position.userScrollDirection ==
-              ScrollDirection.forward &&
-          _scrollController.offset < opacityChangePoints[opacityIterator]) {
-        if (opacityIterator > 0 && (imageOpacity + 0.066) < 1.0) {
-          imageOpacity += 0.066;
-          opacityIterator--;
-          setState(() {});
-        }
-      }
+      const maxOpacityChange = 0.986;
+      const maxScroll = 300.0;
+      final currentScroll = _scrollController.offset;
+      final newImageOpacity =
+          1.0 - (currentScroll / maxScroll) * maxOpacityChange;
+
+      // Ogranicz wartość imageOpacity od 0 do 1.
+      imageOpacity = newImageOpacity.clamp(0.0, 1.0);
+      // print(imageOpacity);
+
+      setState(() {});
     });
   }
 

@@ -79,7 +79,7 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
               shrinkWrap: true,
               itemCount: widget.ingredients.length,
               itemBuilder: (context, index) => IngredientEntry(
-                key: ValueKey(widget.ingredients[index].name),
+                key: ValueKey(widget.ingredients[index].description.food),
                 ingredient: widget.ingredients[index],
                 ingredientIndex: index,
                 recipeIndex: widget.recipeIndex,

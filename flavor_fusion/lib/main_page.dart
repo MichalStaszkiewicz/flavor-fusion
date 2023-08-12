@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/data/models/grocery.dart';
+import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/source/local/hive_data_provider.dart';
 import 'package:flavor_fusion/presentation/screens/favorite_screen.dart';
@@ -76,6 +77,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     _focusNode = FocusNode();
     _focusNode.addListener(_onFocusChange);
     Hive.registerAdapter(RecipeAdapter());
+    Hive.registerAdapter(IngredientAdapter());
 
     locator<HiveDataProvider<Recipe>>().initHive();
 

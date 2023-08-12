@@ -22,8 +22,9 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
       List<Grocery> groceries = [];
       for (Recipe recipe in reciepes) {
         List<RecipeIngredient> ingredients = [];
-        for (String ingredient in recipe.ingredientLines) {
-          ingredients.add(RecipeIngredient(name: ingredient, owned: false));
+        for (Ingredient ingredient in recipe.ingredients) {
+          ingredients
+              .add(RecipeIngredient(description: ingredient, owned: false));
         }
         groceries.add(Grocery(recipe: recipe, ingredients: ingredients));
       }

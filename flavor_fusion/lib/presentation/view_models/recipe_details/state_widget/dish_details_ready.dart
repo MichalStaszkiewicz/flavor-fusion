@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/utility/notification_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -60,6 +61,10 @@ class _DishDetailsReadyWidgetState extends State<DishDetailsReadyWidget> {
                           widget.ref
                               .read(recipeDetailsViewModel.notifier)
                               .saveRecipeIngredients(widget.recipe);
+                          NotificationManager.success(
+                              'Added ${widget.recipe.label} ingredients to your shopping cart !',
+                              'New Recipe!',
+                              context);
                         },
                         child: Container(
                           width: 100,
@@ -79,7 +84,8 @@ class _DishDetailsReadyWidgetState extends State<DishDetailsReadyWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(Icons.shop, color: Colors.white),
+                              const Icon(Icons.shopping_cart,
+                                  color: Colors.white),
                               Container(
                                   padding: EdgeInsets.only(top: 7),
                                   height: 30,

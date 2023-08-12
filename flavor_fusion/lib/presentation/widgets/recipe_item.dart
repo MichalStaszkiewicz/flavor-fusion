@@ -40,7 +40,7 @@ class _RecipeItemState extends State<RecipeItem> {
             DishDetailsRoute(name: widget.recipe.label, recipe: widget.recipe));
       },
       child: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           width: 230,
           decoration: BoxDecoration(
               color: Colors.white,
@@ -50,7 +50,7 @@ class _RecipeItemState extends State<RecipeItem> {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 2,
                   blurRadius: 5,
-                  offset: Offset(0, 0),
+                  offset: const Offset(0, 0),
                 ),
               ]),
           child: Column(children: [
@@ -66,7 +66,7 @@ class _RecipeItemState extends State<RecipeItem> {
                 flex: 16,
                 child: Container(
                     child: Container(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,28 +80,34 @@ class _RecipeItemState extends State<RecipeItem> {
                               .copyWith(fontSize: 17),
                         ),
                       ),
-                      const Row(
+                      Row(
                         children: [
-                          Icon(
+                          const Icon(
                               size: 20,
                               Icons.star,
                               color: Color.fromARGB(255, 248, 228, 49)),
-                          Icon(Icons.star,
+                          const Icon(Icons.star,
                               size: 20,
                               color: Color.fromARGB(255, 248, 228, 49)),
-                          Icon(Icons.star,
+                          const Icon(Icons.star,
                               size: 20,
                               color: Color.fromARGB(255, 248, 228, 49)),
-                          Icon(Icons.star,
+                          const Icon(Icons.star,
                               size: 20,
                               color: Color.fromARGB(255, 248, 228, 49)),
-                          Icon(Icons.star,
+                          const Icon(Icons.star,
                               size: 20,
                               color: Color.fromARGB(255, 248, 228, 49)),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text('107'),
+                          Container(
+                              height: 25,
+                              alignment: Alignment.bottomRight,
+                              child: Text(
+                                '9,652',
+                                style: Theme.of(context).textTheme.labelLarge,
+                              )),
                         ],
                       ),
                       CustomPaint(
@@ -117,17 +123,18 @@ class _RecipeItemState extends State<RecipeItem> {
                           children: <TextSpan>[
                             TextSpan(
                                 text: widget.recipe.author,
-                                style: TextStyle(fontWeight: FontWeight.bold)),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             size: 15,
                             Icons.timer,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(

@@ -19,7 +19,7 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
   @override
   Widget build(BuildContext context) {
     final dishDetailsState = ref.watch(recipeDetailsViewModel);
-    print(dishDetailsState);
+    //print(dishDetailsState);
     return dishDetailsState.when(
         initial: () => _buildInitial(),
         loading: () => _buildLoading(),
@@ -66,7 +66,7 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
                   onTap: () {
                     ref
                         .read(recipeDetailsViewModel.notifier)
-                        .setFavorite(widget.recipe);
+                        .setFavorite(widget.recipe, context);
                   },
                   child: BubbleIconButton(
                     icon: Icons.favorite,

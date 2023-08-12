@@ -91,7 +91,7 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                   child: CustomPaint(
                     painter: AnimatedTextDecoration(
                         progress: _animationController.value,
-                        text: widget.ingredient.name,
+                        text: widget.ingredient.description.food,
                         style: Theme.of(context).textTheme.labelLarge!,
                         lineThrough: widget.ingredient.owned),
                     child: Container(
@@ -117,15 +117,31 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                     ),
                   ),
                 ),
-                Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: Text(
-                      widget.ingredient.name,
-                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: widget.ingredient.owned
-                              ? Colors.grey
-                              : Colors.black),
-                    )),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                      margin: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        widget.ingredient.description.food,
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                            color: widget.ingredient.owned
+                                ? Colors.grey
+                                : Colors.black),
+                      )),
+                ),
+                Expanded(
+                  child: Container(
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.only(left: 20),
+                      child: Text(
+                        widget.ingredient.description.quantity.toString() +
+                            widget.ingredient.description.measure,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .copyWith(color: Colors.grey),
+                      )),
+                ),
               ],
             ),
           ),
