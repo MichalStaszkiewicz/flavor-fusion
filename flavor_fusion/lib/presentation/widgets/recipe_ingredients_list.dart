@@ -20,6 +20,7 @@ class RecipeIngredientsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       GroceryRecipeItem(
+          key: ValueKey(recipeName),
           recipeName: recipeName,
           ingredients: ingredients,
           recipeIndex: recipeIndex),

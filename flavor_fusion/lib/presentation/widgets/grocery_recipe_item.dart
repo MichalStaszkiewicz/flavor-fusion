@@ -24,7 +24,7 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
     with TickerProviderStateMixin {
   late AnimationController _fadeAnimationController;
   late Animation<double> _animation;
-  bool _visibleRecipeTitle = true;
+  bool _visibleRecipeTitle = false;
   @override
   void initState() {
     _fadeAnimationController = AnimationController(
@@ -45,11 +45,12 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
   }
 
   void manageAnimations() async {
-    print(widget.ingredients.isEmpty);
     if (widget.ingredients.isEmpty) {
       await _fadeAnimationController.forward().then((value) {
         _visibleRecipeTitle = false;
       });
+    } else {
+      _visibleRecipeTitle = true;
     }
   }
 

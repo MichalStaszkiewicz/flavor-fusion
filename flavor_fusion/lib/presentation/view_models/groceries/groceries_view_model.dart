@@ -26,7 +26,7 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
         }
         groceries.add(Grocery(recipe: recipe, ingredients: ingredients));
       }
-      print(groceries[0].ingredients);
+
       List<Map<int, AnimationController>> controllers = [];
       for (int i = 0; i < groceries.length; i++) {
         controllers.add({});
