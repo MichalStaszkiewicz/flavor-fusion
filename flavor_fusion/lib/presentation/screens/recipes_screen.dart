@@ -5,6 +5,9 @@ import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_mode
 import 'package:flavor_fusion/presentation/widgets/animated_wrap.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
+import 'package:flavor_fusion/presentation/widgets/recipes_search_bar.dart';
+import 'package:flavor_fusion/presentation/widgets/search_done.dart';
+import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,6 +16,7 @@ import '../../data/models/recipe.dart';
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
 import '../widgets/ingredient_chip.dart';
+import '../widgets/suggestions_list.dart';
 
 final GlobalKey<AnimatedListState> suggestionListKey =
     GlobalKey<AnimatedListState>();
@@ -126,8 +130,16 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              search: (suggestions, selectedIngredients, search) =>
-                  _buildSearch(suggestions, selectedIngredients, search),
+              search: (suggestions, selectedIngredients, search) {
+                manageAnimations(suggestions, selectedIngredients);
+                return RecipesSearchBar(
+                  ingredientsOpacity: _ingredientsAnimation.value,
+                  search: search,
+                  selectedIngredients: selectedIngredients,
+                  suggestions: suggestions,
+                  suggestionsOpacity: _suggestionsAnimation.value,
+                );
+              },
               orElse: () => Container(),
             ),
             duration: const Duration(milliseconds: 300),
@@ -140,7 +152,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              searchDone: (recipes) => _buildSearchDone(recipes),
+              searchDone: (recipes) => SearchDone(recipes: recipes),
               orElse: () => Container(),
             ),
             duration: const Duration(milliseconds: 300),
@@ -152,134 +164,6 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
             },
           ),
         ],
-      ),
-    );
-  }
-
-  Container _buildSearchDone(List<Recipe> recipes) {
-    return Container(
-      key: const ValueKey('recipes_searching'),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 10),
-            height: 30,
-            width: double.infinity,
-            child: Text(
-              textAlign: TextAlign.left,
-              "Found 1,254 Recipes",
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-          ),
-          ListView.builder(
-              itemCount: recipes.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) =>
-                  DishItemWidget(recipe: recipes[index]))
-        ],
-      ),
-    );
-  }
-
-  Container _buildSearch(List<String> suggestions,
-      List<String> selectedIngredients, String search) {
-    manageAnimations(suggestions, selectedIngredients);
-    return Container(
-      key: const ValueKey('recipes_search'),
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: Flex(
-              direction: Axis.vertical,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      selectedIngredients.isNotEmpty
-                          ? _buildSelectedIngredientsList(selectedIngredients)
-                          : Container(),
-                      suggestions.isNotEmpty
-                          ? _buildSuggestionsList(suggestions, search)
-                          : Container(),
-                    ],
-                  ),
-                ),
-              ]),
-        ),
-      ),
-    );
-  }
-
-  Opacity _buildSuggestionsList(List<String> suggestions, String search) {
-    return Opacity(
-      opacity: _suggestionsAnimation.value,
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: Text(
-              "Suggestions",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Colors.black),
-              textAlign: TextAlign.left,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          AnimatedList(
-              key: suggestionListKey,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              initialItemCount: suggestions.length,
-              itemBuilder: (context, index, animation) => GestureDetector(
-                  onTap: () {
-                    ref.read(recipesViewModel.notifier).addSelectedIngredient(
-                        locator<Global>().capitalize(suggestions[index]));
-                  },
-                  child: SuggestionItem(
-                      suggestion: suggestions[index],
-                      animation: animation,
-                      search: search)))
-        ],
-      ),
-    );
-  }
-
-  Opacity _buildSelectedIngredientsList(List<String> selectedIngredients) {
-    return Opacity(
-      opacity: _ingredientsAnimation.value,
-      child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: double.infinity,
-              child: Text(
-                "Ingredients",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(color: Colors.black),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              width: double.infinity,
-              child: AnimatedWrap(),
-            )
-          ],
-        ),
       ),
     );
   }
