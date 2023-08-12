@@ -37,7 +37,7 @@ class LocalSource extends ILocalSource {
 
   @override
   void removeGrocery(int id) async {
-    await locator<HiveDataProvider<Recipe>>().openBox(favorite_key);
+    await locator<HiveDataProvider<Recipe>>().openBox(grocery_key);
 
     locator<HiveDataProvider<Recipe>>().deleteData(id.toString());
   }

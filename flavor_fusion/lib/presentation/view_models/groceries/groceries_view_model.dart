@@ -17,6 +17,7 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
   GroceriesViewModel(super.state);
 
   void loadGroceries() async {
+    state = GroceriesState.loading();
     await locator<SavedGroceryService>().getGroceryList().then((reciepes) {
       List<Grocery> groceries = [];
       for (Recipe recipe in reciepes) {
@@ -31,6 +32,7 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
       for (int i = 0; i < groceries.length; i++) {
         controllers.add({});
       }
+
       state = GroceriesState.ready(groceries, 0, controllers);
     });
   }
@@ -91,7 +93,15 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
           .copyWith(ingredientLines: updatedIngredientLines[i]);
       updatedGroceries.add(groceries[i]
           .copyWith(ingredients: updatedIngredients[i], recipe: recipe));
-      locator<SavedGroceryService>().saveGrocery(recipe);
+      if (updatedIngredients[i].isEmpty) {
+        print('removing recipe');
+        locator<SavedGroceryService>().removeGrocery(recipe.id);
+      } else {
+        print('updatedIngredients length ' +
+            updatedIngredients[i].length.toString());
+
+        locator<SavedGroceryService>().saveGrocery(recipe);
+      }
     }
 
     this.state = GroceriesReady(

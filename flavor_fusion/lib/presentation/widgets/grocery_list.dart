@@ -14,6 +14,10 @@ class GroceryList extends StatefulWidget {
 class _GroceryListState extends State<GroceryList> {
   @override
   Widget build(BuildContext context) {
+    for (Grocery grocery in widget.groceries) {
+      // print(grocery.recipe.label);
+    }
+
     return ListView.builder(
         itemCount: widget.groceries.length,
         shrinkWrap: true,

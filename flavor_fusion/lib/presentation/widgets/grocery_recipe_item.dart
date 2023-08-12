@@ -28,13 +28,18 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
   @override
   void initState() {
     _fadeAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
+        vsync: this, duration: const Duration(milliseconds: 150));
     _animation =
         Tween<double>(begin: 1, end: 0).animate(_fadeAnimationController)
           ..addListener(() async {
             setState(() {});
           });
 
+    if (widget.ingredients.isEmpty) {
+      _visibleRecipeTitle = false;
+    } else {
+      _visibleRecipeTitle = true;
+    }
     super.initState();
   }
 
@@ -45,6 +50,7 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
   }
 
   void manageAnimations() async {
+    //print(widget.ingredients.isEmpty);
     if (widget.ingredients.isEmpty) {
       await _fadeAnimationController.forward().then((value) {
         _visibleRecipeTitle = false;
@@ -73,6 +79,7 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
               shrinkWrap: true,
               itemCount: widget.ingredients.length,
               itemBuilder: (context, index) => IngredientEntry(
+                key: ValueKey(widget.ingredients[index].name),
                 ingredient: widget.ingredients[index],
                 ingredientIndex: index,
                 recipeIndex: widget.recipeIndex,

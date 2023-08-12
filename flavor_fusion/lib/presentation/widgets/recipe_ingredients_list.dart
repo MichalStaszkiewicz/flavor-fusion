@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../data/models/recipe_ingredient.dart';
 import 'grocery_recipe_item.dart';
 import 'ingredient_entry.dart';
-import 'ingredient_grocery_entry.dart';
+import 'ingredient_entry.dart';
 
 class RecipeIngredientsList extends StatelessWidget {
   RecipeIngredientsList(
