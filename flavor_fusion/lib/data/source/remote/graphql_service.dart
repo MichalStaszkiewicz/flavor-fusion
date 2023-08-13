@@ -3,12 +3,16 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 class GraphQLService {
   late GraphQLClient _client;
 
-  GraphQLService(String endpoint) {
+  GraphQLService(String endpoint, String token) {
     final HttpLink httpLink = HttpLink(endpoint);
+
+    final AuthLink authLink = AuthLink(getToken: () async => 'Token $token');
+
+    final Link link = authLink.concat(httpLink);
 
     _client = GraphQLClient(
       cache: GraphQLCache(),
-      link: httpLink,
+      link: link,
     );
   }
 

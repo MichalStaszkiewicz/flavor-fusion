@@ -1,4 +1,5 @@
 import 'package:flavor_fusion/data/models/ingredient.dart';
+import 'package:flavor_fusion/data/repository/source_repository.dart';
 import 'package:flavor_fusion/presentation/screens/recipes_screen.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/states.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
@@ -89,6 +90,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void initRecommendedRecipes() {
+    locator<SourceRepository>().getRecommendedRecipes();
     if (_recipes.isNotEmpty) {
       return;
     }

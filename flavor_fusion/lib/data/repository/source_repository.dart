@@ -1,42 +1,54 @@
+import 'package:dartz/dartz.dart';
 import 'package:flavor_fusion/data/models/grocery.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
-import 'package:flavor_fusion/data/source/interfaces/source_repository.dart';
+
 import 'package:flavor_fusion/data/source/local/local_source.dart';
+import 'package:flavor_fusion/data/source/remote/remove_source.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 
-class SourceRepository implements ISourceRepository {
-  @override
+class SourceRepository {
+  SourceRepository(this._localSource, this._remoteSource);
+  final LocalSource _localSource;
+  final RemoteSource _remoteSource;
   Future<List<Recipe>> getFavoriteRecipes() async {
-    return await locator<LocalSource>().getFavoriteRecipes();
+    return await _localSource.getFavoriteRecipes();
   }
 
-  @override
   void removeFavoriteRecipe(int recipeId) {
-    locator<LocalSource>().removeFavoriteRecipe(recipeId);
+    _localSource.removeFavoriteRecipe(recipeId);
   }
 
-  @override
   void saveFavoriteRecipe(Recipe recipe) {
-    locator<LocalSource>().saveFavoriteRecipe(recipe);
+    _localSource.saveFavoriteRecipe(recipe);
   }
 
-  @override
   bool isFavorite(int id) {
-    return locator<LocalSource>().isFavorite(id);
+    return _localSource.isFavorite(id);
   }
 
-  @override
   void removeGrocery(int id) {
-    return locator<LocalSource>().removeGrocery(id);
+    return _localSource.removeGrocery(id);
   }
 
-  @override
   void saveGrocery(Recipe grocery) {
-    return locator<LocalSource>().saveGrocery(grocery);
+    return _localSource.saveGrocery(grocery);
   }
 
-  @override
   Future<List<Recipe>> getGroceryList() async {
-    return await locator<LocalSource>().getGroceryList();
+    return await _localSource.getGroceryList();
+  }
+
+  Future<List<Recipe>> getRecommendedRecipes() async {
+    Either<List<Recipe>, Exception> result =
+        await _remoteSource.getRecommendedRecipes();
+    return result.fold(
+      (recipes) {
+        return recipes;
+      },
+      (error) {
+        print("Wystąpił błąd: $error");
+        return [];
+      },
+    );
   }
 }
