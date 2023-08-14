@@ -5,5 +5,5 @@ abstract class ISavedGrocery {
   Future<List<Recipe>> getGroceryList();
 
   void saveGrocery(Recipe recipe);
-  void removeGrocery(int id);
+  void removeGrocery(String id);
 }

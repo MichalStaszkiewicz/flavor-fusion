@@ -40,15 +40,15 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     List<Recipe> breakfast = [];
     List<Recipe> lunch = [];
     List<Recipe> dinner = [];
+    print("recipes " + recipes.length.toString());
     for (Recipe recipe in recipes) {
-      if (recipe.mealType.contains('breakfast')) {
-        breakfast.add(recipe);
-      } else if (recipe.mealType.contains('lunch')) {
-        lunch.add(recipe);
-      } else if (recipe.mealType.contains('dinner')) {
-        dinner.add(recipe);
-      }
+      breakfast.add(recipe);
+
+      lunch.add(recipe);
+
+      dinner.add(recipe);
     }
+
     List<RecipeGroup> recipeGroups = [];
     recipeGroups.add(RecipeGroup(recipes: breakfast, label: 'Breakfast'));
     recipeGroups.add(RecipeGroup(recipes: lunch, label: 'Lunch'));

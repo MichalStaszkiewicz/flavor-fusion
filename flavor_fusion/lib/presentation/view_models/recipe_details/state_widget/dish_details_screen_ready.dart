@@ -26,7 +26,7 @@ class DishDetailsScreenReadyState
   @override
   void initState() {
     super.initState();
-   
+
     _scrollController = ScrollController();
     _scrollController.addListener(() {
       const maxOpacityChange = 0.986;

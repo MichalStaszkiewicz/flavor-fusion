@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/source/remote/graphql_queries.dart';
 import 'package:flavor_fusion/data/source/remote/graphql_service.dart';
+import 'package:flavor_fusion/data/source/remote/response/recipe_list_response.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../utility/service_locator.dart';
@@ -13,8 +14,10 @@ class RemoteSource implements IRemoteSource {
     try {
       var response = await locator<GraphQLService>()
           .executeQuery(RecipeQueries.breakFastRecipeQuery);
-      print(response);
-      return const Left([]);
+   
+      List<Recipe> recipes =
+          RecipeListResponse.fromJson(response['recipeSearch']).edges;
+      return Left(recipes);
     } on Exception catch (e) {
       return Right(e);
     }

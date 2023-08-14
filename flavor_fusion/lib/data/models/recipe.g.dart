@@ -17,22 +17,22 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Recipe(
-      label: fields[0] as String,
-      image: fields[1] as String,
-      url: fields[2] as String,
-      dietLabels: (fields[3] as List).cast<String>(),
-      healthLabels: (fields[4] as List).cast<String>(),
-      cautions: (fields[5] as List).cast<String>(),
-      ingredientLines: (fields[6] as List).cast<String>(),
-      ingredients: (fields[7] as List).cast<Ingredient>(),
-      calories: fields[8] as double,
-      totalWeight: fields[9] as double,
-      totalTime: fields[10] as int,
-      cuisineType: (fields[11] as List).cast<String>(),
-      mealType: (fields[12] as List).cast<String>(),
-      dishType: (fields[13] as List).cast<String>(),
-      id: fields[14] as int,
-      author: fields[15] as String,
+      author: fields[0] as String,
+      id: fields[1] as String,
+      courses: (fields[2] as List).cast<String>(),
+      cuisines: (fields[3] as List?)?.cast<String>(),
+      cleanName: fields[4] as String?,
+      totalTime: fields[5] as String,
+      name: fields[6] as String,
+      rating: fields[7] as int?,
+      serving: fields[8] as int?,
+      nutrientsPerServing: fields[9] as NutrientsPerServing,
+      recipeType: fields[10] as String,
+      ingredients: (fields[11] as List).cast<Ingredient>(),
+      ingredientLines: (fields[12] as List).cast<String>(),
+      ingredientsCount: fields[13] as int,
+      instructions: (fields[14] as List).cast<String>(),
+      mainImage: fields[15] as String,
     );
   }
 
@@ -41,37 +41,37 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
     writer
       ..writeByte(16)
       ..writeByte(0)
-      ..write(obj.label)
+      ..write(obj.author)
       ..writeByte(1)
-      ..write(obj.image)
-      ..writeByte(2)
-      ..write(obj.url)
-      ..writeByte(3)
-      ..write(obj.dietLabels)
-      ..writeByte(4)
-      ..write(obj.healthLabels)
-      ..writeByte(5)
-      ..write(obj.cautions)
-      ..writeByte(6)
-      ..write(obj.ingredientLines)
-      ..writeByte(7)
-      ..write(obj.ingredients)
-      ..writeByte(8)
-      ..write(obj.calories)
-      ..writeByte(9)
-      ..write(obj.totalWeight)
-      ..writeByte(10)
-      ..write(obj.totalTime)
-      ..writeByte(11)
-      ..write(obj.cuisineType)
-      ..writeByte(12)
-      ..write(obj.mealType)
-      ..writeByte(13)
-      ..write(obj.dishType)
-      ..writeByte(14)
       ..write(obj.id)
+      ..writeByte(2)
+      ..write(obj.courses)
+      ..writeByte(3)
+      ..write(obj.cuisines)
+      ..writeByte(4)
+      ..write(obj.cleanName)
+      ..writeByte(5)
+      ..write(obj.totalTime)
+      ..writeByte(6)
+      ..write(obj.name)
+      ..writeByte(7)
+      ..write(obj.rating)
+      ..writeByte(8)
+      ..write(obj.serving)
+      ..writeByte(9)
+      ..write(obj.nutrientsPerServing)
+      ..writeByte(10)
+      ..write(obj.recipeType)
+      ..writeByte(11)
+      ..write(obj.ingredients)
+      ..writeByte(12)
+      ..write(obj.ingredientLines)
+      ..writeByte(13)
+      ..write(obj.ingredientsCount)
+      ..writeByte(14)
+      ..write(obj.instructions)
       ..writeByte(15)
-      ..write(obj.author);
+      ..write(obj.mainImage);
   }
 
   @override
@@ -90,52 +90,49 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
 // **************************************************************************
 
 _$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
-      label: json['label'] as String,
-      image: json['image'] as String,
-      url: json['url'] as String,
-      dietLabels: (json['dietLabels'] as List<dynamic>)
-          .map((e) => e as String)
+      author: json['author'] as String,
+      id: json['id'] as String,
+      courses:
+          (json['courses'] as List<dynamic>).map((e) => e as String).toList(),
+      cuisines: (json['cuisines'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
-      healthLabels: (json['healthLabels'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      cautions:
-          (json['cautions'] as List<dynamic>).map((e) => e as String).toList(),
-      ingredientLines: (json['ingredientLines'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      cleanName: json['cleanName'] as String?,
+      totalTime: json['totalTime'] as String,
+      name: json['name'] as String,
+      rating: json['rating'] as int?,
+      serving: json['serving'] as int?,
+      nutrientsPerServing: NutrientsPerServing.fromJson(
+          json['nutrientsPerServing'] as Map<String, dynamic>),
+      recipeType: json['recipeType'] as String,
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => Ingredient.fromJson(e as Map<String, dynamic>))
           .toList(),
-      calories: (json['calories'] as num).toDouble(),
-      totalWeight: (json['totalWeight'] as num).toDouble(),
-      totalTime: json['totalTime'] as int,
-      cuisineType: (json['cuisineType'] as List<dynamic>)
+      ingredientLines: (json['ingredientLines'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      mealType:
-          (json['mealType'] as List<dynamic>).map((e) => e as String).toList(),
-      dishType:
-          (json['dishType'] as List<dynamic>).map((e) => e as String).toList(),
-      id: json['id'] as int,
-      author: json['author'] as String,
+      ingredientsCount: json['ingredientsCount'] as int,
+      instructions: (json['instructions'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      mainImage: json['mainImage'] as String,
     );
 
 Map<String, dynamic> _$$_RecipeToJson(_$_Recipe instance) => <String, dynamic>{
-      'label': instance.label,
-      'image': instance.image,
-      'url': instance.url,
-      'dietLabels': instance.dietLabels,
-      'healthLabels': instance.healthLabels,
-      'cautions': instance.cautions,
-      'ingredientLines': instance.ingredientLines,
-      'ingredients': instance.ingredients,
-      'calories': instance.calories,
-      'totalWeight': instance.totalWeight,
-      'totalTime': instance.totalTime,
-      'cuisineType': instance.cuisineType,
-      'mealType': instance.mealType,
-      'dishType': instance.dishType,
-      'id': instance.id,
       'author': instance.author,
+      'id': instance.id,
+      'courses': instance.courses,
+      'cuisines': instance.cuisines,
+      'cleanName': instance.cleanName,
+      'totalTime': instance.totalTime,
+      'name': instance.name,
+      'rating': instance.rating,
+      'serving': instance.serving,
+      'nutrientsPerServing': instance.nutrientsPerServing,
+      'recipeType': instance.recipeType,
+      'ingredients': instance.ingredients,
+      'ingredientLines': instance.ingredientLines,
+      'ingredientsCount': instance.ingredientsCount,
+      'instructions': instance.instructions,
+      'mainImage': instance.mainImage,
     };

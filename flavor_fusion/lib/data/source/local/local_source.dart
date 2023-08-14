@@ -15,7 +15,7 @@ class LocalSource extends ILocalSource {
   }
 
   @override
-  void removeFavoriteRecipe(int recipeId) async {
+  void removeFavoriteRecipe(String recipeId) async {
     await locator<HiveDataProvider<Recipe>>().openBox(favorite_key);
 
     locator<HiveDataProvider<Recipe>>().deleteData(recipeId.toString());
@@ -31,12 +31,12 @@ class LocalSource extends ILocalSource {
   }
 
   @override
-  bool isFavorite(int id) {
+  bool isFavorite(String id) {
     return locator<HiveDataProvider<Recipe>>().objectExist(id);
   }
 
   @override
-  void removeGrocery(int id) async {
+  void removeGrocery(String id) async {
     await locator<HiveDataProvider<Recipe>>().openBox(grocery_key);
 
     locator<HiveDataProvider<Recipe>>().deleteData(id.toString());

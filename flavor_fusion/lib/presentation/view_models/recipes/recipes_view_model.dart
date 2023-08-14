@@ -89,119 +89,13 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     }
   }
 
-  void initRecommendedRecipes() {
-    locator<SourceRepository>().getRecommendedRecipes();
-    if (_recipes.isNotEmpty) {
-      return;
-    }
-    _recipes.add(Recipe(
-        label: 'Sandwitches',
-        image: 'image',
-        url: 'url',
-        dietLabels: [],
-        healthLabels: [],
-        cautions: [],
-        ingredientLines: ['Pasta', 'Cheese', 'Coca Cola', 'Pepsi', 'Sprite'],
-        ingredients: [
-          Ingredient(
-              text: '',
-              quantity: 100,
-              measure: 'g',
-              food: 'Pasta',
-              weight: 0,
-              foodCategory: '',
-              foodId: '',
-              image: ''),
-          Ingredient(
-              text: '',
-              quantity: 100,
-              measure: 'g',
-              food: 'Cheese',
-              weight: 0,
-              foodCategory: '',
-              foodId: '',
-              image: ''),
-          Ingredient(
-              text: '',
-              quantity: 2,
-              measure: 'l',
-              food: 'Pepsi',
-              weight: 0,
-              foodCategory: '',
-              foodId: '',
-              image: ''),
-        ],
-        calories: 350,
-        totalWeight: 34,
-        totalTime: 76,
-        cuisineType: [],
-        mealType: ['breakfast'],
-        dishType: [],
-        id: 1,
-        author: 'author'));
-    _recipes.add(Recipe(
-        label: 'Spaghetti',
-        image: 'image',
-        url: 'url',
-        dietLabels: [],
-        healthLabels: [],
-        cautions: [],
-        ingredientLines: ['Pasta', 'Cheese', 'Coca Cola', 'Pepsi', 'Sprite'],
-        ingredients: [
-          Ingredient(
-              text: '',
-              quantity: 100,
-              measure: 'g',
-              food: 'Pasta',
-              weight: 0,
-              foodCategory: '',
-              foodId: '',
-              image: ''),
-          Ingredient(
-              text: '',
-              quantity: 100,
-              measure: 'g',
-              food: 'Cheese',
-              weight: 0,
-              foodCategory: '',
-              foodId: '',
-              image: ''),
-          Ingredient(
-              text: '',
-              quantity: 2,
-              measure: 'l',
-              food: 'Pepsi',
-              weight: 0,
-              foodCategory: '',
-              foodId: '',
-              image: ''),
-        ],
-        calories: 350,
-        totalWeight: 34,
-        totalTime: 76,
-        cuisineType: [],
-        mealType: ['lunch'],
-        dishType: [],
-        id: 2,
-        author: 'author'));
-    _recipes.add(Recipe(
-        label: 'Chicken',
-        image: 'image',
-        url: 'url',
-        dietLabels: [],
-        healthLabels: [],
-        cautions: [],
-        ingredientLines: [],
-        ingredients: [],
-        calories: 350,
-        totalWeight: 34,
-        totalTime: 76,
-        cuisineType: [],
-        mealType: ['dinner'],
-        dishType: [],
-        id: 3,
-        author: 'author'));
-    state = RecipesState.recipesRecommendation(_recipes);
+  void initRecommendedRecipes() async {
+    _recipes =
+        await locator<SourceRepository>().getRecommendedRecipes().then((value) {
+      state = RecipesState.recipesRecommendation(value);
+      return value;
+      ;
+    });
   }
 
   void loadRecipeRecommendation() {
@@ -209,25 +103,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void findRecipes() {
-    List<Recipe> recipes = [
-      Recipe(
-          label: 'Chicken',
-          image: 'image',
-          url: 'url',
-          dietLabels: [],
-          healthLabels: [],
-          cautions: [],
-          ingredientLines: [],
-          ingredients: [],
-          calories: 350,
-          totalWeight: 34,
-          totalTime: 76,
-          cuisineType: [],
-          mealType: ['dinner'],
-          dishType: [],
-          id: 3,
-          author: 'author'),
-    ];
+    List<Recipe> recipes = [];
 
     state = RecipesState.searchDone(recipes);
   }

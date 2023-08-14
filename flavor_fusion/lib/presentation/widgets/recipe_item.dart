@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flutter/material.dart';
 
@@ -37,116 +38,113 @@ class _RecipeItemState extends State<RecipeItem> {
     return GestureDetector(
       onTap: () {
         context.router.push(
-            DishDetailsRoute(name: widget.recipe.label, recipe: widget.recipe));
+            DishDetailsRoute(name: widget.recipe.name, recipe: widget.recipe));
       },
       child: Container(
-          margin: const EdgeInsets.all(20),
+        alignment: Alignment.bottomCenter,
+        margin: const EdgeInsets.all(20),
+        width: 230,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+              fit: BoxFit.fill, image: NetworkImage(widget.recipe.mainImage)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 0),
+            ),
+          ],
+        ),
+        child: Container(
+          height: 120,
           width: 230,
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(0, 0),
+              color: Colors.white.withOpacity(0.7),
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(5),
+                  bottomRight: Radius.circular(5))),
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                child: AutoSizeText(
+                  maxLines: 1,
+                  widget.recipe.name,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
-              ]),
-          child: Column(children: [
-            Expanded(
-                flex: 13,
-                child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(5),
-                            topRight: Radius.circular(5))))),
-            Expanded(
-                flex: 16,
-                child: Container(
-                    child: Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Text(
-                          widget.recipe.label,
+              ),
+              Row(
+                children: [
+                  const Icon(
+                      size: 20,
+                      Icons.star,
+                      color: Color.fromARGB(255, 248, 228, 49)),
+                  const Icon(Icons.star,
+                      size: 20, color: Color.fromARGB(255, 248, 228, 49)),
+                  const Icon(Icons.star,
+                      size: 20, color: Color.fromARGB(255, 248, 228, 49)),
+                  const Icon(Icons.star,
+                      size: 20, color: Color.fromARGB(255, 248, 228, 49)),
+                  const Icon(Icons.star,
+                      size: 20, color: Color.fromARGB(255, 248, 228, 49)),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                      height: 25,
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        '9,652',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      )),
+                ],
+              ),
+              CustomPaint(
+                key: dottedDecorationKey,
+                painter: DottedDecoration(
+                    objectPosition: dottedDecorationPosition ?? Offset.zero),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5),
+                child: RichText(
+                  text: TextSpan(
+                    text: 'recipe by ',
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: widget.recipe.author,
                           style: Theme.of(context)
                               .textTheme
-                              .titleMedium!
-                              .copyWith(fontSize: 17),
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                              size: 20,
-                              Icons.star,
-                              color: Color.fromARGB(255, 248, 228, 49)),
-                          const Icon(Icons.star,
-                              size: 20,
-                              color: Color.fromARGB(255, 248, 228, 49)),
-                          const Icon(Icons.star,
-                              size: 20,
-                              color: Color.fromARGB(255, 248, 228, 49)),
-                          const Icon(Icons.star,
-                              size: 20,
-                              color: Color.fromARGB(255, 248, 228, 49)),
-                          const Icon(Icons.star,
-                              size: 20,
-                              color: Color.fromARGB(255, 248, 228, 49)),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Container(
-                              height: 25,
-                              alignment: Alignment.bottomRight,
-                              child: Text(
-                                '9,652',
-                                style: Theme.of(context).textTheme.labelLarge,
-                              )),
-                        ],
-                      ),
-                      CustomPaint(
-                        key: dottedDecorationKey,
-                        painter: DottedDecoration(
-                            objectPosition:
-                                dottedDecorationPosition ?? Offset.zero),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: 'recipe by ',
-                          style: DefaultTextStyle.of(context).style,
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: widget.recipe.author,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            size: 15,
-                            Icons.timer,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            '${widget.recipe.totalTime} minutes',
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                        ],
-                      )
+                              .labelMedium!
+                              .copyWith(fontWeight: FontWeight.bold)),
                     ],
                   ),
-                )))
-          ])),
+                ),
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    size: 15,
+                    Icons.timer,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    widget.recipe.totalTime,
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

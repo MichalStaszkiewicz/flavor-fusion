@@ -23,7 +23,7 @@ class _GroceryListState extends State<GroceryList> {
         shrinkWrap: true,
         itemBuilder: (context, index) => RecipeIngredientsList(
               ingredients: widget.groceries[index].ingredients,
-              recipeName: widget.groceries[index].recipe.label,
+              recipeName: widget.groceries[index].recipe.name,
               recipeIndex: index,
             ));
   }

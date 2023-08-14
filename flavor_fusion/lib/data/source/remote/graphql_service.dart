@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class GraphQLService {
@@ -17,7 +18,8 @@ class GraphQLService {
   }
 
   Future<Map<String, dynamic>> executeQuery(String query) async {
-    final QueryOptions options = QueryOptions(document: gql(query));
+    final QueryOptions options =
+        QueryOptions(fetchPolicy: FetchPolicy.noCache, document: gql(query));
 
     final QueryResult result = await _client.query(options);
 

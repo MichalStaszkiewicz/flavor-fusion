@@ -1,3 +1,7 @@
+import 'package:flavor_fusion/presentation/widgets/cooking_instruction_link.dart';
+import 'package:flavor_fusion/presentation/widgets/description_widget.dart';
+import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
+import 'package:flavor_fusion/presentation/widgets/dish_title_and_save_button.dart';
 import 'package:flavor_fusion/utility/notification_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,26 +9,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../data/models/recipe.dart';
 import '../../../../utility/global.dart';
 import '../../../../utility/service_locator.dart';
+import '../../../widgets/cooking_instruction_title.dart';
 import '../../../widgets/dish_details_basic_info.dart';
 import '../../../widgets/dish_details_ingradients_list.dart';
+import '../../../widgets/ingredients_title.dart';
 import '../recipe_details_view_model.dart';
 
-class DishDetailsReadyWidget extends StatefulWidget {
-  DishDetailsReadyWidget(
-      {super.key,
-      required this.recipe,
-      required this.description,
-      required this.expanded,
-      required this.ref});
-  Recipe recipe;
-  String description;
-  bool expanded;
-  WidgetRef ref;
-  @override
-  State<DishDetailsReadyWidget> createState() => _DishDetailsReadyWidgetState();
-}
+class DishDetailsReadyWidget extends StatelessWidget {
+  const DishDetailsReadyWidget({
+    required this.recipe,
+    required this.description,
+    required this.expanded,
+    required this.ref,
+  });
 
-class _DishDetailsReadyWidgetState extends State<DishDetailsReadyWidget> {
+  final Recipe recipe;
+  final String description;
+  final bool expanded;
+  final WidgetRef ref;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,177 +38,67 @@ class _DishDetailsReadyWidgetState extends State<DishDetailsReadyWidget> {
             color: Colors.transparent,
           ),
         ),
-        Container(
-          decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-          child: Container(
-              margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          width: locator<Global>().mediaQuery.size.width,
-                          child: Text(
-                            textAlign: TextAlign.start,
-                            widget.recipe.label,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          widget.ref
-                              .read(recipeDetailsViewModel.notifier)
-                              .saveRecipeIngredients(widget.recipe);
-                          NotificationManager.success(
-                              'Added ${widget.recipe.label} ingredients to your shopping cart !',
-                              'New Recipe!',
-                              context);
-                        },
-                        child: Container(
-                          width: 100,
-                          height: 30,
-                          decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 2,
-                                  offset: Offset(0, 0),
-                                ),
-                              ]),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Icon(Icons.shopping_cart,
-                                  color: Colors.white),
-                              Container(
-                                  padding: EdgeInsets.only(top: 7),
-                                  height: 30,
-                                  child: Text(
-                                    'Save',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge!
-                                        .copyWith(color: Colors.white),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      DishDetailsBasicInfo(
-                        label: '10 mins',
-                        icon: Icons.timer,
-                      ),
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      DishDetailsBasicInfo(label: '354 cal', icon: Icons.cabin),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      textAlign: TextAlign.start,
-                      'Description',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Column(
-                    children: [
-                      AnimatedContainer(
-                          height: widget.expanded
-                              ? widget.ref
-                                  .read(recipeDetailsViewModel.notifier)
-                                  .descriptionHeight
-                              : 40,
-                          duration: const Duration(milliseconds: 700),
-                          child: Text(
-                            widget.description,
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge!
-                                .copyWith(
-                                  color: locator<Global>().greyText,
-                                ),
-                            maxLines: null,
-                            overflow:
-                                widget.expanded ? TextOverflow.fade : null,
-                          )),
-                      Container(
-                          alignment: Alignment.topRight,
-                          width: double.infinity,
-                          child: GestureDetector(
-                              onTap: () {
-                                widget.ref
-                                    .read(recipeDetailsViewModel.notifier)
-                                    .setDescriptionExpand(widget.description);
-                              },
-                              child: Container(
-                                  alignment: Alignment.bottomRight,
-                                  height: 30,
-                                  child: Text(!widget.expanded
-                                      ? "View more"
-                                      : "View less"))))
-                    ],
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      textAlign: TextAlign.start,
-                      'Ingrediants',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  DishDetailsIngradientsList(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Text(
-                      textAlign: TextAlign.start,
-                      'Cooking Instruction',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Text(
-                      'https://www.seriouseats.com/iced-matcha-green-tea-recipe',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
-                  ),
-                ],
-              )),
-        )
+        DishDetailsContent(
+          recipe: recipe,
+          description: description,
+          expanded: expanded,
+          ref: ref,
+        ),
       ],
+    );
+  }
+}
+
+class DishDetailsContent extends StatelessWidget {
+  const DishDetailsContent({
+    required this.recipe,
+    required this.description,
+    required this.expanded,
+    required this.ref,
+  });
+
+  final Recipe recipe;
+  final String description;
+  final bool expanded;
+  final WidgetRef ref;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      child: Container(
+        margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
+        child: Column(
+          children: [
+            DishTitleAndSaveButton(
+              recipe: recipe,
+              ref: ref,
+            ),
+            const SizedBox(height: 10),
+            DishBasicInfoRow(recipe: recipe),
+            const SizedBox(height: 10),
+            DescriptionWidget(
+              description: description,
+              expanded: expanded,
+              ref: ref,
+            ),
+            const SizedBox(height: 20),
+            IngredientsTitle(),
+            const SizedBox(height: 20),
+            DishDetailsIngradientsList(),
+            const SizedBox(height: 20),
+            CookingInstructionTitle(),
+            const SizedBox(height: 20),
+            CookingInstructionLink(),
+          ],
+        ),
+      ),
     );
   }
 }

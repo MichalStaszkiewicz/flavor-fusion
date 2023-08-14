@@ -38,11 +38,10 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
       opacity: widget.opacity,
       child: Container(
           alignment: Alignment.topCenter,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               image: DecorationImage(
             fit: BoxFit.fill,
-            image: NetworkImage(
-                'https://hips.hearstapps.com/hmg-prod/images/221011-delish-seo-chili-cheese-sweet-potato-casserole-0288-eb-1-1666030912.jpg'),
+            image: NetworkImage(widget.recipe.mainImage),
           )),
           height: 340,
           child: Padding(

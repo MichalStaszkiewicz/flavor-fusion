@@ -35,14 +35,14 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
       locator<FavoriteRecipeService>().removeFavoriteRecipe(recipe.id);
       ref.read(favoriteViewModel.notifier).refreshLocalData();
       NotificationManager.success(
-          'Removed ${recipe.label} from favorite list', 'Success', context);
+          'Removed ${recipe.name} from favorite list', 'Success', context);
       this.state = RecipeDetailsState.ready(state.expanded, !isFavorite);
     } else {
       print("this recipe is not favorite");
       locator<FavoriteRecipeService>().addFavoriteRecipe(recipe);
       ref.read(favoriteViewModel.notifier).refreshLocalData();
       NotificationManager.success(
-          'Added ${recipe.label} to favorite list', 'Success', context);
+          'Added ${recipe.name} to favorite list', 'Success', context);
       this.state = RecipeDetailsState.ready(state.expanded, !isFavorite);
     }
   }

@@ -20,7 +20,7 @@ class HiveDataProvider<T> {
     await _box?.add(data);
   }
 */
-  bool objectExist(int id) {
+  bool objectExist(String id) {
     bool? exist = _box?.containsKey(id.toString());
 
     if (exist != null && exist != false) {

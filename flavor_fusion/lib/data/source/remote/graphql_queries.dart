@@ -4,6 +4,7 @@ class RecipeQueries {
   recipeSearch(hasImage: true, hasInstructions: true, mealTime: SNACK) {
     edges {
       node {
+        mainImage
         author
         id
         courses
@@ -38,12 +39,14 @@ class RecipeQueries {
 {
   recipeSearch(hasImage: true, hasInstructions: true, mealTime: BREAKFAST) {
     edges {
-      node {
+      node { mainImage
         author
         id
         courses
         cuisines
         cleanName
+        totalTime
+        name
         rating
         serving
         nutrientsPerServing {
@@ -67,12 +70,13 @@ class RecipeQueries {
     }
   }
 }
+
 """;
   static const String dinnerRecipeQuery = """
 {
   recipeSearch(hasImage: true, hasInstructions: true, mealTime: DINNER) {
-    edges {
-      node {
+    edges { 
+      node {mainImage
         author
         id
         courses

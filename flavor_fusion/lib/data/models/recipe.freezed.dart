@@ -21,37 +21,38 @@ Recipe _$RecipeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Recipe {
   @HiveField(0)
-  String get label => throw _privateConstructorUsedError;
-  @HiveField(1)
-  String get image => throw _privateConstructorUsedError;
-  @HiveField(2)
-  String get url => throw _privateConstructorUsedError;
-  @HiveField(3)
-  List<String> get dietLabels => throw _privateConstructorUsedError;
-  @HiveField(4)
-  List<String> get healthLabels => throw _privateConstructorUsedError;
-  @HiveField(5)
-  List<String> get cautions => throw _privateConstructorUsedError;
-  @HiveField(6)
-  List<String> get ingredientLines => throw _privateConstructorUsedError;
-  @HiveField(7)
-  List<Ingredient> get ingredients => throw _privateConstructorUsedError;
-  @HiveField(8)
-  double get calories => throw _privateConstructorUsedError;
-  @HiveField(9)
-  double get totalWeight => throw _privateConstructorUsedError;
-  @HiveField(10)
-  int get totalTime => throw _privateConstructorUsedError;
-  @HiveField(11)
-  List<String> get cuisineType => throw _privateConstructorUsedError;
-  @HiveField(12)
-  List<String> get mealType => throw _privateConstructorUsedError;
-  @HiveField(13)
-  List<String> get dishType => throw _privateConstructorUsedError;
-  @HiveField(14)
-  int get id => throw _privateConstructorUsedError;
-  @HiveField(15)
   String get author => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String get id => throw _privateConstructorUsedError;
+  @HiveField(2)
+  List<String> get courses => throw _privateConstructorUsedError;
+  @HiveField(3)
+  List<String>? get cuisines => throw _privateConstructorUsedError;
+  @HiveField(4)
+  String? get cleanName => throw _privateConstructorUsedError;
+  @HiveField(5)
+  String get totalTime => throw _privateConstructorUsedError;
+  @HiveField(6)
+  String get name => throw _privateConstructorUsedError;
+  @HiveField(7)
+  int? get rating => throw _privateConstructorUsedError;
+  @HiveField(8)
+  int? get serving => throw _privateConstructorUsedError;
+  @HiveField(9)
+  NutrientsPerServing get nutrientsPerServing =>
+      throw _privateConstructorUsedError;
+  @HiveField(10)
+  String get recipeType => throw _privateConstructorUsedError;
+  @HiveField(11)
+  List<Ingredient> get ingredients => throw _privateConstructorUsedError;
+  @HiveField(12)
+  List<String> get ingredientLines => throw _privateConstructorUsedError;
+  @HiveField(13)
+  int get ingredientsCount => throw _privateConstructorUsedError;
+  @HiveField(14)
+  List<String> get instructions => throw _privateConstructorUsedError;
+  @HiveField(15)
+  String get mainImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,22 +65,24 @@ abstract class $RecipeCopyWith<$Res> {
       _$RecipeCopyWithImpl<$Res, Recipe>;
   @useResult
   $Res call(
-      {@HiveField(0) String label,
-      @HiveField(1) String image,
-      @HiveField(2) String url,
-      @HiveField(3) List<String> dietLabels,
-      @HiveField(4) List<String> healthLabels,
-      @HiveField(5) List<String> cautions,
-      @HiveField(6) List<String> ingredientLines,
-      @HiveField(7) List<Ingredient> ingredients,
-      @HiveField(8) double calories,
-      @HiveField(9) double totalWeight,
-      @HiveField(10) int totalTime,
-      @HiveField(11) List<String> cuisineType,
-      @HiveField(12) List<String> mealType,
-      @HiveField(13) List<String> dishType,
-      @HiveField(14) int id,
-      @HiveField(15) String author});
+      {@HiveField(0) String author,
+      @HiveField(1) String id,
+      @HiveField(2) List<String> courses,
+      @HiveField(3) List<String>? cuisines,
+      @HiveField(4) String? cleanName,
+      @HiveField(5) String totalTime,
+      @HiveField(6) String name,
+      @HiveField(7) int? rating,
+      @HiveField(8) int? serving,
+      @HiveField(9) NutrientsPerServing nutrientsPerServing,
+      @HiveField(10) String recipeType,
+      @HiveField(11) List<Ingredient> ingredients,
+      @HiveField(12) List<String> ingredientLines,
+      @HiveField(13) int ingredientsCount,
+      @HiveField(14) List<String> instructions,
+      @HiveField(15) String mainImage});
+
+  $NutrientsPerServingCopyWith<$Res> get nutrientsPerServing;
 }
 
 /// @nodoc
@@ -95,89 +98,98 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? label = null,
-    Object? image = null,
-    Object? url = null,
-    Object? dietLabels = null,
-    Object? healthLabels = null,
-    Object? cautions = null,
-    Object? ingredientLines = null,
-    Object? ingredients = null,
-    Object? calories = null,
-    Object? totalWeight = null,
-    Object? totalTime = null,
-    Object? cuisineType = null,
-    Object? mealType = null,
-    Object? dishType = null,
-    Object? id = null,
     Object? author = null,
+    Object? id = null,
+    Object? courses = null,
+    Object? cuisines = freezed,
+    Object? cleanName = freezed,
+    Object? totalTime = null,
+    Object? name = null,
+    Object? rating = freezed,
+    Object? serving = freezed,
+    Object? nutrientsPerServing = null,
+    Object? recipeType = null,
+    Object? ingredients = null,
+    Object? ingredientLines = null,
+    Object? ingredientsCount = null,
+    Object? instructions = null,
+    Object? mainImage = null,
   }) {
     return _then(_value.copyWith(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      dietLabels: null == dietLabels
-          ? _value.dietLabels
-          : dietLabels // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      healthLabels: null == healthLabels
-          ? _value.healthLabels
-          : healthLabels // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      cautions: null == cautions
-          ? _value.cautions
-          : cautions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      ingredientLines: null == ingredientLines
-          ? _value.ingredientLines
-          : ingredientLines // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      ingredients: null == ingredients
-          ? _value.ingredients
-          : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<Ingredient>,
-      calories: null == calories
-          ? _value.calories
-          : calories // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalWeight: null == totalWeight
-          ? _value.totalWeight
-          : totalWeight // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalTime: null == totalTime
-          ? _value.totalTime
-          : totalTime // ignore: cast_nullable_to_non_nullable
-              as int,
-      cuisineType: null == cuisineType
-          ? _value.cuisineType
-          : cuisineType // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      mealType: null == mealType
-          ? _value.mealType
-          : mealType // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      dishType: null == dishType
-          ? _value.dishType
-          : dishType // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       author: null == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
               as String,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      courses: null == courses
+          ? _value.courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      cuisines: freezed == cuisines
+          ? _value.cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      cleanName: freezed == cleanName
+          ? _value.cleanName
+          : cleanName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTime: null == totalTime
+          ? _value.totalTime
+          : totalTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      serving: freezed == serving
+          ? _value.serving
+          : serving // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nutrientsPerServing: null == nutrientsPerServing
+          ? _value.nutrientsPerServing
+          : nutrientsPerServing // ignore: cast_nullable_to_non_nullable
+              as NutrientsPerServing,
+      recipeType: null == recipeType
+          ? _value.recipeType
+          : recipeType // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<Ingredient>,
+      ingredientLines: null == ingredientLines
+          ? _value.ingredientLines
+          : ingredientLines // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      ingredientsCount: null == ingredientsCount
+          ? _value.ingredientsCount
+          : ingredientsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      instructions: null == instructions
+          ? _value.instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      mainImage: null == mainImage
+          ? _value.mainImage
+          : mainImage // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NutrientsPerServingCopyWith<$Res> get nutrientsPerServing {
+    return $NutrientsPerServingCopyWith<$Res>(_value.nutrientsPerServing,
+        (value) {
+      return _then(_value.copyWith(nutrientsPerServing: value) as $Val);
+    });
   }
 }
 
@@ -188,22 +200,25 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String label,
-      @HiveField(1) String image,
-      @HiveField(2) String url,
-      @HiveField(3) List<String> dietLabels,
-      @HiveField(4) List<String> healthLabels,
-      @HiveField(5) List<String> cautions,
-      @HiveField(6) List<String> ingredientLines,
-      @HiveField(7) List<Ingredient> ingredients,
-      @HiveField(8) double calories,
-      @HiveField(9) double totalWeight,
-      @HiveField(10) int totalTime,
-      @HiveField(11) List<String> cuisineType,
-      @HiveField(12) List<String> mealType,
-      @HiveField(13) List<String> dishType,
-      @HiveField(14) int id,
-      @HiveField(15) String author});
+      {@HiveField(0) String author,
+      @HiveField(1) String id,
+      @HiveField(2) List<String> courses,
+      @HiveField(3) List<String>? cuisines,
+      @HiveField(4) String? cleanName,
+      @HiveField(5) String totalTime,
+      @HiveField(6) String name,
+      @HiveField(7) int? rating,
+      @HiveField(8) int? serving,
+      @HiveField(9) NutrientsPerServing nutrientsPerServing,
+      @HiveField(10) String recipeType,
+      @HiveField(11) List<Ingredient> ingredients,
+      @HiveField(12) List<String> ingredientLines,
+      @HiveField(13) int ingredientsCount,
+      @HiveField(14) List<String> instructions,
+      @HiveField(15) String mainImage});
+
+  @override
+  $NutrientsPerServingCopyWith<$Res> get nutrientsPerServing;
 }
 
 /// @nodoc
@@ -216,87 +231,87 @@ class __$$_RecipeCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? label = null,
-    Object? image = null,
-    Object? url = null,
-    Object? dietLabels = null,
-    Object? healthLabels = null,
-    Object? cautions = null,
-    Object? ingredientLines = null,
-    Object? ingredients = null,
-    Object? calories = null,
-    Object? totalWeight = null,
-    Object? totalTime = null,
-    Object? cuisineType = null,
-    Object? mealType = null,
-    Object? dishType = null,
-    Object? id = null,
     Object? author = null,
+    Object? id = null,
+    Object? courses = null,
+    Object? cuisines = freezed,
+    Object? cleanName = freezed,
+    Object? totalTime = null,
+    Object? name = null,
+    Object? rating = freezed,
+    Object? serving = freezed,
+    Object? nutrientsPerServing = null,
+    Object? recipeType = null,
+    Object? ingredients = null,
+    Object? ingredientLines = null,
+    Object? ingredientsCount = null,
+    Object? instructions = null,
+    Object? mainImage = null,
   }) {
     return _then(_$_Recipe(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      courses: null == courses
+          ? _value._courses
+          : courses // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      cuisines: freezed == cuisines
+          ? _value._cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      cleanName: freezed == cleanName
+          ? _value.cleanName
+          : cleanName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      totalTime: null == totalTime
+          ? _value.totalTime
+          : totalTime // ignore: cast_nullable_to_non_nullable
               as String,
-      dietLabels: null == dietLabels
-          ? _value._dietLabels
-          : dietLabels // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      healthLabels: null == healthLabels
-          ? _value._healthLabels
-          : healthLabels // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      cautions: null == cautions
-          ? _value._cautions
-          : cautions // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      ingredientLines: null == ingredientLines
-          ? _value._ingredientLines
-          : ingredientLines // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as int?,
+      serving: freezed == serving
+          ? _value.serving
+          : serving // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nutrientsPerServing: null == nutrientsPerServing
+          ? _value.nutrientsPerServing
+          : nutrientsPerServing // ignore: cast_nullable_to_non_nullable
+              as NutrientsPerServing,
+      recipeType: null == recipeType
+          ? _value.recipeType
+          : recipeType // ignore: cast_nullable_to_non_nullable
+              as String,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<Ingredient>,
-      calories: null == calories
-          ? _value.calories
-          : calories // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalWeight: null == totalWeight
-          ? _value.totalWeight
-          : totalWeight // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalTime: null == totalTime
-          ? _value.totalTime
-          : totalTime // ignore: cast_nullable_to_non_nullable
+      ingredientLines: null == ingredientLines
+          ? _value._ingredientLines
+          : ingredientLines // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      ingredientsCount: null == ingredientsCount
+          ? _value.ingredientsCount
+          : ingredientsCount // ignore: cast_nullable_to_non_nullable
               as int,
-      cuisineType: null == cuisineType
-          ? _value._cuisineType
-          : cuisineType // ignore: cast_nullable_to_non_nullable
+      instructions: null == instructions
+          ? _value._instructions
+          : instructions // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      mealType: null == mealType
-          ? _value._mealType
-          : mealType // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      dishType: null == dishType
-          ? _value._dishType
-          : dishType // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      author: null == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
+      mainImage: null == mainImage
+          ? _value.mainImage
+          : mainImage // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -306,134 +321,115 @@ class __$$_RecipeCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Recipe implements _Recipe {
   _$_Recipe(
-      {@HiveField(0) required this.label,
-      @HiveField(1) required this.image,
-      @HiveField(2) required this.url,
-      @HiveField(3) required final List<String> dietLabels,
-      @HiveField(4) required final List<String> healthLabels,
-      @HiveField(5) required final List<String> cautions,
-      @HiveField(6) required final List<String> ingredientLines,
-      @HiveField(7) required final List<Ingredient> ingredients,
-      @HiveField(8) required this.calories,
-      @HiveField(9) required this.totalWeight,
-      @HiveField(10) required this.totalTime,
-      @HiveField(11) required final List<String> cuisineType,
-      @HiveField(12) required final List<String> mealType,
-      @HiveField(13) required final List<String> dishType,
-      @HiveField(14) required this.id,
-      @HiveField(15) required this.author})
-      : _dietLabels = dietLabels,
-        _healthLabels = healthLabels,
-        _cautions = cautions,
-        _ingredientLines = ingredientLines,
+      {@HiveField(0) required this.author,
+      @HiveField(1) required this.id,
+      @HiveField(2) required final List<String> courses,
+      @HiveField(3) required final List<String>? cuisines,
+      @HiveField(4) required this.cleanName,
+      @HiveField(5) required this.totalTime,
+      @HiveField(6) required this.name,
+      @HiveField(7) required this.rating,
+      @HiveField(8) required this.serving,
+      @HiveField(9) required this.nutrientsPerServing,
+      @HiveField(10) required this.recipeType,
+      @HiveField(11) required final List<Ingredient> ingredients,
+      @HiveField(12) required final List<String> ingredientLines,
+      @HiveField(13) required this.ingredientsCount,
+      @HiveField(14) required final List<String> instructions,
+      @HiveField(15) required this.mainImage})
+      : _courses = courses,
+        _cuisines = cuisines,
         _ingredients = ingredients,
-        _cuisineType = cuisineType,
-        _mealType = mealType,
-        _dishType = dishType;
+        _ingredientLines = ingredientLines,
+        _instructions = instructions;
 
   factory _$_Recipe.fromJson(Map<String, dynamic> json) =>
       _$$_RecipeFromJson(json);
 
   @override
   @HiveField(0)
-  final String label;
+  final String author;
   @override
   @HiveField(1)
-  final String image;
+  final String id;
+  final List<String> _courses;
   @override
   @HiveField(2)
-  final String url;
-  final List<String> _dietLabels;
+  List<String> get courses {
+    if (_courses is EqualUnmodifiableListView) return _courses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_courses);
+  }
+
+  final List<String>? _cuisines;
   @override
   @HiveField(3)
-  List<String> get dietLabels {
-    if (_dietLabels is EqualUnmodifiableListView) return _dietLabels;
+  List<String>? get cuisines {
+    final value = _cuisines;
+    if (value == null) return null;
+    if (_cuisines is EqualUnmodifiableListView) return _cuisines;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dietLabels);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<String> _healthLabels;
   @override
   @HiveField(4)
-  List<String> get healthLabels {
-    if (_healthLabels is EqualUnmodifiableListView) return _healthLabels;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_healthLabels);
-  }
-
-  final List<String> _cautions;
+  final String? cleanName;
   @override
   @HiveField(5)
-  List<String> get cautions {
-    if (_cautions is EqualUnmodifiableListView) return _cautions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cautions);
-  }
-
-  final List<String> _ingredientLines;
+  final String totalTime;
   @override
   @HiveField(6)
-  List<String> get ingredientLines {
-    if (_ingredientLines is EqualUnmodifiableListView) return _ingredientLines;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ingredientLines);
-  }
-
-  final List<Ingredient> _ingredients;
+  final String name;
   @override
   @HiveField(7)
+  final int? rating;
+  @override
+  @HiveField(8)
+  final int? serving;
+  @override
+  @HiveField(9)
+  final NutrientsPerServing nutrientsPerServing;
+  @override
+  @HiveField(10)
+  final String recipeType;
+  final List<Ingredient> _ingredients;
+  @override
+  @HiveField(11)
   List<Ingredient> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
 
-  @override
-  @HiveField(8)
-  final double calories;
-  @override
-  @HiveField(9)
-  final double totalWeight;
-  @override
-  @HiveField(10)
-  final int totalTime;
-  final List<String> _cuisineType;
-  @override
-  @HiveField(11)
-  List<String> get cuisineType {
-    if (_cuisineType is EqualUnmodifiableListView) return _cuisineType;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_cuisineType);
-  }
-
-  final List<String> _mealType;
+  final List<String> _ingredientLines;
   @override
   @HiveField(12)
-  List<String> get mealType {
-    if (_mealType is EqualUnmodifiableListView) return _mealType;
+  List<String> get ingredientLines {
+    if (_ingredientLines is EqualUnmodifiableListView) return _ingredientLines;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_mealType);
+    return EqualUnmodifiableListView(_ingredientLines);
   }
 
-  final List<String> _dishType;
   @override
   @HiveField(13)
-  List<String> get dishType {
-    if (_dishType is EqualUnmodifiableListView) return _dishType;
+  final int ingredientsCount;
+  final List<String> _instructions;
+  @override
+  @HiveField(14)
+  List<String> get instructions {
+    if (_instructions is EqualUnmodifiableListView) return _instructions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dishType);
+    return EqualUnmodifiableListView(_instructions);
   }
 
   @override
-  @HiveField(14)
-  final int id;
-  @override
   @HiveField(15)
-  final String author;
+  final String mainImage;
 
   @override
   String toString() {
-    return 'Recipe(label: $label, image: $image, url: $url, dietLabels: $dietLabels, healthLabels: $healthLabels, cautions: $cautions, ingredientLines: $ingredientLines, ingredients: $ingredients, calories: $calories, totalWeight: $totalWeight, totalTime: $totalTime, cuisineType: $cuisineType, mealType: $mealType, dishType: $dishType, id: $id, author: $author)';
+    return 'Recipe(author: $author, id: $id, courses: $courses, cuisines: $cuisines, cleanName: $cleanName, totalTime: $totalTime, name: $name, rating: $rating, serving: $serving, nutrientsPerServing: $nutrientsPerServing, recipeType: $recipeType, ingredients: $ingredients, ingredientLines: $ingredientLines, ingredientsCount: $ingredientsCount, instructions: $instructions, mainImage: $mainImage)';
   }
 
   @override
@@ -441,52 +437,53 @@ class _$_Recipe implements _Recipe {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Recipe &&
-            (identical(other.label, label) || other.label == label) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.url, url) || other.url == url) &&
-            const DeepCollectionEquality()
-                .equals(other._dietLabels, _dietLabels) &&
-            const DeepCollectionEquality()
-                .equals(other._healthLabels, _healthLabels) &&
-            const DeepCollectionEquality().equals(other._cautions, _cautions) &&
-            const DeepCollectionEquality()
-                .equals(other._ingredientLines, _ingredientLines) &&
-            const DeepCollectionEquality()
-                .equals(other._ingredients, _ingredients) &&
-            (identical(other.calories, calories) ||
-                other.calories == calories) &&
-            (identical(other.totalWeight, totalWeight) ||
-                other.totalWeight == totalWeight) &&
+            (identical(other.author, author) || other.author == author) &&
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other._courses, _courses) &&
+            const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
+            (identical(other.cleanName, cleanName) ||
+                other.cleanName == cleanName) &&
             (identical(other.totalTime, totalTime) ||
                 other.totalTime == totalTime) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.serving, serving) || other.serving == serving) &&
+            (identical(other.nutrientsPerServing, nutrientsPerServing) ||
+                other.nutrientsPerServing == nutrientsPerServing) &&
+            (identical(other.recipeType, recipeType) ||
+                other.recipeType == recipeType) &&
             const DeepCollectionEquality()
-                .equals(other._cuisineType, _cuisineType) &&
-            const DeepCollectionEquality().equals(other._mealType, _mealType) &&
-            const DeepCollectionEquality().equals(other._dishType, _dishType) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.author, author) || other.author == author));
+                .equals(other._ingredients, _ingredients) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredientLines, _ingredientLines) &&
+            (identical(other.ingredientsCount, ingredientsCount) ||
+                other.ingredientsCount == ingredientsCount) &&
+            const DeepCollectionEquality()
+                .equals(other._instructions, _instructions) &&
+            (identical(other.mainImage, mainImage) ||
+                other.mainImage == mainImage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      label,
-      image,
-      url,
-      const DeepCollectionEquality().hash(_dietLabels),
-      const DeepCollectionEquality().hash(_healthLabels),
-      const DeepCollectionEquality().hash(_cautions),
-      const DeepCollectionEquality().hash(_ingredientLines),
-      const DeepCollectionEquality().hash(_ingredients),
-      calories,
-      totalWeight,
-      totalTime,
-      const DeepCollectionEquality().hash(_cuisineType),
-      const DeepCollectionEquality().hash(_mealType),
-      const DeepCollectionEquality().hash(_dishType),
+      author,
       id,
-      author);
+      const DeepCollectionEquality().hash(_courses),
+      const DeepCollectionEquality().hash(_cuisines),
+      cleanName,
+      totalTime,
+      name,
+      rating,
+      serving,
+      nutrientsPerServing,
+      recipeType,
+      const DeepCollectionEquality().hash(_ingredients),
+      const DeepCollectionEquality().hash(_ingredientLines),
+      ingredientsCount,
+      const DeepCollectionEquality().hash(_instructions),
+      mainImage);
 
   @JsonKey(ignore: true)
   @override
@@ -504,73 +501,73 @@ class _$_Recipe implements _Recipe {
 
 abstract class _Recipe implements Recipe {
   factory _Recipe(
-      {@HiveField(0) required final String label,
-      @HiveField(1) required final String image,
-      @HiveField(2) required final String url,
-      @HiveField(3) required final List<String> dietLabels,
-      @HiveField(4) required final List<String> healthLabels,
-      @HiveField(5) required final List<String> cautions,
-      @HiveField(6) required final List<String> ingredientLines,
-      @HiveField(7) required final List<Ingredient> ingredients,
-      @HiveField(8) required final double calories,
-      @HiveField(9) required final double totalWeight,
-      @HiveField(10) required final int totalTime,
-      @HiveField(11) required final List<String> cuisineType,
-      @HiveField(12) required final List<String> mealType,
-      @HiveField(13) required final List<String> dishType,
-      @HiveField(14) required final int id,
-      @HiveField(15) required final String author}) = _$_Recipe;
+      {@HiveField(0) required final String author,
+      @HiveField(1) required final String id,
+      @HiveField(2) required final List<String> courses,
+      @HiveField(3) required final List<String>? cuisines,
+      @HiveField(4) required final String? cleanName,
+      @HiveField(5) required final String totalTime,
+      @HiveField(6) required final String name,
+      @HiveField(7) required final int? rating,
+      @HiveField(8) required final int? serving,
+      @HiveField(9) required final NutrientsPerServing nutrientsPerServing,
+      @HiveField(10) required final String recipeType,
+      @HiveField(11) required final List<Ingredient> ingredients,
+      @HiveField(12) required final List<String> ingredientLines,
+      @HiveField(13) required final int ingredientsCount,
+      @HiveField(14) required final List<String> instructions,
+      @HiveField(15) required final String mainImage}) = _$_Recipe;
 
   factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
 
   @override
   @HiveField(0)
-  String get label;
+  String get author;
   @override
   @HiveField(1)
-  String get image;
+  String get id;
   @override
   @HiveField(2)
-  String get url;
+  List<String> get courses;
   @override
   @HiveField(3)
-  List<String> get dietLabels;
+  List<String>? get cuisines;
   @override
   @HiveField(4)
-  List<String> get healthLabels;
+  String? get cleanName;
   @override
   @HiveField(5)
-  List<String> get cautions;
+  String get totalTime;
   @override
   @HiveField(6)
-  List<String> get ingredientLines;
+  String get name;
   @override
   @HiveField(7)
-  List<Ingredient> get ingredients;
+  int? get rating;
   @override
   @HiveField(8)
-  double get calories;
+  int? get serving;
   @override
   @HiveField(9)
-  double get totalWeight;
+  NutrientsPerServing get nutrientsPerServing;
   @override
   @HiveField(10)
-  int get totalTime;
+  String get recipeType;
   @override
   @HiveField(11)
-  List<String> get cuisineType;
+  List<Ingredient> get ingredients;
   @override
   @HiveField(12)
-  List<String> get mealType;
+  List<String> get ingredientLines;
   @override
   @HiveField(13)
-  List<String> get dishType;
+  int get ingredientsCount;
   @override
   @HiveField(14)
-  int get id;
+  List<String> get instructions;
   @override
   @HiveField(15)
-  String get author;
+  String get mainImage;
   @override
   @JsonKey(ignore: true)
   _$$_RecipeCopyWith<_$_Recipe> get copyWith =>

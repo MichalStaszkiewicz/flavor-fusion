@@ -32,31 +32,6 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
   void loadRecipies() {
     state = SearchScreenState.loading();
 
-    for (int i = 0; i < 15; i++) {
-      Random random = Random();
-      int randomIndex = random.nextInt(temporaryNames.length);
-      _recipies.add(Recipe(
-          ingredients: [],
-          dietLabels: [],
-          dishType: [],
-          cuisineType: [],
-          calories: random.nextInt(800).toDouble(),
-          image:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUI985op9Ux0GurEZLGuHMh9KAjYLZshg7Cw&usqp=CAU',
-          cautions: [],
-          label: temporaryNames[randomIndex],
-          ingredientLines: ['Pasta', 'Cheese'],
-          mealType: [],
-          healthLabels: [],
-          totalWeight: random.nextInt(5).toDouble(),
-          totalTime: random.nextInt(90),
-          url: '',
-          author: '',
-          id: 7));
-      _recipies[i] =
-          _recipies[i].copyWith(dishType: [temporaryDishesTypes[randomIndex]]);
-    }
-
     state = SearchScreenState.ready(List.from(_recipies));
   }
 
@@ -68,7 +43,7 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
         List<Recipe> filteredRecipies = [];
 
         for (Recipe recipe in tempRecipies) {
-          if (recipe.label.toLowerCase().contains(text.toLowerCase())) {
+          if (recipe.name.toLowerCase().contains(text.toLowerCase())) {
             filteredRecipies.add(recipe);
           }
         }
@@ -85,7 +60,7 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
   void apply(List<String> filters, SortBy sortBy) {
     if (state is SearchScreenReady) {
       List<Recipe> filteredRecipies = [];
-
+/*
       for (Recipe recipe in _recipies) {
         for (int i = 0; i < recipe.dishType.length; i++) {}
 
@@ -100,14 +75,16 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
         if (recipeIsValid) {
           filteredRecipies.add(recipe);
         }
-      }
+      }*/
       final List<Recipe> tempRecipies = List.from(filteredRecipies);
       if (sortBy == SortBy.alphabetical) {
-        tempRecipies.sort(((a, b) => a.label.compareTo(b.label)));
+        tempRecipies.sort(((a, b) => a.name.compareTo(b.name)));
       } else if (sortBy == SortBy.caloriesAsc) {
-        tempRecipies.sort(((a, b) => a.calories.compareTo(b.calories)));
+        tempRecipies.sort(((a, b) => a.nutrientsPerServing.calories
+            .compareTo(b.nutrientsPerServing.calories)));
       } else if (sortBy == SortBy.caloriesDesc) {
-        tempRecipies.sort(((a, b) => b.calories.compareTo(a.calories)));
+        tempRecipies.sort(((a, b) => b.nutrientsPerServing.calories
+            .compareTo(a.nutrientsPerServing.calories)));
       } else if (sortBy == SortBy.time) {
         tempRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
       }

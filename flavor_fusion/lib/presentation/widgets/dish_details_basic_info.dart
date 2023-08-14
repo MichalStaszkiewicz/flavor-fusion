@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import '../../utility/service_locator.dart';
 
 class DishDetailsBasicInfo extends StatelessWidget {
-  DishDetailsBasicInfo({super.key, required this.icon, required this.label});
-  IconData icon;
+  DishDetailsBasicInfo(
+      {super.key, required this.imagePath, required this.label});
+  String imagePath;
   String label;
 
   @override
@@ -13,10 +14,7 @@ class DishDetailsBasicInfo extends StatelessWidget {
     return Container(
       child: Row(
         children: [
-          Icon(
-            icon,
-            color: locator<Global>().greyText,
-          ),
+          Image(height: 20, width: 20, image: AssetImage('assets/$imagePath')),
           const SizedBox(
             width: 5,
           ),

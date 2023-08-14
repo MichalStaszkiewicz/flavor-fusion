@@ -21,21 +21,7 @@ Ingredient _$IngredientFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Ingredient {
   @HiveField(0)
-  String get text => throw _privateConstructorUsedError;
-  @HiveField(1)
-  int get quantity => throw _privateConstructorUsedError;
-  @HiveField(2)
-  String get measure => throw _privateConstructorUsedError;
-  @HiveField(3)
-  String get food => throw _privateConstructorUsedError;
-  @HiveField(4)
-  double get weight => throw _privateConstructorUsedError;
-  @HiveField(5)
-  String get foodCategory => throw _privateConstructorUsedError;
-  @HiveField(6)
-  String get foodId => throw _privateConstructorUsedError;
-  @HiveField(7)
-  String get image => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,15 +35,7 @@ abstract class $IngredientCopyWith<$Res> {
           Ingredient value, $Res Function(Ingredient) then) =
       _$IngredientCopyWithImpl<$Res, Ingredient>;
   @useResult
-  $Res call(
-      {@HiveField(0) String text,
-      @HiveField(1) int quantity,
-      @HiveField(2) String measure,
-      @HiveField(3) String food,
-      @HiveField(4) double weight,
-      @HiveField(5) String foodCategory,
-      @HiveField(6) String foodId,
-      @HiveField(7) String image});
+  $Res call({@HiveField(0) String name});
 }
 
 /// @nodoc
@@ -73,47 +51,12 @@ class _$IngredientCopyWithImpl<$Res, $Val extends Ingredient>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
-    Object? quantity = null,
-    Object? measure = null,
-    Object? food = null,
-    Object? weight = null,
-    Object? foodCategory = null,
-    Object? foodId = null,
-    Object? image = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int,
-      measure: null == measure
-          ? _value.measure
-          : measure // ignore: cast_nullable_to_non_nullable
-              as String,
-      food: null == food
-          ? _value.food
-          : food // ignore: cast_nullable_to_non_nullable
-              as String,
-      weight: null == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as double,
-      foodCategory: null == foodCategory
-          ? _value.foodCategory
-          : foodCategory // ignore: cast_nullable_to_non_nullable
-              as String,
-      foodId: null == foodId
-          ? _value.foodId
-          : foodId // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -127,15 +70,7 @@ abstract class _$$_IngredientCopyWith<$Res>
       __$$_IngredientCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@HiveField(0) String text,
-      @HiveField(1) int quantity,
-      @HiveField(2) String measure,
-      @HiveField(3) String food,
-      @HiveField(4) double weight,
-      @HiveField(5) String foodCategory,
-      @HiveField(6) String foodId,
-      @HiveField(7) String image});
+  $Res call({@HiveField(0) String name});
 }
 
 /// @nodoc
@@ -149,47 +84,12 @@ class __$$_IngredientCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? text = null,
-    Object? quantity = null,
-    Object? measure = null,
-    Object? food = null,
-    Object? weight = null,
-    Object? foodCategory = null,
-    Object? foodId = null,
-    Object? image = null,
+    Object? name = null,
   }) {
     return _then(_$_Ingredient(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int,
-      measure: null == measure
-          ? _value.measure
-          : measure // ignore: cast_nullable_to_non_nullable
-              as String,
-      food: null == food
-          ? _value.food
-          : food // ignore: cast_nullable_to_non_nullable
-              as String,
-      weight: null == weight
-          ? _value.weight
-          : weight // ignore: cast_nullable_to_non_nullable
-              as double,
-      foodCategory: null == foodCategory
-          ? _value.foodCategory
-          : foodCategory // ignore: cast_nullable_to_non_nullable
-              as String,
-      foodId: null == foodId
-          ? _value.foodId
-          : foodId // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -198,47 +98,18 @@ class __$$_IngredientCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Ingredient implements _Ingredient {
-  _$_Ingredient(
-      {@HiveField(0) required this.text,
-      @HiveField(1) required this.quantity,
-      @HiveField(2) required this.measure,
-      @HiveField(3) required this.food,
-      @HiveField(4) required this.weight,
-      @HiveField(5) required this.foodCategory,
-      @HiveField(6) required this.foodId,
-      @HiveField(7) required this.image});
+  _$_Ingredient({@HiveField(0) required this.name});
 
   factory _$_Ingredient.fromJson(Map<String, dynamic> json) =>
       _$$_IngredientFromJson(json);
 
   @override
   @HiveField(0)
-  final String text;
-  @override
-  @HiveField(1)
-  final int quantity;
-  @override
-  @HiveField(2)
-  final String measure;
-  @override
-  @HiveField(3)
-  final String food;
-  @override
-  @HiveField(4)
-  final double weight;
-  @override
-  @HiveField(5)
-  final String foodCategory;
-  @override
-  @HiveField(6)
-  final String foodId;
-  @override
-  @HiveField(7)
-  final String image;
+  final String name;
 
   @override
   String toString() {
-    return 'Ingredient(text: $text, quantity: $quantity, measure: $measure, food: $food, weight: $weight, foodCategory: $foodCategory, foodId: $foodId, image: $image)';
+    return 'Ingredient(name: $name)';
   }
 
   @override
@@ -246,22 +117,12 @@ class _$_Ingredient implements _Ingredient {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Ingredient &&
-            (identical(other.text, text) || other.text == text) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.measure, measure) || other.measure == measure) &&
-            (identical(other.food, food) || other.food == food) &&
-            (identical(other.weight, weight) || other.weight == weight) &&
-            (identical(other.foodCategory, foodCategory) ||
-                other.foodCategory == foodCategory) &&
-            (identical(other.foodId, foodId) || other.foodId == foodId) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, text, quantity, measure, food,
-      weight, foodCategory, foodId, image);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -278,43 +139,15 @@ class _$_Ingredient implements _Ingredient {
 }
 
 abstract class _Ingredient implements Ingredient {
-  factory _Ingredient(
-      {@HiveField(0) required final String text,
-      @HiveField(1) required final int quantity,
-      @HiveField(2) required final String measure,
-      @HiveField(3) required final String food,
-      @HiveField(4) required final double weight,
-      @HiveField(5) required final String foodCategory,
-      @HiveField(6) required final String foodId,
-      @HiveField(7) required final String image}) = _$_Ingredient;
+  factory _Ingredient({@HiveField(0) required final String name}) =
+      _$_Ingredient;
 
   factory _Ingredient.fromJson(Map<String, dynamic> json) =
       _$_Ingredient.fromJson;
 
   @override
   @HiveField(0)
-  String get text;
-  @override
-  @HiveField(1)
-  int get quantity;
-  @override
-  @HiveField(2)
-  String get measure;
-  @override
-  @HiveField(3)
-  String get food;
-  @override
-  @HiveField(4)
-  double get weight;
-  @override
-  @HiveField(5)
-  String get foodCategory;
-  @override
-  @HiveField(6)
-  String get foodId;
-  @override
-  @HiveField(7)
-  String get image;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_IngredientCopyWith<_$_Ingredient> get copyWith =>

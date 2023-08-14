@@ -14,7 +14,7 @@ class SourceRepository {
     return await _localSource.getFavoriteRecipes();
   }
 
-  void removeFavoriteRecipe(int recipeId) {
+  void removeFavoriteRecipe(String recipeId) {
     _localSource.removeFavoriteRecipe(recipeId);
   }
 
@@ -22,11 +22,11 @@ class SourceRepository {
     _localSource.saveFavoriteRecipe(recipe);
   }
 
-  bool isFavorite(int id) {
+  bool isFavorite(String id) {
     return _localSource.isFavorite(id);
   }
 
-  void removeGrocery(int id) {
+  void removeGrocery(String id) {
     return _localSource.removeGrocery(id);
   }
 
@@ -46,7 +46,7 @@ class SourceRepository {
         return recipes;
       },
       (error) {
-        print("Wystąpił błąd: $error");
+        print("Error occured: $error");
         return [];
       },
     );

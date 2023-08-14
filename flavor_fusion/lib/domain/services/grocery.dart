@@ -14,7 +14,7 @@ class SavedGroceryService implements ISavedGrocery {
   }
 
   @override
-  void removeGrocery(int id) {
+  void removeGrocery(String id) {
     _sourceRepository.removeGrocery(id);
   }
 

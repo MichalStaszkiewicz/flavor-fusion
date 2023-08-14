@@ -15,7 +15,7 @@ class RecipeGroup extends StatelessWidget {
           Container(
             height: 20,
             width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: 25),
+            margin: const EdgeInsets.symmetric(horizontal: 25),
             child: Text(
                 textAlign: TextAlign.left,
                 label,

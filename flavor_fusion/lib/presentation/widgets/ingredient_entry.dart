@@ -91,7 +91,7 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                   child: CustomPaint(
                     painter: AnimatedTextDecoration(
                         progress: _animationController.value,
-                        text: widget.ingredient.description.food,
+                        text: widget.ingredient.description.name,
                         style: Theme.of(context).textTheme.labelLarge!,
                         lineThrough: widget.ingredient.owned),
                     child: Container(
@@ -122,7 +122,7 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                   child: Container(
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        widget.ingredient.description.food,
+                        widget.ingredient.description.name,
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                             color: widget.ingredient.owned
                                 ? Colors.grey
@@ -134,8 +134,8 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                       alignment: Alignment.centerLeft,
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        widget.ingredient.description.quantity.toString() +
-                            widget.ingredient.description.measure,
+                        widget.ingredient.description.name.toString() +
+                            widget.ingredient.description.name,
                         style: Theme.of(context)
                             .textTheme
                             .labelLarge!

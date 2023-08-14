@@ -13,7 +13,7 @@ class FavoriteRecipeService implements IFavoriteRecipeService {
   }
 
   @override
-  void removeFavoriteRecipe(int recipeId) {
+  void removeFavoriteRecipe(String recipeId) {
     _sourceRepository.removeFavoriteRecipe(recipeId);
   }
 
@@ -23,7 +23,7 @@ class FavoriteRecipeService implements IFavoriteRecipeService {
   }
 
   @override
-  bool isFavorite(int id) {
+  bool isFavorite(String id) {
     return _sourceRepository.isFavorite(id);
   }
 }

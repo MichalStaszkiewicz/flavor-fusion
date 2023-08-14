@@ -57,7 +57,7 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
         List<Recipe> filteredRecipies = [];
 
         for (Recipe recipe in tempRecipies) {
-          if (recipe.label.toLowerCase().contains(text.toLowerCase())) {
+          if (recipe.name.toLowerCase().contains(text.toLowerCase())) {
             filteredRecipies.add(recipe);
           }
         }
@@ -75,28 +75,14 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
     if (state is FavoriteReady) {
       List<Recipe> filteredRecipies = [];
 
-      for (Recipe recipe in _recipies) {
-        for (int i = 0; i < recipe.dishType.length; i++) {}
-
-        bool recipeIsValid = true;
-        for (String filter in filters) {
-          if (!recipe.dishType.contains(filter) &&
-              !recipe.dietLabels.contains(filter) &&
-              !recipe.mealType.contains(filter)) {
-            recipeIsValid = false;
-          }
-        }
-        if (recipeIsValid) {
-          filteredRecipies.add(recipe);
-        }
-      }
-
       if (sortBy == SortBy.alphabetical) {
-        filteredRecipies.sort(((a, b) => a.label.compareTo(b.label)));
+        filteredRecipies.sort(((a, b) => a.name.compareTo(b.name)));
       } else if (sortBy == SortBy.caloriesAsc) {
-        filteredRecipies.sort(((a, b) => a.calories.compareTo(b.calories)));
+        filteredRecipies.sort(((a, b) => a.nutrientsPerServing.calories
+            .compareTo(b.nutrientsPerServing.calories)));
       } else if (sortBy == SortBy.caloriesDesc) {
-        filteredRecipies.sort(((a, b) => b.calories.compareTo(a.calories)));
+        filteredRecipies.sort(((a, b) => b.nutrientsPerServing.calories
+            .compareTo(a.nutrientsPerServing.calories)));
       } else if (sortBy == SortBy.time) {
         filteredRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
       }

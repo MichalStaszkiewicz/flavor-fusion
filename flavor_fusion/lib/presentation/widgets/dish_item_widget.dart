@@ -14,7 +14,7 @@ class DishItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         locator<AppRouter>()
-            .push(DishDetailsRoute(name: recipe.label, recipe: recipe));
+            .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
       },
       child: Card(
         margin: EdgeInsets.all(10),
@@ -56,15 +56,17 @@ class DishItemWidget extends StatelessWidget {
                     Expanded(
                       child: Container(
                         child: Text(
-                          recipe.label,
+                          recipe.name,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                     ),
-                    _buildRecipeBasicInformations(context,
-                        "${recipe.totalTime.round()} minutes", Icons.timer),
-                    _buildRecipeBasicInformations(context,
-                        "${recipe.calories.round()} kcal", Icons.fire_hydrant),
+                    _buildRecipeBasicInformations(
+                        context, "$recipe.totalTime", Icons.timer),
+                    _buildRecipeBasicInformations(
+                        context,
+                        "${recipe.nutrientsPerServing.calories.round()} kcal",
+                        Icons.fire_hydrant),
                   ],
                 ),
               ))
