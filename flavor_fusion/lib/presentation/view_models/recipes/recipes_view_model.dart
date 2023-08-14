@@ -20,38 +20,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
   List<String> get selectedIngredients => _ingredientsCashed;
 
-  final List<String> _ingredientsList = [
-    'Onion',
-    'Garlic',
-    'Tomatoes',
-    'Carrots',
-    'Potatoes',
-    'Bell Pepper',
-    'Olive Oil',
-    'Salt',
-    'Pepper',
-    'Oregano',
-    'Basil',
-    'Cilantro',
-    'Ginger',
-    'Parsley',
-    'Spinach',
-    'Sugar',
-    'Flour',
-    'Eggs',
-    'Butter',
-    'Vegetable Oil',
-    'Radish',
-    'Lettuce',
-    'Soy Sauce',
-    'Milk',
-    'Cheese',
-    'Pasta',
-    'Rice',
-    'Celery',
-    'Sprouts',
-    'Lemon',
-  ];
+  final List<String> _ingredientsList = [];
   List<Recipe> _recipes = [];
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
@@ -94,7 +63,6 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         await locator<SourceRepository>().getRecommendedRecipes().then((value) {
       state = RecipesState.recipesRecommendation(value);
       return value;
-      ;
     });
   }
 
@@ -108,44 +76,49 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     state = RecipesState.searchDone(recipes);
   }
 
-  void seachRecipes(String search) {
+  void seachRecipes(String search) async {
     List<String> currentSuggestions = [];
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
+
       if (search == '') {
         this.state = RecipesState.search([], _ingredientsCashed, '');
         return;
       }
-      currentSuggestions.addAll(state.suggestions);
-      for (int i = 0; i < _ingredientsList.length; i++) {
-        if (_ingredientsList[i].toLowerCase().contains(search.toLowerCase()) &&
-            !currentSuggestions.contains(_ingredientsList[i].toLowerCase()) &&
-            !_ingredientsCashed.contains(_ingredientsList[i])) {
-          suggestionListKey.currentState?.insertItem(currentSuggestions.length,
-              duration: const Duration(milliseconds: 300));
-          currentSuggestions.add(_ingredientsList[i].toLowerCase());
-        }
-      }
-      for (int i = 0; i < currentSuggestions.length; i++) {
-        if (!currentSuggestions[i]
-            .toLowerCase()
-            .contains(search.toLowerCase())) {
-          String suggestion = currentSuggestions[i];
-          suggestionListKey.currentState?.removeItem(
-              i,
-              (context, animation) => SuggestionItem(
-                    suggestion: suggestion,
-                    animation: animation,
-                    search: search,
-                  ),
-              duration: const Duration(milliseconds: 300));
-          currentSuggestions.removeAt(i);
-          i--;
-        }
-      }
 
-      this.state =
-          RecipesState.search(currentSuggestions, _ingredientsCashed, search);
+      await locator<SourceRepository>().searchIngredients(search).then((value) {
+        currentSuggestions.addAll(state.suggestions);
+        for (int i = 0; i < value.length; i++) {
+          if (value[i].name.toLowerCase().contains(search.toLowerCase()) &&
+              !currentSuggestions.contains(value[i].name.toLowerCase()) &&
+              !_ingredientsCashed.contains(value[i].name)) {
+            suggestionListKey.currentState?.insertItem(
+                currentSuggestions.length,
+                duration: const Duration(milliseconds: 300));
+            currentSuggestions.add(value[i].name.toLowerCase());
+          }
+        }
+        for (int i = 0; i < currentSuggestions.length; i++) {
+          if (!currentSuggestions[i]
+              .toLowerCase()
+              .contains(search.toLowerCase())) {
+            String suggestion = currentSuggestions[i];
+            suggestionListKey.currentState?.removeItem(
+                i,
+                (context, animation) => SuggestionItem(
+                      suggestion: suggestion,
+                      animation: animation,
+                      search: search,
+                    ),
+                duration: const Duration(milliseconds: 300));
+            currentSuggestions.removeAt(i);
+            i--;
+          }
+        }
+
+        this.state =
+            RecipesState.search(currentSuggestions, _ingredientsCashed, search);
+      });
     } else {
       state = RecipesState.search([], _ingredientsCashed, '');
     }

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flavor_fusion/data/models/grocery.dart';
+import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 
 import 'package:flavor_fusion/data/source/local/local_source.dart';
@@ -41,6 +42,37 @@ class SourceRepository {
   Future<List<Recipe>> getRecommendedRecipes() async {
     Either<List<Recipe>, Exception> result =
         await _remoteSource.getRecommendedRecipes();
+    return result.fold(
+      (recipes) {
+        return recipes;
+      },
+      (error) {
+        print("Error occured: $error");
+        return [];
+      },
+    );
+  }
+
+  Future<List<Ingredient>> searchIngredients(String search) async {
+    Either<List<Ingredient>, Exception> result =
+        await _remoteSource.searchIngredients(search);
+    return result.fold(
+      (ingredients) {
+        return ingredients;
+      },
+      (error) {
+        print("Error occured: $error");
+        return [];
+      },
+    );
+  }
+
+  Future<List<Recipe>> searchRecipes(
+      String search, List<Ingredient> ingredients) async {
+    List<String> ingredientNames =
+        List.from(ingredients.map((e) => e.name)).toList() as List<String>;
+    Either<List<Recipe>, Exception> result =
+        await _remoteSource.searchRecipes(search, ingredientNames);
     return result.fold(
       (recipes) {
         return recipes;
