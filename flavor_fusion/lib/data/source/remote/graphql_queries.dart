@@ -12,6 +12,15 @@ class RecipeQueries {
         cleanName
         rating
         serving
+          nutritionalInfo{
+          protein,
+          carbs,
+          fiber,
+          fat
+          carbs
+          calcium
+          sugar
+        }
         nutrientsPerServing {
           calories
         }
@@ -49,6 +58,15 @@ class RecipeQueries {
         name
         rating
         serving
+          nutritionalInfo{
+          protein,
+          carbs,
+          fiber,
+          fat
+          carbs
+          calcium
+          sugar
+        }
         nutrientsPerServing {
           calories
         }
@@ -84,6 +102,15 @@ class RecipeQueries {
         cleanName
         rating
         serving
+          nutritionalInfo{
+          protein,
+          carbs,
+          fiber,
+          fat
+          carbs
+          calcium
+          sugar
+        }
         nutrientsPerServing {
           calories
         }
@@ -118,6 +145,15 @@ class RecipeQueries {
         cleanName
         rating
         serving
+          nutritionalInfo{
+          protein,
+          carbs,
+          fiber,
+          fat
+          carbs
+          calcium
+          sugar
+        }
         nutrientsPerServing {
           calories
         }

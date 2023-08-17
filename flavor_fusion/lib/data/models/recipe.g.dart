@@ -32,14 +32,15 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       ingredientLines: (fields[12] as List).cast<String>(),
       ingredientsCount: fields[13] as int,
       instructions: (fields[14] as List).cast<String>(),
-      mainImage: fields[15] as String,
+      nutritionalInfo: fields[15] as NutrionalInfo,
+      mainImage: fields[16] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Recipe obj) {
     writer
-      ..writeByte(16)
+      ..writeByte(17)
       ..writeByte(0)
       ..write(obj.author)
       ..writeByte(1)
@@ -71,6 +72,8 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       ..writeByte(14)
       ..write(obj.instructions)
       ..writeByte(15)
+      ..write(obj.nutritionalInfo)
+      ..writeByte(16)
       ..write(obj.mainImage);
   }
 
@@ -115,6 +118,8 @@ _$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
       instructions: (json['instructions'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      nutritionalInfo: NutrionalInfo.fromJson(
+          json['nutritionalInfo'] as Map<String, dynamic>),
       mainImage: json['mainImage'] as String,
     );
 
@@ -134,5 +139,6 @@ Map<String, dynamic> _$$_RecipeToJson(_$_Recipe instance) => <String, dynamic>{
       'ingredientLines': instance.ingredientLines,
       'ingredientsCount': instance.ingredientsCount,
       'instructions': instance.instructions,
+      'nutritionalInfo': instance.nutritionalInfo,
       'mainImage': instance.mainImage,
     };

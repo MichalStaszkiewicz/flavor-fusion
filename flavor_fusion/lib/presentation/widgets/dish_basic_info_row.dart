@@ -18,10 +18,6 @@ class DishBasicInfoRow extends StatelessWidget {
           DishDetailsBasicInfo(
               label: recipe.totalTime.toString(), imagePath: 'stopwatch.png'),
           DishDetailsBasicInfo(
-            label: '${recipe.nutrientsPerServing.calories.round()} cal',
-            imagePath: 'fire-flame-curved.png',
-          ),
-          DishDetailsBasicInfo(
             label: '${recipe.serving} servings',
             imagePath: 'restaurant.png',
           ),

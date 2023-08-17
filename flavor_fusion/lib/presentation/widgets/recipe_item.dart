@@ -99,7 +99,7 @@ class _RecipeItemState extends State<RecipeItem> {
                       height: 25,
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        '9,652',
+                        widget.recipe.rating.toString(),
                         style: Theme.of(context).textTheme.labelLarge,
                       )),
                 ],

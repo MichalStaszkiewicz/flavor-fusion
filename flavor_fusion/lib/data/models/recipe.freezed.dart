@@ -52,6 +52,8 @@ mixin _$Recipe {
   @HiveField(14)
   List<String> get instructions => throw _privateConstructorUsedError;
   @HiveField(15)
+  NutrionalInfo get nutritionalInfo => throw _privateConstructorUsedError;
+  @HiveField(16)
   String get mainImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -80,9 +82,11 @@ abstract class $RecipeCopyWith<$Res> {
       @HiveField(12) List<String> ingredientLines,
       @HiveField(13) int ingredientsCount,
       @HiveField(14) List<String> instructions,
-      @HiveField(15) String mainImage});
+      @HiveField(15) NutrionalInfo nutritionalInfo,
+      @HiveField(16) String mainImage});
 
   $NutrientsPerServingCopyWith<$Res> get nutrientsPerServing;
+  $NutrionalInfoCopyWith<$Res> get nutritionalInfo;
 }
 
 /// @nodoc
@@ -113,6 +117,7 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
     Object? ingredientLines = null,
     Object? ingredientsCount = null,
     Object? instructions = null,
+    Object? nutritionalInfo = null,
     Object? mainImage = null,
   }) {
     return _then(_value.copyWith(
@@ -176,6 +181,10 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
           ? _value.instructions
           : instructions // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      nutritionalInfo: null == nutritionalInfo
+          ? _value.nutritionalInfo
+          : nutritionalInfo // ignore: cast_nullable_to_non_nullable
+              as NutrionalInfo,
       mainImage: null == mainImage
           ? _value.mainImage
           : mainImage // ignore: cast_nullable_to_non_nullable
@@ -189,6 +198,14 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
     return $NutrientsPerServingCopyWith<$Res>(_value.nutrientsPerServing,
         (value) {
       return _then(_value.copyWith(nutrientsPerServing: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $NutrionalInfoCopyWith<$Res> get nutritionalInfo {
+    return $NutrionalInfoCopyWith<$Res>(_value.nutritionalInfo, (value) {
+      return _then(_value.copyWith(nutritionalInfo: value) as $Val);
     });
   }
 }
@@ -215,10 +232,13 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
       @HiveField(12) List<String> ingredientLines,
       @HiveField(13) int ingredientsCount,
       @HiveField(14) List<String> instructions,
-      @HiveField(15) String mainImage});
+      @HiveField(15) NutrionalInfo nutritionalInfo,
+      @HiveField(16) String mainImage});
 
   @override
   $NutrientsPerServingCopyWith<$Res> get nutrientsPerServing;
+  @override
+  $NutrionalInfoCopyWith<$Res> get nutritionalInfo;
 }
 
 /// @nodoc
@@ -246,6 +266,7 @@ class __$$_RecipeCopyWithImpl<$Res>
     Object? ingredientLines = null,
     Object? ingredientsCount = null,
     Object? instructions = null,
+    Object? nutritionalInfo = null,
     Object? mainImage = null,
   }) {
     return _then(_$_Recipe(
@@ -309,6 +330,10 @@ class __$$_RecipeCopyWithImpl<$Res>
           ? _value._instructions
           : instructions // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      nutritionalInfo: null == nutritionalInfo
+          ? _value.nutritionalInfo
+          : nutritionalInfo // ignore: cast_nullable_to_non_nullable
+              as NutrionalInfo,
       mainImage: null == mainImage
           ? _value.mainImage
           : mainImage // ignore: cast_nullable_to_non_nullable
@@ -336,7 +361,8 @@ class _$_Recipe implements _Recipe {
       @HiveField(12) required final List<String> ingredientLines,
       @HiveField(13) required this.ingredientsCount,
       @HiveField(14) required final List<String> instructions,
-      @HiveField(15) required this.mainImage})
+      @HiveField(15) required this.nutritionalInfo,
+      @HiveField(16) required this.mainImage})
       : _courses = courses,
         _cuisines = cuisines,
         _ingredients = ingredients,
@@ -427,11 +453,14 @@ class _$_Recipe implements _Recipe {
 
   @override
   @HiveField(15)
+  final NutrionalInfo nutritionalInfo;
+  @override
+  @HiveField(16)
   final String mainImage;
 
   @override
   String toString() {
-    return 'Recipe(author: $author, id: $id, courses: $courses, cuisines: $cuisines, cleanName: $cleanName, totalTime: $totalTime, name: $name, rating: $rating, serving: $serving, nutrientsPerServing: $nutrientsPerServing, recipeType: $recipeType, ingredients: $ingredients, ingredientLines: $ingredientLines, ingredientsCount: $ingredientsCount, instructions: $instructions, mainImage: $mainImage)';
+    return 'Recipe(author: $author, id: $id, courses: $courses, cuisines: $cuisines, cleanName: $cleanName, totalTime: $totalTime, name: $name, rating: $rating, serving: $serving, nutrientsPerServing: $nutrientsPerServing, recipeType: $recipeType, ingredients: $ingredients, ingredientLines: $ingredientLines, ingredientsCount: $ingredientsCount, instructions: $instructions, nutritionalInfo: $nutritionalInfo, mainImage: $mainImage)';
   }
 
   @override
@@ -462,6 +491,8 @@ class _$_Recipe implements _Recipe {
                 other.ingredientsCount == ingredientsCount) &&
             const DeepCollectionEquality()
                 .equals(other._instructions, _instructions) &&
+            (identical(other.nutritionalInfo, nutritionalInfo) ||
+                other.nutritionalInfo == nutritionalInfo) &&
             (identical(other.mainImage, mainImage) ||
                 other.mainImage == mainImage));
   }
@@ -485,6 +516,7 @@ class _$_Recipe implements _Recipe {
       const DeepCollectionEquality().hash(_ingredientLines),
       ingredientsCount,
       const DeepCollectionEquality().hash(_instructions),
+      nutritionalInfo,
       mainImage);
 
   @JsonKey(ignore: true)
@@ -518,7 +550,8 @@ abstract class _Recipe implements Recipe {
       @HiveField(12) required final List<String> ingredientLines,
       @HiveField(13) required final int ingredientsCount,
       @HiveField(14) required final List<String> instructions,
-      @HiveField(15) required final String mainImage}) = _$_Recipe;
+      @HiveField(15) required final NutrionalInfo nutritionalInfo,
+      @HiveField(16) required final String mainImage}) = _$_Recipe;
 
   factory _Recipe.fromJson(Map<String, dynamic> json) = _$_Recipe.fromJson;
 
@@ -569,6 +602,9 @@ abstract class _Recipe implements Recipe {
   List<String> get instructions;
   @override
   @HiveField(15)
+  NutrionalInfo get nutritionalInfo;
+  @override
+  @HiveField(16)
   String get mainImage;
   @override
   @JsonKey(ignore: true)

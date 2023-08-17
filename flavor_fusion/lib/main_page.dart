@@ -17,6 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
+import 'data/models/nutrional_info.dart';
+
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
   const MainPage();
@@ -80,6 +82,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     Hive.registerAdapter(RecipeAdapter());
     Hive.registerAdapter(IngredientAdapter());
     Hive.registerAdapter(NutrientsPerServingAdapter());
+    Hive.registerAdapter(NutrionalInfoAdapter());
 
     locator<HiveDataProvider<Recipe>>().initHive();
 

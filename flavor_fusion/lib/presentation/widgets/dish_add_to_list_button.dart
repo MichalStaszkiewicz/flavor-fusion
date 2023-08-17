@@ -22,50 +22,40 @@ class DishTitleAndSaveButtonState extends ConsumerState<DishAddToListButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 110,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () {
-              ref
-                  .read(recipeDetailsViewModel.notifier)
-                  .saveRecipeIngredients(widget.recipe);
-              NotificationManager.success(
-                'Added ${widget.recipe.name} ingredients to your shopping cart!',
-                'New Recipe!',
-                context,
-              );
-            },
+      width: locator<Global>().deviceDimenstions.width,
+      child: GestureDetector(
+        onTap: () {
+          ref
+              .read(recipeDetailsViewModel.notifier)
+              .saveRecipeIngredients(widget.recipe);
+          NotificationManager.success(
+            'Added ${widget.recipe.name} ingredients to your shopping cart!',
+            'New Recipe!',
+            context,
+          );
+        },
+        child: Center(
+          child: Container(
+            alignment: Alignment.center,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(50),
+            ),
             child: Container(
-              width: 110,
+              padding: EdgeInsets.only(top: 5),
               height: 30,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [],
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                      size: 18, Icons.shopping_cart, color: Colors.white),
-                  Container(
-                    padding: EdgeInsets.only(top: 7),
-                    height: 30,
-                    child: Text(
-                      'Add to list',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium!
-                          .copyWith(color: Colors.white),
-                    ),
-                  ),
-                ],
+              child: Text(
+                'Add To Shopping List',
+                style: Theme.of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(color: Colors.black),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
