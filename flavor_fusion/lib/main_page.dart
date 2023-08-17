@@ -65,7 +65,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         _recipesSearchController.text.isNotEmpty) {
       ref
           .read(recipesViewModel.notifier)
-          .seachRecipes(_recipesSearchController.text);
+          .searchRecipes(_recipesSearchController.text);
       _focused = true;
     } else if (!_focusNode.hasFocus && _focused) {
       _focused = false;
@@ -258,7 +258,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           });
         },
         onChanged: (text) {
-          ref.read(recipesViewModel.notifier).seachRecipes(text);
+          ref.read(recipesViewModel.notifier).searchRecipes(text);
         },
         onTapOutside: (ptr) {},
         controller: _recipesSearchController,
@@ -309,7 +309,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                         _opacityController.forward().then((value) {
                           ref
                               .read(recipesViewModel.notifier)
-                              .seachRecipes(_recipesSearchController.text);
+                              .searchRecipes(_recipesSearchController.text);
                           _recipesSearchFocused = !_recipesSearchFocused;
                           _opacityController.reverse();
                         });

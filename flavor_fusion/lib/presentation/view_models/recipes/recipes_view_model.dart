@@ -76,51 +76,60 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     state = RecipesState.searchDone(recipes);
   }
 
-  void seachRecipes(String search) async {
-    List<String> currentSuggestions = [];
-    if (state is RecipesSearch) {
-      final state = this.state as RecipesSearch;
-
-      if (search == '') {
-        this.state = RecipesState.search([], _ingredientsCashed, '');
-        return;
+  void searchRecipes(String search) async {
+    if (search.isEmpty) {
+      print('search is empty ' + search.length.toString());
+      this.state = RecipesState.search([], _ingredientsCashed, '');
+      return;
+    }
+    if (this.state is RecipeSearchingSuggestions) {
+      return;
+    }
+    final state = this.state as RecipesSearch;
+    final List<String> formattedSuggestions =
+        state.suggestions.map((e) => e.toLowerCase()).toList();
+    final newSuggestions = <String>[];
+    final List<int> animatedIndexes = [];
+    for (final String suggestion in formattedSuggestions) {
+      if (suggestion.contains(search.toLowerCase())) {
+        newSuggestions.add(suggestion);
+      } else {
+        int index =
+            formattedSuggestions.indexWhere((element) => element == suggestion);
+        animatedIndexes.add(index);
       }
+    }
 
+    if (newSuggestions.isEmpty) {
+      print('newSuggestions is empty ' + newSuggestions.length.toString());
+      this.state = RecipesState.searchingSuggestions(
+          newSuggestions, state.selectedIngredients, search);
       await locator<SourceRepository>().searchIngredients(search).then((value) {
-        currentSuggestions.addAll(state.suggestions);
-        for (int i = 0; i < value.length; i++) {
-          if (value[i].name.toLowerCase().contains(search.toLowerCase()) &&
-              !currentSuggestions.contains(value[i].name.toLowerCase()) &&
-              !_ingredientsCashed.contains(value[i].name)) {
-            suggestionListKey.currentState?.insertItem(
-                currentSuggestions.length,
-                duration: const Duration(milliseconds: 300));
-            currentSuggestions.add(value[i].name.toLowerCase());
-          }
-        }
-        for (int i = 0; i < currentSuggestions.length; i++) {
-          if (!currentSuggestions[i]
-              .toLowerCase()
-              .contains(search.toLowerCase())) {
-            String suggestion = currentSuggestions[i];
-            suggestionListKey.currentState?.removeItem(
-                i,
-                (context, animation) => SuggestionItem(
-                      suggestion: suggestion,
-                      animation: animation,
-                      search: search,
-                    ),
-                duration: const Duration(milliseconds: 300));
-            currentSuggestions.removeAt(i);
-            i--;
+        for (final ingredient in value) {
+          final ingredientName = ingredient.name.toLowerCase();
+          if (ingredientName.contains(search.toLowerCase()) &&
+              !_ingredientsCashed.contains(ingredientName) &&
+              !newSuggestions.contains(ingredientName)) {
+            newSuggestions.add(ingredientName);
           }
         }
 
         this.state =
-            RecipesState.search(currentSuggestions, _ingredientsCashed, search);
+            RecipesState.search(newSuggestions, _ingredientsCashed, search);
       });
     } else {
-      state = RecipesState.search([], _ingredientsCashed, '');
+      for (int i = animatedIndexes.length - 1; i >= 0; i--) {
+        String name = formattedSuggestions[animatedIndexes[i]];
+
+        suggestionListKey.currentState?.removeItem(
+            animatedIndexes[i],
+            (context, animation) => SuggestionItem(
+                suggestion: name, animation: animation, search: state.search),
+            duration: Duration(milliseconds: 300));
+      }
+
+      this.state =
+          RecipesState.search(newSuggestions, _ingredientsCashed, search);
     }
   }
 }

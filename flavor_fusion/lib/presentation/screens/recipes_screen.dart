@@ -140,6 +140,16 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
                   suggestionsOpacity: _suggestionsAnimation.value,
                 );
               },
+              searchingSuggestions: (suggestions, selectedIngredients, search) {
+                manageAnimations(suggestions, selectedIngredients);
+                return RecipesSearchBar(
+                  ingredientsOpacity: _ingredientsAnimation.value,
+                  search: search,
+                  selectedIngredients: selectedIngredients,
+                  suggestions: suggestions,
+                  suggestionsOpacity: _suggestionsAnimation.value,
+                );
+              },
               orElse: () => Container(),
             ),
             duration: const Duration(milliseconds: 300),

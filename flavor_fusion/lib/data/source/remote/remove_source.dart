@@ -70,7 +70,7 @@ class RemoteSource implements IRemoteSource {
           ingredients.map((ingredient) => '"$ingredient"').join(',');
       var response = await locator<GraphQLService>().executeQuery("""{
   recipeSearch(   
-  query:"Korean"ingredients:$ingredientsQuery
+  query:"$search"ingredients:$ingredientsQuery
 ) {
     edges {
       node {

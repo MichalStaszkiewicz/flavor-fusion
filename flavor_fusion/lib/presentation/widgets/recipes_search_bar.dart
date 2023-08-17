@@ -1,8 +1,10 @@
+import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestions_list.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RecipesSearchBar extends StatefulWidget {
+class RecipesSearchBar extends ConsumerStatefulWidget {
   RecipesSearchBar(
       {super.key,
       required this.suggestions,
@@ -20,10 +22,10 @@ class RecipesSearchBar extends StatefulWidget {
   String search;
 
   @override
-  State<RecipesSearchBar> createState() => _RecipesSearchBarState();
+  RecipesSearchBarState createState() => RecipesSearchBarState();
 }
 
-class _RecipesSearchBarState extends State<RecipesSearchBar> {
+class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,25 +41,51 @@ class _RecipesSearchBarState extends State<RecipesSearchBar> {
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      widget.selectedIngredients.isNotEmpty
-                          ? SelectedIngredientsList(
-                              opacity: widget.ingredientsOpacity,
-                            )
-                          : Container(),
-                      widget.suggestions.isNotEmpty
-                          ? SuggestionsList(
-                              search: widget.search,
-                              opacity: widget.suggestionsOpacity,
-                              suggestions: widget.suggestions,
-                            )
-                          : Container(),
-                    ],
-                  ),
-                ),
+                ref.watch(recipesViewModel).maybeWhen(
+                      searchingSuggestions:
+                          (suggestions, selectedIngredients, search) =>
+                              Container(
+                        height: 300,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            widget.selectedIngredients.isNotEmpty
+                                ? SelectedIngredientsList(
+                                    opacity: widget.ingredientsOpacity,
+                                  )
+                                : Container(),
+                            Container(
+                                color: Colors.red,
+                                child:
+                                    Center(child: CircularProgressIndicator()))
+                          ],
+                        ),
+                      ),
+                      search: (suggestions, selectedIngredients, search) =>
+                          Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            widget.selectedIngredients.isNotEmpty
+                                ? SelectedIngredientsList(
+                                    opacity: widget.ingredientsOpacity,
+                                  )
+                                : Container(),
+                            widget.suggestions.isNotEmpty
+                                ? SuggestionsList(
+                                    search: search,
+                                    suggestions: suggestions,
+                                    opacity: widget.suggestionsOpacity)
+                                : Container(
+                                    child: Center(
+                                        child:
+                                            Text('Suggestion List is empty')),
+                                  )
+                          ],
+                        ),
+                      ),
+                      orElse: () => Container(),
+                    ),
               ]),
         ),
       ),
