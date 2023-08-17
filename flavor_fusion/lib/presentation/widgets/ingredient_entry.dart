@@ -1,18 +1,22 @@
 import 'package:flavor_fusion/presentation/view_models/groceries/groceries_view_model.dart';
+import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/models/recipe_ingredient.dart';
+import '../../utility/global.dart';
 
 class IngredientEntry extends ConsumerStatefulWidget {
   IngredientEntry(
       {required this.ingredient,
       required this.recipeIndex,
       required this.ingredientIndex,
+      required this.ingredientLine,
       super.key});
   RecipeIngredient ingredient;
   int recipeIndex;
   int ingredientIndex;
+  String ingredientLine;
 
   @override
   IngredientGroceryEntryState createState() => IngredientGroceryEntryState();
@@ -58,6 +62,12 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
 
   @override
   Widget build(BuildContext context) {
+    Map<String, String> ingredientLineMeasureInfo =
+        locator<Global>().ingredientLineToMeasurement(widget.ingredientLine);
+    String measurement = ingredientLineMeasureInfo.keys.elementAt(0);
+
+    print('measurement ' + measurement);
+    String count = ingredientLineMeasureInfo.values.elementAt(0);
     return FadeTransition(
       opacity: _sizeAnimation,
       child: SizeTransition(
@@ -130,11 +140,12 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                       )),
                 ),
                 Expanded(
+                  flex: 2,
                   child: Container(
                       alignment: Alignment.centerLeft,
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        widget.ingredient.description.name.toString() + 'dasd',
+                        "$count $measurement",
                         style: Theme.of(context)
                             .textTheme
                             .labelLarge!

@@ -25,6 +25,7 @@ class _GroceryListState extends State<GroceryList> {
               ingredients: widget.groceries[index].ingredients,
               recipeName: widget.groceries[index].recipe.name,
               recipeIndex: index,
+              ingredientLines: widget.groceries[index].recipe.ingredientLines,
             ));
   }
 }

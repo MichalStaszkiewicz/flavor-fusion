@@ -10,10 +10,12 @@ class RecipeIngredientsList extends StatelessWidget {
   RecipeIngredientsList(
       {required this.recipeName,
       required this.ingredients,
-      required this.recipeIndex});
+      required this.recipeIndex,
+      required this.ingredientLines});
 
   final String recipeName;
   final List<RecipeIngredient> ingredients;
+  final List<String> ingredientLines;
   final int recipeIndex;
 
   @override
@@ -22,6 +24,7 @@ class RecipeIngredientsList extends StatelessWidget {
       GroceryRecipeItem(
           key: ValueKey(recipeName),
           recipeName: recipeName,
+          ingredientLines: ingredientLines,
           ingredients: ingredients,
           recipeIndex: recipeIndex),
     ]);

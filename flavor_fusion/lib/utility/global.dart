@@ -1,5 +1,6 @@
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 const apiToken = '6bce2cb8e7e400b91b55faa10ff872ca4971c7c8';
 const productionApiEndpoint = 'https://production.suggestic.com/graphql';
@@ -103,32 +104,39 @@ class Global {
     bool countChecked = false;
     bool measurementChecked = false;
     for (int i = 0; i < ingredientLine.length; i++) {
-      if (!countChecked) {
+      if (!countChecked && ingredientLine[i] != ' ') {
         count += ingredientLine[i].toString();
       }
-      if (countChecked && !measurementChecked) {
+      if (!measurementChecked && countChecked && ingredientLine[i] != ' ') {
         measurement += ingredientLine[i].toString();
       }
-      if (!countChecked && ingredientLine[i] == ' ') {
-        countChecked = true;
+      if (ingredientLine[i] == ' ') {
+        if (!countChecked) {
+          countChecked = true;
+        } else {
+          measurementChecked = true;
+        }
+        if (countChecked && measurementChecked) {
+          break;
+        }
       }
-      if (!measurementChecked &&
-          ingredientLine[i] == ' ' &&
-          countChecked == true) {
-        measurementChecked = true;
-      }
-      if (measurementChecked && countChecked) {
+
+      if (measurementChecked) {
         break;
       }
     }
-    int checkIfMeasurementExists = measurementList.indexWhere(
-        (element) => element.toLowerCase() == measurement.toLowerCase());
-    if (checkIfMeasurementExists > -1) {
-      String formattedMeasurement = mapMeasurement.keys.firstWhere(
-          (element) => element.toLowerCase() == measurement.toLowerCase());
+
+    bool exists = false;
+    mapMeasurement.forEach((key, value) {
+      if (key.toLowerCase() == measurement.toLowerCase() ||
+          value.toLowerCase() == measurement.toLowerCase()) {
+        exists = true;
+      }
+    });
+    if (exists) {
       return {measurement: count};
     } else {
-      return {'unknown measurement': count};
+      return {'': count};
     }
   }
 

@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import '../../data/models/recipe_ingredient.dart';
 
 class GroceryRecipeItem extends StatefulWidget {
-  const GroceryRecipeItem({
-    super.key,
-    required this.recipeName,
-    required this.ingredients,
-    required this.recipeIndex,
-  });
+  const GroceryRecipeItem(
+      {super.key,
+      required this.recipeName,
+      required this.ingredients,
+      required this.recipeIndex,
+      required this.ingredientLines});
 
   final String recipeName;
+  final List<String> ingredientLines;
   final List<RecipeIngredient> ingredients;
   final int recipeIndex;
 
@@ -83,6 +84,7 @@ class _GroceryRecipeItemState extends State<GroceryRecipeItem>
                 ingredient: widget.ingredients[index],
                 ingredientIndex: index,
                 recipeIndex: widget.recipeIndex,
+                ingredientLine: widget.ingredientLines[index],
               ),
             ),
           ),

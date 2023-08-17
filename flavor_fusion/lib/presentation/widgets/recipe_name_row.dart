@@ -10,17 +10,15 @@ class RecipeNameRow extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
       width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            recipeName,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .copyWith(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
-        ],
+      child: Text(
+        textAlign: TextAlign.left,
+        maxLines: 1,
+        recipeName,
+        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              overflow: TextOverflow.visible,
+            ),
       ),
     );
   }
