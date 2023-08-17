@@ -25,7 +25,7 @@ mixin _$Recipe {
   @HiveField(1)
   String get id => throw _privateConstructorUsedError;
   @HiveField(2)
-  List<String> get courses => throw _privateConstructorUsedError;
+  List<String>? get courses => throw _privateConstructorUsedError;
   @HiveField(3)
   List<String>? get cuisines => throw _privateConstructorUsedError;
   @HiveField(4)
@@ -67,7 +67,7 @@ abstract class $RecipeCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String author,
       @HiveField(1) String id,
-      @HiveField(2) List<String> courses,
+      @HiveField(2) List<String>? courses,
       @HiveField(3) List<String>? cuisines,
       @HiveField(4) String? cleanName,
       @HiveField(5) String totalTime,
@@ -100,7 +100,7 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
   $Res call({
     Object? author = null,
     Object? id = null,
-    Object? courses = null,
+    Object? courses = freezed,
     Object? cuisines = freezed,
     Object? cleanName = freezed,
     Object? totalTime = null,
@@ -124,10 +124,10 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      courses: null == courses
+      courses: freezed == courses
           ? _value.courses
           : courses // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       cuisines: freezed == cuisines
           ? _value.cuisines
           : cuisines // ignore: cast_nullable_to_non_nullable
@@ -202,7 +202,7 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String author,
       @HiveField(1) String id,
-      @HiveField(2) List<String> courses,
+      @HiveField(2) List<String>? courses,
       @HiveField(3) List<String>? cuisines,
       @HiveField(4) String? cleanName,
       @HiveField(5) String totalTime,
@@ -233,7 +233,7 @@ class __$$_RecipeCopyWithImpl<$Res>
   $Res call({
     Object? author = null,
     Object? id = null,
-    Object? courses = null,
+    Object? courses = freezed,
     Object? cuisines = freezed,
     Object? cleanName = freezed,
     Object? totalTime = null,
@@ -257,10 +257,10 @@ class __$$_RecipeCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      courses: null == courses
+      courses: freezed == courses
           ? _value._courses
           : courses // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       cuisines: freezed == cuisines
           ? _value._cuisines
           : cuisines // ignore: cast_nullable_to_non_nullable
@@ -323,7 +323,7 @@ class _$_Recipe implements _Recipe {
   _$_Recipe(
       {@HiveField(0) required this.author,
       @HiveField(1) required this.id,
-      @HiveField(2) required final List<String> courses,
+      @HiveField(2) required final List<String>? courses,
       @HiveField(3) required final List<String>? cuisines,
       @HiveField(4) required this.cleanName,
       @HiveField(5) required this.totalTime,
@@ -352,13 +352,15 @@ class _$_Recipe implements _Recipe {
   @override
   @HiveField(1)
   final String id;
-  final List<String> _courses;
+  final List<String>? _courses;
   @override
   @HiveField(2)
-  List<String> get courses {
+  List<String>? get courses {
+    final value = _courses;
+    if (value == null) return null;
     if (_courses is EqualUnmodifiableListView) return _courses;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_courses);
+    return EqualUnmodifiableListView(value);
   }
 
   final List<String>? _cuisines;
@@ -503,7 +505,7 @@ abstract class _Recipe implements Recipe {
   factory _Recipe(
       {@HiveField(0) required final String author,
       @HiveField(1) required final String id,
-      @HiveField(2) required final List<String> courses,
+      @HiveField(2) required final List<String>? courses,
       @HiveField(3) required final List<String>? cuisines,
       @HiveField(4) required final String? cleanName,
       @HiveField(5) required final String totalTime,
@@ -528,7 +530,7 @@ abstract class _Recipe implements Recipe {
   String get id;
   @override
   @HiveField(2)
-  List<String> get courses;
+  List<String>? get courses;
   @override
   @HiveField(3)
   List<String>? get cuisines;

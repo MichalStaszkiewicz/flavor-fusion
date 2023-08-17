@@ -13,7 +13,7 @@ class Recipe with _$Recipe {
   factory Recipe({
     @HiveField(0) required String author,
     @HiveField(1) required String id,
-    @HiveField(2) required List<String> courses,
+    @HiveField(2) required List<String>? courses,
     @HiveField(3) required List<String>? cuisines,
     @HiveField(4) required String? cleanName,
     @HiveField(5) required String totalTime,

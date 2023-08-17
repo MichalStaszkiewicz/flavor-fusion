@@ -68,11 +68,9 @@ class SourceRepository {
   }
 
   Future<List<Recipe>> searchRecipes(
-      String search, List<Ingredient> ingredients) async {
-    List<String> ingredientNames =
-        List.from(ingredients.map((e) => e.name)).toList() as List<String>;
+      String search, List<String> ingredients) async {
     Either<List<Recipe>, Exception> result =
-        await _remoteSource.searchRecipes(search, ingredientNames);
+        await _remoteSource.searchRecipes(search, ingredients);
     return result.fold(
       (recipes) {
         return recipes;

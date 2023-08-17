@@ -5,7 +5,7 @@ part 'nutriens_per_serving.g.dart';
 part 'nutriens_per_serving.freezed.dart';
 
 @HiveType(
-  typeId: 4,
+  typeId: 5,
 )
 @freezed
 class NutrientsPerServing with _$NutrientsPerServing {

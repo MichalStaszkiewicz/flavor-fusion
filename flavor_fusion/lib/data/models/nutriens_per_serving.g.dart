@@ -8,7 +8,7 @@ part of 'nutriens_per_serving.dart';
 
 class NutrientsPerServingAdapter extends TypeAdapter<NutrientsPerServing> {
   @override
-  final int typeId = 4;
+  final int typeId = 5;
 
   @override
   NutrientsPerServing read(BinaryReader reader) {

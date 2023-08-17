@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/screens/dish_details_screen.dart';
+import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/recipe.dart';
+import 'dish_details_basic_info.dart';
 
 class DishItemWidget extends StatelessWidget {
   DishItemWidget({required this.recipe});
@@ -16,62 +18,113 @@ class DishItemWidget extends StatelessWidget {
         locator<AppRouter>()
             .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
       },
-      child: Card(
-        margin: EdgeInsets.all(10),
-        child: Container(
-          child: Row(
-            children: [
-              Expanded(
-                  child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(5),
-                        bottomRight: Radius.circular(5)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, 0),
-                      ),
-                    ]),
-                child: const Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(5),
-                        bottomLeft: Radius.circular(5)),
-                    child: Image(
-                        image: NetworkImage(
-                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJeXICUEc1u7Ww1Kea9KHar8XhvOKZUdlZGQ4MB9HfCQ&s')),
-                  ),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        height: 125,
+        child: Row(
+          children: [
+            Container(
+              margin: EdgeInsets.all(5),
+              width: 130,
+              height: 150,
+              child: Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image(
+                      fit: BoxFit.fill, image: NetworkImage(recipe.mainImage)),
                 ),
-              )),
-              Expanded(
-                  child: Container(
-                height: 100,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        child: Text(
-                          recipe.name,
-                          style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+            Expanded(
+                flex: 4,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          child: Text(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            recipe.name,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
                         ),
                       ),
-                    ),
-                    _buildRecipeBasicInformations(
-                        context, "$recipe.totalTime", Icons.timer),
-                    _buildRecipeBasicInformations(
-                        context,
-                        "${recipe.nutrientsPerServing.calories.round()} kcal",
-                        Icons.fire_hydrant),
-                  ],
-                ),
-              ))
-            ],
-          ),
+
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              DishDetailsBasicInfo(
+                                  label: recipe.totalTime
+                                          .toString()
+                                          .substring(0, 3) +
+                                      "minutes",
+                                  imagePath: 'stopwatch.png'),
+                              DishDetailsBasicInfo(
+                                  label:
+                                      '${recipe.nutrientsPerServing.calories.round()} cal',
+                                  imagePath: 'fire-flame-curved.png'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color:
+                                        const Color.fromARGB(255, 233, 233, 57),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    '4.7',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            color:
+                                                Colors.black.withOpacity(0.4)),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                child: Text('Details'),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+
+                      //    DishBasicInfoRow(recipe: recipe)
+                    ],
+                  ),
+                )),
+          ],
         ),
       ),
     );

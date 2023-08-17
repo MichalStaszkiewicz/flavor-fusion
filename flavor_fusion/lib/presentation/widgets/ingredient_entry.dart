@@ -134,8 +134,7 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                       alignment: Alignment.centerLeft,
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        widget.ingredient.description.name.toString() +
-                            widget.ingredient.description.name,
+                        widget.ingredient.description.name.toString() + 'dasd',
                         style: Theme.of(context)
                             .textTheme
                             .labelLarge!

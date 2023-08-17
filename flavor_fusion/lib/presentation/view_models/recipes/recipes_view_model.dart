@@ -61,19 +61,23 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   void initRecommendedRecipes() async {
     _recipes =
         await locator<SourceRepository>().getRecommendedRecipes().then((value) {
-      state = RecipesState.recipesRecommendation(value);
+      state = RecipesState.recommendation(value);
       return value;
     });
   }
 
   void loadRecipeRecommendation() {
-    state = RecipesRecipesRecommendation(_recipes);
+    state = RecipesRecommendation(_recipes);
   }
 
-  void findRecipes() {
-    List<Recipe> recipes = [];
-
-    state = RecipesState.searchDone(recipes);
+  void findRecipes() async {
+    final state = this.state as RecipesSearch;
+    this.state = RecipesState.searchingRecipes();
+    await locator<SourceRepository>()
+        .searchRecipes(state.search, state.selectedIngredients)
+        .then((value) {
+      this.state = RecipesState.searchDone(value);
+    });
   }
 
   void searchRecipes(String search) async {

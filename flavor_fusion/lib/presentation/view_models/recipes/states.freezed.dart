@@ -21,10 +21,11 @@ mixin _$RecipesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -36,10 +37,11 @@ mixin _$RecipesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -51,10 +53,11 @@ mixin _$RecipesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -67,10 +70,10 @@ mixin _$RecipesState {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) =>
@@ -80,9 +83,9 @@ mixin _$RecipesState {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) =>
@@ -92,8 +95,9 @@ mixin _$RecipesState {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
@@ -160,10 +164,11 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -178,10 +183,11 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -196,10 +202,11 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -218,10 +225,10 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
@@ -234,9 +241,9 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
@@ -249,8 +256,9 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
@@ -307,10 +315,11 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -325,10 +334,11 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -343,10 +353,11 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -365,10 +376,10 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
@@ -381,9 +392,9 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
@@ -396,8 +407,9 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
@@ -454,10 +466,11 @@ class _$RecipesError implements RecipesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -472,10 +485,11 @@ class _$RecipesError implements RecipesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -490,10 +504,11 @@ class _$RecipesError implements RecipesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -512,10 +527,10 @@ class _$RecipesError implements RecipesError {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
@@ -528,9 +543,9 @@ class _$RecipesError implements RecipesError {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
@@ -543,8 +558,9 @@ class _$RecipesError implements RecipesError {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
@@ -561,22 +577,20 @@ abstract class RecipesError implements RecipesState {
 }
 
 /// @nodoc
-abstract class _$$RecipesRecipesRecommendationCopyWith<$Res> {
-  factory _$$RecipesRecipesRecommendationCopyWith(
-          _$RecipesRecipesRecommendation value,
-          $Res Function(_$RecipesRecipesRecommendation) then) =
-      __$$RecipesRecipesRecommendationCopyWithImpl<$Res>;
+abstract class _$$RecipesRecommendationCopyWith<$Res> {
+  factory _$$RecipesRecommendationCopyWith(_$RecipesRecommendation value,
+          $Res Function(_$RecipesRecommendation) then) =
+      __$$RecipesRecommendationCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Recipe> recipes});
 }
 
 /// @nodoc
-class __$$RecipesRecipesRecommendationCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesRecipesRecommendation>
-    implements _$$RecipesRecipesRecommendationCopyWith<$Res> {
-  __$$RecipesRecipesRecommendationCopyWithImpl(
-      _$RecipesRecipesRecommendation _value,
-      $Res Function(_$RecipesRecipesRecommendation) _then)
+class __$$RecipesRecommendationCopyWithImpl<$Res>
+    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesRecommendation>
+    implements _$$RecipesRecommendationCopyWith<$Res> {
+  __$$RecipesRecommendationCopyWithImpl(_$RecipesRecommendation _value,
+      $Res Function(_$RecipesRecommendation) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -584,7 +598,7 @@ class __$$RecipesRecipesRecommendationCopyWithImpl<$Res>
   $Res call({
     Object? recipes = null,
   }) {
-    return _then(_$RecipesRecipesRecommendation(
+    return _then(_$RecipesRecommendation(
       null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
@@ -595,9 +609,8 @@ class __$$RecipesRecipesRecommendationCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
-  _$RecipesRecipesRecommendation(final List<Recipe> recipes)
-      : _recipes = recipes;
+class _$RecipesRecommendation implements RecipesRecommendation {
+  _$RecipesRecommendation(final List<Recipe> recipes) : _recipes = recipes;
 
   final List<Recipe> _recipes;
   @override
@@ -609,14 +622,14 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
 
   @override
   String toString() {
-    return 'RecipesState.recipesRecommendation(recipes: $recipes)';
+    return 'RecipesState.recommendation(recipes: $recipes)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecipesRecipesRecommendation &&
+            other is _$RecipesRecommendation &&
             const DeepCollectionEquality().equals(other._recipes, _recipes));
   }
 
@@ -627,9 +640,9 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RecipesRecipesRecommendationCopyWith<_$RecipesRecipesRecommendation>
-      get copyWith => __$$RecipesRecipesRecommendationCopyWithImpl<
-          _$RecipesRecipesRecommendation>(this, _$identity);
+  _$$RecipesRecommendationCopyWith<_$RecipesRecommendation> get copyWith =>
+      __$$RecipesRecommendationCopyWithImpl<_$RecipesRecommendation>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -637,16 +650,17 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
-    return recipesRecommendation(recipes);
+    return recommendation(recipes);
   }
 
   @override
@@ -655,16 +669,17 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
-    return recipesRecommendation?.call(recipes);
+    return recommendation?.call(recipes);
   }
 
   @override
@@ -673,18 +688,19 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
   }) {
-    if (recipesRecommendation != null) {
-      return recipesRecommendation(recipes);
+    if (recommendation != null) {
+      return recommendation(recipes);
     }
     return orElse();
   }
@@ -695,14 +711,14 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
-    return recipesRecommendation(this);
+    return recommendation(this);
   }
 
   @override
@@ -711,13 +727,13 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
-    return recipesRecommendation?.call(this);
+    return recommendation?.call(this);
   }
 
   @override
@@ -726,27 +742,28 @@ class _$RecipesRecipesRecommendation implements RecipesRecipesRecommendation {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
   }) {
-    if (recipesRecommendation != null) {
-      return recipesRecommendation(this);
+    if (recommendation != null) {
+      return recommendation(this);
     }
     return orElse();
   }
 }
 
-abstract class RecipesRecipesRecommendation implements RecipesState {
-  factory RecipesRecipesRecommendation(final List<Recipe> recipes) =
-      _$RecipesRecipesRecommendation;
+abstract class RecipesRecommendation implements RecipesState {
+  factory RecipesRecommendation(final List<Recipe> recipes) =
+      _$RecipesRecommendation;
 
   List<Recipe> get recipes;
   @JsonKey(ignore: true)
-  _$$RecipesRecipesRecommendationCopyWith<_$RecipesRecipesRecommendation>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$RecipesRecommendationCopyWith<_$RecipesRecommendation> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -860,10 +877,11 @@ class _$RecipeSearchingSuggestions implements RecipeSearchingSuggestions {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -878,10 +896,11 @@ class _$RecipeSearchingSuggestions implements RecipeSearchingSuggestions {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -897,10 +916,11 @@ class _$RecipeSearchingSuggestions implements RecipeSearchingSuggestions {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -920,10 +940,10 @@ class _$RecipeSearchingSuggestions implements RecipeSearchingSuggestions {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
@@ -936,9 +956,9 @@ class _$RecipeSearchingSuggestions implements RecipeSearchingSuggestions {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
@@ -951,8 +971,9 @@ class _$RecipeSearchingSuggestions implements RecipeSearchingSuggestions {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
@@ -976,6 +997,158 @@ abstract class RecipeSearchingSuggestions implements RecipesState {
   @JsonKey(ignore: true)
   _$$RecipeSearchingSuggestionsCopyWith<_$RecipeSearchingSuggestions>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RecipesSearchingRecipesCopyWith<$Res> {
+  factory _$$RecipesSearchingRecipesCopyWith(_$RecipesSearchingRecipes value,
+          $Res Function(_$RecipesSearchingRecipes) then) =
+      __$$RecipesSearchingRecipesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RecipesSearchingRecipesCopyWithImpl<$Res>
+    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesSearchingRecipes>
+    implements _$$RecipesSearchingRecipesCopyWith<$Res> {
+  __$$RecipesSearchingRecipesCopyWithImpl(_$RecipesSearchingRecipes _value,
+      $Res Function(_$RecipesSearchingRecipes) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RecipesSearchingRecipes implements RecipesSearchingRecipes {
+  _$RecipesSearchingRecipes();
+
+  @override
+  String toString() {
+    return 'RecipesState.searchingRecipes()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecipesSearchingRecipes);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() error,
+    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(List<String> suggestions,
+            List<String> selectedIngredients, String search)
+        searchingSuggestions,
+    required TResult Function() searchingRecipes,
+    required TResult Function(List<String> suggestions,
+            List<String> selectedIngredients, String search)
+        search,
+    required TResult Function(List<Recipe> recipes) searchDone,
+  }) {
+    return searchingRecipes();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? error,
+    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(List<String> suggestions,
+            List<String> selectedIngredients, String search)?
+        searchingSuggestions,
+    TResult? Function()? searchingRecipes,
+    TResult? Function(List<String> suggestions,
+            List<String> selectedIngredients, String search)?
+        search,
+    TResult? Function(List<Recipe> recipes)? searchDone,
+  }) {
+    return searchingRecipes?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? error,
+    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(List<String> suggestions, List<String> selectedIngredients,
+            String search)?
+        searchingSuggestions,
+    TResult Function()? searchingRecipes,
+    TResult Function(List<String> suggestions, List<String> selectedIngredients,
+            String search)?
+        search,
+    TResult Function(List<Recipe> recipes)? searchDone,
+    required TResult orElse(),
+  }) {
+    if (searchingRecipes != null) {
+      return searchingRecipes();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RecipesInitial value) initial,
+    required TResult Function(RecipesLoading value) loading,
+    required TResult Function(RecipesError value) error,
+    required TResult Function(RecipesRecommendation value) recommendation,
+    required TResult Function(RecipeSearchingSuggestions value)
+        searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
+    required TResult Function(RecipesSearch value) search,
+    required TResult Function(RecipesSearchDone value) searchDone,
+  }) {
+    return searchingRecipes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RecipesInitial value)? initial,
+    TResult? Function(RecipesLoading value)? loading,
+    TResult? Function(RecipesError value)? error,
+    TResult? Function(RecipesRecommendation value)? recommendation,
+    TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
+    TResult? Function(RecipesSearch value)? search,
+    TResult? Function(RecipesSearchDone value)? searchDone,
+  }) {
+    return searchingRecipes?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RecipesInitial value)? initial,
+    TResult Function(RecipesLoading value)? loading,
+    TResult Function(RecipesError value)? error,
+    TResult Function(RecipesRecommendation value)? recommendation,
+    TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
+    TResult Function(RecipesSearch value)? search,
+    TResult Function(RecipesSearchDone value)? searchDone,
+    required TResult orElse(),
+  }) {
+    if (searchingRecipes != null) {
+      return searchingRecipes(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RecipesSearchingRecipes implements RecipesState {
+  factory RecipesSearchingRecipes() = _$RecipesSearchingRecipes;
 }
 
 /// @nodoc
@@ -1086,10 +1259,11 @@ class _$RecipesSearch implements RecipesSearch {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -1104,10 +1278,11 @@ class _$RecipesSearch implements RecipesSearch {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -1122,10 +1297,11 @@ class _$RecipesSearch implements RecipesSearch {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -1144,10 +1320,10 @@ class _$RecipesSearch implements RecipesSearch {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
@@ -1160,9 +1336,9 @@ class _$RecipesSearch implements RecipesSearch {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
@@ -1175,8 +1351,9 @@ class _$RecipesSearch implements RecipesSearch {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),
@@ -1275,10 +1452,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recipesRecommendation,
+    required TResult Function(List<Recipe> recipes) recommendation,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         searchingSuggestions,
+    required TResult Function() searchingRecipes,
     required TResult Function(List<String> suggestions,
             List<String> selectedIngredients, String search)
         search,
@@ -1293,10 +1471,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult? Function(List<Recipe> recipes)? recommendation,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         searchingSuggestions,
+    TResult? Function()? searchingRecipes,
     TResult? Function(List<String> suggestions,
             List<String> selectedIngredients, String search)?
         search,
@@ -1311,10 +1490,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recipesRecommendation,
+    TResult Function(List<Recipe> recipes)? recommendation,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         searchingSuggestions,
+    TResult Function()? searchingRecipes,
     TResult Function(List<String> suggestions, List<String> selectedIngredients,
             String search)?
         search,
@@ -1333,10 +1513,10 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     required TResult Function(RecipesInitial value) initial,
     required TResult Function(RecipesLoading value) loading,
     required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecipesRecommendation value)
-        recipesRecommendation,
+    required TResult Function(RecipesRecommendation value) recommendation,
     required TResult Function(RecipeSearchingSuggestions value)
         searchingSuggestions,
+    required TResult Function(RecipesSearchingRecipes value) searchingRecipes,
     required TResult Function(RecipesSearch value) search,
     required TResult Function(RecipesSearchDone value) searchDone,
   }) {
@@ -1349,9 +1529,9 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     TResult? Function(RecipesInitial value)? initial,
     TResult? Function(RecipesLoading value)? loading,
     TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecipesRecommendation value)?
-        recipesRecommendation,
+    TResult? Function(RecipesRecommendation value)? recommendation,
     TResult? Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult? Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult? Function(RecipesSearch value)? search,
     TResult? Function(RecipesSearchDone value)? searchDone,
   }) {
@@ -1364,8 +1544,9 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     TResult Function(RecipesInitial value)? initial,
     TResult Function(RecipesLoading value)? loading,
     TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecipesRecommendation value)? recipesRecommendation,
+    TResult Function(RecipesRecommendation value)? recommendation,
     TResult Function(RecipeSearchingSuggestions value)? searchingSuggestions,
+    TResult Function(RecipesSearchingRecipes value)? searchingRecipes,
     TResult Function(RecipesSearch value)? search,
     TResult Function(RecipesSearchDone value)? searchDone,
     required TResult orElse(),

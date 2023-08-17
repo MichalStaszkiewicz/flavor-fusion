@@ -20,6 +20,7 @@ class DescriptionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        
         AnimatedContainer(
           height: expanded
               ? ref.read(recipeDetailsViewModel.notifier).descriptionHeight

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CookingInstructionLink extends StatelessWidget {
+class CookingInstructions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

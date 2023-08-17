@@ -68,46 +68,53 @@ class RemoteSource implements IRemoteSource {
     try {
       final ingredientsQuery =
           ingredients.map((ingredient) => '"$ingredient"').join(',');
-      var response = await locator<GraphQLService>().executeQuery("""{
-  recipeSearch(   
-  query:"$search"ingredients:$ingredientsQuery
-) {
-    edges {
-      node {
-       mainImage
-        author
-        id
-        courses
-        cuisines
-        cleanName
-        totalTime
-        name
-        rating
-        serving
-        nutrientsPerServing {
-          calories
+
+      final response = await locator<GraphQLService>().executeQuery("""{
+      recipeSearch(   
+        query:"$search",ingredients:[$ingredientsQuery]
+      ) {
+        edges {
+          node {
+            mainImage
+            author
+            id
+            courses
+            cuisines
+            cleanName
+            totalTime
+            name
+            rating
+            serving
+            nutrientsPerServing {
+              calories
+            }
+            recipeType
+            ingredients {
+              name
+            }
+            mealBalanceIndex {
+              score
+              errors
+              message
+            }
+            ingredientLines
+            ingredientsCount
+            instructions
+            name
+            ingredientLines
+          }
         }
-        recipeType
-        ingredients {
-          name
-        }
-        mealBalanceIndex {
-          score
-          errors
-          message
-        }
-        ingredientLines
-        ingredientsCount
-        instructions
-        name
-        ingredientLines
       }
-    }
-  }
-}""");
-      List<Recipe> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
+    }""");
+
+      if (response.containsKey('recipeSearch')) {
+        print("Response came in  " + response.toString());
+        List<Recipe> recipes =
+            RecipeListResponse.fromJson(response['recipeSearch']).edges;
+        return Left(recipes);
+      } else {
+        throw Exception("No 'recipeSearch' key in the response.");
+      }
     } on Exception catch (e) {
       return Right(e);
     }

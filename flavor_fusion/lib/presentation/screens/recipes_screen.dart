@@ -116,8 +116,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
         children: [
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              recipesRecommendation: (List<Recipe> recipes) =>
-                  _buildReady(recipes),
+              recommendation: (List<Recipe> recipes) => _buildReady(recipes),
               orElse: () => Container(),
             ),
             duration: const Duration(milliseconds: 300),
@@ -162,6 +161,21 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
+              searchingRecipes: () => Container(
+                height: double.infinity,
+                child: const Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Text("Searching in progress"),
+                    ],
+                  ),
+                ),
+              ),
               searchDone: (recipes) => SearchDone(recipes: recipes),
               orElse: () => Container(),
             ),

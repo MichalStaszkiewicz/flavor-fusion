@@ -14,15 +14,20 @@ class DishDetailsBasicInfo extends StatelessWidget {
     return Container(
       child: Row(
         children: [
-          Image(height: 20, width: 20, image: AssetImage('assets/$imagePath')),
+          Image(
+              color: Colors.black12.withOpacity(0.4),
+              height: 20,
+              width: 20,
+              image: AssetImage('assets/$imagePath')),
           const SizedBox(
             width: 5,
           ),
           Text(
             label,
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: locator<Global>().greyText,
-                ),
+            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                fontWeight: FontWeight.w500,
+                color: Colors.black.withOpacity(0.4),
+                letterSpacing: 0.5),
           )
         ],
       ),

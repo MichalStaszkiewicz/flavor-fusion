@@ -1,8 +1,8 @@
-import 'package:flavor_fusion/presentation/widgets/dish_details_ingredient_chip.dart';
 import 'package:flutter/material.dart';
 
 class DishDetailsIngradientsList extends StatefulWidget {
-  const DishDetailsIngradientsList({super.key});
+  DishDetailsIngradientsList({required this.ingredients});
+  List<String> ingredients;
 
   @override
   State<DishDetailsIngradientsList> createState() =>
@@ -15,13 +15,16 @@ class _DishDetailsIngradientsListState
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
-    child: Wrap(
-          children: [
-            DishDetailsIngredientChip(
-              color: Colors.red,
-              label: 'Apple',
-            )
-          ],
-        ));
+        child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: widget.ingredients.length,
+            itemBuilder: (BuildContext context, int index) => Container(
+                  margin: EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    '- ${widget.ingredients[index]}',
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                )));
   }
 }

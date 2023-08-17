@@ -1,8 +1,11 @@
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestions_list.dart';
+import 'package:flavor_fusion/utility/global.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../utility/service_locator.dart';
 
 class RecipesSearchBar extends ConsumerStatefulWidget {
   RecipesSearchBar(
@@ -45,7 +48,7 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                       searchingSuggestions:
                           (suggestions, selectedIngredients, search) =>
                               Container(
-                        height: 300,
+                        height: locator<Global>().deviceDimenstions.height,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -55,7 +58,9 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                                   )
                                 : Container(),
                             Container(
-                                color: Colors.red,
+                                height:
+                                    locator<Global>().deviceDimenstions.height /
+                                        2,
                                 child:
                                     Center(child: CircularProgressIndicator()))
                           ],
@@ -76,11 +81,7 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                                     search: search,
                                     suggestions: suggestions,
                                     opacity: widget.suggestionsOpacity)
-                                : Container(
-                                    child: Center(
-                                        child:
-                                            Text('Suggestion List is empty')),
-                                  )
+                                : Container()
                           ],
                         ),
                       ),

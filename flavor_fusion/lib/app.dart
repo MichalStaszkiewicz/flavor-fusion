@@ -21,9 +21,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'recipe-app',
       theme: ThemeData(
-        textTheme: GoogleFonts.notoSerifAhomTextTheme(),
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 53, 219, 2)),
+        textTheme: GoogleFonts.lexendDecaTextTheme(),
         useMaterial3: true,
       ),
       routerConfig: locator<AppRouter>().config(),
