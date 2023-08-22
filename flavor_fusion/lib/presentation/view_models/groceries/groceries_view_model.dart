@@ -18,9 +18,10 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
 
   void loadGroceries() async {
     state = GroceriesState.loading();
-    await locator<SavedGroceryService>().getGroceryList().then((reciepes) {
+    await locator<SavedGroceryService>().getGroceryList().then((recipes) {
       List<Grocery> groceries = [];
-      for (Recipe recipe in reciepes) {
+
+      for (Recipe recipe in recipes) {
         List<RecipeIngredient> ingredients = [];
         for (Ingredient ingredient in recipe.ingredients) {
           ingredients
@@ -89,9 +90,10 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
     List<Grocery> updatedGroceries = [];
 
     for (int i = 0; i < groceries.length; i++) {
-      Recipe recipe = groceries[i]
-          .recipe
-          .copyWith(ingredientLines: updatedIngredientLines[i]);
+      Recipe recipe = groceries[i].recipe.copyWith(
+          ingredientLines: updatedIngredientLines[i],
+          ingredients:
+              updatedIngredients[i].map((e) => e.description).toList());
       updatedGroceries.add(groceries[i]
           .copyWith(ingredients: updatedIngredients[i], recipe: recipe));
       if (updatedIngredients[i].isEmpty) {

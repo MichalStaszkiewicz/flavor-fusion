@@ -52,7 +52,7 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            widget.selectedIngredients.isNotEmpty
+                            selectedIngredients.isNotEmpty
                                 ? SelectedIngredientsList(
                                     opacity: widget.ingredientsOpacity,
                                   )
@@ -66,25 +66,28 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                           ],
                         ),
                       ),
-                      search: (suggestions, selectedIngredients, search) =>
-                          Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            widget.selectedIngredients.isNotEmpty
-                                ? SelectedIngredientsList(
-                                    opacity: widget.ingredientsOpacity,
-                                  )
-                                : Container(),
-                            widget.suggestions.isNotEmpty
-                                ? SuggestionsList(
-                                    search: search,
-                                    suggestions: suggestions,
-                                    opacity: widget.suggestionsOpacity)
-                                : Container()
-                          ],
-                        ),
-                      ),
+                      search: (suggestions, selectedIngredients, search) {
+                        print(
+                            "Suggestions list state: ${suggestions.length.toString()}");
+                        return Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              selectedIngredients.isNotEmpty
+                                  ? SelectedIngredientsList(
+                                      opacity: widget.ingredientsOpacity,
+                                    )
+                                  : Container(),
+                              suggestions.isNotEmpty
+                                  ? SuggestionsList(
+                                      search: search,
+                                      suggestions: suggestions,
+                                      opacity: widget.suggestionsOpacity)
+                                  : Container()
+                            ],
+                          ),
+                        );
+                      },
                       orElse: () => Container(),
                     ),
               ]),

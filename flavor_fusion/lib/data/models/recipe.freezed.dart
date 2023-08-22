@@ -31,7 +31,7 @@ mixin _$Recipe {
   @HiveField(4)
   String? get cleanName => throw _privateConstructorUsedError;
   @HiveField(5)
-  String get totalTime => throw _privateConstructorUsedError;
+  String? get totalTime => throw _privateConstructorUsedError;
   @HiveField(6)
   String get name => throw _privateConstructorUsedError;
   @HiveField(7)
@@ -72,7 +72,7 @@ abstract class $RecipeCopyWith<$Res> {
       @HiveField(2) List<String>? courses,
       @HiveField(3) List<String>? cuisines,
       @HiveField(4) String? cleanName,
-      @HiveField(5) String totalTime,
+      @HiveField(5) String? totalTime,
       @HiveField(6) String name,
       @HiveField(7) int? rating,
       @HiveField(8) int? serving,
@@ -107,7 +107,7 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
     Object? courses = freezed,
     Object? cuisines = freezed,
     Object? cleanName = freezed,
-    Object? totalTime = null,
+    Object? totalTime = freezed,
     Object? name = null,
     Object? rating = freezed,
     Object? serving = freezed,
@@ -141,10 +141,10 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
           ? _value.cleanName
           : cleanName // ignore: cast_nullable_to_non_nullable
               as String?,
-      totalTime: null == totalTime
+      totalTime: freezed == totalTime
           ? _value.totalTime
           : totalTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -222,7 +222,7 @@ abstract class _$$_RecipeCopyWith<$Res> implements $RecipeCopyWith<$Res> {
       @HiveField(2) List<String>? courses,
       @HiveField(3) List<String>? cuisines,
       @HiveField(4) String? cleanName,
-      @HiveField(5) String totalTime,
+      @HiveField(5) String? totalTime,
       @HiveField(6) String name,
       @HiveField(7) int? rating,
       @HiveField(8) int? serving,
@@ -256,7 +256,7 @@ class __$$_RecipeCopyWithImpl<$Res>
     Object? courses = freezed,
     Object? cuisines = freezed,
     Object? cleanName = freezed,
-    Object? totalTime = null,
+    Object? totalTime = freezed,
     Object? name = null,
     Object? rating = freezed,
     Object? serving = freezed,
@@ -290,10 +290,10 @@ class __$$_RecipeCopyWithImpl<$Res>
           ? _value.cleanName
           : cleanName // ignore: cast_nullable_to_non_nullable
               as String?,
-      totalTime: null == totalTime
+      totalTime: freezed == totalTime
           ? _value.totalTime
           : totalTime // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -405,7 +405,7 @@ class _$_Recipe implements _Recipe {
   final String? cleanName;
   @override
   @HiveField(5)
-  final String totalTime;
+  final String? totalTime;
   @override
   @HiveField(6)
   final String name;
@@ -540,7 +540,7 @@ abstract class _Recipe implements Recipe {
       @HiveField(2) required final List<String>? courses,
       @HiveField(3) required final List<String>? cuisines,
       @HiveField(4) required final String? cleanName,
-      @HiveField(5) required final String totalTime,
+      @HiveField(5) required final String? totalTime,
       @HiveField(6) required final String name,
       @HiveField(7) required final int? rating,
       @HiveField(8) required final int? serving,
@@ -572,7 +572,7 @@ abstract class _Recipe implements Recipe {
   String? get cleanName;
   @override
   @HiveField(5)
-  String get totalTime;
+  String? get totalTime;
   @override
   @HiveField(6)
   String get name;

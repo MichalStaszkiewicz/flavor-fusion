@@ -58,6 +58,8 @@ class _IngredientChipState extends State<IngredientChip>
                 children: [
                   Expanded(
                     child: Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(bottom: 5),
                       child: Text(
                         widget.label,
                         textAlign: TextAlign.center,

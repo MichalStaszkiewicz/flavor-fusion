@@ -71,7 +71,7 @@ class RemoteSource implements IRemoteSource {
 
       final response = await locator<GraphQLService>().executeQuery("""{
       recipeSearch(   
-        query:"$search",ingredients:[$ingredientsQuery]
+        query:"$search",ingredients:[$ingredientsQuery],hasInstructions: true
       ) {
         edges {
           node {
@@ -88,6 +88,15 @@ class RemoteSource implements IRemoteSource {
             nutrientsPerServing {
               calories
             }
+            nutritionalInfo{
+          protein,
+          carbs,
+          fiber,
+          fat
+          carbs
+          calcium
+          sugar
+        }
             recipeType
             ingredients {
               name
@@ -97,7 +106,7 @@ class RemoteSource implements IRemoteSource {
               errors
               message
             }
-            ingredientLines
+         
             ingredientsCount
             instructions
             name

@@ -13,119 +13,87 @@ class DishItemWidget extends StatelessWidget {
   Recipe recipe;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        locator<AppRouter>()
-            .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(10)),
-        height: 125,
-        child: Row(
-          children: [
-            Container(
-              margin: EdgeInsets.all(5),
-              width: 130,
-              height: 150,
-              child: Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image(
-                      fit: BoxFit.fill, image: NetworkImage(recipe.mainImage)),
-                ),
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+      height: 125,
+      child: Row(
+        children: [
+          Container(
+            margin: EdgeInsets.all(5),
+            width: 130,
+            height: 150,
+            child: Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image(
+                    fit: BoxFit.fill, image: NetworkImage(recipe.mainImage)),
               ),
             ),
-            Expanded(
-                flex: 4,
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          child: Text(
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            recipe.name,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
+          ),
+          Expanded(
+              flex: 4,
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        child: Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          recipe.name,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
+                    ),
 
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              DishDetailsBasicInfo(
-                                  label: recipe.totalTime
-                                          .toString()
-                                          .substring(0, 3) +
-                                      "minutes",
-                                  imagePath: 'stopwatch.png'),
-                              DishDetailsBasicInfo(
-                                  label:
-                                      '${recipe.nutrientsPerServing.calories.round()} cal',
-                                  imagePath: 'fire-flame-curved.png'),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
+                    Expanded(
+                      flex: 2,
+                      child: Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color:
-                                        const Color.fromARGB(255, 233, 233, 57),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    '4.7',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color:
-                                                Colors.black.withOpacity(0.4)),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Center(
-                                child: Text('Details'),
-                              ),
-                            )
+                            DishDetailsBasicInfo(
+                                label: recipe.totalTime.toString(),
+                                imagePath: 'stopwatch.png'),
+                            DishDetailsBasicInfo(
+                                label:
+                                    '${recipe.nutrientsPerServing.calories.round()} cal',
+                                imagePath: 'fire-flame-curved.png'),
                           ],
                         ),
-                      )
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        locator<AppRouter>().push(DishDetailsRoute(
+                            name: recipe.name, recipe: recipe));
+                      },
+                      child: Container(
+                          alignment: Alignment.bottomRight,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Center(
+                              child: Text('Details'),
+                            ),
+                          )),
+                    )
 
-                      //    DishBasicInfoRow(recipe: recipe)
-                    ],
-                  ),
-                )),
-          ],
-        ),
+                    //    DishBasicInfoRow(recipe: recipe)
+                  ],
+                ),
+              )),
+        ],
       ),
     );
   }

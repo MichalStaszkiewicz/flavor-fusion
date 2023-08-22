@@ -86,7 +86,7 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
         tempRecipies.sort(((a, b) => b.nutrientsPerServing.calories
             .compareTo(a.nutrientsPerServing.calories)));
       } else if (sortBy == SortBy.time) {
-        tempRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
+        tempRecipies.sort(((a, b) => a.totalTime!.compareTo(b.totalTime!)));
       }
       state = SearchScreenState.ready(filteredRecipies);
     } else {

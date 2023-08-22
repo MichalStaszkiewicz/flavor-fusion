@@ -62,7 +62,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   late FocusNode _focusNode;
   void _onFocusChange() {
     //   print("_focusNode.hasFocus = " + _focusNode.hasFocus.toString());
-
+    //TODO implement cancel operation to bypass user fast type or remove
     if (_focusNode.hasFocus == true &&
         !_focused &&
         _recipesSearchController.text.isNotEmpty) {
@@ -281,15 +281,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       width: 100,
       child: Center(
           child: Container(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromARGB(255, 118, 233, 89),
-                Color.fromARGB(255, 118, 233, 89),
-              ]),
+          color: Colors.blueAccent,
           borderRadius: BorderRadius.circular(210),
         ),
         height: 30,

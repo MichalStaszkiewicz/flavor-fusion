@@ -84,7 +84,7 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
         filteredRecipies.sort(((a, b) => b.nutrientsPerServing.calories
             .compareTo(a.nutrientsPerServing.calories)));
       } else if (sortBy == SortBy.time) {
-        filteredRecipies.sort(((a, b) => a.totalTime.compareTo(b.totalTime)));
+        filteredRecipies.sort(((a, b) => a.totalTime!.compareTo(b.totalTime!)));
       }
       state = FavoriteState.ready(filteredRecipies);
     } else {

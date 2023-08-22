@@ -22,7 +22,7 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       courses: (fields[2] as List?)?.cast<String>(),
       cuisines: (fields[3] as List?)?.cast<String>(),
       cleanName: fields[4] as String?,
-      totalTime: fields[5] as String,
+      totalTime: fields[5] as String?,
       name: fields[6] as String,
       rating: fields[7] as int?,
       serving: fields[8] as int?,
@@ -101,7 +101,7 @@ _$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
           ?.map((e) => e as String)
           .toList(),
       cleanName: json['cleanName'] as String?,
-      totalTime: json['totalTime'] as String,
+      totalTime: json['totalTime'] as String?,
       name: json['name'] as String,
       rating: json['rating'] as int?,
       serving: json['serving'] as int?,

@@ -17,7 +17,7 @@ class Recipe with _$Recipe {
     @HiveField(2) required List<String>? courses,
     @HiveField(3) required List<String>? cuisines,
     @HiveField(4) required String? cleanName,
-    @HiveField(5) required String totalTime,
+    @HiveField(5) required String? totalTime,
     @HiveField(6) required String name,
     @HiveField(7) required int? rating,
     @HiveField(8) required int? serving,

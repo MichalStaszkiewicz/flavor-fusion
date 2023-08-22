@@ -16,6 +16,7 @@ import '../../data/models/recipe.dart';
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
 import '../widgets/ingredient_chip.dart';
+import '../widgets/searching_in_progress.dart';
 import '../widgets/suggestions_list.dart';
 
 final GlobalKey<AnimatedListState> suggestionListKey =
@@ -116,6 +117,17 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
         children: [
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
+                loading: () => _buildLoading(), orElse: () => Container()),
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          ),
+          AnimatedSwitcher(
+            layoutBuilder: (_, __) => recipesState.maybeWhen(
               recommendation: (List<Recipe> recipes) => _buildReady(recipes),
               orElse: () => Container(),
             ),
@@ -130,22 +142,24 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
               search: (suggestions, selectedIngredients, search) {
-                manageAnimations(suggestions, selectedIngredients);
+                manageAnimations(suggestions.map((e) => e.name).toList(),
+                    selectedIngredients);
                 return RecipesSearchBar(
                   ingredientsOpacity: _ingredientsAnimation.value,
                   search: search,
                   selectedIngredients: selectedIngredients,
-                  suggestions: suggestions,
+                  suggestions: suggestions.map((e) => e.name).toList(),
                   suggestionsOpacity: _suggestionsAnimation.value,
                 );
               },
               searchingSuggestions: (suggestions, selectedIngredients, search) {
-                manageAnimations(suggestions, selectedIngredients);
+                manageAnimations(suggestions.map((e) => e.name).toList(),
+                    selectedIngredients);
                 return RecipesSearchBar(
                   ingredientsOpacity: _ingredientsAnimation.value,
                   search: search,
                   selectedIngredients: selectedIngredients,
-                  suggestions: suggestions,
+                  suggestions: suggestions.map((e) => e.name).toList(),
                   suggestionsOpacity: _suggestionsAnimation.value,
                 );
               },
@@ -161,21 +175,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              searchingRecipes: () => Container(
-                height: double.infinity,
-                child: const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Text("Searching in progress"),
-                    ],
-                  ),
-                ),
-              ),
+              searchingRecipes: () => const SearchingInProgress(),
               searchDone: (recipes) => SearchDone(recipes: recipes),
               orElse: () => Container(),
             ),
@@ -205,7 +205,11 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     );
   }
 
-  Container _buildLoading() => Container();
+  Container _buildLoading() => Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
 
   Container _buildInitial() => Container();
 

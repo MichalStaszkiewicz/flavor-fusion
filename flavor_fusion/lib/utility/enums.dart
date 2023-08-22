@@ -22,6 +22,8 @@ enum DishType {
   sweets,
 }
 
+enum SuggestionType { recipe, ingredient }
+
 enum SortBy { caloriesDesc, caloriesAsc, alphabetical, time, none }
 
 enum Diet { balanced, highFiber, hightProtein, lowCarb, lowFat, lowSodium }
