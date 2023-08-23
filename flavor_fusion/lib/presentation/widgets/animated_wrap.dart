@@ -20,7 +20,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
   Widget build(BuildContext context) {
     var state = ref.watch(recipesViewModel);
     var ingredients = state.maybeWhen(
-      search: (suggestions, ingredients, search) => ingredients,
+      search: (suggestions, ingredients, search, searching) => ingredients,
       orElse: () => [],
     );
 

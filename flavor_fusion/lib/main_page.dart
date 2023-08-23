@@ -58,27 +58,13 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   bool _favoriteSearchFocused = false;
 
   int _currentScreen = 0;
-  bool _focused = false;
+
   late FocusNode _focusNode;
-  void _onFocusChange() {
-    //   print("_focusNode.hasFocus = " + _focusNode.hasFocus.toString());
-    //TODO implement cancel operation to bypass user fast type or remove
-    if (_focusNode.hasFocus == true &&
-        !_focused &&
-        _recipesSearchController.text.isNotEmpty) {
-      ref
-          .read(recipesViewModel.notifier)
-          .searchRecipes(_recipesSearchController.text);
-      _focused = true;
-    } else if (!_focusNode.hasFocus && _focused) {
-      _focused = false;
-    }
-  }
 
   @override
   void initState() {
     _focusNode = FocusNode();
-    _focusNode.addListener(_onFocusChange);
+
     Hive.registerAdapter(RecipeAdapter());
     Hive.registerAdapter(IngredientAdapter());
     Hive.registerAdapter(NutrientsPerServingAdapter());
@@ -236,7 +222,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                 _focusNode.nearestScope!.unfocus();
                 ref.read(recipesViewModel).maybeWhen(
                     orElse: () => {},
-                    search: (_, __, ___) {
+                    search: (_, __, ___, ____) {
                       ref.read(recipesViewModel.notifier).findRecipes();
                     });
               },

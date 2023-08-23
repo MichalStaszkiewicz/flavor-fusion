@@ -141,41 +141,22 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              search: (suggestions, selectedIngredients, search) {
+              search: (suggestions, selectedIngredients, search,
+                  searchingInProgress) {
                 manageAnimations(suggestions.map((e) => e.name).toList(),
                     selectedIngredients);
-                return RecipesSearchBar(
-                  ingredientsOpacity: _ingredientsAnimation.value,
-                  search: search,
-                  selectedIngredients: selectedIngredients,
-                  suggestions: suggestions.map((e) => e.name).toList(),
-                  suggestionsOpacity: _suggestionsAnimation.value,
-                );
+                if (searchingInProgress) {
+                  return SearchingInProgress();
+                } else {
+                  return RecipesSearchBar(
+                    ingredientsOpacity: _ingredientsAnimation.value,
+                    search: search,
+                    selectedIngredients: selectedIngredients,
+                    suggestions: suggestions.map((e) => e.name).toList(),
+                    suggestionsOpacity: _suggestionsAnimation.value,
+                  );
+                }
               },
-              searchingSuggestions: (suggestions, selectedIngredients, search) {
-                manageAnimations(suggestions.map((e) => e.name).toList(),
-                    selectedIngredients);
-                return RecipesSearchBar(
-                  ingredientsOpacity: _ingredientsAnimation.value,
-                  search: search,
-                  selectedIngredients: selectedIngredients,
-                  suggestions: suggestions.map((e) => e.name).toList(),
-                  suggestionsOpacity: _suggestionsAnimation.value,
-                );
-              },
-              orElse: () => Container(),
-            ),
-            duration: const Duration(milliseconds: 300),
-            transitionBuilder: (child, animation) {
-              return FadeTransition(
-                opacity: animation,
-                child: child,
-              );
-            },
-          ),
-          AnimatedSwitcher(
-            layoutBuilder: (_, __) => recipesState.maybeWhen(
-              searchingRecipes: () => const SearchingInProgress(),
               searchDone: (recipes) => SearchDone(recipes: recipes),
               orElse: () => Container(),
             ),

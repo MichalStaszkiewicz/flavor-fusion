@@ -1,4 +1,5 @@
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_screen/states.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestions_list.dart';
 import 'package:flavor_fusion/utility/global.dart';
@@ -45,30 +46,9 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                   height: 10,
                 ),
                 ref.watch(recipesViewModel).maybeWhen(
-                      searchingSuggestions:
-                          (suggestions, selectedIngredients, search) =>
-                              Container(
-                        height: locator<Global>().deviceDimenstions.height,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            selectedIngredients.isNotEmpty
-                                ? SelectedIngredientsList(
-                                    opacity: widget.ingredientsOpacity,
-                                  )
-                                : Container(),
-                            Container(
-                                height:
-                                    locator<Global>().deviceDimenstions.height /
-                                        2,
-                                child:
-                                    Center(child: CircularProgressIndicator()))
-                          ],
-                        ),
-                      ),
-                      search: (suggestions, selectedIngredients, search) {
-                        print(
-                            "Suggestions list state: ${suggestions.length.toString()}");
+                      search: (suggestions, selectedIngredients, search,
+                          searchingInProgress) {
+                    
                         return Container(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

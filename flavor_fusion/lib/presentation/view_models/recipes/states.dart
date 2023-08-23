@@ -12,12 +12,9 @@ abstract class RecipesState with _$RecipesState {
   factory RecipesState.error() = RecipesError;
   factory RecipesState.recommendation(List<Recipe> recipes) =
       RecipesRecommendation;
-  factory RecipesState.searchingSuggestions(
-      List<Suggestion> suggestions,
-      List<String> selectedIngredients,
-      String search) = RecipeSearchingSuggestions;
-  factory RecipesState.searchingRecipes() = RecipesSearchingRecipes;
+
+  
   factory RecipesState.search(List<Suggestion> suggestions,
-      List<String> selectedIngredients, String search) = RecipesSearch;
+      List<String> selectedIngredients, String search,bool searchingInProgress,) = RecipesSearch;
   factory RecipesState.searchDone(List<Recipe> recipes) = RecipesSearchDone;
 }
