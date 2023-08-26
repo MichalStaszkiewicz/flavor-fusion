@@ -1,6 +1,7 @@
 import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/data/models/nutriens_per_serving.dart';
 import 'package:flavor_fusion/data/models/nutrional_info.dart';
+import 'package:flavor_fusion/utility/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 part 'recipe.freezed.dart';
@@ -29,8 +30,9 @@ class Recipe with _$Recipe {
     @HiveField(14) required List<String> instructions,
     @HiveField(15) required NutrionalInfo nutritionalInfo,
     @HiveField(16) required String mainImage,
+    @HiveField(17) required SkillLevel skillLevel,
+    @HiveField(18) required Diet? diet,
   }) = _Recipe;
 
-  factory Recipe.fromJson(Map<String, dynamic> json) =>
-      _$RecipeFromJson(json['node']);
+
 }

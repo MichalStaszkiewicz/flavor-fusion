@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart';
 import '../data/models/grocery.dart';
 import '../data/models/recipe.dart';
 import '../data/source/local/hive_data_provider.dart';
-import '../data/source/remote/remove_source.dart';
+import '../data/source/remote/remote_source.dart';
 import '../domain/services/favorite_recipe.dart';
 
 GetIt locator = GetIt.instance;
