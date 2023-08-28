@@ -19,37 +19,34 @@ var favoriteViewModel = StateNotifierProvider<FavoriteViewModel, FavoriteState>(
 class FavoriteViewModel extends StateNotifier<FavoriteState> {
   FavoriteViewModel(super.state);
 
-  final List<Recipe> _recipies = [];
+
   final List<Recipe> _originalRecipes = [];
 
   void refreshLocalData() async {
     state = FavoriteState.loading();
     await locator<SourceRepository>().getFavoriteRecipes().then((recipes) {
-      _recipies.clear();
-      _recipies.addAll(recipes);
-      state = FavoriteState.ready(_recipies);
+   
+      state = FavoriteState.ready(_originalRecipes);
       return recipes;
     });
   }
 
   void loadRecipies() async {
     state = FavoriteState.loading();
-    if (_recipies.isEmpty) {
+    if (_originalRecipes.isEmpty) {
       List<Recipe> favoriteRecipes =
           await locator<SourceRepository>().getFavoriteRecipes();
-      _recipies.addAll(favoriteRecipes);
-      if (_originalRecipes.isEmpty) {
-        _originalRecipes.addAll(favoriteRecipes);
-      }
-      state = FavoriteState.ready(List.from(_recipies));
+      _originalRecipes.addAll(favoriteRecipes);
+    
+      state = FavoriteState.ready(List.from(_originalRecipes));
     }
-    state = FavoriteState.ready(List.from(_recipies));
+    state = FavoriteState.ready(List.from(_originalRecipes));
   }
 
   void searchRecipies(String text) {
     if (state is FavoriteReady) {
       final state = this.state as FavoriteReady;
-      final List<Recipe> tempRecipies = List.from(_originalRecipes);
+      final List<Recipe> tempRecipies = state.recipies;
       if (text.isNotEmpty) {
         List<Recipe> filteredRecipies = [];
 
@@ -71,8 +68,7 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
   void apply(SortBy sortBy, double minTime, double minCal) {
     if (state is FavoriteReady) {
       Global global = locator<Global>();
-      List<Recipe> filteredRecipes = List.from(
-          _originalRecipes); // Make a copy to avoid modifying the original list
+      List<Recipe> filteredRecipes = List.from(_originalRecipes);
 
       if (sortBy == SortBy.caloriesAscending) {
         filteredRecipes.sort((a, b) => a.nutrientsPerServing.calories
