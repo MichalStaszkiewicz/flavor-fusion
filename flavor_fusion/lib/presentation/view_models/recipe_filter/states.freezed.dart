@@ -21,7 +21,9 @@ mixin _$RecipeFilterState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(SortBy sortBy) ready,
+    required TResult Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +31,9 @@ mixin _$RecipeFilterState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(SortBy sortBy)? ready,
+    TResult? Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +41,8 @@ mixin _$RecipeFilterState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +132,9 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(SortBy sortBy) ready,
+    required TResult Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)
+        ready,
   }) {
     return initial();
   }
@@ -138,7 +145,9 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(SortBy sortBy)? ready,
+    TResult? Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
   }) {
     return initial?.call();
   }
@@ -149,7 +158,8 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +251,9 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(SortBy sortBy) ready,
+    required TResult Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)
+        ready,
   }) {
     return loading();
   }
@@ -252,7 +264,9 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(SortBy sortBy)? ready,
+    TResult? Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
   }) {
     return loading?.call();
   }
@@ -263,7 +277,8 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -355,7 +370,9 @@ class _$RecipeFilterError implements RecipeFilterError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(SortBy sortBy) ready,
+    required TResult Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)
+        ready,
   }) {
     return error();
   }
@@ -366,7 +383,9 @@ class _$RecipeFilterError implements RecipeFilterError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(SortBy sortBy)? ready,
+    TResult? Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
   }) {
     return error?.call();
   }
@@ -377,7 +396,8 @@ class _$RecipeFilterError implements RecipeFilterError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -434,7 +454,7 @@ abstract class _$$RecipeFilterReadyCopyWith<$Res> {
           _$RecipeFilterReady value, $Res Function(_$RecipeFilterReady) then) =
       __$$RecipeFilterReadyCopyWithImpl<$Res>;
   @useResult
-  $Res call({SortBy sortBy});
+  $Res call({SortBy sortBy, double minimumTime, double minimumCalories});
 }
 
 /// @nodoc
@@ -449,12 +469,22 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sortBy = null,
+    Object? minimumTime = null,
+    Object? minimumCalories = null,
   }) {
     return _then(_$RecipeFilterReady(
       null == sortBy
           ? _value.sortBy
           : sortBy // ignore: cast_nullable_to_non_nullable
               as SortBy,
+      null == minimumTime
+          ? _value.minimumTime
+          : minimumTime // ignore: cast_nullable_to_non_nullable
+              as double,
+      null == minimumCalories
+          ? _value.minimumCalories
+          : minimumCalories // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -462,14 +492,18 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipeFilterReady implements RecipeFilterReady {
-  _$RecipeFilterReady(this.sortBy);
+  _$RecipeFilterReady(this.sortBy, this.minimumTime, this.minimumCalories);
 
   @override
   final SortBy sortBy;
+  @override
+  final double minimumTime;
+  @override
+  final double minimumCalories;
 
   @override
   String toString() {
-    return 'RecipeFilterState.ready(sortBy: $sortBy)';
+    return 'RecipeFilterState.ready(sortBy: $sortBy, minimumTime: $minimumTime, minimumCalories: $minimumCalories)';
   }
 
   @override
@@ -477,11 +511,16 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipeFilterReady &&
-            (identical(other.sortBy, sortBy) || other.sortBy == sortBy));
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy) &&
+            (identical(other.minimumTime, minimumTime) ||
+                other.minimumTime == minimumTime) &&
+            (identical(other.minimumCalories, minimumCalories) ||
+                other.minimumCalories == minimumCalories));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sortBy);
+  int get hashCode =>
+      Object.hash(runtimeType, sortBy, minimumTime, minimumCalories);
 
   @JsonKey(ignore: true)
   @override
@@ -495,9 +534,11 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(SortBy sortBy) ready,
+    required TResult Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)
+        ready,
   }) {
-    return ready(sortBy);
+    return ready(sortBy, minimumTime, minimumCalories);
   }
 
   @override
@@ -506,9 +547,11 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(SortBy sortBy)? ready,
+    TResult? Function(
+            SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
   }) {
-    return ready?.call(sortBy);
+    return ready?.call(sortBy, minimumTime, minimumCalories);
   }
 
   @override
@@ -517,11 +560,12 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy, double minimumTime, double minimumCalories)?
+        ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(sortBy);
+      return ready(sortBy, minimumTime, minimumCalories);
     }
     return orElse();
   }
@@ -565,9 +609,12 @@ class _$RecipeFilterReady implements RecipeFilterReady {
 }
 
 abstract class RecipeFilterReady implements RecipeFilterState {
-  factory RecipeFilterReady(final SortBy sortBy) = _$RecipeFilterReady;
+  factory RecipeFilterReady(final SortBy sortBy, final double minimumTime,
+      final double minimumCalories) = _$RecipeFilterReady;
 
   SortBy get sortBy;
+  double get minimumTime;
+  double get minimumCalories;
   @JsonKey(ignore: true)
   _$$RecipeFilterReadyCopyWith<_$RecipeFilterReady> get copyWith =>
       throw _privateConstructorUsedError;

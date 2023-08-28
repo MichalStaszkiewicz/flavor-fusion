@@ -18,7 +18,7 @@ class FilterCheckBox extends ConsumerWidget {
         initial: () => _buildInitialFilter(),
         loading: () => _buildLoadingFilter(),
         error: () => _buildErrorFilter(),
-        ready: (sortBy) => _buildReadyFilter(ref));
+        ready: (sortBy, minTime, minCal) => _buildReadyFilter(ref));
   }
 
   Container _buildReadyFilter(WidgetRef ref) {
@@ -28,7 +28,7 @@ class FilterCheckBox extends ConsumerWidget {
           Checkbox(
               value: ref
                   .read(recipeFilterViewModel.notifier)
-                  .selected(selectedMethod,label),
+                  .selected(selectedMethod, label),
               onChanged: (value) {
                 ref
                     .read(recipeFilterViewModel.notifier)

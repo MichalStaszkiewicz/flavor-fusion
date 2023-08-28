@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:flavor_fusion/utility/global.dart';
@@ -19,16 +20,7 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
   FavoriteViewModel(super.state);
 
   final List<Recipe> _recipies = [];
-/*
-  void loadRecipies() {
-    state = FavoriteState.loading();
-    _recipies.clear();
-    _recipies.addAll(
-        List.from(locator<FavoriteRecipeService>().getFavoriteRecipes()));
-
-    state = FavoriteState.ready(List.from(_recipies));
-  }
-*/
+  final List<Recipe> _originalRecipes = [];
 
   void refreshLocalData() async {
     state = FavoriteState.loading();
@@ -46,6 +38,9 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
       List<Recipe> favoriteRecipes =
           await locator<SourceRepository>().getFavoriteRecipes();
       _recipies.addAll(favoriteRecipes);
+      if (_originalRecipes.isEmpty) {
+        _originalRecipes.addAll(favoriteRecipes);
+      }
       state = FavoriteState.ready(List.from(_recipies));
     }
     state = FavoriteState.ready(List.from(_recipies));
@@ -54,7 +49,7 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
   void searchRecipies(String text) {
     if (state is FavoriteReady) {
       final state = this.state as FavoriteReady;
-      final List<Recipe> tempRecipies = List.from(_recipies);
+      final List<Recipe> tempRecipies = List.from(_originalRecipes);
       if (text.isNotEmpty) {
         List<Recipe> filteredRecipies = [];
 
@@ -66,37 +61,44 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
 
         this.state = FavoriteState.ready(filteredRecipies);
       } else {
-        this.state = FavoriteState.ready(_recipies);
+        this.state = FavoriteState.ready(_originalRecipes);
       }
     } else {
       print("state is not ready");
     }
   }
 
-  void apply(SortBy sortBy) {
+  void apply(SortBy sortBy, double minTime, double minCal) {
     if (state is FavoriteReady) {
       Global global = locator<Global>();
-      List<Recipe> filteredRecipies = _recipies;
+      List<Recipe> filteredRecipes = List.from(
+          _originalRecipes); // Make a copy to avoid modifying the original list
+
       if (sortBy == SortBy.caloriesAscending) {
-        print('selected asc calories ');
-        filteredRecipies.sort((a, b) => a.nutrientsPerServing.calories
+        filteredRecipes.sort((a, b) => a.nutrientsPerServing.calories
             .round()
             .compareTo(b.nutrientsPerServing.calories.round()));
       } else if (sortBy == SortBy.caloriesDescending) {
-        filteredRecipies.sort((a, b) =>b.nutrientsPerServing.calories
+        filteredRecipes.sort((a, b) => b.nutrientsPerServing.calories
             .round()
             .compareTo(a.nutrientsPerServing.calories.round()));
       } else if (sortBy == SortBy.timeAscending) {
-        filteredRecipies.sort((a, b) => global
+        filteredRecipes.sort((a, b) => global
             .minutesFromTotalTime(a.totalTime!)
             .compareTo(global.minutesFromTotalTime(b.totalTime!)));
       } else if (sortBy == SortBy.timeDescending) {
-        filteredRecipies.sort((a, b) => global
+        filteredRecipes.sort((a, b) => global
             .minutesFromTotalTime(b.totalTime!)
             .compareTo(global.minutesFromTotalTime(a.totalTime!)));
       }
 
-      state = FavoriteState.ready(filteredRecipies);
+      List<Recipe> resultRecipes = filteredRecipes
+          .where((element) =>
+              global.minutesFromTotalTime(element.totalTime!) >= minTime &&
+              element.nutrientsPerServing.calories >= minCal)
+          .toList();
+
+      state = FavoriteState.ready(resultRecipes);
     } else {
       print("state is not ready");
     }

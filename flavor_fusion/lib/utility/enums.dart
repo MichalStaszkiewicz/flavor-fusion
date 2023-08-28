@@ -66,6 +66,8 @@ enum DishType {
   sweets,
 }
 
+enum FilterSliderType { time, calories }
+
 enum SuggestionType { recipe, ingredient }
 
 enum SortBy {

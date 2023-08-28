@@ -62,10 +62,14 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
               RecipeFilterSlider(
                 label: 'Prepare Time (Minimum)',
                 max: 100,
+                divisionDivider: 10,
+                sliderType: FilterSliderType.time,
               ),
               RecipeFilterSlider(
                 label: 'Calories (Minimum)',
+                divisionDivider: 100,
                 max: 6000,
+                sliderType: FilterSliderType.calories,
               ),
               FilterCheckBoxList(
                 items: [
@@ -86,9 +90,17 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                     initial: () => (),
                     loading: () => (),
                     error: () => (),
-                    ready: (sortBy) {
-                      ref.read(favoriteViewModel.notifier).apply(sortBy);
+                    ready: (sortBy, minTime, minCal) {
+                      print(sortBy.name.toString() +
+                          " " +
+                          minTime.toString() +
+                          ' ' +
+                          minCal.toString());
+                      ref
+                          .read(favoriteViewModel.notifier)
+                          .apply(sortBy, minTime, minCal);
                       ref.read(recipeFilterViewModel.notifier).confirmChanges();
+
                       context.router.pop();
                     });
               })
@@ -136,9 +148,9 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                           initial: () => (),
                           loading: () => (),
                           error: () => (),
-                          ready: (sortBy) => ref
+                          ready: (sortBy, minTime, minCal) => ref
                               .read(favoriteViewModel.notifier)
-                              .apply(sortBy));
+                              .apply(sortBy, minTime, minCal));
                       ref.read(recipeFilterViewModel.notifier).confirmChanges();
                     });
                   }
