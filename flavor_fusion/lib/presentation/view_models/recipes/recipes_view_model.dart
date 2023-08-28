@@ -27,7 +27,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   List<RequestStatus<int>> _suggestionsRequests = [];
 
   final List<String> _ingredientsList = [];
-  List<Recipe> _recipes = [];
+  Map<String, List<Recipe>> _recommendedRecipes = {};
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
     _ingredientsCashed.removeWhere((element) => element == ingredient);
@@ -63,15 +63,16 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
   void initRecommendedRecipes() async {
     state = RecipesState.loading();
-    _recipes =
+    _recommendedRecipes =
         await locator<SourceRepository>().getRecommendedRecipes().then((value) {
+  
       state = RecipesState.recommendation(value);
       return value;
     });
   }
 
   void loadRecipeRecommendation() {
-    state = RecipesState.recommendation(_recipes);
+    state = RecipesState.recommendation(_recommendedRecipes);
   }
 
   void findRecipes() async {
@@ -91,17 +92,12 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void searchRecipes(String search) async {
+    print('search state is : ' + search);
     if (search.isEmpty) {
-      bool allCompleted = true;
-      for (RequestStatus status in _suggestionsRequests) {
-        if (status.completed == false) {
-          allCompleted = false;
-          break;
-        }
-      }
-      if (allCompleted) {
-        _suggestionsRequests.clear();
-      }
+      _suggestionsRequests.clear();
+
+      print("EMITING EMPTY LIST");
+      _suggestionsCashed.clear();
       state = RecipesState.search([], _ingredientsCashed, '', false);
       return;
     }
@@ -153,12 +149,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
                 recipe: recipe));
           }
         }
-        _suggestionsCashed.clear();
-        _suggestionsCashed.addAll(newSuggestions);
-        _suggestionsRequests.elementAt(index).completed = true;
-        state = RecipesState.search(
-            newSuggestions, _ingredientsCashed, search, false);
-      } else {
+
         _suggestionsCashed.clear();
         _suggestionsCashed.addAll(newSuggestions);
         _suggestionsRequests.elementAt(index).completed = true;
