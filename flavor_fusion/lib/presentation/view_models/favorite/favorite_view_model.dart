@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:flavor_fusion/utility/global.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import '../../../data/models/recipe.dart';
 import '../../../data/repository/source_repository.dart';
@@ -71,21 +73,29 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
     }
   }
 
-  void apply(List<String> filters, SortBy sortBy) {
+  void apply(SortBy sortBy) {
     if (state is FavoriteReady) {
-      List<Recipe> filteredRecipies = [];
-
-      if (sortBy == SortBy.alphabetical) {
-        filteredRecipies.sort(((a, b) => a.name.compareTo(b.name)));
-      } else if (sortBy == SortBy.caloriesAsc) {
-        filteredRecipies.sort(((a, b) => a.nutrientsPerServing.calories
-            .compareTo(b.nutrientsPerServing.calories)));
-      } else if (sortBy == SortBy.caloriesDesc) {
-        filteredRecipies.sort(((a, b) => b.nutrientsPerServing.calories
-            .compareTo(a.nutrientsPerServing.calories)));
-      } else if (sortBy == SortBy.time) {
-        filteredRecipies.sort(((a, b) => a.totalTime!.compareTo(b.totalTime!)));
+      Global global = locator<Global>();
+      List<Recipe> filteredRecipies = _recipies;
+      if (sortBy == SortBy.caloriesAscending) {
+        
+        filteredRecipies.sort((a, b) => b.nutrientsPerServing.calories
+            .round()
+            .compareTo(a.nutrientsPerServing.calories.round()));
+      } else if (sortBy == SortBy.caloriesDescending) {
+        filteredRecipies.sort((a, b) => a.nutrientsPerServing.calories
+            .round()
+            .compareTo(b.nutrientsPerServing.calories.round()));
+      } else if (sortBy == SortBy.timeAscending) {
+        filteredRecipies.sort((a, b) => global
+            .minutesFromTotalTime(a.totalTime!)
+            .compareTo(global.minutesFromTotalTime(b.totalTime!)));
+      } else if (sortBy == SortBy.timeDescending) {
+        filteredRecipies.sort((a, b) => global
+            .minutesFromTotalTime(b.totalTime!)
+            .compareTo(global.minutesFromTotalTime(a.totalTime!)));
       }
+
       state = FavoriteState.ready(filteredRecipies);
     } else {
       print("state is not ready");
