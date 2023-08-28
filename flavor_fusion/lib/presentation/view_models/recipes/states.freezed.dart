@@ -21,7 +21,7 @@ mixin _$RecipesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -36,7 +36,7 @@ mixin _$RecipesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -51,7 +51,7 @@ mixin _$RecipesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -154,7 +154,7 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -172,7 +172,7 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -190,7 +190,7 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -295,7 +295,7 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -313,7 +313,7 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -331,7 +331,7 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -436,7 +436,7 @@ class _$RecipesError implements RecipesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -454,7 +454,7 @@ class _$RecipesError implements RecipesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -472,7 +472,7 @@ class _$RecipesError implements RecipesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -542,7 +542,7 @@ abstract class _$$RecipesRecommendationCopyWith<$Res> {
           $Res Function(_$RecipesRecommendation) then) =
       __$$RecipesRecommendationCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Recipe> recipes});
+  $Res call({Map<String, List<Recipe>> recipes});
 }
 
 /// @nodoc
@@ -562,7 +562,7 @@ class __$$RecipesRecommendationCopyWithImpl<$Res>
       null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
-              as List<Recipe>,
+              as Map<String, List<Recipe>>,
     ));
   }
 }
@@ -570,14 +570,15 @@ class __$$RecipesRecommendationCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipesRecommendation implements RecipesRecommendation {
-  _$RecipesRecommendation(final List<Recipe> recipes) : _recipes = recipes;
+  _$RecipesRecommendation(final Map<String, List<Recipe>> recipes)
+      : _recipes = recipes;
 
-  final List<Recipe> _recipes;
+  final Map<String, List<Recipe>> _recipes;
   @override
-  List<Recipe> get recipes {
-    if (_recipes is EqualUnmodifiableListView) return _recipes;
+  Map<String, List<Recipe>> get recipes {
+    if (_recipes is EqualUnmodifiableMapView) return _recipes;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recipes);
+    return EqualUnmodifiableMapView(_recipes);
   }
 
   @override
@@ -610,7 +611,7 @@ class _$RecipesRecommendation implements RecipesRecommendation {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -628,7 +629,7 @@ class _$RecipesRecommendation implements RecipesRecommendation {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -646,7 +647,7 @@ class _$RecipesRecommendation implements RecipesRecommendation {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -707,10 +708,10 @@ class _$RecipesRecommendation implements RecipesRecommendation {
 }
 
 abstract class RecipesRecommendation implements RecipesState {
-  factory RecipesRecommendation(final List<Recipe> recipes) =
+  factory RecipesRecommendation(final Map<String, List<Recipe>> recipes) =
       _$RecipesRecommendation;
 
-  List<Recipe> get recipes;
+  Map<String, List<Recipe>> get recipes;
   @JsonKey(ignore: true)
   _$$RecipesRecommendationCopyWith<_$RecipesRecommendation> get copyWith =>
       throw _privateConstructorUsedError;
@@ -838,7 +839,7 @@ class _$RecipesSearch implements RecipesSearch {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -857,7 +858,7 @@ class _$RecipesSearch implements RecipesSearch {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -876,7 +877,7 @@ class _$RecipesSearch implements RecipesSearch {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -1026,7 +1027,7 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Recipe> recipes) recommendation,
+    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -1044,7 +1045,7 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<Recipe> recipes)? recommendation,
+    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult? Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
@@ -1062,7 +1063,7 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<Recipe> recipes)? recommendation,
+    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
     TResult Function(
             List<Suggestion> suggestions,
             List<String> selectedIngredients,

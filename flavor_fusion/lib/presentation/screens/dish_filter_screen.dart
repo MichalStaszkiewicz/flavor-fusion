@@ -5,6 +5,7 @@ import 'package:flavor_fusion/presentation/view_models/search_screen/search_scre
 import 'package:flavor_fusion/presentation/widgets/apply_button.dart';
 import 'package:flavor_fusion/presentation/widgets/filter_check_box.dart';
 import 'package:flavor_fusion/presentation/widgets/filter_check_box_list.dart';
+import 'package:flavor_fusion/presentation/widgets/recipe_filter_slider.dart';
 import 'package:flavor_fusion/utility/dialog_manager.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -25,47 +26,16 @@ class DishFilterScreen extends ConsumerStatefulWidget {
 }
 
 class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
-  //temporary before implementing backend
-
-  List<Widget> generateDishTypes() {
+  List<Widget> generateSortMethods(String itemName, List<SortBy> methods) {
     List<Widget> result = [];
-    for (DishType dishType in locator<Global>().dishTypes) {
-      result.add(FilterCheckBox(
-        label: locator<Global>().capitalize(dishType.name),
-      ));
-    }
-    return result;
-  }
-
-  List<Widget> generateMealTypes() {
-    List<Widget> result = [];
-    for (MealType dishType in locator<Global>().mealTypes) {
-      result.add(FilterCheckBox(
-        label: locator<Global>().capitalize(dishType.name),
-      ));
-    }
-    return result;
-  }
-
-  List<Widget> generateDiets() {
-    List<Widget> result = [];
-    for (Diet dishType in locator<Global>().diets) {
-      result.add(FilterCheckBox(
-        label: locator<Global>().capitalize(dishType.name),
-      ));
-    }
-    return result;
-  }
-
-  List<Widget> generateSortMethods() {
-    List<Widget> result = [];
-    for (SortBy sortMethod in locator<Global>().sortBy) {
-      if (sortMethod != SortBy.none) {
-        result.add(FilterCheckBox(
-          label: locator<Global>().capitalize(sortMethod.name),
-        ));
-      }
-    }
+    result.add(FilterCheckBox(
+      label: 'Ascending',
+      selectedMethod: methods[0],
+    ));
+    result.add(FilterCheckBox(
+      label: 'Descending',
+      selectedMethod: methods[1],
+    ));
     return result;
   }
 
@@ -89,32 +59,38 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
-              FilterCheckBoxList(
-                items: [...generateDiets()],
-                label: 'Diet',
+              RecipeFilterSlider(
+                label: 'Prepare Time (Minimum)',
+                max: 100,
+              ),
+              RecipeFilterSlider(
+                label: 'Calories (Minimum)',
+                max: 6000,
               ),
               FilterCheckBoxList(
-                items: [...generateMealTypes()],
-                label: 'Meal Type',
+                items: [
+                  ...generateSortMethods("calories",
+                      [SortBy.caloriesAscending, SortBy.caloriesDescending])
+                ],
+                label: 'Calories',
               ),
               FilterCheckBoxList(
-                items: [...generateDishTypes()],
-                label: 'Dish Type',
-              ),
-              FilterCheckBoxList(
-                items: [...generateSortMethods()],
-                label: 'Sort By',
+                items: [
+                  ...generateSortMethods(
+                      "time", [SortBy.timeAscending, SortBy.timeDescending])
+                ],
+                label: 'Time',
               ),
               ApplyButton(onPressed: () {
                 ref.read(recipeFilterViewModel).when(
                     initial: () => (),
                     loading: () => (),
                     error: () => (),
-                    ready: (filters, sortBy) => ref
-                        .read(favoriteViewModel.notifier)
-                        .apply(filters, sortBy));
-                ref.read(recipeFilterViewModel.notifier).confirmChanges();
-                context.router.pop();
+                    ready: (sortBy) {
+                      ref.read(favoriteViewModel.notifier).apply(sortBy);
+                      ref.read(recipeFilterViewModel.notifier).confirmChanges();
+                      context.router.pop();
+                    });
               })
             ],
           ),
@@ -137,7 +113,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                 onPressed: () {
                   if (ref
                           .read(recipeFilterViewModel.notifier)
-                          .filterListChanged() &&
+                          .sortMethodChanged() &&
                       ref
                           .read(recipeFilterViewModel.notifier)
                           .sortMethodChanged()) {
@@ -160,9 +136,9 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                           initial: () => (),
                           loading: () => (),
                           error: () => (),
-                          ready: (filters, sortBy) => ref
+                          ready: (sortBy) => ref
                               .read(favoriteViewModel.notifier)
-                              .apply(filters, sortBy));
+                              .apply(sortBy));
                       ref.read(recipeFilterViewModel.notifier).confirmChanges();
                     });
                   }

@@ -1,102 +1,18 @@
+import 'package:flavor_fusion/utility/enums.dart';
+
 class RecipeQueries {
-  static const String snackRecipeQuery = """
+  static String createRecommendedRecipesQuery(
+    MealType mealType,
+  ) {
+    String query = """
 {
-  recipeSearch(hasImage: true, hasInstructions: true, mealTime: SNACK) {
+  recipeSearch(hasImage: true, hasInstructions: true,mealTime:${mealType.name.toString().toUpperCase()}) {
     edges {
       node {
         mainImage
         author
         id
-        courses
-        cuisines
-        cleanName
-        rating
-        serving
-          nutritionalInfo{
-          protein,
-          carbs,
-          fiber,
-          fat
-          carbs
-          calcium
-          sugar
-        }
-        nutrientsPerServing {
-          calories
-        }
-        recipeType
-        ingredients {
-          name
-        }
-        mealBalanceIndex {
-          score
-          errors
-          message
-        }
-        ingredientLines
-        ingredientsCount
-        instructions
-        name
-        ingredientLines
-      }
-    }
-  }
-}
-""";
-
-  static const String breakFastRecipeQuery = """
-{
-  recipeSearch(hasImage: true, hasInstructions: true, mealTime: BREAKFAST) {
-    edges {
-      node { mainImage
-        author
-        id
-        courses
-        cuisines
-        cleanName
         totalTime
-        name
-        rating
-        serving
-          nutritionalInfo{
-          protein,
-          carbs,
-          fiber,
-          fat
-          carbs
-          calcium
-          sugar
-        }
-        nutrientsPerServing {
-          calories
-        }
-        recipeType
-        ingredients {
-          name
-        }
-        mealBalanceIndex {
-          score
-          errors
-          message
-        }
-        ingredientLines
-        ingredientsCount
-        instructions
-        name
-        ingredientLines
-      }
-    }
-  }
-}
-
-""";
-  static const String dinnerRecipeQuery = """
-{
-  recipeSearch(hasImage: true, hasInstructions: true, mealTime: DINNER) {
-    edges { 
-      node {mainImage
-        author
-        id
         courses
         cuisines
         cleanName
@@ -133,47 +49,6 @@ class RecipeQueries {
   }
 }
 """;
-  static const String dessertRecipeQuery = """
-{
-  recipeSearch(hasImage: true, hasInstructions: true, mealTime: TREAT_DESSERT) {
-    edges {
-      node {
-        author
-        id
-        courses
-        cuisines
-        cleanName
-        rating
-        serving
-          nutritionalInfo{
-          protein,
-          carbs,
-          fiber,
-          fat
-          carbs
-          calcium
-          sugar
-        }
-        nutrientsPerServing {
-          calories
-        }
-        recipeType
-        ingredients {
-          name
-        }
-        mealBalanceIndex {
-          score
-          errors
-          message
-        }
-        ingredientLines
-        ingredientsCount
-        instructions
-        name
-        ingredientLines
-      }
-    }
+    return query;
   }
-}
-""";
 }

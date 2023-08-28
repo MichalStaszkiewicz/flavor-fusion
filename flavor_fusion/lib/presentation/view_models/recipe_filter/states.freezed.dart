@@ -21,7 +21,7 @@ mixin _$RecipeFilterState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<String> activeFilters, SortBy sortBy) ready,
+    required TResult Function(SortBy sortBy) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$RecipeFilterState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult? Function(SortBy sortBy)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$RecipeFilterState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<String> activeFilters, SortBy sortBy) ready,
+    required TResult Function(SortBy sortBy) ready,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult? Function(SortBy sortBy)? ready,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<String> activeFilters, SortBy sortBy) ready,
+    required TResult Function(SortBy sortBy) ready,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult? Function(SortBy sortBy)? ready,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy)? ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -355,7 +355,7 @@ class _$RecipeFilterError implements RecipeFilterError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<String> activeFilters, SortBy sortBy) ready,
+    required TResult Function(SortBy sortBy) ready,
   }) {
     return error();
   }
@@ -366,7 +366,7 @@ class _$RecipeFilterError implements RecipeFilterError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult? Function(SortBy sortBy)? ready,
   }) {
     return error?.call();
   }
@@ -377,7 +377,7 @@ class _$RecipeFilterError implements RecipeFilterError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy)? ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -434,7 +434,7 @@ abstract class _$$RecipeFilterReadyCopyWith<$Res> {
           _$RecipeFilterReady value, $Res Function(_$RecipeFilterReady) then) =
       __$$RecipeFilterReadyCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<String> activeFilters, SortBy sortBy});
+  $Res call({SortBy sortBy});
 }
 
 /// @nodoc
@@ -448,14 +448,9 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? activeFilters = null,
     Object? sortBy = null,
   }) {
     return _then(_$RecipeFilterReady(
-      null == activeFilters
-          ? _value._activeFilters
-          : activeFilters // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       null == sortBy
           ? _value.sortBy
           : sortBy // ignore: cast_nullable_to_non_nullable
@@ -467,23 +462,14 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipeFilterReady implements RecipeFilterReady {
-  _$RecipeFilterReady(final List<String> activeFilters, this.sortBy)
-      : _activeFilters = activeFilters;
-
-  final List<String> _activeFilters;
-  @override
-  List<String> get activeFilters {
-    if (_activeFilters is EqualUnmodifiableListView) return _activeFilters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_activeFilters);
-  }
+  _$RecipeFilterReady(this.sortBy);
 
   @override
   final SortBy sortBy;
 
   @override
   String toString() {
-    return 'RecipeFilterState.ready(activeFilters: $activeFilters, sortBy: $sortBy)';
+    return 'RecipeFilterState.ready(sortBy: $sortBy)';
   }
 
   @override
@@ -491,14 +477,11 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipeFilterReady &&
-            const DeepCollectionEquality()
-                .equals(other._activeFilters, _activeFilters) &&
             (identical(other.sortBy, sortBy) || other.sortBy == sortBy));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_activeFilters), sortBy);
+  int get hashCode => Object.hash(runtimeType, sortBy);
 
   @JsonKey(ignore: true)
   @override
@@ -512,9 +495,9 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<String> activeFilters, SortBy sortBy) ready,
+    required TResult Function(SortBy sortBy) ready,
   }) {
-    return ready(activeFilters, sortBy);
+    return ready(sortBy);
   }
 
   @override
@@ -523,9 +506,9 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult? Function(SortBy sortBy)? ready,
   }) {
-    return ready?.call(activeFilters, sortBy);
+    return ready?.call(sortBy);
   }
 
   @override
@@ -534,11 +517,11 @@ class _$RecipeFilterReady implements RecipeFilterReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(List<String> activeFilters, SortBy sortBy)? ready,
+    TResult Function(SortBy sortBy)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(activeFilters, sortBy);
+      return ready(sortBy);
     }
     return orElse();
   }
@@ -582,11 +565,8 @@ class _$RecipeFilterReady implements RecipeFilterReady {
 }
 
 abstract class RecipeFilterReady implements RecipeFilterState {
-  factory RecipeFilterReady(
-          final List<String> activeFilters, final SortBy sortBy) =
-      _$RecipeFilterReady;
+  factory RecipeFilterReady(final SortBy sortBy) = _$RecipeFilterReady;
 
-  List<String> get activeFilters;
   SortBy get sortBy;
   @JsonKey(ignore: true)
   _$$RecipeFilterReadyCopyWith<_$RecipeFilterReady> get copyWith =>

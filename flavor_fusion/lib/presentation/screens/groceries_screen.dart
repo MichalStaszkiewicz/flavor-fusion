@@ -8,6 +8,7 @@ import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../data/models/grocery.dart';
 import '../../data/models/recipe.dart';
@@ -47,7 +48,13 @@ class SearchScreenState extends ConsumerState<GroceriesScreen> {
 
   Container _buildGroceriesInitial() => Container();
 
-  Container _buildGroceriesLoading() => Container();
+  Container _buildGroceriesLoading() => Container(
+        child: Center(
+          child: Lottie.asset(
+            height:250,
+            'assets/loading.json'),
+        ),
+      );
 
   Container _buildGroceriesError() => Container();
 }

@@ -3,6 +3,7 @@ import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_mo
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
@@ -41,7 +42,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(favoriteViewModel);
-    print(state);
+
     return state.when(
         initial: () => _buildInitial(),
         loading: () => _buildLoading(),
@@ -50,15 +51,48 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
   }
 
   Container _buildReady(List<Recipe> recipes) {
-    return Container(
-      height: locator<Global>().deviceDimenstions.height / 1.2,
-      child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: recipes.length,
-          itemBuilder: (context, index) => DishItemWidget(
-                recipe: recipes[index],
-              )),
-    );
+    return recipes.length > 0
+        ? Container(
+            height: locator<Global>().deviceDimenstions.height / 1.2,
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: recipes.length,
+                itemBuilder: (context, index) => DishItemWidget(
+                      recipe: recipes[index],
+                    )),
+          )
+        : Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Center(
+              child: Container(
+                height: 200,
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      child: Text(
+                        textAlign: TextAlign.left,
+                        'Favorite Recipes',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.black),
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        'If you will like any recipe it will appear fight here !',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
   }
 
   Center _buildError() {
@@ -67,9 +101,11 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
     );
   }
 
-  Center _buildLoading() {
-    return const Center(
-      child: CircularProgressIndicator(),
+  Container _buildLoading() {
+    return Container(
+      child: Center(
+        child: Lottie.asset(height: 250, 'assets/loading.json'),
+      ),
     );
   }
 

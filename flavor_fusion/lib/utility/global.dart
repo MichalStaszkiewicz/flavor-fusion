@@ -61,13 +61,7 @@ class Global {
     "Dash",
     "Package",
   ];
-  List<SortBy> sortBy = [
-    SortBy.alphabetical,
-    SortBy.caloriesAsc,
-    SortBy.caloriesDesc,
-    SortBy.time,
-    SortBy.none
-  ];
+
   List<DishType> dishTypes = [
     DishType.bread,
     DishType.cereals,
@@ -90,14 +84,7 @@ class Global {
     MealType.snack,
     MealType.teatime,
   ];
-  List<Diet> diets = [
-    Diet.balanced,
-    Diet.highFiber,
-    Diet.hightProtein,
-    Diet.lowCarb,
-    Diet.lowFat,
-    Diet.lowSodium
-  ];
+
   Map<String, String> ingredientLineToMeasurement(String ingredientLine) {
     String count = '';
     String measurement = '';
@@ -168,7 +155,7 @@ class Global {
                 fontSize: 15,
                 color: const Color.fromRGBO(53, 57, 53, 1))),
         TextSpan(
-            text: match,
+            text: capitalize(match),
             style: Theme.of(context).textTheme.labelLarge!.copyWith(
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.2,
@@ -184,89 +171,16 @@ class Global {
     }
   }
 
-  SortBy stringToSortBy(String text) {
-    return sortBy.firstWhere(
-        (element) => element.name.toLowerCase() == text.toLowerCase());
-  }
+  int minutesFromTotalTime(String totalTime) {
+    String minutesInString = '';
 
-  List<String> ingredientList = [
-    "Onion",
-    "Garlic",
-    "Carrot",
-    "Celery",
-    "Parsley",
-    "Bell Pepper",
-    "Tomato",
-    "Potato",
-    "Cabbage",
-    "Lettuce",
-    "Broccoli",
-    "Cauliflower",
-    "Cucumber",
-    "Radish",
-    "Olive Oil",
-    "Butter",
-    "Flour",
-    "Sugar",
-    "Salt",
-    "Pepper",
-    "Milk",
-    "Egg",
-    "Cheese",
-    "Rice",
-    "Pasta",
-    "Bread",
-    "Chicken",
-    "Beef",
-    "Pork",
-    "Fish",
-    "Sea Salt",
-    "Powdered Sugar",
-    "Baking Powder",
-    "Cinnamon",
-    "Cocoa",
-    "Marjoram",
-    "Thyme",
-    "Caraway",
-    "Turmeric",
-    "Ginger",
-    "Mint",
-    "Dill",
-    "Flax Seeds",
-    "Nuts",
-    "Almonds",
-    "Raisins",
-    "Honey",
-    "Balsamic Vinegar",
-    "Soy Sauce",
-    "Oregano",
-    "Basil",
-    "Cloves",
-    "Mayonnaise",
-    "Ketchup",
-    "Mustard",
-    "Horseradish",
-    "Chives",
-    "Green Onion",
-    "Mushrooms",
-    "Shrimp",
-    "Olives",
-    "Capers",
-    "Herbes de Provence",
-    "Sage",
-    "Sauerkraut",
-    "Yogurt",
-    "Kefir",
-    "Sour Cream",
-    "Feta Cheese",
-    "Corn",
-    "Pineapple",
-    "Avocado",
-    "Nectarine",
-    "Apple",
-    "Pear",
-    "Strawberries",
-    "Raspberries",
-    "Black Currant",
-  ];
+    for (int i = 0; i < totalTime.length; i++) {
+      if (totalTime[i] == ' ') {
+        break;
+      }
+      minutesInString += totalTime[i];
+    }
+
+    return int.parse(minutesInString);
+  }
 }

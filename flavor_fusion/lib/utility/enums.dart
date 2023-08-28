@@ -6,6 +6,50 @@ enum MealType {
   teatime,
 }
 
+enum SkillLevel { easy, medium, hard, expert }
+
+enum Cuisines {
+  american,
+  asian,
+  barbecue,
+  british,
+  brazilian,
+  bulgogoi,
+  chinese,
+  cajunAndCreole,
+  cuban,
+  caribbean,
+  english,
+  filipino,
+  greek,
+  german,
+  hawaiian,
+  hungarian,
+  irish,
+  indian,
+  southEastAsian,
+  jamaican,
+  korean,
+  kosher,
+  kimchi,
+  mexican,
+  mediterranean,
+  middleEastern,
+  moroccan,
+  nordic,
+  portuguese,
+  pescatarian,
+  southwestern,
+  southernAndSoulFood,
+  southAmerican,
+  spanish,
+  swedish,
+  thai,
+  turkish,
+  vietnamese,
+  vegetaria
+}
+
 enum DishType {
   cookies,
   bread,
@@ -24,6 +68,12 @@ enum DishType {
 
 enum SuggestionType { recipe, ingredient }
 
-enum SortBy { caloriesDesc, caloriesAsc, alphabetical, time, none }
+enum SortBy {
+  timeAscending,
+  timeDescending,
+  caloriesAscending,
+  caloriesDescending,
+  none
+}
 
-enum Diet { balanced, highFiber, hightProtein, lowCarb, lowFat, lowSodium }
+enum Diet { vegetarian, vegan, plantBased, diaryFree, glutenFree }

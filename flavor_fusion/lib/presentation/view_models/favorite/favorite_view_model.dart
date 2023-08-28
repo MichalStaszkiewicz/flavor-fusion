@@ -78,14 +78,14 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
       Global global = locator<Global>();
       List<Recipe> filteredRecipies = _recipies;
       if (sortBy == SortBy.caloriesAscending) {
-        
-        filteredRecipies.sort((a, b) => b.nutrientsPerServing.calories
-            .round()
-            .compareTo(a.nutrientsPerServing.calories.round()));
-      } else if (sortBy == SortBy.caloriesDescending) {
+        print('selected asc calories ');
         filteredRecipies.sort((a, b) => a.nutrientsPerServing.calories
             .round()
             .compareTo(b.nutrientsPerServing.calories.round()));
+      } else if (sortBy == SortBy.caloriesDescending) {
+        filteredRecipies.sort((a, b) =>b.nutrientsPerServing.calories
+            .round()
+            .compareTo(a.nutrientsPerServing.calories.round()));
       } else if (sortBy == SortBy.timeAscending) {
         filteredRecipies.sort((a, b) => global
             .minutesFromTotalTime(a.totalTime!)

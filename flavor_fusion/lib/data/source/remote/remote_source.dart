@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flavor_fusion/data/models/dto/recipe_dto.dart';
 import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/data/models/ingredient_search.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
@@ -15,168 +14,15 @@ import '../../../utility/service_locator.dart';
 import '../interfaces/remote_source.dart';
 
 class RemoteSource implements IRemoteSource {
-  Future<Either<List<RecipeDto>, Exception>> getEasyBreakfast() async {
+  Future<Either<List<Recipe>, Exception>> getMeal(MealType mealType) async {
     try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.easy, MealType.breakfast));
-
-      List<RecipeDto> recipes =
+      var response = await locator<GraphQLService>()
+          .executeQuery(RecipeQueries.createRecommendedRecipesQuery(mealType));
+   
+      List<Recipe> recipes =
           RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getMediumBreakfast() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.medium, MealType.breakfast));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getHardBreakfast() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.hard, MealType.breakfast));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getExpertBreakfast() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.expert, MealType.breakfast));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getEasyDinner() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.easy, MealType.dinner));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getMediumDinner() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.medium, MealType.dinner));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getHardDinner() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.hard, MealType.dinner));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getExpertDinner() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.expert, MealType.dinner));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getEasyLunch() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.easy, MealType.lunch));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getmediumLunch() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.medium, MealType.lunch));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getHardLunch() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.hard, MealType.lunch));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
-    } on Exception catch (e) {
-      return Right(e);
-    }
-  }
-
-  Future<Either<List<RecipeDto>, Exception>> getExpertLunch() async {
-    try {
-      var response = await locator<GraphQLService>().executeQuery(
-          RecipeQueries.createRecommendedRecipesQuery(
-              SkillLevel.expert, MealType.lunch));
-
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
+    
+      
       return Left(recipes);
     } on Exception catch (e) {
       return Right(e);
@@ -184,15 +30,40 @@ class RemoteSource implements IRemoteSource {
   }
 
   @override
-  Future<Either<List<RecipeDto>, Exception>> getRecommendedRecipes() async {
+  Future<Either<Map<String, List<Recipe>>, Exception>>
+      getRecommendedRecipes() async {
     try {
-      List<RecipeDto> breakfastEasy = await getEasyBreakfast();
+      Either<List<Recipe>, Exception> breakfast =
+          await getMeal(MealType.breakfast);
+      Either<List<Recipe>, Exception> lunch = await getMeal(MealType.lunch);
+      Either<List<Recipe>, Exception> dinner = await getMeal(MealType.dinner);
 
-      List<RecipeDto> recipes =
-          RecipeListResponse.fromJson(response['recipeSearch']).edges;
-      return Left(recipes);
+      List<Either<List<Recipe>, Exception>> eitherList = [
+        breakfast,
+        lunch,
+        dinner,
+      ];
+
+      List<Exception> errors = eitherList
+          .where((either) => either.isRight())
+          .map((either) => either.fold((_) => null, (error) => error))
+          .whereType<Exception>()
+          .toList();
+
+      if (errors.isNotEmpty) {
+        return Right(errors.first);
+      }
+
+      Map<String, List<Recipe>> result = {
+        "breakfast": breakfast.fold((recipes) => recipes, (_) => []),
+        "lunch": lunch.fold((recipes) => recipes, (_) => []),
+        "dinner": dinner.fold((recipes) => recipes, (_) => []),
+      };
+
+      return Left(result);
     } on Exception catch (e) {
-      return Right(e);
+      print(e.toString());
+      return Right(e as Exception);
     }
   }
 
@@ -232,7 +103,7 @@ class RemoteSource implements IRemoteSource {
   }
 
   @override
-  Future<Either<List<RecipeDto>, Exception>> searchRecipes(
+  Future<Either<List<Recipe>, Exception>> searchRecipes(
       String search, List<String> ingredients) async {
     try {
       final ingredientsQuery =
@@ -287,7 +158,7 @@ class RemoteSource implements IRemoteSource {
 
       if (response.containsKey('recipeSearch')) {
         print("Response came in  " + response.toString());
-        List<RecipeDto> recipes =
+        List<Recipe> recipes =
             RecipeListResponse.fromJson(response['recipeSearch']).edges;
         return Left(recipes);
       } else {

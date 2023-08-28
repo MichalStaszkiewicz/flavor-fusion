@@ -87,6 +87,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   void dispose() {
     _focusNode.dispose();
     _opacityController.dispose();
+    _favoriteSearchController.dispose();
     super.dispose();
   }
 
@@ -129,6 +130,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     return Opacity(
       opacity: _opacityAnimation.value,
       child: TextField(
+        autofocus: true,
         onSubmitted: (search) {
           _opacityController.forward().then((value) {
             _favoriteSearchFocused = !_favoriteSearchFocused;

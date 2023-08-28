@@ -11,6 +11,7 @@ import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dar
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../data/models/recipe.dart';
 import '../../utility/global.dart';
@@ -37,18 +38,10 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   late AnimationController _suggestionsAnimationController;
   late Animation _suggestionsAnimation;
 
-  List<RecipeGroup> createRecipeGroups(List<Recipe> recipes) {
-    List<Recipe> breakfast = [];
-    List<Recipe> lunch = [];
-    List<Recipe> dinner = [];
-    print("recipes " + recipes.length.toString());
-    for (Recipe recipe in recipes) {
-      breakfast.add(recipe);
-
-      lunch.add(recipe);
-
-      dinner.add(recipe);
-    }
+  List<RecipeGroup> createRecipeGroups(Map<String, List<Recipe>> recipes) {
+    List<Recipe> breakfast = recipes['breakfast']!;
+    List<Recipe> lunch = recipes['lunch']!;
+    List<Recipe> dinner = recipes['dinner']!;
 
     List<RecipeGroup> recipeGroups = [];
     recipeGroups.add(RecipeGroup(recipes: breakfast, label: 'Breakfast'));
@@ -128,7 +121,8 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-              recommendation: (List<Recipe> recipes) => _buildReady(recipes),
+              recommendation: (Map<String, List<Recipe>> recipes) =>
+                  _buildReady(recipes),
               orElse: () => Container(),
             ),
             duration: const Duration(milliseconds: 300),
@@ -173,7 +167,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
     );
   }
 
-  Center _buildReady(List<Recipe> recipes) {
+  Center _buildReady(Map<String, List<Recipe>> recipes) {
     return Center(
       key: const ValueKey('recipes_ready'),
       child: SingleChildScrollView(
@@ -188,7 +182,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
   Container _buildLoading() => Container(
         child: Center(
-          child: CircularProgressIndicator(),
+          child: Lottie.asset(height: 250, 'assets/loading.json'),
         ),
       );
 

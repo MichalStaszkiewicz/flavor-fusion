@@ -62,27 +62,60 @@ class GroceriesReadyWidgetState extends ConsumerState<GroceriesReadyWidget>
   @override
   Widget build(BuildContext context) {
     manageRemoveButtonAnimation();
-    return Container(
-        height: locator<Global>().deviceDimenstions.height,
-        child: Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
-              child: GroceryList(
-                groceries: widget.groceries,
+    return widget.groceries.isNotEmpty
+        ? Container(
+            height: locator<Global>().deviceDimenstions.height,
+            child: Stack(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  child: GroceryList(
+                    groceries: widget.groceries,
+                  ),
+                ),
+                Positioned(
+                  left: locator<Global>().deviceDimenstions.width / 4,
+                  top: locator<Global>().deviceDimenstions.height / 1.4,
+                  child: RemoveSelectedIngredientsButton(
+                    ref: ref,
+                    opacity: _selectedIngredientsRemoveButtonAnimation,
+                    selectedIngredients: widget.selectedIngredients,
+                    groceries: widget.groceries,
+                  ),
+                )
+              ],
+            ))
+        : Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Center(
+              child: Container(
+                height: 200,
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      child: Text(
+                        textAlign: TextAlign.left,
+                        'Shopping List',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.black),
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        "If you add something to your shopping list it will appear right here !",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: Colors.black.withOpacity(0.6)),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            Positioned(
-              left: locator<Global>().deviceDimenstions.width / 4,
-              top: locator<Global>().deviceDimenstions.height / 1.4,
-              child: RemoveSelectedIngredientsButton(
-                ref: ref,
-                opacity: _selectedIngredientsRemoveButtonAnimation,
-                selectedIngredients: widget.selectedIngredients,
-                groceries: widget.groceries,
-              ),
-            )
-          ],
-        ));
+          );
   }
 }

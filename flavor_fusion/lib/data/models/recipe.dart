@@ -30,9 +30,7 @@ class Recipe with _$Recipe {
     @HiveField(14) required List<String> instructions,
     @HiveField(15) required NutrionalInfo nutritionalInfo,
     @HiveField(16) required String mainImage,
-    @HiveField(17) required SkillLevel skillLevel,
-    @HiveField(18) required Diet? diet,
   }) = _Recipe;
 
-
+  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json['node']);
 }

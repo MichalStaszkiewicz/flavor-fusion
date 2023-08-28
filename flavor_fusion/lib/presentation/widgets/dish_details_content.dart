@@ -1,10 +1,13 @@
+import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/cooking_instruction_link.dart';
 import 'package:flavor_fusion/presentation/widgets/cooking_steps_list.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_ingradients_list.dart';
-import 'package:flavor_fusion/presentation/widgets/dish_add_to_list_button.dart';
+import 'package:flavor_fusion/presentation/widgets/recipe_details_button.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_header.dart';
+import 'package:flavor_fusion/utility/dialog_manager.dart';
 import 'package:flavor_fusion/utility/global.dart';
+import 'package:flavor_fusion/utility/notification_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -66,15 +69,32 @@ class DishDetailsContent extends StatelessWidget {
             DishDetailsIngradientsList(
               ingredients: recipe.ingredientLines,
             ),
-            DishAddToListButton(
-              recipe: recipe,
+            RecipeDetailsButton(
+              onTap: () {
+                ref
+                    .read(recipeDetailsViewModel.notifier)
+                    .saveRecipeIngredients(recipe);
+                NotificationManager.success(
+                  'Added ${recipe.name} ingredients to your shopping cart!',
+                  'New Recipe!',
+                  context,
+                );
+              },
+              label: 'Add To Shopping List',
+              borderColor: Colors.green,
+              backgroundColor: Colors.white,
             ),
             const SizedBox(height: 10),
-            DishDetailsHeader(
-              label: 'Cooking Instructions',
+            RecipeDetailsButton(
+              onTap: () {
+                DialogManager.showRecipeInstructions(
+                    recipe.instructions, context);
+              },
+              label: 'Start Cooking',
+              borderColor: Colors.white,
+              backgroundColor: Colors.green,
             ),
             const SizedBox(height: 10),
-            CookingStepsList(recipe: recipe)
           ],
         ),
       ),

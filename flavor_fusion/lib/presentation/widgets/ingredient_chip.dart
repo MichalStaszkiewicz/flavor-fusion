@@ -12,34 +12,46 @@ class IngredientChip extends StatefulWidget {
 
 class _IngredientChipState extends State<IngredientChip>
     with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
+  late AnimationController _sizeAnimationController;
+  late AnimationController _opacityAnimationController;
+  late Animation<double> _sizeAnimation;
+  late Animation<double> _opacityAnimation;
   @override
   void initState() {
-    _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
-    _animation =
-        Tween<double>(begin: 0.1, end: 1.0).animate(_animationController)
+    _opacityAnimationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 100));
+    _sizeAnimationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 100));
+    _opacityAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_opacityAnimationController)
           ..addListener(() {
             setState(() {});
           });
-    _animationController.forward();
+    _sizeAnimation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(_sizeAnimationController)
+          ..addListener(() {
+            setState(() {});
+          });
+    _sizeAnimationController.forward().then((value) {
+      _opacityAnimationController.forward();
+    });
     super.initState();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _sizeAnimationController.dispose();
+    _opacityAnimationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return FadeTransition(
-      opacity: _animation,
+      opacity: _opacityAnimation,
       child: SizeTransition(
         axis: Axis.horizontal,
-        sizeFactor: _animation,
+        sizeFactor: _sizeAnimation,
         child: Container(
           height: 40,
           decoration: BoxDecoration(
@@ -68,9 +80,11 @@ class _IngredientChipState extends State<IngredientChip>
                   ),
                   GestureDetector(
                     onTap: () {
-                      _animationController
-                          .reverse()
-                          .then((value) => widget.onDeleted());
+                      _opacityAnimationController.reverse().then((value) {
+                        _sizeAnimationController
+                            .reverse()
+                            .then((value) => widget.onDeleted());
+                      });
                     },
                     child: Container(
                         margin: EdgeInsets.only(bottom: 5),

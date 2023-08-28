@@ -64,7 +64,7 @@ class DishItemWidget extends StatelessWidget {
                                 imagePath: 'stopwatch.png'),
                             DishDetailsBasicInfo(
                                 label:
-                                    '${recipe.nutrientsPerServing.calories.round()} cal',
+                                    '${recipe.nutrientsPerServing.calories.floor()} cal',
                                 imagePath: 'fire-flame-curved.png'),
                           ],
                         ),

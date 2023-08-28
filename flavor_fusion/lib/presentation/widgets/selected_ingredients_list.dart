@@ -26,7 +26,7 @@ class _SelectedIngredientsListState extends State<SelectedIngredientsList> {
             Container(
               width: double.infinity,
               child: Text(
-                "Ingredients",
+                "Ingrsedients",
                 style: Theme.of(context)
                     .textTheme
                     .headlineMedium!

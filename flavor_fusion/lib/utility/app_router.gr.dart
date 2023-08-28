@@ -15,12 +15,6 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    MainRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: MainPage(),
-      );
-    },
     DishDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<DishDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -37,21 +31,13 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DishFilterScreen(),
       );
     },
+    MainRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MainPage(),
+      );
+    },
   };
-}
-
-/// generated route for
-/// [MainPage]
-class MainRoute extends PageRouteInfo<void> {
-  const MainRoute({List<PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MainRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -102,6 +88,20 @@ class DishFilterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DishFilterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MainPage]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

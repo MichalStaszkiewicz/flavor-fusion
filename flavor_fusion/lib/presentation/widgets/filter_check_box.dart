@@ -8,25 +8,9 @@ import '../../utility/service_locator.dart';
 import '../view_models/recipe_filter/recipe_filter_view_model.dart';
 
 class FilterCheckBox extends ConsumerWidget {
-  FilterCheckBox({
-    required this.label,
-  });
+  FilterCheckBox({required this.label, required this.selectedMethod});
+  SortBy selectedMethod;
   String label;
-
-  bool selected(
-    SortBy sortBy,
-    List<String> filters,
-  ) {
-    if (label.toLowerCase() == sortBy.name.toLowerCase()) {
-      return true;
-    }
-    for (String filter in filters) {
-      if (label.toLowerCase() == filter.toLowerCase()) {
-        return true;
-      }
-    }
-    return false;
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,18 +18,21 @@ class FilterCheckBox extends ConsumerWidget {
         initial: () => _buildInitialFilter(),
         loading: () => _buildLoadingFilter(),
         error: () => _buildErrorFilter(),
-        ready: (filters, sortBy) => _buildReadyFilter(sortBy, filters, ref));
+        ready: (sortBy) => _buildReadyFilter(ref));
   }
 
-  Container _buildReadyFilter(
-      SortBy sortBy, List<String> filters, WidgetRef ref) {
+  Container _buildReadyFilter(WidgetRef ref) {
     return Container(
       child: Row(
         children: [
           Checkbox(
-              value: selected(sortBy, filters),
+              value: ref
+                  .read(recipeFilterViewModel.notifier)
+                  .selected(selectedMethod,label),
               onChanged: (value) {
-                ref.read(recipeFilterViewModel.notifier).selectCheckBox(label);
+                ref
+                    .read(recipeFilterViewModel.notifier)
+                    .selectCheckBox(selectedMethod);
               }),
           SizedBox(
             width: 5,

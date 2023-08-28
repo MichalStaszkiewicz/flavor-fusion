@@ -16,7 +16,7 @@ class DishBasicInfoRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           DishDetailsBasicInfo(
-              label: recipe.totalTime.toString(), imagePath: 'stopwatch.png'),
+              label: recipe.totalTime!, imagePath: 'stopwatch.png'),
           DishDetailsBasicInfo(
             label: '${recipe.serving} servings',
             imagePath: 'restaurant.png',

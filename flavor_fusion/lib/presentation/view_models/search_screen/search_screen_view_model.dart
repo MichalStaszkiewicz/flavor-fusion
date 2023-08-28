@@ -57,38 +57,10 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
     }
   }
 
-  void apply(List<String> filters, SortBy sortBy) {
+  void apply(List<String> filters, Map<String, SortBy> sortBy) {
     if (state is SearchScreenReady) {
-      List<Recipe> filteredRecipies = [];
-/*
-      for (Recipe recipe in _recipies) {
-        for (int i = 0; i < recipe.dishType.length; i++) {}
+      List<Recipe> filteredRecipies = _recipies;
 
-        bool recipeIsValid = true;
-        for (String filter in filters) {
-          if (!recipe.dishType.contains(filter) &&
-              !recipe.dietLabels.contains(filter) &&
-              !recipe.mealType.contains(filter)) {
-            recipeIsValid = false;
-          }
-        }
-        if (recipeIsValid) {
-          filteredRecipies.add(recipe);
-        }
-      }*/
-      final List<Recipe> tempRecipies = List.from(filteredRecipies);
-      if (sortBy == SortBy.alphabetical) {
-        tempRecipies.sort(((a, b) => a.name.compareTo(b.name)));
-      } else if (sortBy == SortBy.caloriesAsc) {
-        tempRecipies.sort(((a, b) => a.nutrientsPerServing.calories
-            .compareTo(b.nutrientsPerServing.calories)));
-      } else if (sortBy == SortBy.caloriesDesc) {
-        tempRecipies.sort(((a, b) => b.nutrientsPerServing.calories
-            .compareTo(a.nutrientsPerServing.calories)));
-      } else if (sortBy == SortBy.time) {
-        tempRecipies.sort(((a, b) => a.totalTime!.compareTo(b.totalTime!)));
-      }
-      state = SearchScreenState.ready(filteredRecipies);
     } else {
       print("state is not ready");
     }

@@ -4,7 +4,7 @@ import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 
 import 'package:flavor_fusion/data/source/local/local_source.dart';
-import 'package:flavor_fusion/data/source/remote/remove_source.dart';
+import 'package:flavor_fusion/data/source/remote/remote_source.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 
 class SourceRepository {
@@ -39,8 +39,8 @@ class SourceRepository {
     return await _localSource.getGroceryList();
   }
 
-  Future<List<Recipe>> getRecommendedRecipes() async {
-    Either<List<Recipe>, Exception> result =
+  Future<Map<String, List<Recipe>>> getRecommendedRecipes() async {
+    Either<Map<String, List<Recipe>>, Exception> result =
         await _remoteSource.getRecommendedRecipes();
     return result.fold(
       (recipes) {
@@ -48,7 +48,7 @@ class SourceRepository {
       },
       (error) {
         print("Error occured: $error");
-        return [];
+        return {};
       },
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../data/models/recipe.dart';
-import 'dish_add_to_list_button.dart';
+import 'recipe_details_button.dart';
 
 class DishDetailsHeader extends StatefulWidget {
   DishDetailsHeader({required this.label});
