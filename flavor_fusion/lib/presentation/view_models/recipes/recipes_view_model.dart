@@ -20,28 +20,31 @@ var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
 class RecipesViewModel extends StateNotifier<RecipesState> {
   RecipesViewModel(super._state);
 
-  List<String> _ingredientsCashed = [];
-  List<Suggestion> _suggestionsCashed = [];
-  List<String> get selectedIngredients => _ingredientsCashed;
-  List<Suggestion> get suggestionsCashed => _suggestionsCashed;
-  List<RequestStatus<int>> _suggestionsRequests = [];
+  final List<String> _ingredientsCached = [];
+  final List<Suggestion> _suggestionsCached = [];
+  List<String> get selectedIngredients => _ingredientsCached;
+  List<Suggestion> get suggestionsCached => _suggestionsCached;
+  final List<RequestStatus<int>> _suggestionsRequests = [];
+  MealType _mealTypeCached = MealType.none;
+  MealType get mealTypeCached => _mealTypeCached;
+  SkillLevel _skillLevelCached = SkillLevel.none;
+  SkillLevel get skillLevelCached => _skillLevelCached;
 
-  final List<String> _ingredientsList = [];
   Map<String, List<Recipe>> _recommendedRecipes = {};
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
-    _ingredientsCashed.removeWhere((element) => element == ingredient);
-    this.state = RecipesState.search(state.suggestions, _ingredientsCashed,
+    _ingredientsCached.removeWhere((element) => element == ingredient);
+    this.state = RecipesState.search(state.suggestions, _ingredientsCached,
         state.search, state.searchingInProgress);
   }
 
   void addSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
-    if (_ingredientsCashed.contains(ingredient)) {
-      this.state = RecipesState.search(state.suggestions, _ingredientsCashed,
+    if (_ingredientsCached.contains(ingredient)) {
+      this.state = RecipesState.search(state.suggestions, _ingredientsCached,
           state.search, state.searchingInProgress);
     } else {
-      _ingredientsCashed.add(ingredient);
+      _ingredientsCached.add(ingredient);
       List<Suggestion> tempList = [];
       tempList.addAll(state.suggestions);
       int selectedIngredientIndex = tempList.indexWhere(
@@ -56,16 +59,23 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           duration: const Duration(milliseconds: 300));
       tempList.removeAt(selectedIngredientIndex);
 
-      this.state = RecipesState.search(tempList, _ingredientsCashed,
+      this.state = RecipesState.search(tempList, _ingredientsCached,
           state.search, state.searchingInProgress);
     }
+  }
+
+  void selectSkillLevel(SkillLevel skillLevel) {
+    _skillLevelCached = skillLevel;
+  }
+
+  void selectMealType(MealType mealType) {
+    _mealTypeCached = mealType;
   }
 
   void initRecommendedRecipes() async {
     state = RecipesState.loading();
     _recommendedRecipes =
         await locator<SourceRepository>().getRecommendedRecipes().then((value) {
-  
       state = RecipesState.recommendation(value);
       return value;
     });
@@ -79,10 +89,10 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     final state = this.state as RecipesSearch;
     this.state = RecipesState.search(
         state.suggestions, state.selectedIngredients, state.search, true);
-    _suggestionsCashed.clear();
-    _suggestionsCashed.addAll(state.suggestions);
-    _ingredientsCashed.clear();
-    _ingredientsCashed.addAll(state.selectedIngredients);
+    _suggestionsCached.clear();
+    _suggestionsCached.addAll(state.suggestions);
+    _ingredientsCached.clear();
+    _ingredientsCached.addAll(state.selectedIngredients);
 
     await locator<SourceRepository>()
         .searchRecipes(state.search, state.selectedIngredients)
@@ -97,12 +107,12 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
       _suggestionsRequests.clear();
 
       print("EMITING EMPTY LIST");
-      _suggestionsCashed.clear();
-      state = RecipesState.search([], _ingredientsCashed, '', false);
+      _suggestionsCached.clear();
+      state = RecipesState.search([], _ingredientsCached, '', false);
       return;
     }
 
-    final List<Suggestion> formattedSuggestions = _suggestionsCashed;
+    final List<Suggestion> formattedSuggestions = _suggestionsCached;
     final newSuggestions = <Suggestion>[];
     final List<int> animatedIndexes = [];
 
@@ -116,12 +126,12 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
       }
     }
     state =
-        RecipesState.search(newSuggestions, _ingredientsCashed, search, true);
+        RecipesState.search(newSuggestions, _ingredientsCached, search, true);
 
     int index = _suggestionsRequests.length;
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
     locator<SourceRepository>()
-        .searchRecipes(search, _ingredientsCashed)
+        .searchRecipes(search, _ingredientsCached)
         .then((recipes) {
       if ((index + 1) == _suggestionsRequests.length) {
         for (final Recipe recipe in recipes) {
@@ -130,7 +140,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
             int suggestionExists = newSuggestions.indexWhere((element) =>
                 element.name.toLowerCase() == ingredientName.toLowerCase());
             if (ingredientName.contains(search.toLowerCase()) &&
-                !_ingredientsCashed.contains(ingredientName) &&
+                !_ingredientsCached.contains(ingredientName) &&
                 suggestionExists == -1 &&
                 ingredientName.length < 10) {
               newSuggestions.add(Suggestion(
@@ -150,11 +160,11 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           }
         }
 
-        _suggestionsCashed.clear();
-        _suggestionsCashed.addAll(newSuggestions);
+        _suggestionsCached.clear();
+        _suggestionsCached.addAll(newSuggestions);
         _suggestionsRequests.elementAt(index).completed = true;
         state = RecipesState.search(
-            newSuggestions, _ingredientsCashed, search, false);
+            newSuggestions, _ingredientsCached, search, false);
       }
     });
     if (newSuggestions.isEmpty) {
@@ -170,7 +180,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
       }
 
       state = RecipesState.search(
-          newSuggestions, _ingredientsCashed, search, false);
+          newSuggestions, _ingredientsCached, search, false);
     }
   }
 }

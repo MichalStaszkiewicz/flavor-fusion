@@ -1,12 +1,8 @@
-enum MealType {
-  breakfast,
-  dinner,
-  lunch,
-  snack,
-  teatime,
-}
+enum MealType { breakfast, dinner, lunch, snack, teatime, none }
 
-enum SkillLevel { easy, medium, hard, expert }
+enum SkillLevel { easy, medium, hard, expert, none }
+
+enum RecipeSettings { skill, meal }
 
 enum Cuisines {
   american,

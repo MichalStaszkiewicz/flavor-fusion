@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/utility/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../data/models/recipe.dart';

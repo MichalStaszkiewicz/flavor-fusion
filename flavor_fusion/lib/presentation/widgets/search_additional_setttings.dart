@@ -9,7 +9,10 @@ class SearchAdditioalSettings extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Wrap(
-        spacing: 10,
+        
+        spacing: 10,runSpacing: 10,
+    
+    
         children: [...choiceItems],
       ),
     );
