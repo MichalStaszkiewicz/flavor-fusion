@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flavor_fusion/data/models/ingredient.dart';
+import 'package:flavor_fusion/data/models/ingredient_search.dart';
 import 'package:flavor_fusion/data/models/suggestion.dart';
 import 'package:flavor_fusion/data/repository/source_repository.dart';
 import 'package:flavor_fusion/presentation/screens/recipes_screen.dart';
@@ -33,7 +34,11 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   Map<String, List<Recipe>> _recommendedRecipes = {};
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
+    print("Ingredient list before remove " +
+        _ingredientsCached.length.toString());
     _ingredientsCached.removeWhere((element) => element == ingredient);
+    print(
+        "Ingredient list after remove " + _ingredientsCached.length.toString());
     this.state = RecipesState.search(
         state.suggestions,
         _ingredientsCached,
@@ -56,7 +61,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           _mealTypeCached,
           true);
     } else {
-      _ingredientsCached.add(ingredient);
+      _ingredientsCached.add(ingredient.toLowerCase());
       List<Suggestion> tempList = [];
       tempList.addAll(state.suggestions);
       int selectedIngredientIndex = tempList.indexWhere(
@@ -139,7 +144,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     _suggestionsCached.clear();
     _suggestionsCached.addAll(state.suggestions);
     _ingredientsCached.clear();
-    _ingredientsCached.addAll(state.selectedIngredients);
+    _ingredientsCached
+        .addAll(state.selectedIngredients.map((e) => e.toLowerCase()).toList());
 
     await locator<SourceRepository>()
         .searchRecipes(state.search, state.selectedIngredients, state.mealType,
@@ -150,6 +156,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void searchRecipes(String search) async {
+    print("Ingredient list length execute in searchRecipes " +
+        _ingredientsCached.length.toString());
     if (search.isEmpty) {
       _suggestionsRequests.clear();
 
@@ -164,7 +172,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     final List<int> animatedIndexes = [];
 
     for (final Suggestion suggestion in formattedSuggestions) {
-      if (suggestion.name.toLowerCase().contains(search.toLowerCase())) {
+      if (suggestion.name.toLowerCase().contains(search.toLowerCase()) &&
+          !_ingredientsCached.contains(suggestion.name.toLowerCase())) {
         newSuggestions.add(suggestion);
       } else {
         int index = formattedSuggestions.indexWhere((element) =>
@@ -178,7 +187,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     int index = _suggestionsRequests.length;
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
     locator<SourceRepository>()
-        .searchRecipes(search, _ingredientsCached,_mealTypeCached,_skillLevelCached)
+        .searchRecipes(
+            search, _ingredientsCached, _mealTypeCached, _skillLevelCached)
         .then((recipes) {
       if ((index + 1) == _suggestionsRequests.length) {
         for (final Recipe recipe in recipes) {
@@ -187,9 +197,10 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
             int suggestionExists = newSuggestions.indexWhere((element) =>
                 element.name.toLowerCase() == ingredientName.toLowerCase());
             if (ingredientName.contains(search.toLowerCase()) &&
-                !_ingredientsCached.contains(ingredientName) &&
+                !_ingredientsCached.contains(ingredientName.toLowerCase()) &&
                 suggestionExists == -1 &&
                 ingredientName.length < 10) {
+              print('adding new suggestion with name: ' + ingredientName);
               newSuggestions.add(Suggestion(
                   name: ingredientName,
                   type: SuggestionType.ingredient,
@@ -198,7 +209,6 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           }
         }
         for (Recipe recipe in recipes) {
-          print(recipe.name);
           if (recipe.name.length < 20) {
             newSuggestions.add(Suggestion(
                 name: recipe.name,

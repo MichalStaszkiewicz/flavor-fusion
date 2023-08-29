@@ -39,7 +39,7 @@ class IngredientChipState extends ConsumerState<IngredientChip>
   }
 
   bool sizeAnimationDone = false;
-  bool opacityAnimationDone = false;
+  bool animationSetToEnd = false;
   @override
   void dispose() {
     _sizeAnimationController.dispose();
@@ -53,8 +53,16 @@ class IngredientChipState extends ConsumerState<IngredientChip>
         search: (suggestions, ingredients, search, searching, skillType,
             mealType, allowAnimations) {
           if (!allowAnimations) {
-            _sizeAnimationController.value = 1.0;
-            _opacityAnimationController.value = 1.0;
+            print("animations are not allowed: " +
+                _sizeAnimationController.status.toString());
+            if (!animationSetToEnd) {
+              _sizeAnimationController.value = 1.0;
+              _opacityAnimationController.value = 1.0;
+              animationSetToEnd = true;
+            }
+
+            print("animations are not allowed: " +
+                _sizeAnimationController.status.toString());
           } else {
             if (!sizeAnimationDone) {
               _sizeAnimationController.forward().then((value) {
@@ -99,7 +107,6 @@ class IngredientChipState extends ConsumerState<IngredientChip>
                   ),
                   GestureDetector(
                     onTap: () {
-                 
                       _opacityAnimationController.reverse().then((value) {
                         _sizeAnimationController
                             .reverse()

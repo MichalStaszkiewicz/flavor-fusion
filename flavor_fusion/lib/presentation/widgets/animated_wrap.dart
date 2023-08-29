@@ -18,12 +18,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(recipesViewModel);
-    var ingredients = state.maybeWhen(
-      search: (suggestions, ingredients, search, searching, skillType, mealType,
-              _) =>
-          ingredients,
-      orElse: () => [],
-    );
+    var ingredients = ref.watch(recipesViewModel.notifier).selectedIngredients;
 
     return Wrap(
       spacing: 15,
@@ -32,7 +27,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
         return IngredientChip(
           label: ingredients[index],
           onDeleted: () {
-            
+           
             ref
                 .read(recipesViewModel.notifier)
                 .removeSelectedIngredient(ingredients[index]);
