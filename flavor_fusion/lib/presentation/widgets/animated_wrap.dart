@@ -32,6 +32,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
         return IngredientChip(
           label: ingredients[index],
           onDeleted: () {
+            
             ref
                 .read(recipesViewModel.notifier)
                 .removeSelectedIngredient(ingredients[index]);

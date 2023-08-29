@@ -5,6 +5,7 @@ import 'package:flavor_fusion/data/models/recipe.dart';
 
 import 'package:flavor_fusion/data/source/local/local_source.dart';
 import 'package:flavor_fusion/data/source/remote/remote_source.dart';
+import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 
 class SourceRepository {
@@ -67,10 +68,10 @@ class SourceRepository {
     );
   }
 
-  Future<List<Recipe>> searchRecipes(
-      String search, List<String> ingredients) async {
-    Either<List<Recipe>, Exception> result =
-        await _remoteSource.searchRecipes(search, ingredients);
+  Future<List<Recipe>> searchRecipes(String search, List<String> ingredients,
+      MealType mealType, SkillLevel skillLevel) async {
+    Either<List<Recipe>, Exception> result = await _remoteSource.searchRecipes(
+        search, ingredients, mealType, skillLevel);
     return result.fold(
       (recipes) {
         return recipes;

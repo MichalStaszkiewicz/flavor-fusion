@@ -18,11 +18,10 @@ class RemoteSource implements IRemoteSource {
     try {
       var response = await locator<GraphQLService>()
           .executeQuery(RecipeQueries.createRecommendedRecipesQuery(mealType));
-   
+
       List<Recipe> recipes =
           RecipeListResponse.fromJson(response['recipeSearch']).edges;
-    
-      
+
       return Left(recipes);
     } on Exception catch (e) {
       return Right(e);
@@ -104,60 +103,73 @@ class RemoteSource implements IRemoteSource {
 
   @override
   Future<Either<List<Recipe>, Exception>> searchRecipes(
-      String search, List<String> ingredients) async {
+      String search,
+      List<String> ingredients,
+      MealType mealType,
+      SkillLevel skillLevel) async {
     try {
       final ingredientsQuery =
           ingredients.map((ingredient) => '"$ingredient"').join(',');
 
+      final mealTimeQuery = mealType != MealType.none
+          ? 'mealTime: ${mealType.toString().toUpperCase().split('.').last}'
+          : '';
+
+      final skillLevelQuery = skillLevel != SkillLevel.none
+          ? 'skillLevel: ${skillLevel.toString().toUpperCase().split('.').last}'
+          : '';
+
       final response = await locator<GraphQLService>().executeQuery("""{
-      recipeSearch(   
-        query:"$search",ingredients:[$ingredientsQuery],hasInstructions: true
-      ) {
-        edges {
-          node {
-            mainImage
-            author
-            id
-            courses
-            cuisines
-            cleanName
-            totalTime
-            name
-            rating
-            serving
-            nutrientsPerServing {
-              calories
-            }
-            nutritionalInfo{
-          protein,
-          carbs,
-          fiber,
-          fat
-          carbs
-          calcium
-          sugar
-        }
-            recipeType
-            ingredients {
-              name
-            }
-            mealBalanceIndex {
-              score
-              errors
-              message
-            }
-         
-            ingredientsCount
-            instructions
-            name
-            ingredientLines
+    recipeSearch(   
+      query: "$search",
+      ingredients: [$ingredientsQuery],
+      hasInstructions: true,
+      $mealTimeQuery,
+      $skillLevelQuery
+    ) {
+      edges {
+        node {
+          mainImage
+          author
+          id
+          courses
+          cuisines
+          cleanName
+          totalTime
+          name
+          rating
+          serving
+          nutrientsPerServing {
+            calories
           }
+          nutritionalInfo {
+            protein
+            carbs
+            fiber
+            fat
+            calcium
+            sugar
+          }
+          recipeType
+          ingredients {
+            name
+          }
+          mealBalanceIndex {
+            score
+            errors
+            message
+          }
+          ingredientsCount
+          instructions
+          name
+          ingredientLines
         }
       }
-    }""");
+    }
+  }""");
 
       if (response.containsKey('recipeSearch')) {
-        print("Response came in  " + response.toString());
+        print("Response came in " + response.toString());
         List<Recipe> recipes =
             RecipeListResponse.fromJson(response['recipeSearch']).edges;
         return Left(recipes);

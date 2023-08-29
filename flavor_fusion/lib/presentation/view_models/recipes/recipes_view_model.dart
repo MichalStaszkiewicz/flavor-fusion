@@ -41,7 +41,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         state.searchingInProgress,
         _skillLevelCached,
         _mealTypeCached,
-        false);
+        true);
   }
 
   void addSelectedIngredient(String ingredient) {
@@ -54,7 +54,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           state.searchingInProgress,
           _skillLevelCached,
           _mealTypeCached,
-          false);
+          true);
     } else {
       _ingredientsCached.add(ingredient);
       List<Suggestion> tempList = [];
@@ -78,18 +78,13 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           state.searchingInProgress,
           _skillLevelCached,
           _mealTypeCached,
-          false);
+          true);
     }
   }
 
   void selectSkillLevel(SkillLevel skillLevel) {
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
-      print("state.skillLevel: " +
-          state.skillLevel.name +
-          ' ' +
-          " new skillLevel  " +
-          skillLevel.name);
 
       this.state = RecipesState.search(
           state.suggestions,
@@ -105,7 +100,6 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
   void selectMealType(MealType mealType) {
     if (state is RecipesSearch) {
-      print("SELECTED MEALTYPE " + mealType.name.toString());
       final state = this.state as RecipesSearch;
       this.state = RecipesState.search(
           state.suggestions,
@@ -148,18 +142,17 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     _ingredientsCached.addAll(state.selectedIngredients);
 
     await locator<SourceRepository>()
-        .searchRecipes(state.search, state.selectedIngredients)
+        .searchRecipes(state.search, state.selectedIngredients, state.mealType,
+            state.skillLevel)
         .then((value) {
       this.state = RecipesState.searchDone(value);
     });
   }
 
   void searchRecipes(String search) async {
-    print('search state is : ' + search);
     if (search.isEmpty) {
       _suggestionsRequests.clear();
 
-      print("EMITING EMPTY LIST");
       _suggestionsCached.clear();
       state = RecipesState.search([], _ingredientsCached, '', false,
           _skillLevelCached, _mealTypeCached, false);
@@ -185,7 +178,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     int index = _suggestionsRequests.length;
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
     locator<SourceRepository>()
-        .searchRecipes(search, _ingredientsCached)
+        .searchRecipes(search, _ingredientsCached,_mealTypeCached,_skillLevelCached)
         .then((recipes) {
       if ((index + 1) == _suggestionsRequests.length) {
         for (final Recipe recipe in recipes) {

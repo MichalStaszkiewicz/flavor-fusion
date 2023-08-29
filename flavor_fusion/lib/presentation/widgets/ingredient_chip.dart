@@ -1,16 +1,18 @@
+import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class IngredientChip extends StatefulWidget {
+class IngredientChip extends ConsumerStatefulWidget {
   IngredientChip(
       {required this.onDeleted, required this.label, required this.key});
   String label;
   Function onDeleted;
   final Key key;
   @override
-  State<IngredientChip> createState() => _IngredientChipState();
+  IngredientChipState createState() => IngredientChipState();
 }
 
-class _IngredientChipState extends State<IngredientChip>
+class IngredientChipState extends ConsumerState<IngredientChip>
     with TickerProviderStateMixin {
   late AnimationController _sizeAnimationController;
   late AnimationController _opacityAnimationController;
@@ -32,12 +34,12 @@ class _IngredientChipState extends State<IngredientChip>
           ..addListener(() {
             setState(() {});
           });
-    _sizeAnimationController.forward().then((value) {
-      _opacityAnimationController.forward();
-    });
+
     super.initState();
   }
 
+  bool sizeAnimationDone = false;
+  bool opacityAnimationDone = false;
   @override
   void dispose() {
     _sizeAnimationController.dispose();
@@ -47,6 +49,23 @@ class _IngredientChipState extends State<IngredientChip>
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(recipesViewModel).maybeWhen(
+        search: (suggestions, ingredients, search, searching, skillType,
+            mealType, allowAnimations) {
+          if (!allowAnimations) {
+            _sizeAnimationController.value = 1.0;
+            _opacityAnimationController.value = 1.0;
+          } else {
+            if (!sizeAnimationDone) {
+              _sizeAnimationController.forward().then((value) {
+                sizeAnimationDone = true;
+
+                _opacityAnimationController.forward();
+              });
+            }
+          }
+        },
+        orElse: () => {});
     return FadeTransition(
       opacity: _opacityAnimation,
       child: SizeTransition(
@@ -80,6 +99,7 @@ class _IngredientChipState extends State<IngredientChip>
                   ),
                   GestureDetector(
                     onTap: () {
+                 
                       _opacityAnimationController.reverse().then((value) {
                         _sizeAnimationController
                             .reverse()

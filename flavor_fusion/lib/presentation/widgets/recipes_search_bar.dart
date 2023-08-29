@@ -110,16 +110,19 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                   height: 10,
                 ),
                 ref.watch(recipesViewModel).maybeWhen(
-                      search: (suggestions, selectedIngredients, search,
-                          searchingInProgress,skillLevel, mealType,settingsAnimations) {
+                      search: (suggestions,
+                          selectedIngredients,
+                          search,
+                          searchingInProgress,
+                          skillLevel,
+                          mealType,
+                          allowedAnimations) {
                         return Container(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               selectedIngredients.isNotEmpty
-                                  ? SelectedIngredientsList(
-                                      opacity: widget.ingredientsOpacity,
-                                    )
+                                  ? SelectedIngredientsList()
                                   : Container(),
                               suggestions.isNotEmpty
                                   ? SuggestionsList(
