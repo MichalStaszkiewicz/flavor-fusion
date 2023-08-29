@@ -15,7 +15,7 @@ class AnimatedWrap extends ConsumerStatefulWidget {
 
 class AnimatedWrapState extends ConsumerState<AnimatedWrap>
     with TickerProviderStateMixin {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+ 
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(recipesViewModel);

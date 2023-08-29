@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/presentation/widgets/recipe_search_header.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -32,16 +33,8 @@ class SuggestionsListState extends ConsumerState<SuggestionsList> {
       opacity: widget.opacity,
       child: Column(
         children: [
-          Container(
-            width: double.infinity,
-            child: Text(
-              "Suggestions",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium!
-                  .copyWith(color: Colors.black),
-              textAlign: TextAlign.left,
-            ),
+          RecipeSearchHeader(
+            label: "Suggestions",
           ),
           const SizedBox(
             height: 20,
