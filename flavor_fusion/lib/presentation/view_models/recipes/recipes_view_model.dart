@@ -34,15 +34,27 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
     _ingredientsCached.removeWhere((element) => element == ingredient);
-    this.state = RecipesState.search(state.suggestions, _ingredientsCached,
-        state.search, state.searchingInProgress);
+    this.state = RecipesState.search(
+        state.suggestions,
+        _ingredientsCached,
+        state.search,
+        state.searchingInProgress,
+        _skillLevelCached,
+        _mealTypeCached,
+        false);
   }
 
   void addSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
     if (_ingredientsCached.contains(ingredient)) {
-      this.state = RecipesState.search(state.suggestions, _ingredientsCached,
-          state.search, state.searchingInProgress);
+      this.state = RecipesState.search(
+          state.suggestions,
+          _ingredientsCached,
+          state.search,
+          state.searchingInProgress,
+          _skillLevelCached,
+          _mealTypeCached,
+          false);
     } else {
       _ingredientsCached.add(ingredient);
       List<Suggestion> tempList = [];
@@ -59,17 +71,52 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
           duration: const Duration(milliseconds: 300));
       tempList.removeAt(selectedIngredientIndex);
 
-      this.state = RecipesState.search(tempList, _ingredientsCached,
-          state.search, state.searchingInProgress);
+      this.state = RecipesState.search(
+          tempList,
+          _ingredientsCached,
+          state.search,
+          state.searchingInProgress,
+          _skillLevelCached,
+          _mealTypeCached,
+          false);
     }
   }
 
   void selectSkillLevel(SkillLevel skillLevel) {
-    _skillLevelCached = skillLevel;
+    if (state is RecipesSearch) {
+      final state = this.state as RecipesSearch;
+      print("state.skillLevel: " +
+          state.skillLevel.name +
+          ' ' +
+          " new skillLevel  " +
+          skillLevel.name);
+
+      this.state = RecipesState.search(
+          state.suggestions,
+          state.selectedIngredients,
+          state.search,
+          state.searchingInProgress,
+          skillLevel,
+          state.mealType,
+          true);
+      _skillLevelCached = skillLevel;
+    }
   }
 
   void selectMealType(MealType mealType) {
-    _mealTypeCached = mealType;
+    if (state is RecipesSearch) {
+      print("SELECTED MEALTYPE " + mealType.name.toString());
+      final state = this.state as RecipesSearch;
+      this.state = RecipesState.search(
+          state.suggestions,
+          state.selectedIngredients,
+          state.search,
+          state.searchingInProgress,
+          state.skillLevel,
+          mealType,
+          true);
+      _mealTypeCached = mealType;
+    }
   }
 
   void initRecommendedRecipes() async {
@@ -88,7 +135,13 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   void findRecipes() async {
     final state = this.state as RecipesSearch;
     this.state = RecipesState.search(
-        state.suggestions, state.selectedIngredients, state.search, true);
+        state.suggestions,
+        state.selectedIngredients,
+        state.search,
+        true,
+        _skillLevelCached,
+        _mealTypeCached,
+        false);
     _suggestionsCached.clear();
     _suggestionsCached.addAll(state.suggestions);
     _ingredientsCached.clear();
@@ -108,7 +161,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
       print("EMITING EMPTY LIST");
       _suggestionsCached.clear();
-      state = RecipesState.search([], _ingredientsCached, '', false);
+      state = RecipesState.search([], _ingredientsCached, '', false,
+          _skillLevelCached, _mealTypeCached, false);
       return;
     }
 
@@ -125,8 +179,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         animatedIndexes.add(index);
       }
     }
-    state =
-        RecipesState.search(newSuggestions, _ingredientsCached, search, true);
+    state = RecipesState.search(newSuggestions, _ingredientsCached, search,
+        true, _skillLevelCached, _mealTypeCached, false);
 
     int index = _suggestionsRequests.length;
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
@@ -163,8 +217,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         _suggestionsCached.clear();
         _suggestionsCached.addAll(newSuggestions);
         _suggestionsRequests.elementAt(index).completed = true;
-        state = RecipesState.search(
-            newSuggestions, _ingredientsCached, search, false);
+        state = RecipesState.search(newSuggestions, _ingredientsCached, search,
+            false, _skillLevelCached, _mealTypeCached, false);
       }
     });
     if (newSuggestions.isEmpty) {
@@ -179,8 +233,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
             duration: Duration(milliseconds: 300));
       }
 
-      state = RecipesState.search(
-          newSuggestions, _ingredientsCached, search, false);
+      state = RecipesState.search(newSuggestions, _ingredientsCached, search,
+          false, _skillLevelCached, _mealTypeCached, false);
     }
   }
 }

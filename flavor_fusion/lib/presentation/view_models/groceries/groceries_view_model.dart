@@ -97,12 +97,8 @@ class GroceriesViewModel extends StateNotifier<GroceriesState> {
       updatedGroceries.add(groceries[i]
           .copyWith(ingredients: updatedIngredients[i], recipe: recipe));
       if (updatedIngredients[i].isEmpty) {
-        print('removing recipe');
         locator<SavedGroceryService>().removeGrocery(recipe.id);
       } else {
-        print('updatedIngredients length ' +
-            updatedIngredients[i].length.toString());
-
         locator<SavedGroceryService>().saveGrocery(recipe);
       }
     }

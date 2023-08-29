@@ -26,7 +26,10 @@ mixin _$RecipesState {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) =>
@@ -41,7 +44,10 @@ mixin _$RecipesState {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) =>
@@ -56,7 +62,10 @@ mixin _$RecipesState {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
@@ -159,7 +168,10 @@ class _$RecipesInitial implements RecipesInitial {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
@@ -177,7 +189,10 @@ class _$RecipesInitial implements RecipesInitial {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
@@ -195,7 +210,10 @@ class _$RecipesInitial implements RecipesInitial {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
@@ -300,7 +318,10 @@ class _$RecipesLoading implements RecipesLoading {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
@@ -318,7 +339,10 @@ class _$RecipesLoading implements RecipesLoading {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
@@ -336,7 +360,10 @@ class _$RecipesLoading implements RecipesLoading {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
@@ -441,7 +468,10 @@ class _$RecipesError implements RecipesError {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
@@ -459,7 +489,10 @@ class _$RecipesError implements RecipesError {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
@@ -477,7 +510,10 @@ class _$RecipesError implements RecipesError {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
@@ -616,7 +652,10 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
@@ -634,7 +673,10 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
@@ -652,7 +694,10 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
@@ -727,7 +772,10 @@ abstract class _$$RecipesSearchCopyWith<$Res> {
       {List<Suggestion> suggestions,
       List<String> selectedIngredients,
       String search,
-      bool searchingInProgress});
+      bool searchingInProgress,
+      SkillLevel skillLevel,
+      MealType mealType,
+      bool allowAnimations});
 }
 
 /// @nodoc
@@ -745,6 +793,9 @@ class __$$RecipesSearchCopyWithImpl<$Res>
     Object? selectedIngredients = null,
     Object? search = null,
     Object? searchingInProgress = null,
+    Object? skillLevel = null,
+    Object? mealType = null,
+    Object? allowAnimations = null,
   }) {
     return _then(_$RecipesSearch(
       null == suggestions
@@ -763,6 +814,18 @@ class __$$RecipesSearchCopyWithImpl<$Res>
           ? _value.searchingInProgress
           : searchingInProgress // ignore: cast_nullable_to_non_nullable
               as bool,
+      null == skillLevel
+          ? _value.skillLevel
+          : skillLevel // ignore: cast_nullable_to_non_nullable
+              as SkillLevel,
+      null == mealType
+          ? _value.mealType
+          : mealType // ignore: cast_nullable_to_non_nullable
+              as MealType,
+      null == allowAnimations
+          ? _value.allowAnimations
+          : allowAnimations // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -774,7 +837,10 @@ class _$RecipesSearch implements RecipesSearch {
       final List<Suggestion> suggestions,
       final List<String> selectedIngredients,
       this.search,
-      this.searchingInProgress)
+      this.searchingInProgress,
+      this.skillLevel,
+      this.mealType,
+      this.allowAnimations)
       : _suggestions = suggestions,
         _selectedIngredients = selectedIngredients;
 
@@ -799,10 +865,16 @@ class _$RecipesSearch implements RecipesSearch {
   final String search;
   @override
   final bool searchingInProgress;
+  @override
+  final SkillLevel skillLevel;
+  @override
+  final MealType mealType;
+  @override
+  final bool allowAnimations;
 
   @override
   String toString() {
-    return 'RecipesState.search(suggestions: $suggestions, selectedIngredients: $selectedIngredients, search: $search, searchingInProgress: $searchingInProgress)';
+    return 'RecipesState.search(suggestions: $suggestions, selectedIngredients: $selectedIngredients, search: $search, searchingInProgress: $searchingInProgress, skillLevel: $skillLevel, mealType: $mealType, allowAnimations: $allowAnimations)';
   }
 
   @override
@@ -816,7 +888,13 @@ class _$RecipesSearch implements RecipesSearch {
                 .equals(other._selectedIngredients, _selectedIngredients) &&
             (identical(other.search, search) || other.search == search) &&
             (identical(other.searchingInProgress, searchingInProgress) ||
-                other.searchingInProgress == searchingInProgress));
+                other.searchingInProgress == searchingInProgress) &&
+            (identical(other.skillLevel, skillLevel) ||
+                other.skillLevel == skillLevel) &&
+            (identical(other.mealType, mealType) ||
+                other.mealType == mealType) &&
+            (identical(other.allowAnimations, allowAnimations) ||
+                other.allowAnimations == allowAnimations));
   }
 
   @override
@@ -825,7 +903,10 @@ class _$RecipesSearch implements RecipesSearch {
       const DeepCollectionEquality().hash(_suggestions),
       const DeepCollectionEquality().hash(_selectedIngredients),
       search,
-      searchingInProgress);
+      searchingInProgress,
+      skillLevel,
+      mealType,
+      allowAnimations);
 
   @JsonKey(ignore: true)
   @override
@@ -844,12 +925,15 @@ class _$RecipesSearch implements RecipesSearch {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
-    return search(
-        suggestions, selectedIngredients, this.search, searchingInProgress);
+    return search(suggestions, selectedIngredients, this.search,
+        searchingInProgress, skillLevel, mealType, allowAnimations);
   }
 
   @override
@@ -863,12 +947,15 @@ class _$RecipesSearch implements RecipesSearch {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
-    return search?.call(
-        suggestions, selectedIngredients, this.search, searchingInProgress);
+    return search?.call(suggestions, selectedIngredients, this.search,
+        searchingInProgress, skillLevel, mealType, allowAnimations);
   }
 
   @override
@@ -882,14 +969,17 @@ class _$RecipesSearch implements RecipesSearch {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),
   }) {
     if (search != null) {
-      return search(
-          suggestions, selectedIngredients, this.search, searchingInProgress);
+      return search(suggestions, selectedIngredients, this.search,
+          searchingInProgress, skillLevel, mealType, allowAnimations);
     }
     return orElse();
   }
@@ -943,12 +1033,18 @@ abstract class RecipesSearch implements RecipesState {
       final List<Suggestion> suggestions,
       final List<String> selectedIngredients,
       final String search,
-      final bool searchingInProgress) = _$RecipesSearch;
+      final bool searchingInProgress,
+      final SkillLevel skillLevel,
+      final MealType mealType,
+      final bool allowAnimations) = _$RecipesSearch;
 
   List<Suggestion> get suggestions;
   List<String> get selectedIngredients;
   String get search;
   bool get searchingInProgress;
+  SkillLevel get skillLevel;
+  MealType get mealType;
+  bool get allowAnimations;
   @JsonKey(ignore: true)
   _$$RecipesSearchCopyWith<_$RecipesSearch> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1032,7 +1128,10 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)
         search,
     required TResult Function(List<Recipe> recipes) searchDone,
   }) {
@@ -1050,7 +1149,10 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult? Function(List<Recipe> recipes)? searchDone,
   }) {
@@ -1068,7 +1170,10 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             List<Suggestion> suggestions,
             List<String> selectedIngredients,
             String search,
-            bool searchingInProgress)?
+            bool searchingInProgress,
+            SkillLevel skillLevel,
+            MealType mealType,
+            bool allowAnimations)?
         search,
     TResult Function(List<Recipe> recipes)? searchDone,
     required TResult orElse(),

@@ -15,12 +15,13 @@ class AnimatedWrap extends ConsumerStatefulWidget {
 
 class AnimatedWrapState extends ConsumerState<AnimatedWrap>
     with TickerProviderStateMixin {
- 
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(recipesViewModel);
     var ingredients = state.maybeWhen(
-      search: (suggestions, ingredients, search, searching) => ingredients,
+      search: (suggestions, ingredients, search, searching, skillType, mealType,
+              _) =>
+          ingredients,
       orElse: () => [],
     );
 

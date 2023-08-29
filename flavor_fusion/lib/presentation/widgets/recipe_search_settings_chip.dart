@@ -22,7 +22,7 @@ class RecipeSearchSettingsChipState
   @override
   void initState() {
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
+        vsync: this, duration: const Duration(milliseconds: 150));
     _backgroundAnimation =
         ColorTween(begin: Colors.white, end: Colors.black).animate(_controller)
           ..addListener(() {
@@ -43,8 +43,53 @@ class RecipeSearchSettingsChipState
     super.dispose();
   }
 
+  void setupAnimation(Color bgColorStart, Color bgColorEnd,
+      Color labelColorStart, Color labelColorEnd) {
+    _backgroundAnimation =
+        ColorTween(begin: bgColorStart, end: bgColorEnd).animate(_controller)
+          ..addListener(() {
+            setState(() {});
+          });
+    _labelAnimation = ColorTween(begin: labelColorStart, end: labelColorEnd)
+        .animate(_controller)
+      ..addListener(() {
+        setState(() {});
+      });
+  }
+
+  void manageAnimations() {
+    ref.watch(recipesViewModel).maybeWhen(
+        search: (_, __, ___, ____, skillLevel, mealType, allowAnimations) {
+          if (allowAnimations) {
+            setupAnimation(
+                Colors.white, Colors.black, Colors.black, Colors.white);
+
+            if (widget.settingsType == RecipeSettings.meal) {
+              if (mealType.name.toLowerCase() == widget.label.toLowerCase()) {
+                _controller.forward();
+              } else {
+                _controller.reverse();
+              }
+            } else {
+              if (skillLevel.name.toLowerCase() == widget.label.toLowerCase()) {
+                _controller.forward();
+              } else {
+                _controller.reverse();
+              }
+            }
+          } else {
+            if (mealType.name.toLowerCase() == widget.label.toLowerCase() ||
+                skillLevel.name.toLowerCase() == widget.label.toLowerCase()) {
+              _controller.value = 1.0;
+            }
+          }
+        },
+        orElse: () => {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    manageAnimations();
     return IntrinsicWidth(
       child: GestureDetector(
         onTap: () {
@@ -52,16 +97,10 @@ class RecipeSearchSettingsChipState
             ref.read(recipesViewModel.notifier).selectMealType(MealType.values
                 .firstWhere((element) =>
                     element.name.toLowerCase() == widget.label.toLowerCase()));
-         if (_controller.isCompleted) {
-            _controller.reverse();
-          } else {
-            _controller.forward();
-          }
           } else {
             ref.read(recipesViewModel.notifier).selectSkillLevel(
                 SkillLevel.values.firstWhere((element) =>
                     element.name.toLowerCase() == widget.label.toLowerCase()));
-           
           }
         },
         child: Container(

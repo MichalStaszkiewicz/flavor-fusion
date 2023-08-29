@@ -111,7 +111,7 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                 ),
                 ref.watch(recipesViewModel).maybeWhen(
                       search: (suggestions, selectedIngredients, search,
-                          searchingInProgress) {
+                          searchingInProgress,skillLevel, mealType,settingsAnimations) {
                         return Container(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

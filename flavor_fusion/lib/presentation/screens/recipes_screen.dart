@@ -136,7 +136,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
               search: (suggestions, selectedIngredients, search,
-                  searchingInProgress) {
+                  searchingInProgress, skillLevel, mealType, _) {
                 manageAnimations(suggestions.map((e) => e.name).toList(),
                     selectedIngredients);
                 if (searchingInProgress) {

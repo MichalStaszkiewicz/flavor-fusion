@@ -19,6 +19,9 @@ abstract class RecipesState with _$RecipesState {
     List<String> selectedIngredients,
     String search,
     bool searchingInProgress,
+    SkillLevel skillLevel,
+    MealType mealType,
+    bool animateSettings,
   ) = RecipesSearch;
   factory RecipesState.searchDone(List<Recipe> recipes) = RecipesSearchDone;
 }
