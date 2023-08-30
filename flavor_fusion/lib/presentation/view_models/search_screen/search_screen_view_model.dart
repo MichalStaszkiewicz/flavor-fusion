@@ -52,17 +52,12 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
       } else {
         this.state = SearchScreenState.ready(_recipies);
       }
-    } else {
-      print("state is not ready");
-    }
+    } else {}
   }
 
   void apply(List<String> filters, Map<String, SortBy> sortBy) {
     if (state is SearchScreenReady) {
       List<Recipe> filteredRecipies = _recipies;
-
-    } else {
-      print("state is not ready");
-    }
+    } else {}
   }
 }
