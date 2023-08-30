@@ -3,7 +3,7 @@ enum MealType { breakfast, dinner, lunch, snack, teatime, none }
 enum SkillLevel { easy, medium, hard, expert, none }
 
 enum RecipeSettings { skill, meal }
-
+/*
 enum Cuisines {
   american,
   asian,
@@ -45,7 +45,7 @@ enum Cuisines {
   vietnamese,
   vegetaria
 }
-
+*/
 enum DishType {
   cookies,
   bread,
