@@ -12,77 +12,16 @@ import '../presentation/widgets/dialog_button.dart';
 class DialogManager {
   static void confirmDialog(String header, String message, BuildContext context,
       VoidCallback onTapCancel, VoidCallback onTapConfirm) {
-    showGeneralDialog(
-        context: context,
-        transitionDuration: const Duration(milliseconds: 300),
-        pageBuilder: ((context, animation, secondaryAnimation) => Center(
-              child: Container(
-                height: 300,
-                width: 330,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, 0),
-                      ),
-                    ]),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        header,
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        message,
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        BouncingWidgetInOut(
-                          onPressed: onTapCancel,
-                          child: DialogButton(
-                            backgroundColor: Colors.white,
-                            borderColor: Colors.blueAccent,
-                            label: 'No',
-                            textColor: Colors.blueAccent,
-                          ),
-                        ),
-                        BouncingWidgetInOut(
-                          onPressed: onTapConfirm,
-                          child: DialogButton(
-                            backgroundColor: Colors.blueAccent,
-                            borderColor: Colors.transparent,
-                            label: 'Yes',
-                            textColor: Colors.white,
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            )));
+    PanaraConfirmDialog.showAnimatedGrow(
+      context,
+      title: header,
+      message: message,
+      confirmButtonText: "Confirm",
+      cancelButtonText: "Cancel",
+      onTapCancel: onTapCancel,
+      onTapConfirm: onTapConfirm,
+      panaraDialogType: PanaraDialogType.warning,
+    );
   }
 
   static void showRecipeInstructions(

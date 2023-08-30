@@ -30,14 +30,7 @@ class _ApplyButtonState extends State<ApplyButton> {
             width: locator<Global>().mediaQuery.size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              gradient: const LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(255, 89, 181, 235),
-                  Color.fromARGB(255, 48, 131, 226)
-                ],
-              ),
+             color: Colors.deepPurple
             ),
             child: Center(
               child: Text(

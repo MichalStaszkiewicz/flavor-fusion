@@ -34,13 +34,20 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   Map<String, List<Recipe>> _recommendedRecipes = {};
   void removeSelectedIngredient(String ingredient) {
     final state = this.state as RecipesSearch;
-    print("Ingredient list before remove " +
-        _ingredientsCached.length.toString());
+
+    Suggestion tempSuggestion = Suggestion(
+        name: ingredient, type: SuggestionType.ingredient, recipe: null);
+
+    _suggestionsCached.add(tempSuggestion);
+    List<Suggestion> tempSuggestions = [tempSuggestion, ...state.suggestions];
+
     _ingredientsCached.removeWhere((element) => element == ingredient);
-    print(
-        "Ingredient list after remove " + _ingredientsCached.length.toString());
+
+    suggestionListKey.currentState
+        ?.insertItem(0, duration: const Duration(milliseconds: 300));
+
     this.state = RecipesState.search(
-        state.suggestions,
+        tempSuggestions,
         _ingredientsCached,
         state.search,
         state.searchingInProgress,
@@ -66,6 +73,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
       tempList.addAll(state.suggestions);
       int selectedIngredientIndex = tempList.indexWhere(
           (element) => element.name.toLowerCase() == ingredient.toLowerCase());
+
       Suggestion suggestion = tempList[selectedIngredientIndex];
       suggestionListKey.currentState?.removeItem(
           selectedIngredientIndex,
@@ -75,7 +83,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
               search: state.search),
           duration: const Duration(milliseconds: 300));
       tempList.removeAt(selectedIngredientIndex);
-
+      _suggestionsCached.removeWhere(
+          (element) => element.name.toLowerCase() == ingredient.toLowerCase());
       this.state = RecipesState.search(
           tempList,
           _ingredientsCached,
@@ -156,8 +165,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void searchRecipes(String search) async {
-    print("Ingredient list length execute in searchRecipes " +
-        _ingredientsCached.length.toString());
+ 
     if (search.isEmpty) {
       _suggestionsRequests.clear();
 
@@ -200,7 +208,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
                 !_ingredientsCached.contains(ingredientName.toLowerCase()) &&
                 suggestionExists == -1 &&
                 ingredientName.length < 10) {
-              print('adding new suggestion with name: ' + ingredientName);
+      
               newSuggestions.add(Suggestion(
                   name: ingredientName,
                   type: SuggestionType.ingredient,
@@ -233,7 +241,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
             animatedIndexes[i],
             (context, animation) => SuggestionItem(
                 suggestion: suggestion, animation: animation, search: search),
-            duration: Duration(milliseconds: 300));
+            duration: const Duration(milliseconds: 300));
       }
 
       state = RecipesState.search(newSuggestions, _ingredientsCached, search,

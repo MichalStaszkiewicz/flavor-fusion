@@ -53,16 +53,11 @@ class IngredientChipState extends ConsumerState<IngredientChip>
         search: (suggestions, ingredients, search, searching, skillType,
             mealType, allowAnimations) {
           if (!allowAnimations) {
-            print("animations are not allowed: " +
-                _sizeAnimationController.status.toString());
             if (!animationSetToEnd) {
               _sizeAnimationController.value = 1.0;
               _opacityAnimationController.value = 1.0;
               animationSetToEnd = true;
             }
-
-            print("animations are not allowed: " +
-                _sizeAnimationController.status.toString());
           } else {
             if (!sizeAnimationDone) {
               _sizeAnimationController.forward().then((value) {

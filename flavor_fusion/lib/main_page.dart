@@ -36,12 +36,12 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   late Animation _opacityAnimation;
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
-      label: "Recipes",
+      label: "Home",
       icon: Icon(Icons.home),
     ),
     BottomNavigationBarItem(
-      label: "Groceries",
-      icon: Icon(Icons.search),
+      label: "Shop List",
+      icon: Icon(Icons.shopping_cart_sharp),
     ),
     BottomNavigationBarItem(
       label: "Favorite",
@@ -53,7 +53,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     GroceriesScreen(),
     FavoriteScreen()
   ];
-  final List<String> _appBarTitles = const ['Recipes', "Groceries", "Favorite"];
+  final List<String> _appBarTitles = const ['Home', "Shopping List", "Favorite"];
   bool _recipesSearchFocused = false;
   bool _favoriteSearchFocused = false;
 

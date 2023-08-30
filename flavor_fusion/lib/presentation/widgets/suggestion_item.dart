@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/models/suggestion.dart';
 
-class SuggestionItem extends StatelessWidget {
+class SuggestionItem extends StatefulWidget {
   const SuggestionItem(
       {super.key,
       required this.suggestion,
@@ -17,9 +17,15 @@ class SuggestionItem extends StatelessWidget {
   final String search;
 
   @override
+  State<SuggestionItem> createState() => _SuggestionItemState();
+}
+
+class _SuggestionItemState extends State<SuggestionItem> {
+  @override
   Widget build(BuildContext context) {
-    return SizeTransition(
-      sizeFactor: animation,
+    return SlideTransition(
+      position:
+          widget.animation.drive(Tween(begin: Offset(1, 0), end: Offset(0, 0))),
       child: Container(
         height: 50,
         child: Row(
@@ -30,8 +36,8 @@ class SuggestionItem extends StatelessWidget {
                 text: '',
                 style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
-                  ...locator<Global>()
-                      .boldSuggestion(suggestion.name, search, context),
+                  ...locator<Global>().boldSuggestion(
+                      widget.suggestion.name, widget.search, context),
                 ],
               ),
             ),
@@ -39,18 +45,19 @@ class SuggestionItem extends StatelessWidget {
               height: 30,
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: suggestion.type == SuggestionType.ingredient
+                color: widget.suggestion.type == SuggestionType.ingredient
                     ? Colors.green.withOpacity(0.3)
                     : Colors.red.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(50),
               ),
               child: Center(
                 child: Text(
-                  locator<Global>().capitalize(suggestion.type.name),
+                  locator<Global>().capitalize(widget.suggestion.type.name),
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                        color: suggestion.type == SuggestionType.ingredient
-                            ? Colors.green
-                            : Colors.red,
+                        color:
+                            widget.suggestion.type == SuggestionType.ingredient
+                                ? Colors.green
+                                : Colors.red,
                       ),
                 ),
               ),
