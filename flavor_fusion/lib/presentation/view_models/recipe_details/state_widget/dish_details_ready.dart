@@ -8,14 +8,14 @@ class DishDetailsReadyWidget extends StatelessWidget {
   const DishDetailsReadyWidget({
     super.key,
     required this.recipe,
-    required this.description,
-    required this.expanded,
+
+
     required this.ref,
   });
 
   final Recipe recipe;
-  final String description;
-  final bool expanded;
+
+
   final WidgetRef ref;
 
   @override
@@ -30,8 +30,8 @@ class DishDetailsReadyWidget extends StatelessWidget {
         ),
         DishDetailsContent(
           recipe: recipe,
-          description: description,
-          expanded: expanded,
+   
+   
           ref: ref,
         ),
       ],
