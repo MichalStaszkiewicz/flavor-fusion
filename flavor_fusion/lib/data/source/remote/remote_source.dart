@@ -71,7 +71,7 @@ class RemoteSource implements IRemoteSource {
       String search) async {
     try {
       var response = await locator<GraphQLService>().executeQuery("""{
-  ingredientSearch(query: "$search") {
+  ingredientSearch(first:100,query: "$search") {
     edges {
       node {
         ... on EdamamFoodResult {
@@ -120,7 +120,7 @@ class RemoteSource implements IRemoteSource {
           : '';
 
       final response = await locator<GraphQLService>().executeQuery("""{
-    recipeSearch(   
+    recipeSearch(first:100, 
       query: "$search",
       ingredients: [$ingredientsQuery],
       hasInstructions: true,
