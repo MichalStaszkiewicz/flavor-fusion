@@ -160,12 +160,12 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         .searchRecipes(state.search, state.selectedIngredients, state.mealType,
             state.skillLevel)
         .then((value) {
+      print("Found recipes: " + value.length.toString());
       this.state = RecipesState.searchDone(value);
     });
   }
 
   void searchRecipes(String search) async {
- 
     if (search.isEmpty) {
       _suggestionsRequests.clear();
 
@@ -208,7 +208,6 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
                 !_ingredientsCached.contains(ingredientName.toLowerCase()) &&
                 suggestionExists == -1 &&
                 ingredientName.length < 10) {
-      
               newSuggestions.add(Suggestion(
                   name: ingredientName,
                   type: SuggestionType.ingredient,
