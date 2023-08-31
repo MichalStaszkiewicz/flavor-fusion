@@ -31,7 +31,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
             Container(
               width: double.infinity,
               child: Center(
-                child: index < (widget.instructions.length )
+                child: index < (widget.instructions.length)
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -75,7 +75,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     )
                   : Container(
-                      child: Stack( children: [
+                      child: Stack(children: [
                         Transform.translate(
                           offset: Offset(0, -30),
                           child:
@@ -84,7 +84,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ]),
                     ),
             )),
-            index < (widget.instructions.length )
+            index < (widget.instructions.length)
                 ? Row(
                     children: [
                       SizedBox(
@@ -92,33 +92,34 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                            label: 'Back',
-                            onTap: () {
-                              setState(() {});
-                              if (index > 0) {
-                                index--;
-                              } else {
-                                context.router.pop();
-                              }
-                            },
-                            borderColor: Colors.white,
-                            backgroundColor: Colors.blueAccent),
+                          label: 'Back',
+                          onTap: () {
+                            setState(() {});
+                            if (index > 0) {
+                              index--;
+                            } else {
+                              context.router.pop();
+                            }
+                          },
+                          borderColor: Colors.black,
+                          backgroundColor: Colors.white,
+                          textColor: Colors.blueAccent,
+                        ),
                       ),
                       SizedBox(
                         width: 15,
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                            label: 'Next',
-                            onTap: () {
-                            setState(() {
-                              
-                            });
-                                index++;
-                              
-                            },
-                            borderColor: Colors.white,
-                            backgroundColor: Colors.blueAccent),
+                          label: 'Next',
+                          onTap: () {
+                            setState(() {});
+                            index++;
+                          },
+                          borderColor: Colors.blueAccent,
+                          backgroundColor: Colors.blueAccent,
+                          textColor: Colors.white,
+                        ),
                       ),
                       SizedBox(
                         width: 15,
@@ -128,12 +129,14 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                 : Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
                     child: RecipeDetailsButton(
-                        label: 'Done',
-                        onTap: () {
-                          context.router.pop();
-                        },
-                        borderColor: Colors.white,
-                        backgroundColor: Colors.blueAccent),
+                      label: 'Done',
+                      onTap: () {
+                        context.router.pop();
+                      },
+                      borderColor: Colors.blueAccent,
+                      backgroundColor: Colors.blueAccent,
+                      textColor: Colors.white,
+                    ),
                   ),
             SizedBox(
               height: 20,

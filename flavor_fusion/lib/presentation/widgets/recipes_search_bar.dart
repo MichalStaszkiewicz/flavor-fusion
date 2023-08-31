@@ -34,7 +34,7 @@ class RecipesSearchBar extends ConsumerStatefulWidget {
 }
 
 class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
-  bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(

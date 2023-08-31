@@ -20,14 +20,12 @@ import 'nutrion_info_table.dart';
 class DishDetailsContent extends StatelessWidget {
   const DishDetailsContent({
     required this.recipe,
-    required this.description,
-    required this.expanded,
+
     required this.ref,
   });
 
   final Recipe recipe;
-  final String description;
-  final bool expanded;
+
   final WidgetRef ref;
 
   @override
@@ -81,8 +79,8 @@ class DishDetailsContent extends StatelessWidget {
                 );
               },
               label: 'Add To Shopping List',
-              borderColor: Colors.green,
-              backgroundColor: Colors.white,
+              borderColor: Colors.black,
+              backgroundColor: Colors.white, textColor: Colors.amber,
             ),
             const SizedBox(height: 10),
             RecipeDetailsButton(
@@ -91,8 +89,8 @@ class DishDetailsContent extends StatelessWidget {
                     recipe.instructions, context);
               },
               label: 'Start Cooking',
-              borderColor: Colors.white,
-              backgroundColor: Colors.green,
+              borderColor: Colors.amber,
+              backgroundColor: Colors.amber, textColor: Colors.white,
             ),
             const SizedBox(height: 10),
           ],

@@ -6,7 +6,7 @@ class RecipeQueries {
   ) {
     String query = """
 {
-  recipeSearch(hasImage: true, hasInstructions: true,mealTime:${mealType.name.toString().toUpperCase()}) {
+  recipeSearch(first:10,hasImage: true, hasInstructions: true,mealTime:${mealType.name.toString().toUpperCase()}) {
     edges {
       node {
         mainImage

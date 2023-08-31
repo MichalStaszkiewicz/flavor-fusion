@@ -12,12 +12,14 @@ class RecipeDetailsButton extends ConsumerStatefulWidget {
       {required this.label,
       required this.onTap,
       required this.borderColor,
-      required this.backgroundColor});
+      required this.backgroundColor,
+      required this.textColor});
 
   final String label;
   VoidCallback onTap;
   Color borderColor;
   Color backgroundColor;
+  Color textColor;
   @override
   RecipeDetailsButtonState createState() => RecipeDetailsButtonState();
 }
@@ -46,7 +48,7 @@ class RecipeDetailsButtonState extends ConsumerState<RecipeDetailsButton> {
                 style: Theme.of(context)
                     .textTheme
                     .labelLarge!
-                    .copyWith(color: widget.borderColor),
+                    .copyWith(color: widget.textColor),
               ),
             ),
           ),

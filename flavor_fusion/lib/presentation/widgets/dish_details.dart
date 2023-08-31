@@ -11,9 +11,10 @@ import '../view_models/recipe_details/state_widget/dish_details_ready.dart';
 import 'dish_details_ingradients_list.dart';
 
 class DishDetails extends ConsumerWidget {
-  DishDetails({required this.recipe, required this.description});
+  DishDetails({
+    required this.recipe,
+  });
   Recipe recipe;
-  String description;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,11 +23,8 @@ class DishDetails extends ConsumerWidget {
         error: () => _buildError(),
         initial: () => _buildInitial(),
         loading: () => _buildLoading(),
-        ready: (bool expanded, bool isFavorite) => DishDetailsReadyWidget(
-            recipe: recipe,
-            description: description,
-            expanded: expanded,
-            ref: ref));
+        ready: (bool expanded, bool isFavorite) =>
+            DishDetailsReadyWidget(recipe: recipe, ref: ref));
   }
 
   Container _buildInitial() => Container();

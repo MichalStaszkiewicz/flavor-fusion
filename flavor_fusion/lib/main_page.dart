@@ -53,7 +53,11 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     GroceriesScreen(),
     FavoriteScreen()
   ];
-  final List<String> _appBarTitles = const ['Home', "Shopping List", "Favorite"];
+  final List<String> _appBarTitles = const [
+    'Home',
+    "Shopping List",
+    "Favorite"
+  ];
   bool _recipesSearchFocused = false;
   bool _favoriteSearchFocused = false;
 
@@ -224,7 +228,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                 _focusNode.nearestScope!.unfocus();
                 ref.read(recipesViewModel).maybeWhen(
                     orElse: () => {},
-                    search: (_, __, ___, ____,_____,______,_______) {
+                    search: (_, __, ___, ____, _____, ______, _______) {
                       ref.read(recipesViewModel.notifier).findRecipes();
                     });
               },
@@ -297,13 +301,18 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                   alignment: Alignment.centerLeft,
                   child: GestureDetector(
                       onTap: () {
-                        _opacityController.forward().then((value) {
-                          ref
-                              .read(recipesViewModel.notifier)
-                              .searchRecipes(_recipesSearchController.text);
-                          _recipesSearchFocused = !_recipesSearchFocused;
-                          _opacityController.reverse();
-                        });
+                        ref.watch(recipesViewModel).maybeWhen(
+                            recommendation: (recipes) {
+                              _opacityController.forward().then((value) {
+                                ref
+                                    .read(recipesViewModel.notifier)
+                                    .searchRecipes(
+                                        _recipesSearchController.text);
+                                _recipesSearchFocused = !_recipesSearchFocused;
+                                _opacityController.reverse();
+                              });
+                            },
+                            orElse: () => {});
                       },
                       child: Icon(Icons.search)))),
           Expanded(

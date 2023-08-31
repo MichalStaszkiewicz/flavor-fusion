@@ -15,7 +15,7 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'recipe-app',
-      theme: ThemeData(
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 86, 219, 24)),
         textTheme: GoogleFonts.lexendDecaTextTheme(),
         useMaterial3: true,
       ),
