@@ -5,6 +5,7 @@ import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_ingradients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_details_button.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_header.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/dialog_manager.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/notification_manager.dart';
@@ -17,15 +18,15 @@ import '../../utility/service_locator.dart';
 
 import 'nutrion_info_table.dart';
 
+
+
 class DishDetailsContent extends StatelessWidget {
   const DishDetailsContent({
     required this.recipe,
-
     required this.ref,
   });
 
   final Recipe recipe;
-
   final WidgetRef ref;
 
   @override
@@ -53,7 +54,7 @@ class DishDetailsContent extends StatelessWidget {
             DishBasicInfoRow(recipe: recipe),
             const SizedBox(height: 20),
             DishDetailsHeader(
-              label: 'Nutrion Per Serving',
+              label: nutrionPerServingLabel,
             ),
             const SizedBox(height: 20),
             NutrionInfoTable(
@@ -61,7 +62,7 @@ class DishDetailsContent extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             DishDetailsHeader(
-              label: 'Ingrediants',
+              label: ingredientsLabel,
             ),
             const SizedBox(height: 10),
             DishDetailsIngradientsList(
@@ -78,9 +79,10 @@ class DishDetailsContent extends StatelessWidget {
                   context,
                 );
               },
-              label: 'Add To Shopping List',
+              label: addToShoppingListLabel,
               borderColor: Colors.black,
-              backgroundColor: Colors.white, textColor: Colors.amber,
+              backgroundColor: Colors.white,
+              textColor: Colors.amber,
             ),
             const SizedBox(height: 10),
             RecipeDetailsButton(
@@ -88,9 +90,10 @@ class DishDetailsContent extends StatelessWidget {
                 DialogManager.showRecipeInstructions(
                     recipe.instructions, context);
               },
-              label: 'Start Cooking',
+              label: startCookingLabel,
               borderColor: Colors.amber,
-              backgroundColor: Colors.amber, textColor: Colors.white,
+              backgroundColor: Colors.amber,
+              textColor: Colors.white,
             ),
             const SizedBox(height: 10),
           ],
