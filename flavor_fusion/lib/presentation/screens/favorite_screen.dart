@@ -1,6 +1,7 @@
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -81,7 +82,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
                     ),
                     Container(
                       child: Text(
-                        'If you will like any recipe it will appear fight here !',
+                       favoriteNorecipes,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
