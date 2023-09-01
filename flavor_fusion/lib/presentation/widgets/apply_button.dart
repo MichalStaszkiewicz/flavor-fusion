@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 
 class ApplyButton extends StatefulWidget {
-  ApplyButton({required this.onPressed});
-
+  ApplyButton({required this.onPressed, required this.label});
+  String label;
   VoidCallback onPressed;
 
   @override
@@ -29,9 +29,8 @@ class _ApplyButtonState extends State<ApplyButton> {
             height: 50,
             width: locator<Global>().mediaQuery.size.width,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-             color: Colors.deepPurple
-            ),
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.deepPurple),
             child: Center(
               child: Text(
                 'Apply',

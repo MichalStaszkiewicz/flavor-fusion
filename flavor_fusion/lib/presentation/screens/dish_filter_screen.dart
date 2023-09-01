@@ -103,7 +103,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
 
                       context.router.pop();
                     });
-              })
+              }, label: 'Apply',)
             ],
           ),
         )),

@@ -17,7 +17,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    var state = ref.watch(recipesViewModel);
+   
     var ingredients = ref.watch(recipesViewModel.notifier).selectedIngredients;
 
     return Wrap(
