@@ -166,9 +166,9 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         final state = this.state as SearchDone;
         List<Recipe> tempRecipes = state.recipes;
         tempRecipes += data['recipes'];
-        this.state = RecipesState.searchDone(tempRecipes);
+        this.state = RecipesState.searchDone(tempRecipes,state.search);
       } else {
-        this.state = RecipesState.searchDone(data['recipes']);
+        this.state = RecipesState.searchDone(data['recipes'],state.search);
       }
     });
   }
