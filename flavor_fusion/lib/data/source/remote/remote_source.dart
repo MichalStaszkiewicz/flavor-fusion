@@ -8,6 +8,7 @@ import 'package:flavor_fusion/data/source/remote/response/ingredient_list_respon
 import 'package:flavor_fusion/data/source/remote/response/ingredient_search_list_response.dart';
 import 'package:flavor_fusion/data/source/remote/response/recipe_list_response.dart';
 import 'package:flavor_fusion/utility/enums.dart';
+import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../utility/service_locator.dart';
@@ -102,11 +103,12 @@ class RemoteSource implements IRemoteSource {
   }
 
   @override
-  Future<Either<List<Recipe>, Exception>> searchRecipes(
+  Future<Either<Map<String, dynamic>, Exception>> searchRecipes(
       String search,
       List<String> ingredients,
       MealType mealType,
-      SkillLevel skillLevel) async {
+      SkillLevel skillLevel,
+      String? endCursor) async {
     try {
       final ingredientsQuery =
           ingredients.map((ingredient) => '"$ingredient"').join(',');
@@ -118,15 +120,23 @@ class RemoteSource implements IRemoteSource {
       final skillLevelQuery = skillLevel != SkillLevel.none
           ? 'skillLevel: ${skillLevel.toString().toUpperCase().split('.').last}'
           : '';
-
+      final endCursorQuery = endCursor != null ? 'cursor: $endCursor' : '';
       final response = await locator<GraphQLService>().executeQuery("""{
     recipeSearch(first:100, 
       query: "$search",
       ingredients: [$ingredientsQuery],
       hasInstructions: true,
       $mealTimeQuery,
-      $skillLevelQuery
-    ) {
+      $skillLevelQuery,
+      $endCursorQuery
+    ) {    pageInfo{
+      
+      endCursor,
+      hasNextPage
+      hasPreviousPage,
+      startCursor
+      
+    }
       edges {
         node {
           mainImage
@@ -169,10 +179,14 @@ class RemoteSource implements IRemoteSource {
   }""");
 
       if (response.containsKey('recipeSearch')) {
-        print("Response came in " + response.toString());
-        List<Recipe> recipes =
-            RecipeListResponse.fromJson(response['recipeSearch']).edges;
-        return Left(recipes);
+        RecipeListResponse recponseResult =
+            RecipeListResponse.fromJson(response['recipeSearch']);
+        Map<String, dynamic> result = {};
+        result.addAll({
+          "recipes": recponseResult.edges,
+          "endCursor": recponseResult.endCursor
+        });
+        return Left(result);
       } else {
         throw Exception("No 'recipeSearch' key in the response.");
       }

@@ -68,17 +68,20 @@ class SourceRepository {
     );
   }
 
-  Future<List<Recipe>> searchRecipes(String search, List<String> ingredients,
-      MealType mealType, SkillLevel skillLevel) async {
-    Either<List<Recipe>, Exception> result = await _remoteSource.searchRecipes(
-        search, ingredients, mealType, skillLevel);
+  Future<Map<String, dynamic>> searchRecipes(
+      String search,
+      List<String> ingredients,
+      MealType mealType,
+      SkillLevel skillLevel,String? endCursor) async {
+    Either<Map<String, dynamic>, Exception> result = await _remoteSource
+        .searchRecipes(search, ingredients, mealType, skillLevel,endCursor);
     return result.fold(
       (recipes) {
         return recipes;
       },
       (error) {
         print("Error occured: $error");
-        return [];
+        return {};
       },
     );
   }

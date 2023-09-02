@@ -151,7 +151,10 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
                   );
                 }
               },
-              searchDone: (recipes) => SearchDone(recipes: recipes),
+              searchDone: (recipes, search) => SearchDone(
+                recipes: recipes,
+                search: search,
+              ),
               orElse: () => Container(),
             ),
             duration: const Duration(milliseconds: 300),

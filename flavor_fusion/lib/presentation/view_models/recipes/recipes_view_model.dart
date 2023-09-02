@@ -5,6 +5,7 @@ import 'package:flavor_fusion/data/models/suggestion.dart';
 import 'package:flavor_fusion/data/repository/source_repository.dart';
 import 'package:flavor_fusion/presentation/screens/recipes_screen.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/states.dart';
+import 'package:flavor_fusion/presentation/widgets/search_done.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   MealType get mealTypeCached => _mealTypeCached;
   SkillLevel _skillLevelCached = SkillLevel.none;
   SkillLevel get skillLevelCached => _skillLevelCached;
+  String? endCursor;
 
   Map<String, List<Recipe>> _recommendedRecipes = {};
   void removeSelectedIngredient(String ingredient) {
@@ -158,14 +160,20 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
     await locator<SourceRepository>()
         .searchRecipes(state.search, state.selectedIngredients, state.mealType,
-            state.skillLevel)
-        .then((value) {
-      print("Found recipes: " + value.length.toString());
-      this.state = RecipesState.searchDone(value);
+            state.skillLevel, endCursor)
+        .then((data) {
+      if (this.state is SearchDone) {
+        final state = this.state as SearchDone;
+        List<Recipe> tempRecipes = state.recipes;
+        tempRecipes += data['recipes'];
+        this.state = RecipesState.searchDone(tempRecipes);
+      } else {
+        this.state = RecipesState.searchDone(data['recipes']);
+      }
     });
   }
 
-  void searchRecipes(String search) async {
+  Future<void> searchRecipes(String search) async {
     if (search.isEmpty) {
       _suggestionsRequests.clear();
 
@@ -196,10 +204,10 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
     locator<SourceRepository>()
         .searchRecipes(
-            search, _ingredientsCached, _mealTypeCached, _skillLevelCached)
-        .then((recipes) {
+            search, _ingredientsCached, _mealTypeCached, _skillLevelCached, '')
+        .then((data) {
       if ((index + 1) == _suggestionsRequests.length) {
-        for (final Recipe recipe in recipes) {
+        for (final Recipe recipe in data['recipes']) {
           for (Ingredient ingredient in recipe.ingredients) {
             final ingredientName = ingredient.name.toLowerCase();
             int suggestionExists = newSuggestions.indexWhere((element) =>
@@ -215,7 +223,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
             }
           }
         }
-        for (Recipe recipe in recipes) {
+        for (Recipe recipe in data['recipes']) {
           if (recipe.name.length < 20) {
             newSuggestions.add(Suggestion(
                 name: recipe.name,

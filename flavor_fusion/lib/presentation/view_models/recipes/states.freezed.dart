@@ -29,9 +29,9 @@ mixin _$RecipesState {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$RecipesState {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,9 +65,9 @@ mixin _$RecipesState {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -171,9 +171,9 @@ class _$RecipesInitial implements RecipesInitial {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) {
     return initial();
   }
@@ -192,9 +192,9 @@ class _$RecipesInitial implements RecipesInitial {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) {
     return initial?.call();
   }
@@ -213,9 +213,9 @@ class _$RecipesInitial implements RecipesInitial {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -321,9 +321,9 @@ class _$RecipesLoading implements RecipesLoading {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) {
     return loading();
   }
@@ -342,9 +342,9 @@ class _$RecipesLoading implements RecipesLoading {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) {
     return loading?.call();
   }
@@ -363,9 +363,9 @@ class _$RecipesLoading implements RecipesLoading {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -471,9 +471,9 @@ class _$RecipesError implements RecipesError {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) {
     return error();
   }
@@ -492,9 +492,9 @@ class _$RecipesError implements RecipesError {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) {
     return error?.call();
   }
@@ -513,9 +513,9 @@ class _$RecipesError implements RecipesError {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -655,9 +655,9 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) {
     return recommendation(recipes);
   }
@@ -676,9 +676,9 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) {
     return recommendation?.call(recipes);
   }
@@ -697,9 +697,9 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) {
     if (recommendation != null) {
@@ -775,7 +775,7 @@ abstract class _$$RecipesSearchCopyWith<$Res> {
       bool searchingInProgress,
       SkillLevel skillLevel,
       MealType mealType,
-      bool allowAnimations});
+      bool animateSettings});
 }
 
 /// @nodoc
@@ -795,7 +795,7 @@ class __$$RecipesSearchCopyWithImpl<$Res>
     Object? searchingInProgress = null,
     Object? skillLevel = null,
     Object? mealType = null,
-    Object? allowAnimations = null,
+    Object? animateSettings = null,
   }) {
     return _then(_$RecipesSearch(
       null == suggestions
@@ -822,9 +822,9 @@ class __$$RecipesSearchCopyWithImpl<$Res>
           ? _value.mealType
           : mealType // ignore: cast_nullable_to_non_nullable
               as MealType,
-      null == allowAnimations
-          ? _value.allowAnimations
-          : allowAnimations // ignore: cast_nullable_to_non_nullable
+      null == animateSettings
+          ? _value.animateSettings
+          : animateSettings // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -840,7 +840,7 @@ class _$RecipesSearch implements RecipesSearch {
       this.searchingInProgress,
       this.skillLevel,
       this.mealType,
-      this.allowAnimations)
+      this.animateSettings)
       : _suggestions = suggestions,
         _selectedIngredients = selectedIngredients;
 
@@ -870,11 +870,11 @@ class _$RecipesSearch implements RecipesSearch {
   @override
   final MealType mealType;
   @override
-  final bool allowAnimations;
+  final bool animateSettings;
 
   @override
   String toString() {
-    return 'RecipesState.search(suggestions: $suggestions, selectedIngredients: $selectedIngredients, search: $search, searchingInProgress: $searchingInProgress, skillLevel: $skillLevel, mealType: $mealType, allowAnimations: $allowAnimations)';
+    return 'RecipesState.search(suggestions: $suggestions, selectedIngredients: $selectedIngredients, search: $search, searchingInProgress: $searchingInProgress, skillLevel: $skillLevel, mealType: $mealType, animateSettings: $animateSettings)';
   }
 
   @override
@@ -893,8 +893,8 @@ class _$RecipesSearch implements RecipesSearch {
                 other.skillLevel == skillLevel) &&
             (identical(other.mealType, mealType) ||
                 other.mealType == mealType) &&
-            (identical(other.allowAnimations, allowAnimations) ||
-                other.allowAnimations == allowAnimations));
+            (identical(other.animateSettings, animateSettings) ||
+                other.animateSettings == animateSettings));
   }
 
   @override
@@ -906,7 +906,7 @@ class _$RecipesSearch implements RecipesSearch {
       searchingInProgress,
       skillLevel,
       mealType,
-      allowAnimations);
+      animateSettings);
 
   @JsonKey(ignore: true)
   @override
@@ -928,12 +928,12 @@ class _$RecipesSearch implements RecipesSearch {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) {
     return search(suggestions, selectedIngredients, this.search,
-        searchingInProgress, skillLevel, mealType, allowAnimations);
+        searchingInProgress, skillLevel, mealType, animateSettings);
   }
 
   @override
@@ -950,12 +950,12 @@ class _$RecipesSearch implements RecipesSearch {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) {
     return search?.call(suggestions, selectedIngredients, this.search,
-        searchingInProgress, skillLevel, mealType, allowAnimations);
+        searchingInProgress, skillLevel, mealType, animateSettings);
   }
 
   @override
@@ -972,14 +972,14 @@ class _$RecipesSearch implements RecipesSearch {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) {
     if (search != null) {
       return search(suggestions, selectedIngredients, this.search,
-          searchingInProgress, skillLevel, mealType, allowAnimations);
+          searchingInProgress, skillLevel, mealType, animateSettings);
     }
     return orElse();
   }
@@ -1036,7 +1036,7 @@ abstract class RecipesSearch implements RecipesState {
       final bool searchingInProgress,
       final SkillLevel skillLevel,
       final MealType mealType,
-      final bool allowAnimations) = _$RecipesSearch;
+      final bool animateSettings) = _$RecipesSearch;
 
   List<Suggestion> get suggestions;
   List<String> get selectedIngredients;
@@ -1044,7 +1044,7 @@ abstract class RecipesSearch implements RecipesState {
   bool get searchingInProgress;
   SkillLevel get skillLevel;
   MealType get mealType;
-  bool get allowAnimations;
+  bool get animateSettings;
   @JsonKey(ignore: true)
   _$$RecipesSearchCopyWith<_$RecipesSearch> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1056,7 +1056,7 @@ abstract class _$$RecipesSearchDoneCopyWith<$Res> {
           _$RecipesSearchDone value, $Res Function(_$RecipesSearchDone) then) =
       __$$RecipesSearchDoneCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Recipe> recipes});
+  $Res call({List<Recipe> recipes, String search});
 }
 
 /// @nodoc
@@ -1071,12 +1071,17 @@ class __$$RecipesSearchDoneCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipes = null,
+    Object? search = null,
   }) {
     return _then(_$RecipesSearchDone(
       null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
               as List<Recipe>,
+      null == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -1084,7 +1089,8 @@ class __$$RecipesSearchDoneCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipesSearchDone implements RecipesSearchDone {
-  _$RecipesSearchDone(final List<Recipe> recipes) : _recipes = recipes;
+  _$RecipesSearchDone(final List<Recipe> recipes, this.search)
+      : _recipes = recipes;
 
   final List<Recipe> _recipes;
   @override
@@ -1095,8 +1101,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
   }
 
   @override
+  final String search;
+
+  @override
   String toString() {
-    return 'RecipesState.searchDone(recipes: $recipes)';
+    return 'RecipesState.searchDone(recipes: $recipes, search: $search)';
   }
 
   @override
@@ -1104,12 +1113,13 @@ class _$RecipesSearchDone implements RecipesSearchDone {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipesSearchDone &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes));
+            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
+            (identical(other.search, search) || other.search == search));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_recipes));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_recipes), search);
 
   @JsonKey(ignore: true)
   @override
@@ -1131,11 +1141,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)
+            bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes) searchDone,
+    required TResult Function(List<Recipe> recipes, String search) searchDone,
   }) {
-    return searchDone(recipes);
+    return searchDone(recipes, this.search);
   }
 
   @override
@@ -1152,11 +1162,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes)? searchDone,
+    TResult? Function(List<Recipe> recipes, String search)? searchDone,
   }) {
-    return searchDone?.call(recipes);
+    return searchDone?.call(recipes, this.search);
   }
 
   @override
@@ -1173,13 +1183,13 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             bool searchingInProgress,
             SkillLevel skillLevel,
             MealType mealType,
-            bool allowAnimations)?
+            bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes)? searchDone,
+    TResult Function(List<Recipe> recipes, String search)? searchDone,
     required TResult orElse(),
   }) {
     if (searchDone != null) {
-      return searchDone(recipes);
+      return searchDone(recipes, this.search);
     }
     return orElse();
   }
@@ -1229,9 +1239,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
 }
 
 abstract class RecipesSearchDone implements RecipesState {
-  factory RecipesSearchDone(final List<Recipe> recipes) = _$RecipesSearchDone;
+  factory RecipesSearchDone(final List<Recipe> recipes, final String search) =
+      _$RecipesSearchDone;
 
   List<Recipe> get recipes;
+  String get search;
   @JsonKey(ignore: true)
   _$$RecipesSearchDoneCopyWith<_$RecipesSearchDone> get copyWith =>
       throw _privateConstructorUsedError;
