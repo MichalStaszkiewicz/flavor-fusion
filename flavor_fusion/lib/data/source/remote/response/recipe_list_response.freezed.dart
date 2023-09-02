@@ -20,7 +20,7 @@ RecipeListResponse _$RecipeListResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RecipeListResponse {
-  String get endCursor => throw _privateConstructorUsedError;
+  String? get endCursor => throw _privateConstructorUsedError;
   List<Recipe> get edges => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $RecipeListResponseCopyWith<$Res> {
           RecipeListResponse value, $Res Function(RecipeListResponse) then) =
       _$RecipeListResponseCopyWithImpl<$Res, RecipeListResponse>;
   @useResult
-  $Res call({String endCursor, List<Recipe> edges});
+  $Res call({String? endCursor, List<Recipe> edges});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$RecipeListResponseCopyWithImpl<$Res, $Val extends RecipeListResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? endCursor = null,
+    Object? endCursor = freezed,
     Object? edges = null,
   }) {
     return _then(_value.copyWith(
-      endCursor: null == endCursor
+      endCursor: freezed == endCursor
           ? _value.endCursor
           : endCursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       edges: null == edges
           ? _value.edges
           : edges // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$_RecipeListResponseCopyWith<$Res>
       __$$_RecipeListResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String endCursor, List<Recipe> edges});
+  $Res call({String? endCursor, List<Recipe> edges});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$_RecipeListResponseCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? endCursor = null,
+    Object? endCursor = freezed,
     Object? edges = null,
   }) {
     return _then(_$_RecipeListResponse(
-      endCursor: null == endCursor
+      endCursor: freezed == endCursor
           ? _value.endCursor
           : endCursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       edges: null == edges
           ? _value._edges
           : edges // ignore: cast_nullable_to_non_nullable
@@ -116,7 +116,7 @@ class _$_RecipeListResponse implements _RecipeListResponse {
       _$$_RecipeListResponseFromJson(json);
 
   @override
-  final String endCursor;
+  final String? endCursor;
   final List<Recipe> _edges;
   @override
   List<Recipe> get edges {
@@ -162,14 +162,14 @@ class _$_RecipeListResponse implements _RecipeListResponse {
 
 abstract class _RecipeListResponse implements RecipeListResponse {
   factory _RecipeListResponse(
-      {required final String endCursor,
+      {required final String? endCursor,
       required final List<Recipe> edges}) = _$_RecipeListResponse;
 
   factory _RecipeListResponse.fromJson(Map<String, dynamic> json) =
       _$_RecipeListResponse.fromJson;
 
   @override
-  String get endCursor;
+  String? get endCursor;
   @override
   List<Recipe> get edges;
   @override

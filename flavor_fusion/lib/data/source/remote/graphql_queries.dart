@@ -7,7 +7,16 @@ class RecipeQueries {
     String query = """
 {
   recipeSearch(first:10,hasImage: true, hasInstructions: true,mealTime:${mealType.name.toString().toUpperCase()}) {
+     pageInfo{
+      
+      endCursor,
+      hasNextPage
+      hasPreviousPage,
+      startCursor
+      
+    }
     edges {
+     
       node {
         mainImage
         author
