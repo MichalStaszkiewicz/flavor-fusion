@@ -120,7 +120,9 @@ class RemoteSource implements IRemoteSource {
       final skillLevelQuery = skillLevel != SkillLevel.none
           ? 'skillLevel: ${skillLevel.toString().toUpperCase().split('.').last}'
           : '';
-      final endCursorQuery = endCursor != null ? 'cursor: $endCursor' : '';
+      final endCursorQuery = (endCursor != null) && endCursor != ''
+          ? 'after: ${endCursor.split('.').last}'
+          : '';
       final response = await locator<GraphQLService>().executeQuery("""{
     recipeSearch(first:100, 
       query: "$search",
@@ -128,8 +130,8 @@ class RemoteSource implements IRemoteSource {
       hasInstructions: true,
       $mealTimeQuery,
       $skillLevelQuery,
-      $endCursorQuery
-    ) {    pageInfo{
+      $endCursorQuery, ) 
+    {    pageInfo{
       
       endCursor,
       hasNextPage
@@ -177,7 +179,7 @@ class RemoteSource implements IRemoteSource {
       }
     }
   }""");
-
+      print("RESPONSE DATA : " + response.toString());
       if (response.containsKey('recipeSearch')) {
         RecipeListResponse recponseResult =
             RecipeListResponse.fromJson(response['recipeSearch']);
