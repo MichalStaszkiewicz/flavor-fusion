@@ -142,7 +142,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     state = RecipesState.recommendation(_recommendedRecipes);
   }
 
-  void findRecipes() async {
+  Future<void> findRecipes() async {
     if (state is RecipesSearch) {
       final state = this.state as RecipesSearch;
       this.state = RecipesState.search(
