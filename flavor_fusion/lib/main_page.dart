@@ -312,6 +312,16 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                                 _opacityController.reverse();
                               });
                             },
+                            searchDone: (recipes, search) {
+                              _opacityController.forward().then((value) {
+                                ref
+                                    .read(recipesViewModel.notifier)
+                                    .searchRecipes(
+                                        _recipesSearchController.text);
+                                _recipesSearchFocused = !_recipesSearchFocused;
+                                _opacityController.reverse();
+                              });
+                            },
                             orElse: () => {});
                       },
                       child: Icon(Icons.search)))),
