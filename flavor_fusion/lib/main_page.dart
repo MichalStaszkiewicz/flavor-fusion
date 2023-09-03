@@ -1,23 +1,24 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flavor_fusion/data/models/grocery.dart';
-import 'package:flavor_fusion/data/models/ingredient.dart';
-import 'package:flavor_fusion/data/models/nutriens_per_serving.dart';
-import 'package:flavor_fusion/data/models/recipe.dart';
-import 'package:flavor_fusion/data/source/local/hive_data_provider.dart';
-import 'package:flavor_fusion/presentation/screens/favorite_screen.dart';
-import 'package:flavor_fusion/presentation/screens/recipes_screen.dart';
-import 'package:flavor_fusion/presentation/screens/groceries_screen.dart';
-import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
-import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
-import 'package:flavor_fusion/utility/app_router.dart';
-import 'package:flavor_fusion/utility/global.dart';
-import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
-import 'data/models/nutrional_info.dart';
+import '../../../data/models/grocery.dart';
+import '../../../data/models/ingredient.dart';
+import '../../../data/models/nutriens_per_serving.dart';
+import '../../../data/models/nutrional_info.dart';
+import '../../../data/models/recipe.dart';
+import '../../../data/models/request_status.dart';
+import '../../../data/source/local/hive_data_provider.dart';
+import '../../../presentation/screens/favorite_screen.dart';
+import '../../../presentation/screens/groceries_screen.dart';
+import '../../../presentation/screens/recipes_screen.dart';
+import '../../../presentation/view_models/favorite/favorite_view_model.dart';
+import '../../../presentation/view_models/recipes/recipes_view_model.dart';
+import '../../../presentation/widgets/recipe_group.dart';
+import '../../../utility/app_router.dart';
+import '../../../utility/global.dart';
+import '../../../utility/service_locator.dart';
 
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
@@ -28,12 +29,10 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class MainPageState extends ConsumerState with TickerProviderStateMixin {
-  final TextEditingController _recipesSearchController =
-      TextEditingController();
-  final TextEditingController _favoriteSearchController =
-      TextEditingController();
+  final TextEditingController _recipesSearchController = TextEditingController();
+  final TextEditingController _favoriteSearchController = TextEditingController();
   late AnimationController _opacityController;
-  late Animation _opacityAnimation;
+  late Animation<double> _opacityAnimation;
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
       label: "Home",
@@ -76,14 +75,13 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
     locator<HiveDataProvider<Recipe>>().initHive();
 
-    _opacityController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 200));
+    _opacityController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
 
-    _opacityAnimation =
-        Tween<double>(begin: 1, end: 0).animate(_opacityController)
-          ..addListener(() {
-            setState(() {});
-          });
+    _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(_opacityController)
+      ..addListener(() {
+        setState(() {});
+      });
     super.initState();
   }
 
@@ -97,14 +95,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
   Widget _buildAppBar() {
     if (_currentScreen == 0) {
-      return _recipesSearchFocused == false
-          ? _buildRecipesSearch()
-          : _buildRecipesSearchFocused();
+      return _recipesSearchFocused == false ? _buildRecipesSearch() : _buildRecipesSearchFocused();
     }
     if (_currentScreen == 2) {
-      return _favoriteSearchFocused == false
-          ? _buildFavoriteSearch()
-          : _buildFavoriteSearchFocused();
+      return _favoriteSearchFocused == false ? _buildFavoriteSearch() : _buildFavoriteSearchFocused();
     } else {
       return _buildGroceryAppBar();
     }
@@ -161,16 +155,19 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       child: Row(
         children: [
           Expanded(
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: GestureDetector(
-                      onTap: () {
-                        _opacityController.forward().then((value) {
-                          _favoriteSearchFocused = !_favoriteSearchFocused;
-                          _opacityController.reverse();
-                        });
-                      },
-                      child: Icon(Icons.search)))),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                onTap: () {
+                  _opacityController.forward().then((value) {
+                    _favoriteSearchFocused = !_favoriteSearchFocused;
+                    _opacityController.reverse();
+                  });
+                },
+                child: Icon(Icons.search),
+              ),
+            ),
+          ),
           Expanded(
             child: Container(
               child: Center(
@@ -182,15 +179,16 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             ),
           ),
           Expanded(
-              child: Container(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {
-                context.router.push(DishFilterRoute());
-              },
-              child: const Icon(Icons.filter_1),
+            child: Container(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: () {
+                  context.router.push(DishFilterRoute());
+                },
+                child: const Icon(Icons.filter_1),
+              ),
             ),
-          )),
+          ),
         ],
       ),
     );
@@ -207,54 +205,55 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             alignment: Alignment.centerLeft,
             width: 20,
             child: GestureDetector(
-                onTap: () {
-                  _opacityController.forward().then((value) {
-                    _recipesSearchFocused = !_recipesSearchFocused;
-                    _opacityController.reverse();
-                  });
-                  _focusNode.nearestScope!.unfocus();
-                  ref
-                      .read(recipesViewModel.notifier)
-                      .loadRecipeRecommendation();
-                },
-                child: const Icon(Icons.arrow_back)),
-          ),
-          suffixIcon: GestureDetector(
               onTap: () {
                 _opacityController.forward().then((value) {
                   _recipesSearchFocused = !_recipesSearchFocused;
                   _opacityController.reverse();
                 });
                 _focusNode.nearestScope!.unfocus();
-                ref.read(recipesViewModel).maybeWhen(
+                ref.read(recipesViewModel.notifier).loadRecipeRecommendation();
+              },
+              child: const Icon(Icons.arrow_back),
+            ),
+          ),
+          suffixIcon: GestureDetector(
+            onTap: () {
+              _opacityController.forward().then((value) {
+                _recipesSearchFocused = !_recipesSearchFocused;
+                _opacityController.reverse();
+              });
+              _focusNode.nearestScope!.unfocus();
+              ref.read(recipesViewModel).maybeWhen(
                     orElse: () => {},
                     search: (_, __, ___, ____, _____, ______, _______) {
                       ref.read(recipesViewModel.notifier).findRecipes();
-                    });
-              },
-              child: _buildRecipesSearchSuffix()),
+                    },
+                  );
+            },
+            child: _buildRecipesSearchSuffix(),
+          ),
           hintText: 'Type ingredient or recipe',
           hintStyle: Theme.of(context).textTheme.labelMedium,
           border: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent)),
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
           enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent)),
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
           focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent)),
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
           disabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent)),
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
         ),
         onSubmitted: (search) {
           _opacityController.forward().then((value) {
             _recipesSearchFocused = !_recipesSearchFocused;
             if (search.isEmpty &&
-                ref
-                    .read(recipesViewModel.notifier)
-                    .selectedIngredients
-                    .isEmpty) {
+                ref.read(recipesViewModel.notifier).selectedIngredients.isEmpty) {
               ref.read(recipesViewModel.notifier).loadRecipeRecommendation();
             }
-
             _opacityController.reverse();
           });
         },
@@ -272,22 +271,23 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       padding: EdgeInsets.symmetric(vertical: 10),
       width: 100,
       child: Center(
-          child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.blueAccent,
-          borderRadius: BorderRadius.circular(210),
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.blueAccent,
+            borderRadius: BorderRadius.circular(210),
+          ),
+          height: 30,
+          width: 80,
+          child: Text(
+            'Search',
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Colors.white),
+          ),
         ),
-        height: 30,
-        width: 80,
-        child: Text(
-          'Search',
-          style: Theme.of(context)
-              .textTheme
-              .titleMedium!
-              .copyWith(color: Colors.white),
-        ),
-      )),
+      ),
     );
   }
 
@@ -297,34 +297,32 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       child: Row(
         children: [
           Expanded(
-              child: Container(
-                  alignment: Alignment.centerLeft,
-                  child: GestureDetector(
-                      onTap: () {
-                        ref.watch(recipesViewModel).maybeWhen(
-                            recommendation: (recipes) {
-                              _opacityController.forward().then((value) {
-                                ref
-                                    .read(recipesViewModel.notifier)
-                                    .searchRecipes(
-                                        _recipesSearchController.text);
-                                _recipesSearchFocused = !_recipesSearchFocused;
-                                _opacityController.reverse();
-                              });
-                            },
-                            searchDone: (recipes, search) {
-                              _opacityController.forward().then((value) {
-                                ref
-                                    .read(recipesViewModel.notifier)
-                                    .searchRecipes(
-                                        _recipesSearchController.text);
-                                _recipesSearchFocused = !_recipesSearchFocused;
-                                _opacityController.reverse();
-                              });
-                            },
-                            orElse: () => {});
-                      },
-                      child: Icon(Icons.search)))),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: GestureDetector(
+                onTap: () {
+                  ref.watch(recipesViewModel).maybeWhen(
+                    recommendation: (recipes) {
+                      _opacityController.forward().then((value) {
+                        ref.read(recipesViewModel.notifier).searchRecipes(_recipesSearchController.text);
+                        _recipesSearchFocused = !_recipesSearchFocused;
+                        _opacityController.reverse();
+                      });
+                    },
+                    searchDone: (recipes, search) {
+                      _opacityController.forward().then((value) {
+                        ref.read(recipesViewModel.notifier).searchRecipes(_recipesSearchController.text);
+                        _recipesSearchFocused = !_recipesSearchFocused;
+                        _opacityController.reverse();
+                      });
+                    },
+                    orElse: () => {},
+                  );
+                },
+                child: Icon(Icons.search),
+              ),
+            ),
+          ),
           Expanded(
             child: Container(
               child: Center(
@@ -346,16 +344,18 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigationBar(
-          onTap: (index) {
-            _currentScreen = index;
-            setState(() {});
-          },
-          currentIndex: _currentScreen,
-          items: _bottomNavItems),
+        onTap: (index) {
+          _currentScreen = index;
+          setState(() {});
+        },
+        currentIndex: _currentScreen,
+        items: _bottomNavItems,
+      ),
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          title: _buildAppBar()),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: _buildAppBar(),
+      ),
       body: _screens[_currentScreen],
     );
   }
