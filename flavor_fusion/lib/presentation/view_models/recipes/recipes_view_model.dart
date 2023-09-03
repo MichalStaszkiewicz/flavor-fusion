@@ -143,37 +143,46 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
   }
 
   void findRecipes() async {
-    final state = this.state as RecipesSearch;
-    this.state = RecipesState.search(
-        state.suggestions,
-        state.selectedIngredients,
-        state.search,
-        true,
-        _skillLevelCached,
-        _mealTypeCached,
-        false);
-    _suggestionsCached.clear();
-    _suggestionsCached.addAll(state.suggestions);
-    _ingredientsCached.clear();
-    _ingredientsCached
-        .addAll(state.selectedIngredients.map((e) => e.toLowerCase()).toList());
+    if (state is RecipesSearch) {
+      final state = this.state as RecipesSearch;
+      this.state = RecipesState.search(
+          state.suggestions,
+          state.selectedIngredients,
+          state.search,
+          true,
+          _skillLevelCached,
+          _mealTypeCached,
+          false);
+      _suggestionsCached.clear();
+      _suggestionsCached.addAll(state.suggestions);
+      _ingredientsCached.clear();
+      _ingredientsCached.addAll(
+          state.selectedIngredients.map((e) => e.toLowerCase()).toList());
 
-    await locator<SourceRepository>()
-        .searchRecipes(state.search, state.selectedIngredients, state.mealType,
-            state.skillLevel, endCursor)
-        .then((data) {
-      if (this.state is SearchDone) {
-        final state = this.state as SearchDone;
+      await locator<SourceRepository>()
+          .searchRecipes(state.search, state.selectedIngredients,
+              state.mealType, state.skillLevel, endCursor)
+          .then((data) {
+        this.state = RecipesState.searchDone(data['recipes'], state.search);
+      });
+    }
+    if (state is RecipesSearchDone) {
+      final state = this.state as RecipesSearchDone;
+      await locator<SourceRepository>()
+          .searchRecipes(state.search, _ingredientsCached, _mealTypeCached,
+              _skillLevelCached, endCursor)
+          .then((data) {
+        final state = this.state as RecipesSearchDone;
         List<Recipe> tempRecipes = state.recipes;
+
         tempRecipes += data['recipes'];
-        this.state = RecipesState.searchDone(tempRecipes,state.search);
-      } else {
-        this.state = RecipesState.searchDone(data['recipes'],state.search);
-      }
-    });
+
+        this.state = RecipesState.searchDone(tempRecipes, state.search);
+      });
+    }
   }
 
-  Future<void> searchRecipes(String search) async {
+  void searchRecipes(String search) async {
     if (search.isEmpty) {
       _suggestionsRequests.clear();
 

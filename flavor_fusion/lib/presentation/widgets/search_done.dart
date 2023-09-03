@@ -16,7 +16,7 @@ class SearchDoneState extends ConsumerState<SearchDone> {
   ScrollController _scrollController = ScrollController();
   bool reachedEnd = false;
   @override
-  void initState() async {
+  void initState() {
     super.initState();
     _scrollController.addListener(() {
       if (_scrollController.offset >=
@@ -24,10 +24,8 @@ class SearchDoneState extends ConsumerState<SearchDone> {
           !_scrollController.position.outOfRange &&
           !reachedEnd) {
         reachedEnd = true;
-        ref
-            .read(recipesViewModel.notifier)
-            .searchRecipes(widget.search)
-            .then((value) => reachedEnd = false);
+        ref.read(recipesViewModel.notifier).findRecipes();
+        print("reached END!!!! " + widget.search);
       }
     });
   }
