@@ -29,8 +29,10 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class MainPageState extends ConsumerState with TickerProviderStateMixin {
-  final TextEditingController _recipesSearchController = TextEditingController();
-  final TextEditingController _favoriteSearchController = TextEditingController();
+  final TextEditingController _recipesSearchController =
+      TextEditingController();
+  final TextEditingController _favoriteSearchController =
+      TextEditingController();
   late AnimationController _opacityController;
   late Animation<double> _opacityAnimation;
   final List<BottomNavigationBarItem> _bottomNavItems = const [
@@ -75,13 +77,14 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
     locator<HiveDataProvider<Recipe>>().initHive();
 
-    _opacityController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
+    _opacityController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 200));
 
-    _opacityAnimation = Tween<double>(begin: 1, end: 0).animate(_opacityController)
-      ..addListener(() {
-        setState(() {});
-      });
+    _opacityAnimation =
+        Tween<double>(begin: 1, end: 0).animate(_opacityController)
+          ..addListener(() {
+            setState(() {});
+          });
     super.initState();
   }
 
@@ -95,10 +98,14 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
   Widget _buildAppBar() {
     if (_currentScreen == 0) {
-      return _recipesSearchFocused == false ? _buildRecipesSearch() : _buildRecipesSearchFocused();
+      return _recipesSearchFocused == false
+          ? _buildRecipesSearch()
+          : _buildRecipesSearchFocused();
     }
     if (_currentScreen == 2) {
-      return _favoriteSearchFocused == false ? _buildFavoriteSearch() : _buildFavoriteSearchFocused();
+      return _favoriteSearchFocused == false
+          ? _buildFavoriteSearch()
+          : _buildFavoriteSearchFocused();
     } else {
       return _buildGroceryAppBar();
     }
@@ -220,15 +227,18 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             onTap: () {
               _opacityController.forward().then((value) {
                 _recipesSearchFocused = !_recipesSearchFocused;
-                _opacityController.reverse();
+                _opacityController.reverse().then((value) {
+                  _focusNode.nearestScope!.unfocus();
+                  ref.read(recipesViewModel).maybeWhen(
+                        orElse: () => {},
+                        search: (_, __, ___, ____, _____, ______, _______) {
+                          ref
+                              .read(recipesViewModel.notifier)
+                              .findRecipes(_recipesSearchController.text);
+                        },
+                      );
+                });
               });
-              _focusNode.nearestScope!.unfocus();
-              ref.read(recipesViewModel).maybeWhen(
-                    orElse: () => {},
-                    search: (_, __, ___, ____, _____, ______, _______) {
-                      ref.read(recipesViewModel.notifier).findRecipes();
-                    },
-                  );
             },
             child: _buildRecipesSearchSuffix(),
           ),
@@ -251,7 +261,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           _opacityController.forward().then((value) {
             _recipesSearchFocused = !_recipesSearchFocused;
             if (search.isEmpty &&
-                ref.read(recipesViewModel.notifier).selectedIngredients.isEmpty) {
+                ref
+                    .read(recipesViewModel.notifier)
+                    .selectedIngredients
+                    .isEmpty) {
               ref.read(recipesViewModel.notifier).loadRecipeRecommendation();
             }
             _opacityController.reverse();
@@ -302,22 +315,33 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
               child: GestureDetector(
                 onTap: () {
                   ref.watch(recipesViewModel).maybeWhen(
-                    recommendation: (recipes) {
-                      _opacityController.forward().then((value) {
-                        ref.read(recipesViewModel.notifier).searchRecipes(_recipesSearchController.text);
-                        _recipesSearchFocused = !_recipesSearchFocused;
-                        _opacityController.reverse();
-                      });
-                    },
-                    searchDone: (recipes, search) {
-                      _opacityController.forward().then((value) {
-                        ref.read(recipesViewModel.notifier).searchRecipes(_recipesSearchController.text);
-                        _recipesSearchFocused = !_recipesSearchFocused;
-                        _opacityController.reverse();
-                      });
-                    },
-                    orElse: () => {},
-                  );
+                        recommendation: (recipes) {
+                          _opacityController.forward().then((value) {
+                            ref
+                                .read(recipesViewModel.notifier)
+                                .initSearchRecipe(
+                                    _recipesSearchController.text);
+                            _recipesSearchFocused = !_recipesSearchFocused;
+                            _opacityController.reverse();
+                          });
+                        },
+                        search: (_, __, ___, ____, _____, ______, _______) => {
+                          _opacityController.forward().then((value) {
+                            _recipesSearchFocused = !_recipesSearchFocused;
+                            _opacityController.reverse();
+                          })
+                        },
+                        searchDone: (recipes, search) {
+                          _opacityController.forward().then((value) {
+                            ref
+                                .read(recipesViewModel.notifier)
+                                .initSearchRecipe(_recipesSearchController.text);
+                            _recipesSearchFocused = !_recipesSearchFocused;
+                            _opacityController.reverse();
+                          });
+                        },
+                        orElse: () => {},
+                      );
                 },
                 child: Icon(Icons.search),
               ),

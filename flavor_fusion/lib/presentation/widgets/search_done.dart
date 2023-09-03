@@ -23,18 +23,21 @@ class SearchDoneState extends ConsumerState<SearchDone> {
               _scrollController.position.maxScrollExtent &&
           !_scrollController.position.outOfRange &&
           !reachedEnd) {
+        print("CURRENT OFFSET " + _scrollController.offset.toString());
+        print("MAX OFFSET " +
+            _scrollController.position.maxScrollExtent.toString());
         reachedEnd = true;
         ref
             .read(recipesViewModel.notifier)
-            .findRecipes()
+            .loadNextRecipesPage()
             .then((value) => reachedEnd = false);
-      
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    print("CURRENT STATE IS RECIPES DONE");
     return Container(
       height: double.infinity,
       key: const ValueKey('recipes_searching'),

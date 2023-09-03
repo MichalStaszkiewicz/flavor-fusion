@@ -103,7 +103,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   @override
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recipesViewModel);
-
+    print("CURRENT STATE " + recipesState.toString());
     return Align(
       alignment: Alignment.topCenter,
       child: Stack(
@@ -151,12 +151,23 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
                   );
                 }
               },
-              searchDone: (recipes, search) => SearchDone(
-                recipes: recipes,
-                search: search,
-              ),
               orElse: () => Container(),
             ),
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+          ),
+          AnimatedSwitcher(
+            layoutBuilder: (_, __) => recipesState.maybeWhen(
+                searchDone: (recipes, search) => SearchDone(
+                      recipes: recipes,
+                      search: search,
+                    ),
+                orElse: () => Container()),
             duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, animation) {
               return FadeTransition(
@@ -184,6 +195,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   }
 
   Container _buildLoading() => Container(
+        key: const ValueKey('recipes_loading'),
         child: Center(
           child: Lottie.asset(height: 250, 'assets/loading.json'),
         ),

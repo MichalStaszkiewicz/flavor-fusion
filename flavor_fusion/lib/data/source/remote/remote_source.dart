@@ -179,7 +179,7 @@ class RemoteSource implements IRemoteSource {
       }
     }
   }""");
-      print("RESPONSE DATA : " + response.toString());
+     
       if (response.containsKey('recipeSearch')) {
         RecipeListResponse recponseResult =
             RecipeListResponse.fromJson(response['recipeSearch']);

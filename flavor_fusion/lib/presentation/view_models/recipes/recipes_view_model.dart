@@ -17,7 +17,9 @@ import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
 
 var recipesViewModel = StateNotifierProvider<RecipesViewModel, RecipesState>(
-  (ref) => RecipesViewModel(RecipesState.initial()),
+  (ref) {
+    return RecipesViewModel(RecipesState.initial());
+  },
 );
 
 class RecipesViewModel extends StateNotifier<RecipesState> {
@@ -50,7 +52,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
     _ingredientsCached.removeWhere((element) => element == ingredient);
 
-    suggestionListKey.currentState?.insertItem(0, duration: const Duration(milliseconds: 300));
+    suggestionListKey.currentState
+        ?.insertItem(0, duration: const Duration(milliseconds: 300));
 
     this.state = RecipesState.search(
       tempSuggestions,
@@ -143,9 +146,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
   void initRecommendedRecipes() async {
     state = RecipesState.loading();
-    _recommendedRecipes = await locator<SourceRepository>()
-        .getRecommendedRecipes()
-        .then((value) {
+    _recommendedRecipes =
+        await locator<SourceRepository>().getRecommendedRecipes().then((value) {
       state = RecipesState.recommendation(value);
       return value;
     });
@@ -155,57 +157,50 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     state = RecipesState.recommendation(_recommendedRecipes);
   }
 
-  Future<void> findRecipes() async {
-    if (state is RecipesSearch) {
-      final state = this.state as RecipesSearch;
-      this.state = RecipesState.search(
-        state.suggestions,
-        state.selectedIngredients,
-        state.search,
-        true,
-        _skillLevelCached,
-        _mealTypeCached,
-        false,
-      );
-      _suggestionsCached.clear();
-      _suggestionsCached.addAll(state.suggestions);
-      _ingredientsCached.clear();
-      _ingredientsCached.addAll(
-        state.selectedIngredients.map((e) => e.toLowerCase()).toList(),
-      );
+  Future<void> loadNextRecipesPage() async {
+    final state = this.state as RecipesSearchDone;
 
-      await locator<SourceRepository>()
-          .searchRecipes(
-            state.search,
-            state.selectedIngredients,
-            state.mealType,
-            state.skillLevel,
-            endCursor,
-          )
-          .then((data) {
-        this.state = RecipesState.searchDone(data['recipes'], state.search);
-      });
-    }
-    if (state is RecipesSearchDone) {
-      final state = this.state as RecipesSearchDone;
+    await locator<SourceRepository>()
+        .searchRecipes(
+      state.search,
+      _ingredientsCached,
+      _mealTypeCached,
+      _skillLevelCached,
+      endCursor,
+    )
+        .then((data) {
+      List<Recipe> tempRecipes = state.recipes;
+      tempRecipes += data['recipes'];
+      this.state = RecipesState.searchDone(tempRecipes, state.search);
+    });
+  }
 
-      await locator<SourceRepository>()
-          .searchRecipes(
-            state.search,
-            _ingredientsCached,
-            _mealTypeCached,
-            _skillLevelCached,
-            endCursor,
-          )
-          .then((data) {
-        final state = this.state as RecipesSearchDone;
-        var tempRecipes = state.recipes;
+  void findRecipes(String search) async {
+    state = RecipesState.loading();
 
-        tempRecipes += data['recipes'];
+    await locator<SourceRepository>()
+        .searchRecipes(
+      search,
+      _ingredientsCached,
+      _mealTypeCached,
+      _skillLevelCached,
+      endCursor,
+    )
+        .then((data) {
+      state = RecipesState.searchDone(data['recipes'], search);
+    });
+  }
 
-        this.state = RecipesState.searchDone(tempRecipes, state.search);
-      });
-    }
+  void initSearchRecipe(String search) {
+    state = RecipesState.search(
+      _suggestionsCached,
+      _ingredientsCached,
+      search,
+      false,
+      _skillLevelCached,
+      _mealTypeCached,
+      false,
+    );
   }
 
   void searchRecipes(String search) async {
@@ -235,7 +230,8 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         newSuggestions.add(suggestion);
       } else {
         final index = formattedSuggestions.indexWhere(
-          (element) => element.name.toLowerCase() == suggestion.name.toLowerCase(),
+          (element) =>
+              element.name.toLowerCase() == suggestion.name.toLowerCase(),
         );
         animatedIndexes.add(index);
       }
@@ -255,19 +251,20 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
     locator<SourceRepository>()
         .searchRecipes(
-          search,
-          _ingredientsCached,
-          _mealTypeCached,
-          _skillLevelCached,
-          '',
-        )
+      search,
+      _ingredientsCached,
+      _mealTypeCached,
+      _skillLevelCached,
+      '',
+    )
         .then((data) {
       if ((index + 1) == _suggestionsRequests.length) {
         for (final Recipe recipe in data['recipes']) {
           for (Ingredient ingredient in recipe.ingredients) {
             final ingredientName = ingredient.name.toLowerCase();
             final suggestionExists = newSuggestions.indexWhere(
-              (element) => element.name.toLowerCase() == ingredientName.toLowerCase(),
+              (element) =>
+                  element.name.toLowerCase() == ingredientName.toLowerCase(),
             );
             if (ingredientName.contains(search.toLowerCase()) &&
                 !_ingredientsCached.contains(ingredientName.toLowerCase()) &&

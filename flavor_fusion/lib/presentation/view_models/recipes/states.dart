@@ -23,6 +23,7 @@ abstract class RecipesState with _$RecipesState {
     MealType mealType,
     bool animateSettings,
   ) = RecipesSearch;
+
   factory RecipesState.searchDone(List<Recipe> recipes, String search) =
       RecipesSearchDone;
 }
