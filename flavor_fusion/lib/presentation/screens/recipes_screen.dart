@@ -163,9 +163,9 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           ),
           AnimatedSwitcher(
             layoutBuilder: (_, __) => recipesState.maybeWhen(
-                searchDone: (recipes, search) => SearchDone(
+                searchDone: (recipes, search,loadingNextPage) => SearchDone(
                       recipes: recipes,
-                      search: search,
+                      search: search, loadingNextPage: loadingNextPage,
                     ),
                 orElse: () => Container()),
             duration: const Duration(milliseconds: 300),

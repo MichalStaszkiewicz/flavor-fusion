@@ -334,7 +334,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                             _opacityController.reverse();
                           })
                         },
-                        searchDone: (recipes, search) {
+                        searchDone: (recipes, search,_) {
                           _opacityController.forward().then((value) {
                             ref
                                 .read(recipesViewModel.notifier)

@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SearchDone extends ConsumerStatefulWidget {
-  SearchDone({super.key, required this.recipes, required this.search});
+  SearchDone(
+      {super.key,
+      required this.recipes,
+      required this.search,
+      required this.loadingNextPage});
   List<Recipe> recipes;
   String search;
+  bool loadingNextPage;
   @override
   SearchDoneState createState() => SearchDoneState();
 }
@@ -23,9 +28,6 @@ class SearchDoneState extends ConsumerState<SearchDone> {
               _scrollController.position.maxScrollExtent &&
           !_scrollController.position.outOfRange &&
           !reachedEnd) {
-        print("CURRENT OFFSET " + _scrollController.offset.toString());
-        print("MAX OFFSET " +
-            _scrollController.position.maxScrollExtent.toString());
         reachedEnd = true;
         ref
             .read(recipesViewModel.notifier)
@@ -37,16 +39,29 @@ class SearchDoneState extends ConsumerState<SearchDone> {
 
   @override
   Widget build(BuildContext context) {
-    print("CURRENT STATE IS RECIPES DONE");
     return Container(
       height: double.infinity,
       key: const ValueKey('recipes_searching'),
       margin: const EdgeInsets.symmetric(horizontal: 10),
-      child: ListView.builder(
-          controller: _scrollController,
-          itemCount: widget.recipes.length,
-          itemBuilder: (context, index) =>
-              DishItemWidget(recipe: widget.recipes[index])),
+      child: Column(children: [
+        Expanded(
+          child: Container(
+            child: ListView.builder(
+                controller: _scrollController,
+                itemCount: widget.recipes.length,
+                itemBuilder: (context, index) =>
+                    DishItemWidget(recipe: widget.recipes[index])),
+          ),
+        ),
+        widget.loadingNextPage
+            ? Container(
+                height: 50,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : Container()
+      ]),
     );
   }
 }

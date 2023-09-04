@@ -159,7 +159,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
 
   Future<void> loadNextRecipesPage() async {
     final state = this.state as RecipesSearchDone;
-
+     this.state = RecipesState.searchDone(state.recipes,state.search,true);
     await locator<SourceRepository>()
         .searchRecipes(
       state.search,
@@ -171,7 +171,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
         .then((data) {
       List<Recipe> tempRecipes = state.recipes;
       tempRecipes += data['recipes'];
-      this.state = RecipesState.searchDone(tempRecipes, state.search);
+      this.state = RecipesState.searchDone(tempRecipes, state.search,false);
     });
   }
 
@@ -187,7 +187,7 @@ class RecipesViewModel extends StateNotifier<RecipesState> {
       endCursor,
     )
         .then((data) {
-      state = RecipesState.searchDone(data['recipes'], search);
+      state = RecipesState.searchDone(data['recipes'], search,false);
     });
   }
 

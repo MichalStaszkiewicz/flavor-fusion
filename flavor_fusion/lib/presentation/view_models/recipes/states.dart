@@ -24,6 +24,6 @@ abstract class RecipesState with _$RecipesState {
     bool animateSettings,
   ) = RecipesSearch;
 
-  factory RecipesState.searchDone(List<Recipe> recipes, String search) =
+  factory RecipesState.searchDone(List<Recipe> recipes, String search,bool loadingNextPage) =
       RecipesSearchDone;
 }

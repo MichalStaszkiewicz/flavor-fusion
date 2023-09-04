@@ -32,7 +32,7 @@ class DishItemWidget extends StatelessWidget {
 
   Widget _buildImageContainer(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       width: 130,
       height: 150,
       child: Container(

@@ -31,7 +31,9 @@ mixin _$RecipesState {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,7 +51,9 @@ mixin _$RecipesState {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,7 +71,8 @@ mixin _$RecipesState {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -173,7 +178,9 @@ class _$RecipesInitial implements RecipesInitial {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) {
     return initial();
   }
@@ -194,7 +201,9 @@ class _$RecipesInitial implements RecipesInitial {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) {
     return initial?.call();
   }
@@ -215,7 +224,8 @@ class _$RecipesInitial implements RecipesInitial {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -323,7 +333,9 @@ class _$RecipesLoading implements RecipesLoading {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) {
     return loading();
   }
@@ -344,7 +356,9 @@ class _$RecipesLoading implements RecipesLoading {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) {
     return loading?.call();
   }
@@ -365,7 +379,8 @@ class _$RecipesLoading implements RecipesLoading {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -473,7 +488,9 @@ class _$RecipesError implements RecipesError {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) {
     return error();
   }
@@ -494,7 +511,9 @@ class _$RecipesError implements RecipesError {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) {
     return error?.call();
   }
@@ -515,7 +534,8 @@ class _$RecipesError implements RecipesError {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -657,7 +677,9 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) {
     return recommendation(recipes);
   }
@@ -678,7 +700,9 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) {
     return recommendation?.call(recipes);
   }
@@ -699,7 +723,8 @@ class _$RecipesRecommendation implements RecipesRecommendation {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) {
     if (recommendation != null) {
@@ -930,7 +955,9 @@ class _$RecipesSearch implements RecipesSearch {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) {
     return search(suggestions, selectedIngredients, this.search,
         searchingInProgress, skillLevel, mealType, animateSettings);
@@ -952,7 +979,9 @@ class _$RecipesSearch implements RecipesSearch {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) {
     return search?.call(suggestions, selectedIngredients, this.search,
         searchingInProgress, skillLevel, mealType, animateSettings);
@@ -974,7 +1003,8 @@ class _$RecipesSearch implements RecipesSearch {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -1056,7 +1086,7 @@ abstract class _$$RecipesSearchDoneCopyWith<$Res> {
           _$RecipesSearchDone value, $Res Function(_$RecipesSearchDone) then) =
       __$$RecipesSearchDoneCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Recipe> recipes, String search});
+  $Res call({List<Recipe> recipes, String search, bool loadingNextPage});
 }
 
 /// @nodoc
@@ -1072,6 +1102,7 @@ class __$$RecipesSearchDoneCopyWithImpl<$Res>
   $Res call({
     Object? recipes = null,
     Object? search = null,
+    Object? loadingNextPage = null,
   }) {
     return _then(_$RecipesSearchDone(
       null == recipes
@@ -1082,6 +1113,10 @@ class __$$RecipesSearchDoneCopyWithImpl<$Res>
           ? _value.search
           : search // ignore: cast_nullable_to_non_nullable
               as String,
+      null == loadingNextPage
+          ? _value.loadingNextPage
+          : loadingNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1089,7 +1124,8 @@ class __$$RecipesSearchDoneCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipesSearchDone implements RecipesSearchDone {
-  _$RecipesSearchDone(final List<Recipe> recipes, this.search)
+  _$RecipesSearchDone(
+      final List<Recipe> recipes, this.search, this.loadingNextPage)
       : _recipes = recipes;
 
   final List<Recipe> _recipes;
@@ -1102,10 +1138,12 @@ class _$RecipesSearchDone implements RecipesSearchDone {
 
   @override
   final String search;
+  @override
+  final bool loadingNextPage;
 
   @override
   String toString() {
-    return 'RecipesState.searchDone(recipes: $recipes, search: $search)';
+    return 'RecipesState.searchDone(recipes: $recipes, search: $search, loadingNextPage: $loadingNextPage)';
   }
 
   @override
@@ -1114,12 +1152,14 @@ class _$RecipesSearchDone implements RecipesSearchDone {
         (other.runtimeType == runtimeType &&
             other is _$RecipesSearchDone &&
             const DeepCollectionEquality().equals(other._recipes, _recipes) &&
-            (identical(other.search, search) || other.search == search));
+            (identical(other.search, search) || other.search == search) &&
+            (identical(other.loadingNextPage, loadingNextPage) ||
+                other.loadingNextPage == loadingNextPage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_recipes), search);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_recipes), search, loadingNextPage);
 
   @JsonKey(ignore: true)
   @override
@@ -1143,9 +1183,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             MealType mealType,
             bool animateSettings)
         search,
-    required TResult Function(List<Recipe> recipes, String search) searchDone,
+    required TResult Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)
+        searchDone,
   }) {
-    return searchDone(recipes, this.search);
+    return searchDone(recipes, this.search, loadingNextPage);
   }
 
   @override
@@ -1164,9 +1206,11 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult? Function(List<Recipe> recipes, String search)? searchDone,
+    TResult? Function(
+            List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
   }) {
-    return searchDone?.call(recipes, this.search);
+    return searchDone?.call(recipes, this.search, loadingNextPage);
   }
 
   @override
@@ -1185,11 +1229,12 @@ class _$RecipesSearchDone implements RecipesSearchDone {
             MealType mealType,
             bool animateSettings)?
         search,
-    TResult Function(List<Recipe> recipes, String search)? searchDone,
+    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
+        searchDone,
     required TResult orElse(),
   }) {
     if (searchDone != null) {
-      return searchDone(recipes, this.search);
+      return searchDone(recipes, this.search, loadingNextPage);
     }
     return orElse();
   }
@@ -1239,11 +1284,12 @@ class _$RecipesSearchDone implements RecipesSearchDone {
 }
 
 abstract class RecipesSearchDone implements RecipesState {
-  factory RecipesSearchDone(final List<Recipe> recipes, final String search) =
-      _$RecipesSearchDone;
+  factory RecipesSearchDone(final List<Recipe> recipes, final String search,
+      final bool loadingNextPage) = _$RecipesSearchDone;
 
   List<Recipe> get recipes;
   String get search;
+  bool get loadingNextPage;
   @JsonKey(ignore: true)
   _$$RecipesSearchDoneCopyWith<_$RecipesSearchDone> get copyWith =>
       throw _privateConstructorUsedError;
