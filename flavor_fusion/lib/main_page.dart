@@ -21,8 +21,6 @@ import '../../../utility/app_router.dart';
 import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
 
-
-
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
   const MainPage();
@@ -228,20 +226,24 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           ),
           suffixIcon: GestureDetector(
             onTap: () {
-              _opacityController.forward().then((value) {
-                _recipesSearchFocused = !_recipesSearchFocused;
-                _opacityController.reverse().then((value) {
-                  _focusNode.nearestScope!.unfocus();
-                  ref.read(recipesViewModel).maybeWhen(
-                        orElse: () => {},
-                        search: (_, __, ___, ____, _____, ______, _______) {
-                          ref
-                              .read(recipesViewModel.notifier)
-                              .findRecipes(_recipesSearchController.text);
-                        },
-                      );
-                });
-              });
+              ref.read(recipesViewModel).maybeWhen(
+                    orElse: () => {},
+                    search: (_, __, ___, searchingInProgress, _____, ______,
+                        _______) {
+                      if (!searchingInProgress) {
+                        _opacityController.forward().then((value) {
+                          _recipesSearchFocused = !_recipesSearchFocused;
+                          _opacityController.reverse().then((value) {
+                            _focusNode.nearestScope!.unfocus();
+
+                            ref
+                                .read(recipesViewModel.notifier)
+                                .findRecipes(_recipesSearchController.text);
+                          });
+                        });
+                      }
+                    },
+                  );
             },
             child: _buildRecipesSearchSuffix(),
           ),
@@ -334,11 +336,12 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                             _opacityController.reverse();
                           })
                         },
-                        searchDone: (recipes, search,_) {
+                        searchDone: (recipes, search, _) {
                           _opacityController.forward().then((value) {
                             ref
                                 .read(recipesViewModel.notifier)
-                                .initSearchRecipe(_recipesSearchController.text);
+                                .initSearchRecipe(
+                                    _recipesSearchController.text);
                             _recipesSearchFocused = !_recipesSearchFocused;
                             _opacityController.reverse();
                           });
