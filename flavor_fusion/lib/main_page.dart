@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
@@ -20,6 +21,8 @@ import '../../../utility/app_router.dart';
 import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
 
+
+
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
   const MainPage();
@@ -37,15 +40,15 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   late Animation<double> _opacityAnimation;
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
-      label: "Home",
+      label: homeTitle,
       icon: Icon(Icons.home),
     ),
     BottomNavigationBarItem(
-      label: "Shop List",
+      label: shopListTitle,
       icon: Icon(Icons.shopping_cart_sharp),
     ),
     BottomNavigationBarItem(
-      label: "Favorite",
+      label: favoriteTitle,
       icon: Icon(Icons.favorite),
     ),
   ];
@@ -55,9 +58,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     FavoriteScreen()
   ];
   final List<String> _appBarTitles = const [
-    'Home',
-    "Shopping List",
-    "Favorite"
+    homeTitle,
+    shopListTitle,
+    favoriteTitle
   ];
   bool _recipesSearchFocused = false;
   bool _favoriteSearchFocused = false;
@@ -242,7 +245,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             },
             child: _buildRecipesSearchSuffix(),
           ),
-          hintText: 'Type ingredient or recipe',
+          hintText: searchHint,
           hintStyle: Theme.of(context).textTheme.labelMedium,
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent),

@@ -18,3 +18,8 @@ const String lunchLabel = 'Lunch';
 const String dinnerLabel = 'Dinner';
 const String teaTimeLabel = 'TeaTime';
 const String snackLabel = 'Snack';
+
+const String homeTitle = 'Home';
+const String shopListTitle = 'Shopping List';
+const String favoriteTitle = 'Favorite';
+const String searchHint = 'Type ingredient or recipe';
