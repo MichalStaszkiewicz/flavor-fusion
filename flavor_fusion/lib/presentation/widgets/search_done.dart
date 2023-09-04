@@ -1,6 +1,7 @@
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -60,12 +61,14 @@ class SearchDoneState extends ConsumerState<SearchDone> {
             : Container(
                 height: locator<Global>().deviceDimenstions.height / 1.3,
                 child: Center(
-                    child: Column(mainAxisAlignment: MainAxisAlignment.start,
-                  children: [SizedBox(height: 100,),
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 100,
+                    ),
                     Lottie.asset('assets/empty_search.json'),
-                    Text(
-                        textAlign: TextAlign.center,
-                        'Oops! We couldn\'t find any recipes matching your search. It might be a good time to discover new flavors and experiment with your culinary skills.'),
+                    const Text(textAlign: TextAlign.center, emptySearchMessage),
                   ],
                 )),
               ),

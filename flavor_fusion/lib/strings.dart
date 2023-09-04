@@ -35,3 +35,5 @@ const String caloriesNutritionName = 'calories';
 const String fatNutritionName = 'fat';
 const String proteinNutritionName = 'protein';
 const String carbsNutritionName = 'carbs';
+const String emptySearchMessage =
+    "Oops! We couldn't find any recipes matching your search. It might be a good time to discover new flavors and experiment with your culinary skills.";
