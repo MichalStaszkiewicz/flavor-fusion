@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_details_button.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:lottie/lottie.dart';
 
 class RecipeInstructionDialog extends StatefulWidget {
   RecipeInstructionDialog({required this.instructions});
-  List<String> instructions;
+  final List<String> instructions;
   @override
   State<RecipeInstructionDialog> createState() =>
       _RecipeInstructionDialogState();
@@ -37,7 +38,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                         children: [
                           Expanded(
                             flex: 5,
-                            child: Text('Step',
+                            child: Text(stepText,
                                 textAlign: TextAlign.right,
                                 style: Theme.of(context)
                                     .textTheme
@@ -55,7 +56,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                           ),
                         ],
                       )
-                    : Text('Enjoy your meal !',
+                    : Text(enjoyMealText,
                         textAlign: TextAlign.left,
                         style: Theme.of(context)
                             .textTheme
@@ -92,7 +93,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                          label: 'Back',
+                          label: backButtonLabel,
                           onTap: () {
                             setState(() {});
                             if (index > 0) {
@@ -111,7 +112,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                          label: 'Next',
+                          label: nextButtonLabel,
                           onTap: () {
                             setState(() {});
                             index++;
@@ -129,7 +130,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                 : Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
                     child: RecipeDetailsButton(
-                      label: 'Done',
+                      label: doneButtonLabel,
                       onTap: () {
                         context.router.pop();
                       },

@@ -30,3 +30,8 @@ const String enjoyMealText = 'Enjoy your meal !';
 const String backButtonLabel = 'Back';
 const String nextButtonLabel = 'Next';
 const String doneButtonLabel = 'Done';
+
+const String caloriesNutritionName = 'calories';
+const String fatNutritionName = 'fat';
+const String proteinNutritionName = 'protein';
+const String carbsNutritionName = 'carbs';
