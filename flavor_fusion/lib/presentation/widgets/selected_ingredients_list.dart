@@ -1,5 +1,6 @@
 import 'package:flavor_fusion/presentation/widgets/animated_wrap.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_header.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flutter/material.dart';
 
 class SelectedIngredientsList extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SelectedIngredientsListState extends State<SelectedIngredientsList> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           RecipeSearchHeader(
-            label: "Ingredients",
+            label: ingredientsLabel,
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
