@@ -1,6 +1,6 @@
-Flavor Fusion
+# Flavor Fusion
 
-## **Flavor Fusion** is a mobile application for browsing and discovering culinary recipes. The app allows users to explore various culinary recipes, create personalized shopping lists based on selected recipes, and customize their culinary preferences.
+**Flavor Fusion** is a mobile application for browsing and discovering culinary recipes. The app allows users to explore various culinary recipes, create personalized shopping lists based on selected recipes, and customize their culinary preferences.
 
 ### Features
 
