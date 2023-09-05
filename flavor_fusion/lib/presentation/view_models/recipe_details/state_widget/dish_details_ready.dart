@@ -8,13 +8,10 @@ class DishDetailsReadyWidget extends StatelessWidget {
   const DishDetailsReadyWidget({
     super.key,
     required this.recipe,
-
-
     required this.ref,
   });
 
   final Recipe recipe;
-
 
   final WidgetRef ref;
 
@@ -30,8 +27,6 @@ class DishDetailsReadyWidget extends StatelessWidget {
         ),
         DishDetailsContent(
           recipe: recipe,
-   
-   
           ref: ref,
         ),
       ],
