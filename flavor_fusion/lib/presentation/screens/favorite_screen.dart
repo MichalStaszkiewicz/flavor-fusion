@@ -20,6 +20,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    
       ref.read(favoriteViewModel.notifier).loadRecipies();
     });
 
@@ -52,7 +53,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
   }
 
   Container _buildReady(List<Recipe> recipes) {
-    return recipes.length > 0
+    return recipes.isNotEmpty
         ? Container(
             height: locator<Global>().deviceDimenstions.height / 1.2,
             child: ListView.builder(
@@ -63,7 +64,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
                     )),
           )
         : Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             child: Center(
               child: Container(
                 height: 200,
@@ -82,7 +83,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
                     ),
                     Container(
                       child: Text(
-                        favoriteNorecipes,
+                        favoriteNoRecipes,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!

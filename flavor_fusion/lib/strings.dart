@@ -1,4 +1,4 @@
-String favoriteNorecipes =
+String favoriteNoRecipes =
     'If you will like any recipe it will appear fight here !';
 String favoriteRecipesText = 'Favorite Recipes';
 const String nutrionPerServingLabel = 'Nutrion Per Serving';

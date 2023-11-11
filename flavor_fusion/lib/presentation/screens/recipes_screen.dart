@@ -103,7 +103,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
   @override
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recipesViewModel);
-    print("CURRENT STATE " + recipesState.toString());
+   
     return Align(
       alignment: Alignment.topCenter,
       child: Stack(

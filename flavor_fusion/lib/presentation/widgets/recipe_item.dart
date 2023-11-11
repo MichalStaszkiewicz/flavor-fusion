@@ -42,8 +42,9 @@ class _RecipeItemState extends State<RecipeItem> {
       },
       child: Container(
         alignment: Alignment.bottomCenter,
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.all(30),
         width: 230,
+     
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -59,7 +60,7 @@ class _RecipeItemState extends State<RecipeItem> {
           ],
         ),
         child: Container(
-          height: 50,
+          height: 55,
           width: 230,
           decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.2),
@@ -69,12 +70,12 @@ class _RecipeItemState extends State<RecipeItem> {
           padding: const EdgeInsets.all(10),
           child: Container(
             child: AutoSizeText(
-              maxLines: 1,
+              maxLines: 2,
               widget.recipe.name,
               style: Theme.of(context)
                   .textTheme
-                  .titleSmall!
-                  .copyWith(color: Colors.white),
+                  .titleMedium!
+                  .copyWith(color: Colors.white,),
             ),
           ),
         ),

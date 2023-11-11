@@ -19,13 +19,11 @@ var favoriteViewModel = StateNotifierProvider<FavoriteViewModel, FavoriteState>(
 class FavoriteViewModel extends StateNotifier<FavoriteState> {
   FavoriteViewModel(super.state);
 
-
   final List<Recipe> _originalRecipes = [];
 
   void refreshLocalData() async {
     state = FavoriteState.loading();
     await locator<SourceRepository>().getFavoriteRecipes().then((recipes) {
-   
       state = FavoriteState.ready(_originalRecipes);
       return recipes;
     });
@@ -33,13 +31,11 @@ class FavoriteViewModel extends StateNotifier<FavoriteState> {
 
   void loadRecipies() async {
     state = FavoriteState.loading();
-    if (_originalRecipes.isEmpty) {
-      List<Recipe> favoriteRecipes =
-          await locator<SourceRepository>().getFavoriteRecipes();
-      _originalRecipes.addAll(favoriteRecipes);
-    
-      state = FavoriteState.ready(List.from(_originalRecipes));
-    }
+    _originalRecipes.clear();
+    List<Recipe> favoriteRecipes =
+        await locator<SourceRepository>().getFavoriteRecipes();
+    _originalRecipes.addAll(favoriteRecipes);
+
     state = FavoriteState.ready(List.from(_originalRecipes));
   }
 

@@ -219,6 +219,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                   _opacityController.reverse();
                 });
                 _focusNode.nearestScope!.unfocus();
+               
                 ref.read(recipesViewModel.notifier).loadRecipeRecommendation();
               },
               child: const Icon(Icons.arrow_back),
@@ -263,6 +264,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           ),
         ),
         onSubmitted: (search) {
+     
           _opacityController.forward().then((value) {
             _recipesSearchFocused = !_recipesSearchFocused;
             if (search.isEmpty &&
@@ -271,6 +273,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                     .selectedIngredients
                     .isEmpty) {
               ref.read(recipesViewModel.notifier).loadRecipeRecommendation();
+            } else {
+              ref
+                  .read(recipesViewModel.notifier)
+                  .findRecipes(_recipesSearchController.text);
             }
             _opacityController.reverse();
           });
