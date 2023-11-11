@@ -18,8 +18,6 @@ import '../../utility/service_locator.dart';
 
 import 'nutrion_info_table.dart';
 
-
-
 class DishDetailsContent extends StatelessWidget {
   const DishDetailsContent({
     required this.recipe,
@@ -61,8 +59,30 @@ class DishDetailsContent extends StatelessWidget {
               recipe: recipe,
             ),
             const SizedBox(height: 10),
-            DishDetailsHeader(
-              label: ingredientsLabel,
+            Row(
+              children: [
+                Expanded(
+                  child: DishDetailsHeader(
+                    label: ingredientsLabel,
+                  ),
+                ),
+                Expanded(
+                    child: Container(
+                  alignment: Alignment.bottomRight,
+                  child: RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                        text: '',
+                        style: Theme.of(context).textTheme.labelLarge),
+                    TextSpan(
+                        text: '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .copyWith(fontWeight: FontWeight.bold)),
+                  ])),
+                )),
+              ],
             ),
             const SizedBox(height: 10),
             DishDetailsIngradientsList(

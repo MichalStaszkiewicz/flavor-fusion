@@ -14,13 +14,14 @@ class _DishDetailsIngradientsListState
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        child: ListView.builder(
+   
+        child: ListView.builder(padding: EdgeInsets.zero,
+            itemExtent: 30,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: widget.ingredients.length,
             itemBuilder: (BuildContext context, int index) => Container(
-                  margin: EdgeInsets.only(bottom: 10),
+               
                   child: Text(
                     '- ${widget.ingredients[index]}',
                     style: Theme.of(context).textTheme.labelLarge,

@@ -2,9 +2,6 @@ import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-const apiToken = '6c2556246477784c2ff8fe9582c9909d9a5f0048';
-const productionApiEndpoint = 'https://production.suggestic.com/graphql';
-
 class Global {
   late MediaQueryData mediaQuery;
 

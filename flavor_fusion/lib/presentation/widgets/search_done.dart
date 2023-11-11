@@ -22,7 +22,7 @@ class SearchDone extends ConsumerStatefulWidget {
 }
 
 class SearchDoneState extends ConsumerState<SearchDone> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool reachedEnd = false;
   @override
   void initState() {
