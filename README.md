@@ -7,12 +7,13 @@
 
 </div>
 
-# About Flavor Fusion
+## About Flavor Fusion
 
-**Flavor Fusion** is a mobile application for browsing and discovering culinary recipes. The app allows users to explore various culinary recipes, create personalized shopping lists based on selected recipes, and customize their culinary preferences.
+**Flavor Fusion** is a cooking app that helps you find and cook delicious recipes. With over 1.700.000 recipes from around the world, Flavor Fusion is the perfect app for anyone who loves to cook or wants to learn how to cook.
 
-### Features
+## Key Features
 
-- Browse various culinary recipes.
-- Create personalized shopping lists based on selected recipes.
-- Save favorite recipes and access them in one place.
+- **Search:** Search for recipes by name, ingredient, difficulty level, or category.
+- **Recipe information:** Each recipe includes nutritional information, calories, a description, and step-by-step instructions.
+- **Shopping list:** Add ingredients from recipes to your shopping list.
+- **Favorites:** Save recipes that you want to have always on hand.
