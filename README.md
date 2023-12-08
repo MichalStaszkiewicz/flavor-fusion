@@ -28,7 +28,15 @@
 
 ## Try Flavor Fusion Today!
 
-Download Flavor Fusion for free on the Google Play Store: [![Static Badge][google-play-badge]][google-play-url]
+<div style="display: flex; align-items: center; justify-content: center;">
+
+Download Flavor Fusion for free on the Google Play Store:
+
+  <a href="[google-play-url]">
+    <img src="[google-play-badge]" alt="Google Play Badge" style="vertical-align: middle;">
+  </a>
+
+</div>
 
 ## Getting Started 🚀
 
