@@ -15,7 +15,7 @@
 
 <div style="display: flex; flex-direction: row; align-items: center;">
 
-![Static Badge][dart-badge] ![Static Badge][flutter-badge]
+![Static Badge][dart-badge] ![Static Badge][flutter-badge] ![Static Badge][riverpod-badge] ![Static Badge][hive-badge]
 
 </div>
 
@@ -66,3 +66,5 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
 
 [dart-badge]: https://img.shields.io/badge/Dart-grey?style=for-the-badge&logo=dart&logoColor=%23689bed
 [flutter-badge]: https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+[riverpod-badge]: https://img.shields.io/badge/Riverpod-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+[hive-badge]: https://img.shields.io/badge/Hive-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
