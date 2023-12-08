@@ -13,7 +13,9 @@
 
 ### Built With
 
-- ![Static Badge](https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed)
+- ![Static Badge][dart-badge]
+
+- ![Static Badge][flutter-badge]
 
 ## Key Features ✨
 
@@ -59,3 +61,6 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
    ```sh
    flutter run
    ```
+
+[dart-badge]: https://img.shields.io/badge/Dart-grey?style=for-the-badge&logo=dart&logoColor=%23689bed
+[flutter-badge]: https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
