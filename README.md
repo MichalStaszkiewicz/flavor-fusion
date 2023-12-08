@@ -15,7 +15,7 @@
 
 <div style="display: flex; flex-direction: row; align-items: center;">
 
-![Static Badge][dart-badge] ![Static Badge][flutter-badge] ![Static Badge][riverpod-badge] ![Static Badge][hive-badge]
+[![Static Badge][dart-badge]][dart-url] [![Static Badge][flutter-badge]][flutter-url] [![Static Badge][riverpod-badge]][riverpod-url] [![Static Badge][hive-badge]][hive-url]
 
 </div>
 
@@ -64,7 +64,11 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
    flutter run
    ```
 
-[dart-badge]: https://img.shields.io/badge/Dart-grey?style=for-the-badge&logo=dart&logoColor=%23689bed
-[flutter-badge]: https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
-[riverpod-badge]: https://img.shields.io/badge/Riverpod-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
-[hive-badge]: https://img.shields.io/badge/Hive-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+   [dart-badge]: https://img.shields.io/badge/Dart-grey?style=for-the-badge&logo=dart&logoColor=%23689bed
+   [dart-url]: https://dart.dev/
+   [flutter-badge]: https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+   [flutter-url]: https://flutter.dev/
+   [riverpod-badge]: https://img.shields.io/badge/Riverpod-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+   [riverpod-url]: https://riverpod.dev/
+   [hive-badge]: https://img.shields.io/badge/Hive-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+   [hive-url]: https://hive.dev/
