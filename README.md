@@ -30,7 +30,7 @@
 
 <div style="display: flex; align-items: center; justify-content: center;">
 
-Download Flavor Fusion for free on the Google Play Store:
+Download Flavor Fusion for free on the Google Play Store
 
 [![Static Badge][google-play-badge]][google-play-url]
 
