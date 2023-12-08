@@ -15,7 +15,7 @@
 
 <div style="display: flex; flex-direction: row; align-items: center;">
 
-![Static Badge][dart-badge]![Static Badge][flutter-badge]
+![Static Badge][dart-badge]<div style="margin-right:5px;"></div>![Static Badge][flutter-badge]
 
 </div>
 
