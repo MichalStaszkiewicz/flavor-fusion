@@ -11,6 +11,10 @@
 
 **Flavor Fusion** is a cooking 👨‍🍳 app that helps you find 🔎 and cook 👩‍🍳 delicious recipes 😋. With over 1.7 m ✨ recipes from around the world 🌎, Flavor Fusion is the perfect app for anyone who loves to cook 🧑‍🍳 or wants to learn 📚 how to cook 👩‍🍳.
 
+### Built With
+
+- ![Static Badge](https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed)
+
 ## Key Features ✨
 
 - **Search:** Search for recipes by name, ingredient, difficulty level, or category.
