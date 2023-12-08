@@ -13,10 +13,9 @@
 
 ### Built With
 
-<div style="display: flex; flex-direction: column; align-items: center;">
+<div style="display: flex; flex-direction: row; align-items: center;">
 
-- ![Static Badge][dart-badge]
-- ![Static Badge][flutter-badge]
+![Static Badge][dart-badge]![Static Badge][flutter-badge]
 
 </div>
 
