@@ -15,7 +15,7 @@
 
 <div style="display: flex; flex-direction: row; align-items: center;">
 
-[![Static Badge][dart-badge]][dart-url] [![Static Badge][flutter-badge]][flutter-url] [![Static Badge][riverpod-badge]][riverpod-url] [![Static Badge][hive-badge]][hive-url]
+[![Static Badge][dart-badge]][dart-url] [![Static Badge][flutter-badge]][flutter-url] [![Static Badge][riverpod-badge]][riverpod-url] [![Static Badge][hive-badge]][hive-url] [![Static Badge][graphql-badge]][graphql-url]
 
 </div>
 
@@ -68,7 +68,9 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
    [dart-url]: https://dart.dev/
    [flutter-badge]: https://img.shields.io/badge/flutter-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
    [flutter-url]: https://flutter.dev/
-   [riverpod-badge]: https://img.shields.io/badge/Riverpod-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
+   [riverpod-badge]: https://img.shields.io/badge/Riverpod-blue?style=for-the-badge
    [riverpod-url]: https://riverpod.dev/
-   [hive-badge]: https://img.shields.io/badge/Hive-grey?style=for-the-badge&logo=flutter&logoColor=%23689bed
-   [hive-url]: https://hive.dev/
+   [hive-badge]: https://img.shields.io/badge/Hive-yellow?style=for-the-badge
+   [hive-url]: https://docs.hivedb.dev/#/s
+   [graphql-badge]: https://img.shields.io/badge/GraphQL-purple?style=for-the-badge&logo=graphql&logoColor=%23689bed
+   [graphql-url]: https://graphql.org/
