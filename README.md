@@ -29,4 +29,27 @@
 - **Android Studio (or VS Code with Flutter extension):** Install Android Studio or VS Code with Flutter extension for development and debugging.
 
 - **Android emulator or physical Android device:** Set up an Android emulator or connect a physical Android device for testing purposes.
-  
+
+- **Get api key:** Go to: https://console.suggestic.com/dev/keys create a free account and obtain your API key.
+  ## Installation
+
+1. Clone the project using the following command:
+   ```sh
+   git clone https://github.com/MichalStaszkiewicz/flavor-fusion.git
+   ```
+2. Install the project dependencies using the following command:
+   ```sh
+   flutter pub get
+   ```
+3. Create a `.env` file in the project directory and add the following environment variables:
+
+```env
+API_TOKEN = "PUT_YOUR_API_TOKEN"
+```
+
+4. Connect physical phone or run an emulator.
+
+5. Run the project using the following command:
+   ```sh
+   flutter run
+   ```
