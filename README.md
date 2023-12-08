@@ -17,3 +17,16 @@
 - **Recipe information:** Each recipe includes nutritional information, calories, a description, and step-by-step instructions.
 - **Shopping list:** Add ingredients from recipes to your shopping list.
 - **Favorites:** Save recipes that you want to have always on hand.
+
+## Getting Started
+
+### Prerequisites
+
+- **Operating system:** Windows, macOS, or Linux
+
+- **Flutter SDK:** Install the Flutter SDK from [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install).
+
+- **Android Studio (or VS Code with Flutter extension):** Install Android Studio or VS Code with Flutter extension for development and debugging.
+
+- **Android emulator or physical Android device:** Set up an Android emulator or connect a physical Android device for testing purposes.
+  
