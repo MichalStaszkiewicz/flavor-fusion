@@ -73,4 +73,4 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
    [hive-badge]: https://img.shields.io/badge/Hive-yellow?style=for-the-badge
    [hive-url]: https://docs.hivedb.dev/#/s
    [graphql-badge]: https://img.shields.io/badge/GraphQL-purple?style=for-the-badge&logo=graphql&logoColor=%23689bed
-   [graphql-url]: https://graphql.org/
+   [graphql-url]: https://pub.dev/packages/graphql_flutter
