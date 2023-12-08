@@ -28,7 +28,7 @@
 
 ## Try Flavor Fusion Today!
 
-<div style="display: flex; align-items: center; justify-content: center; flex-direction:row">
+<div style="display: flex; align-items: center; justify-content: center;">
 
 Download Flavor Fusion for free on the Google Play Store:
 
