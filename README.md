@@ -55,5 +55,3 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
    ```sh
    flutter run
    ```
-
-   **Discover culinary adventures 🌮 and savor delectable creations 😋 with Flavor Fusion! 👨‍🍳**
