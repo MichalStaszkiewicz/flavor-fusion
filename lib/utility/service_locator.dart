@@ -4,7 +4,7 @@ import 'package:flavor_fusion/data/source/remote/graphql_service.dart';
 import 'package:flavor_fusion/domain/services/grocery.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/global.dart';
-import 'package:flavor_fusion/utility/keys.dart';
+import 'package:flavor_fusion/utility/urls.dart';
 
 import 'package:get_it/get_it.dart';
 
@@ -15,7 +15,7 @@ import '../data/source/remote/remote_source.dart';
 import '../domain/services/favorite_recipe.dart';
 
 GetIt locator = GetIt.instance;
-void initializeServices() {
+void initializeServices(String apiToken) {
   locator.registerLazySingleton<AppRouter>(() => AppRouter());
   locator.registerLazySingleton<Global>(() => Global());
 
