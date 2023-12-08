@@ -26,6 +26,10 @@
 - **Shopping list:** Add ingredients from recipes to your shopping list 🛒.
 - **Favorites:** Save recipes that you want to have always on hand.
 
+## Try Flavor Fusion Today!
+
+Download Flavor Fusion for free on the Google Play Store: [![Static Badge][google-play-badge]][google-play-url]
+
 ## Getting Started 🚀
 
 ### Prerequisites 🛠️
@@ -74,3 +78,5 @@ API_TOKEN = "PUT_YOUR_API_TOKEN"
    [hive-url]: https://docs.hivedb.dev/#/s
    [graphql-badge]: https://img.shields.io/badge/GraphQL-purple?style=for-the-badge&logo=graphql&logoColor=%23689bed
    [graphql-url]: https://pub.dev/packages/graphql_flutter
+   [google-play-badge]: https://img.shields.io/badge/Click-green?style=for-the-badge&logo=google-play&logoColor=%23fff&color=%2300cc00
+   [google-play-url]: https://play.google.com/store/apps/details?id=com.flavorfusion.app
