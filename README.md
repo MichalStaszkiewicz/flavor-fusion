@@ -13,7 +13,7 @@
 
 ### Built With
 
-<div align="center">
+<div style="display: flex; flex-direction: column; align-items: center;">
 
 - ![Static Badge][dart-badge]
 - ![Static Badge][flutter-badge]
