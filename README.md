@@ -13,9 +13,12 @@
 
 ### Built With
 
-- ![Static Badge][dart-badge]
+<div align="center">
 
+- ![Static Badge][dart-badge]
 - ![Static Badge][flutter-badge]
+
+</div>
 
 ## Key Features ✨
 
