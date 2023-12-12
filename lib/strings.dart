@@ -10,7 +10,7 @@ const String cookingSkillLabel = 'Cooking Skill';
 
 const String easyLabel = 'Easy';
 const String mediumLabel = 'Medium';
-const String hardLabel = 'Hard';
+
 const String expertLabel = 'Expert';
 
 const String breakfastLabel = 'Breakfast';
@@ -23,7 +23,6 @@ const String homeTitle = 'Home';
 const String shopListTitle = 'Shopping List';
 const String favoriteTitle = 'Favorite';
 const String searchHint = 'Type ingredient or recipe';
-
 
 const String stepText = 'Step';
 const String enjoyMealText = 'Enjoy your meal !';
