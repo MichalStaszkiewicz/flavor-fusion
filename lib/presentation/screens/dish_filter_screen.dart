@@ -85,25 +85,25 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                 ],
                 label: 'Time',
               ),
-              ApplyButton(onPressed: () {
-                ref.read(recipeFilterViewModel).when(
-                    initial: () => (),
-                    loading: () => (),
-                    error: () => (),
-                    ready: (sortBy, minTime, minCal) {
-                      print(sortBy.name.toString() +
-                          " " +
-                          minTime.toString() +
-                          ' ' +
-                          minCal.toString());
-                      ref
-                          .read(favoriteViewModel.notifier)
-                          .apply(sortBy, minTime, minCal);
-                      ref.read(recipeFilterViewModel.notifier).confirmChanges();
+              ApplyButton(
+                onPressed: () {
+                  ref.read(recipeFilterViewModel).when(
+                      initial: () => (),
+                      loading: () => (),
+                      error: () => (),
+                      ready: (sortBy, minTime, minCal) {
+                        ref
+                            .read(favoriteViewModel.notifier)
+                            .apply(sortBy, minTime, minCal);
+                        ref
+                            .read(recipeFilterViewModel.notifier)
+                            .confirmChanges();
 
-                      context.router.pop();
-                    });
-              }, label: 'Apply',)
+                        context.router.pop();
+                      });
+                },
+                label: 'Apply',
+              )
             ],
           ),
         )),
