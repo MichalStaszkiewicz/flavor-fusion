@@ -13,8 +13,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../utility/service_locator.dart';
 
-
-
 class RecipesSearchBar extends ConsumerStatefulWidget {
   RecipesSearchBar({
     super.key,
@@ -98,10 +96,6 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                     settingsType: RecipeSettings.skill,
                   ),
                   RecipeSearchSettingsChip(
-                    label: hardLabel,
-                    settingsType: RecipeSettings.skill,
-                  ),
-                  RecipeSearchSettingsChip(
                     label: expertLabel,
                     settingsType: RecipeSettings.skill,
                   ),
@@ -111,33 +105,33 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                 height: 10,
               ),
               ref.watch(recipesViewModel).maybeWhen(
-                search: (suggestions,
-                    selectedIngredients,
-                    search,
-                    searchingInProgress,
-                    skillLevel,
-                    mealType,
-                    allowedAnimations) {
-                  return Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        selectedIngredients.isNotEmpty
-                            ? SelectedIngredientsList()
-                            : Container(),
-                        suggestions.isNotEmpty
-                            ? SuggestionsList(
-                                search: search,
-                                suggestions: suggestions,
-                                opacity: widget.suggestionsOpacity,
-                              )
-                            : Container(),
-                      ],
-                    ),
-                  );
-                },
-                orElse: () => Container(),
-              ),
+                    search: (suggestions,
+                        selectedIngredients,
+                        search,
+                        searchingInProgress,
+                        skillLevel,
+                        mealType,
+                        allowedAnimations) {
+                      return Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            selectedIngredients.isNotEmpty
+                                ? SelectedIngredientsList()
+                                : Container(),
+                            suggestions.isNotEmpty
+                                ? SuggestionsList(
+                                    search: search,
+                                    suggestions: suggestions,
+                                    opacity: widget.suggestionsOpacity,
+                                  )
+                                : Container(),
+                          ],
+                        ),
+                      );
+                    },
+                    orElse: () => Container(),
+                  ),
             ],
           ),
         ),

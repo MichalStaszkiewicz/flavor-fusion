@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class RecipeNameRow extends StatelessWidget {
@@ -10,9 +11,10 @@ class RecipeNameRow extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
       width: double.infinity,
-      child: Text(
+      child: AutoSizeText(
         textAlign: TextAlign.left,
-        maxLines: 1,
+        maxFontSize: 23,
+        maxLines: 2,
         recipeName,
         style: Theme.of(context).textTheme.headlineSmall!.copyWith(
               fontWeight: FontWeight.bold,
