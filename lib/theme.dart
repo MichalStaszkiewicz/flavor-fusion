@@ -7,7 +7,7 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 var lightTheme = FlexThemeData.light(
-    scheme: FlexScheme.dellGenoa,
+    scheme: FlexScheme.jungle,
     surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
     blendLevel: 7,
     subThemesData: const FlexSubThemesData(
@@ -21,7 +21,7 @@ var lightTheme = FlexThemeData.light(
     swapLegacyOnMaterial3: true,
     fontFamily: GoogleFonts.lexendDeca().fontFamily);
 var darkTheme = FlexThemeData.dark(
-    scheme: FlexScheme.dellGenoa,
+    scheme: FlexScheme.jungle,
     surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
     blendLevel: 13,
     subThemesData: const FlexSubThemesData(

@@ -3,8 +3,8 @@ import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_mo
 import 'package:flavor_fusion/presentation/view_models/recipe_filter/recipe_filter_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/apply_button.dart';
-import 'package:flavor_fusion/presentation/widgets/filter_check_box.dart';
-import 'package:flavor_fusion/presentation/widgets/filter_check_box_list.dart';
+import 'package:flavor_fusion/presentation/widgets/filter_radio.dart';
+import 'package:flavor_fusion/presentation/widgets/filter_radio_list.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_filter_slider.dart';
 import 'package:flavor_fusion/utility/dialog_manager.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
@@ -28,11 +28,13 @@ class DishFilterScreen extends ConsumerStatefulWidget {
 class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   List<Widget> generateSortMethods(String itemName, List<SortBy> methods) {
     List<Widget> result = [];
-    result.add(FilterCheckBox(
+    result.add(FilterRadio(
+      groupValue: itemName,
       label: 'Ascending',
       selectedMethod: methods[0],
     ));
-    result.add(FilterCheckBox(
+    result.add(FilterRadio(
+      groupValue: itemName,
       label: 'Descending',
       selectedMethod: methods[1],
     ));

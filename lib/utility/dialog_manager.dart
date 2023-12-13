@@ -4,6 +4,7 @@ import 'package:flavor_fusion/presentation/widgets/recipe_instruction_dialog.dar
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 
@@ -20,7 +21,9 @@ class DialogManager {
       cancelButtonText: "Cancel",
       onTapCancel: onTapCancel,
       onTapConfirm: onTapConfirm,
-      panaraDialogType: PanaraDialogType.warning,
+      panaraDialogType: PanaraDialogType.custom,
+      color: context.theme.primaryColor,
+  
     );
   }
 
