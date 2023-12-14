@@ -1,5 +1,6 @@
 import 'package:flavor_fusion/data/models/ingredient.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/ingredient_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +19,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
   @override
   Widget build(BuildContext context) {
    
-    var ingredients = ref.watch(recipesViewModel.notifier).selectedIngredients;
+    var ingredients = ref.watch(recipeSearchViewModel.notifier).selectedIngredients;
 
     return Wrap(
       spacing: 15,
@@ -29,7 +30,7 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
           onDeleted: () {
            
             ref
-                .read(recipesViewModel.notifier)
+                .read(recipeSearchViewModel.notifier)
                 .removeSelectedIngredient(ingredients[index]);
           },
           key: Key(ingredients[index]),

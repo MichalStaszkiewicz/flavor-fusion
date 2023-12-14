@@ -68,22 +68,22 @@ class _$RecipeListResponseCopyWithImpl<$Res, $Val extends RecipeListResponse>
 }
 
 /// @nodoc
-abstract class _$$_RecipeListResponseCopyWith<$Res>
+abstract class _$$RecipeListResponseImplCopyWith<$Res>
     implements $RecipeListResponseCopyWith<$Res> {
-  factory _$$_RecipeListResponseCopyWith(_$_RecipeListResponse value,
-          $Res Function(_$_RecipeListResponse) then) =
-      __$$_RecipeListResponseCopyWithImpl<$Res>;
+  factory _$$RecipeListResponseImplCopyWith(_$RecipeListResponseImpl value,
+          $Res Function(_$RecipeListResponseImpl) then) =
+      __$$RecipeListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? endCursor, List<Recipe> edges});
 }
 
 /// @nodoc
-class __$$_RecipeListResponseCopyWithImpl<$Res>
-    extends _$RecipeListResponseCopyWithImpl<$Res, _$_RecipeListResponse>
-    implements _$$_RecipeListResponseCopyWith<$Res> {
-  __$$_RecipeListResponseCopyWithImpl(
-      _$_RecipeListResponse _value, $Res Function(_$_RecipeListResponse) _then)
+class __$$RecipeListResponseImplCopyWithImpl<$Res>
+    extends _$RecipeListResponseCopyWithImpl<$Res, _$RecipeListResponseImpl>
+    implements _$$RecipeListResponseImplCopyWith<$Res> {
+  __$$RecipeListResponseImplCopyWithImpl(_$RecipeListResponseImpl _value,
+      $Res Function(_$RecipeListResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_RecipeListResponseCopyWithImpl<$Res>
     Object? endCursor = freezed,
     Object? edges = null,
   }) {
-    return _then(_$_RecipeListResponse(
+    return _then(_$RecipeListResponseImpl(
       endCursor: freezed == endCursor
           ? _value.endCursor
           : endCursor // ignore: cast_nullable_to_non_nullable
@@ -107,13 +107,13 @@ class __$$_RecipeListResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RecipeListResponse implements _RecipeListResponse {
-  _$_RecipeListResponse(
+class _$RecipeListResponseImpl implements _RecipeListResponse {
+  _$RecipeListResponseImpl(
       {required this.endCursor, required final List<Recipe> edges})
       : _edges = edges;
 
-  factory _$_RecipeListResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_RecipeListResponseFromJson(json);
+  factory _$RecipeListResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RecipeListResponseImplFromJson(json);
 
   @override
   final String? endCursor;
@@ -134,7 +134,7 @@ class _$_RecipeListResponse implements _RecipeListResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RecipeListResponse &&
+            other is _$RecipeListResponseImpl &&
             (identical(other.endCursor, endCursor) ||
                 other.endCursor == endCursor) &&
             const DeepCollectionEquality().equals(other._edges, _edges));
@@ -148,13 +148,13 @@ class _$_RecipeListResponse implements _RecipeListResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RecipeListResponseCopyWith<_$_RecipeListResponse> get copyWith =>
-      __$$_RecipeListResponseCopyWithImpl<_$_RecipeListResponse>(
+  _$$RecipeListResponseImplCopyWith<_$RecipeListResponseImpl> get copyWith =>
+      __$$RecipeListResponseImplCopyWithImpl<_$RecipeListResponseImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RecipeListResponseToJson(
+    return _$$RecipeListResponseImplToJson(
       this,
     );
   }
@@ -163,10 +163,10 @@ class _$_RecipeListResponse implements _RecipeListResponse {
 abstract class _RecipeListResponse implements RecipeListResponse {
   factory _RecipeListResponse(
       {required final String? endCursor,
-      required final List<Recipe> edges}) = _$_RecipeListResponse;
+      required final List<Recipe> edges}) = _$RecipeListResponseImpl;
 
   factory _RecipeListResponse.fromJson(Map<String, dynamic> json) =
-      _$_RecipeListResponse.fromJson;
+      _$RecipeListResponseImpl.fromJson;
 
   @override
   String? get endCursor;
@@ -174,6 +174,6 @@ abstract class _RecipeListResponse implements RecipeListResponse {
   List<Recipe> get edges;
   @override
   @JsonKey(ignore: true)
-  _$$_RecipeListResponseCopyWith<_$_RecipeListResponse> get copyWith =>
+  _$$RecipeListResponseImplCopyWith<_$RecipeListResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

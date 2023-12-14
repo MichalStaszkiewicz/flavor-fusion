@@ -15,25 +15,15 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$RecipesState {
+mixin _$RecommendedRecipesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
+            Map<String, List<Recipe>> recipes, bool searchOpened)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,19 +31,8 @@ mixin _$RecipesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,65 +40,50 @@ mixin _$RecipesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
+    required TResult Function(RecommendedRecipesInitial value) initial,
+    required TResult Function(RecommendedRecipesLoading value) loading,
+    required TResult Function(RecommendedRecipesError value) error,
+    required TResult Function(RecommendedRecipesReady value) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
+    TResult? Function(RecommendedRecipesInitial value)? initial,
+    TResult? Function(RecommendedRecipesLoading value)? loading,
+    TResult? Function(RecommendedRecipesError value)? error,
+    TResult? Function(RecommendedRecipesReady value)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
+    TResult Function(RecommendedRecipesInitial value)? initial,
+    TResult Function(RecommendedRecipesLoading value)? loading,
+    TResult Function(RecommendedRecipesError value)? error,
+    TResult Function(RecommendedRecipesReady value)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecipesStateCopyWith<$Res> {
-  factory $RecipesStateCopyWith(
-          RecipesState value, $Res Function(RecipesState) then) =
-      _$RecipesStateCopyWithImpl<$Res, RecipesState>;
+abstract class $RecommendedRecipesStateCopyWith<$Res> {
+  factory $RecommendedRecipesStateCopyWith(RecommendedRecipesState value,
+          $Res Function(RecommendedRecipesState) then) =
+      _$RecommendedRecipesStateCopyWithImpl<$Res, RecommendedRecipesState>;
 }
 
 /// @nodoc
-class _$RecipesStateCopyWithImpl<$Res, $Val extends RecipesState>
-    implements $RecipesStateCopyWith<$Res> {
-  _$RecipesStateCopyWithImpl(this._value, this._then);
+class _$RecommendedRecipesStateCopyWithImpl<$Res,
+        $Val extends RecommendedRecipesState>
+    implements $RecommendedRecipesStateCopyWith<$Res> {
+  _$RecommendedRecipesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -128,35 +92,39 @@ class _$RecipesStateCopyWithImpl<$Res, $Val extends RecipesState>
 }
 
 /// @nodoc
-abstract class _$$RecipesInitialCopyWith<$Res> {
-  factory _$$RecipesInitialCopyWith(
-          _$RecipesInitial value, $Res Function(_$RecipesInitial) then) =
-      __$$RecipesInitialCopyWithImpl<$Res>;
+abstract class _$$RecommendedRecipesInitialImplCopyWith<$Res> {
+  factory _$$RecommendedRecipesInitialImplCopyWith(
+          _$RecommendedRecipesInitialImpl value,
+          $Res Function(_$RecommendedRecipesInitialImpl) then) =
+      __$$RecommendedRecipesInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipesInitialCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesInitial>
-    implements _$$RecipesInitialCopyWith<$Res> {
-  __$$RecipesInitialCopyWithImpl(
-      _$RecipesInitial _value, $Res Function(_$RecipesInitial) _then)
+class __$$RecommendedRecipesInitialImplCopyWithImpl<$Res>
+    extends _$RecommendedRecipesStateCopyWithImpl<$Res,
+        _$RecommendedRecipesInitialImpl>
+    implements _$$RecommendedRecipesInitialImplCopyWith<$Res> {
+  __$$RecommendedRecipesInitialImplCopyWithImpl(
+      _$RecommendedRecipesInitialImpl _value,
+      $Res Function(_$RecommendedRecipesInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipesInitial implements RecipesInitial {
-  _$RecipesInitial();
+class _$RecommendedRecipesInitialImpl implements RecommendedRecipesInitial {
+  _$RecommendedRecipesInitialImpl();
 
   @override
   String toString() {
-    return 'RecipesState.initial()';
+    return 'RecommendedRecipesState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipesInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$RecommendedRecipesInitialImpl);
   }
 
   @override
@@ -168,19 +136,9 @@ class _$RecipesInitial implements RecipesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
+            Map<String, List<Recipe>> recipes, bool searchOpened)
+        ready,
   }) {
     return initial();
   }
@@ -191,19 +149,8 @@ class _$RecipesInitial implements RecipesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
   }) {
     return initial?.call();
   }
@@ -214,18 +161,8 @@ class _$RecipesInitial implements RecipesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -237,12 +174,10 @@ class _$RecipesInitial implements RecipesInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
+    required TResult Function(RecommendedRecipesInitial value) initial,
+    required TResult Function(RecommendedRecipesLoading value) loading,
+    required TResult Function(RecommendedRecipesError value) error,
+    required TResult Function(RecommendedRecipesReady value) ready,
   }) {
     return initial(this);
   }
@@ -250,12 +185,10 @@ class _$RecipesInitial implements RecipesInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
+    TResult? Function(RecommendedRecipesInitial value)? initial,
+    TResult? Function(RecommendedRecipesLoading value)? loading,
+    TResult? Function(RecommendedRecipesError value)? error,
+    TResult? Function(RecommendedRecipesReady value)? ready,
   }) {
     return initial?.call(this);
   }
@@ -263,12 +196,10 @@ class _$RecipesInitial implements RecipesInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
+    TResult Function(RecommendedRecipesInitial value)? initial,
+    TResult Function(RecommendedRecipesLoading value)? loading,
+    TResult Function(RecommendedRecipesError value)? error,
+    TResult Function(RecommendedRecipesReady value)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -278,40 +209,44 @@ class _$RecipesInitial implements RecipesInitial {
   }
 }
 
-abstract class RecipesInitial implements RecipesState {
-  factory RecipesInitial() = _$RecipesInitial;
+abstract class RecommendedRecipesInitial implements RecommendedRecipesState {
+  factory RecommendedRecipesInitial() = _$RecommendedRecipesInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipesLoadingCopyWith<$Res> {
-  factory _$$RecipesLoadingCopyWith(
-          _$RecipesLoading value, $Res Function(_$RecipesLoading) then) =
-      __$$RecipesLoadingCopyWithImpl<$Res>;
+abstract class _$$RecommendedRecipesLoadingImplCopyWith<$Res> {
+  factory _$$RecommendedRecipesLoadingImplCopyWith(
+          _$RecommendedRecipesLoadingImpl value,
+          $Res Function(_$RecommendedRecipesLoadingImpl) then) =
+      __$$RecommendedRecipesLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipesLoadingCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesLoading>
-    implements _$$RecipesLoadingCopyWith<$Res> {
-  __$$RecipesLoadingCopyWithImpl(
-      _$RecipesLoading _value, $Res Function(_$RecipesLoading) _then)
+class __$$RecommendedRecipesLoadingImplCopyWithImpl<$Res>
+    extends _$RecommendedRecipesStateCopyWithImpl<$Res,
+        _$RecommendedRecipesLoadingImpl>
+    implements _$$RecommendedRecipesLoadingImplCopyWith<$Res> {
+  __$$RecommendedRecipesLoadingImplCopyWithImpl(
+      _$RecommendedRecipesLoadingImpl _value,
+      $Res Function(_$RecommendedRecipesLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipesLoading implements RecipesLoading {
-  _$RecipesLoading();
+class _$RecommendedRecipesLoadingImpl implements RecommendedRecipesLoading {
+  _$RecommendedRecipesLoadingImpl();
 
   @override
   String toString() {
-    return 'RecipesState.loading()';
+    return 'RecommendedRecipesState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipesLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$RecommendedRecipesLoadingImpl);
   }
 
   @override
@@ -323,19 +258,9 @@ class _$RecipesLoading implements RecipesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
+            Map<String, List<Recipe>> recipes, bool searchOpened)
+        ready,
   }) {
     return loading();
   }
@@ -346,19 +271,8 @@ class _$RecipesLoading implements RecipesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
   }) {
     return loading?.call();
   }
@@ -369,18 +283,8 @@ class _$RecipesLoading implements RecipesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -392,12 +296,10 @@ class _$RecipesLoading implements RecipesLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
+    required TResult Function(RecommendedRecipesInitial value) initial,
+    required TResult Function(RecommendedRecipesLoading value) loading,
+    required TResult Function(RecommendedRecipesError value) error,
+    required TResult Function(RecommendedRecipesReady value) ready,
   }) {
     return loading(this);
   }
@@ -405,12 +307,10 @@ class _$RecipesLoading implements RecipesLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
+    TResult? Function(RecommendedRecipesInitial value)? initial,
+    TResult? Function(RecommendedRecipesLoading value)? loading,
+    TResult? Function(RecommendedRecipesError value)? error,
+    TResult? Function(RecommendedRecipesReady value)? ready,
   }) {
     return loading?.call(this);
   }
@@ -418,12 +318,10 @@ class _$RecipesLoading implements RecipesLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
+    TResult Function(RecommendedRecipesInitial value)? initial,
+    TResult Function(RecommendedRecipesLoading value)? loading,
+    TResult Function(RecommendedRecipesError value)? error,
+    TResult Function(RecommendedRecipesReady value)? ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -433,40 +331,44 @@ class _$RecipesLoading implements RecipesLoading {
   }
 }
 
-abstract class RecipesLoading implements RecipesState {
-  factory RecipesLoading() = _$RecipesLoading;
+abstract class RecommendedRecipesLoading implements RecommendedRecipesState {
+  factory RecommendedRecipesLoading() = _$RecommendedRecipesLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipesErrorCopyWith<$Res> {
-  factory _$$RecipesErrorCopyWith(
-          _$RecipesError value, $Res Function(_$RecipesError) then) =
-      __$$RecipesErrorCopyWithImpl<$Res>;
+abstract class _$$RecommendedRecipesErrorImplCopyWith<$Res> {
+  factory _$$RecommendedRecipesErrorImplCopyWith(
+          _$RecommendedRecipesErrorImpl value,
+          $Res Function(_$RecommendedRecipesErrorImpl) then) =
+      __$$RecommendedRecipesErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipesErrorCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesError>
-    implements _$$RecipesErrorCopyWith<$Res> {
-  __$$RecipesErrorCopyWithImpl(
-      _$RecipesError _value, $Res Function(_$RecipesError) _then)
+class __$$RecommendedRecipesErrorImplCopyWithImpl<$Res>
+    extends _$RecommendedRecipesStateCopyWithImpl<$Res,
+        _$RecommendedRecipesErrorImpl>
+    implements _$$RecommendedRecipesErrorImplCopyWith<$Res> {
+  __$$RecommendedRecipesErrorImplCopyWithImpl(
+      _$RecommendedRecipesErrorImpl _value,
+      $Res Function(_$RecommendedRecipesErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipesError implements RecipesError {
-  _$RecipesError();
+class _$RecommendedRecipesErrorImpl implements RecommendedRecipesError {
+  _$RecommendedRecipesErrorImpl();
 
   @override
   String toString() {
-    return 'RecipesState.error()';
+    return 'RecommendedRecipesState.error()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipesError);
+        (other.runtimeType == runtimeType &&
+            other is _$RecommendedRecipesErrorImpl);
   }
 
   @override
@@ -478,19 +380,9 @@ class _$RecipesError implements RecipesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
+            Map<String, List<Recipe>> recipes, bool searchOpened)
+        ready,
   }) {
     return error();
   }
@@ -501,19 +393,8 @@ class _$RecipesError implements RecipesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
   }) {
     return error?.call();
   }
@@ -524,18 +405,8 @@ class _$RecipesError implements RecipesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -547,12 +418,10 @@ class _$RecipesError implements RecipesError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
+    required TResult Function(RecommendedRecipesInitial value) initial,
+    required TResult Function(RecommendedRecipesLoading value) loading,
+    required TResult Function(RecommendedRecipesError value) error,
+    required TResult Function(RecommendedRecipesReady value) ready,
   }) {
     return error(this);
   }
@@ -560,12 +429,10 @@ class _$RecipesError implements RecipesError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
+    TResult? Function(RecommendedRecipesInitial value)? initial,
+    TResult? Function(RecommendedRecipesLoading value)? loading,
+    TResult? Function(RecommendedRecipesError value)? error,
+    TResult? Function(RecommendedRecipesReady value)? ready,
   }) {
     return error?.call(this);
   }
@@ -573,12 +440,10 @@ class _$RecipesError implements RecipesError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
+    TResult Function(RecommendedRecipesInitial value)? initial,
+    TResult Function(RecommendedRecipesLoading value)? loading,
+    TResult Function(RecommendedRecipesError value)? error,
+    TResult Function(RecommendedRecipesReady value)? ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -588,45 +453,54 @@ class _$RecipesError implements RecipesError {
   }
 }
 
-abstract class RecipesError implements RecipesState {
-  factory RecipesError() = _$RecipesError;
+abstract class RecommendedRecipesError implements RecommendedRecipesState {
+  factory RecommendedRecipesError() = _$RecommendedRecipesErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipesRecommendationCopyWith<$Res> {
-  factory _$$RecipesRecommendationCopyWith(_$RecipesRecommendation value,
-          $Res Function(_$RecipesRecommendation) then) =
-      __$$RecipesRecommendationCopyWithImpl<$Res>;
+abstract class _$$RecommendedRecipesReadyImplCopyWith<$Res> {
+  factory _$$RecommendedRecipesReadyImplCopyWith(
+          _$RecommendedRecipesReadyImpl value,
+          $Res Function(_$RecommendedRecipesReadyImpl) then) =
+      __$$RecommendedRecipesReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Map<String, List<Recipe>> recipes});
+  $Res call({Map<String, List<Recipe>> recipes, bool searchOpened});
 }
 
 /// @nodoc
-class __$$RecipesRecommendationCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesRecommendation>
-    implements _$$RecipesRecommendationCopyWith<$Res> {
-  __$$RecipesRecommendationCopyWithImpl(_$RecipesRecommendation _value,
-      $Res Function(_$RecipesRecommendation) _then)
+class __$$RecommendedRecipesReadyImplCopyWithImpl<$Res>
+    extends _$RecommendedRecipesStateCopyWithImpl<$Res,
+        _$RecommendedRecipesReadyImpl>
+    implements _$$RecommendedRecipesReadyImplCopyWith<$Res> {
+  __$$RecommendedRecipesReadyImplCopyWithImpl(
+      _$RecommendedRecipesReadyImpl _value,
+      $Res Function(_$RecommendedRecipesReadyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? recipes = null,
+    Object? searchOpened = null,
   }) {
-    return _then(_$RecipesRecommendation(
+    return _then(_$RecommendedRecipesReadyImpl(
       null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
               as Map<String, List<Recipe>>,
+      null == searchOpened
+          ? _value.searchOpened
+          : searchOpened // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$RecipesRecommendation implements RecipesRecommendation {
-  _$RecipesRecommendation(final Map<String, List<Recipe>> recipes)
+class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
+  _$RecommendedRecipesReadyImpl(
+      final Map<String, List<Recipe>> recipes, this.searchOpened)
       : _recipes = recipes;
 
   final Map<String, List<Recipe>> _recipes;
@@ -638,306 +512,33 @@ class _$RecipesRecommendation implements RecipesRecommendation {
   }
 
   @override
+  final bool searchOpened;
+
+  @override
   String toString() {
-    return 'RecipesState.recommendation(recipes: $recipes)';
+    return 'RecommendedRecipesState.ready(recipes: $recipes, searchOpened: $searchOpened)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecipesRecommendation &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_recipes));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RecipesRecommendationCopyWith<_$RecipesRecommendation> get copyWith =>
-      __$$RecipesRecommendationCopyWithImpl<_$RecipesRecommendation>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
-    required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
-  }) {
-    return recommendation(recipes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
-  }) {
-    return recommendation?.call(recipes);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
-    required TResult orElse(),
-  }) {
-    if (recommendation != null) {
-      return recommendation(recipes);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
-  }) {
-    return recommendation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
-  }) {
-    return recommendation?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
-    required TResult orElse(),
-  }) {
-    if (recommendation != null) {
-      return recommendation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RecipesRecommendation implements RecipesState {
-  factory RecipesRecommendation(final Map<String, List<Recipe>> recipes) =
-      _$RecipesRecommendation;
-
-  Map<String, List<Recipe>> get recipes;
-  @JsonKey(ignore: true)
-  _$$RecipesRecommendationCopyWith<_$RecipesRecommendation> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RecipesSearchCopyWith<$Res> {
-  factory _$$RecipesSearchCopyWith(
-          _$RecipesSearch value, $Res Function(_$RecipesSearch) then) =
-      __$$RecipesSearchCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {List<Suggestion> suggestions,
-      List<String> selectedIngredients,
-      String search,
-      bool searchingInProgress,
-      SkillLevel skillLevel,
-      MealType mealType,
-      bool animateSettings});
-}
-
-/// @nodoc
-class __$$RecipesSearchCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesSearch>
-    implements _$$RecipesSearchCopyWith<$Res> {
-  __$$RecipesSearchCopyWithImpl(
-      _$RecipesSearch _value, $Res Function(_$RecipesSearch) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? suggestions = null,
-    Object? selectedIngredients = null,
-    Object? search = null,
-    Object? searchingInProgress = null,
-    Object? skillLevel = null,
-    Object? mealType = null,
-    Object? animateSettings = null,
-  }) {
-    return _then(_$RecipesSearch(
-      null == suggestions
-          ? _value._suggestions
-          : suggestions // ignore: cast_nullable_to_non_nullable
-              as List<Suggestion>,
-      null == selectedIngredients
-          ? _value._selectedIngredients
-          : selectedIngredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      null == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == searchingInProgress
-          ? _value.searchingInProgress
-          : searchingInProgress // ignore: cast_nullable_to_non_nullable
-              as bool,
-      null == skillLevel
-          ? _value.skillLevel
-          : skillLevel // ignore: cast_nullable_to_non_nullable
-              as SkillLevel,
-      null == mealType
-          ? _value.mealType
-          : mealType // ignore: cast_nullable_to_non_nullable
-              as MealType,
-      null == animateSettings
-          ? _value.animateSettings
-          : animateSettings // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RecipesSearch implements RecipesSearch {
-  _$RecipesSearch(
-      final List<Suggestion> suggestions,
-      final List<String> selectedIngredients,
-      this.search,
-      this.searchingInProgress,
-      this.skillLevel,
-      this.mealType,
-      this.animateSettings)
-      : _suggestions = suggestions,
-        _selectedIngredients = selectedIngredients;
-
-  final List<Suggestion> _suggestions;
-  @override
-  List<Suggestion> get suggestions {
-    if (_suggestions is EqualUnmodifiableListView) return _suggestions;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_suggestions);
-  }
-
-  final List<String> _selectedIngredients;
-  @override
-  List<String> get selectedIngredients {
-    if (_selectedIngredients is EqualUnmodifiableListView)
-      return _selectedIngredients;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_selectedIngredients);
-  }
-
-  @override
-  final String search;
-  @override
-  final bool searchingInProgress;
-  @override
-  final SkillLevel skillLevel;
-  @override
-  final MealType mealType;
-  @override
-  final bool animateSettings;
-
-  @override
-  String toString() {
-    return 'RecipesState.search(suggestions: $suggestions, selectedIngredients: $selectedIngredients, search: $search, searchingInProgress: $searchingInProgress, skillLevel: $skillLevel, mealType: $mealType, animateSettings: $animateSettings)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RecipesSearch &&
-            const DeepCollectionEquality()
-                .equals(other._suggestions, _suggestions) &&
-            const DeepCollectionEquality()
-                .equals(other._selectedIngredients, _selectedIngredients) &&
-            (identical(other.search, search) || other.search == search) &&
-            (identical(other.searchingInProgress, searchingInProgress) ||
-                other.searchingInProgress == searchingInProgress) &&
-            (identical(other.skillLevel, skillLevel) ||
-                other.skillLevel == skillLevel) &&
-            (identical(other.mealType, mealType) ||
-                other.mealType == mealType) &&
-            (identical(other.animateSettings, animateSettings) ||
-                other.animateSettings == animateSettings));
+            other is _$RecommendedRecipesReadyImpl &&
+            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
+            (identical(other.searchOpened, searchOpened) ||
+                other.searchOpened == searchOpened));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_suggestions),
-      const DeepCollectionEquality().hash(_selectedIngredients),
-      search,
-      searchingInProgress,
-      skillLevel,
-      mealType,
-      animateSettings);
+      runtimeType, const DeepCollectionEquality().hash(_recipes), searchOpened);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RecipesSearchCopyWith<_$RecipesSearch> get copyWith =>
-      __$$RecipesSearchCopyWithImpl<_$RecipesSearch>(this, _$identity);
+  _$$RecommendedRecipesReadyImplCopyWith<_$RecommendedRecipesReadyImpl>
+      get copyWith => __$$RecommendedRecipesReadyImplCopyWithImpl<
+          _$RecommendedRecipesReadyImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -945,22 +546,11 @@ class _$RecipesSearch implements RecipesSearch {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
     required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
+            Map<String, List<Recipe>> recipes, bool searchOpened)
+        ready,
   }) {
-    return search(suggestions, selectedIngredients, this.search,
-        searchingInProgress, skillLevel, mealType, animateSettings);
+    return ready(recipes, searchOpened);
   }
 
   @override
@@ -969,22 +559,10 @@ class _$RecipesSearch implements RecipesSearch {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
   }) {
-    return search?.call(suggestions, selectedIngredients, this.search,
-        searchingInProgress, skillLevel, mealType, animateSettings);
+    return ready?.call(recipes, searchOpened);
   }
 
   @override
@@ -993,23 +571,12 @@ class _$RecipesSearch implements RecipesSearch {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
+    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
+        ready,
     required TResult orElse(),
   }) {
-    if (search != null) {
-      return search(suggestions, selectedIngredients, this.search,
-          searchingInProgress, skillLevel, mealType, animateSettings);
+    if (ready != null) {
+      return ready(recipes, searchOpened);
     }
     return orElse();
   }
@@ -1017,280 +584,49 @@ class _$RecipesSearch implements RecipesSearch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
+    required TResult Function(RecommendedRecipesInitial value) initial,
+    required TResult Function(RecommendedRecipesLoading value) loading,
+    required TResult Function(RecommendedRecipesError value) error,
+    required TResult Function(RecommendedRecipesReady value) ready,
   }) {
-    return search(this);
+    return ready(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
+    TResult? Function(RecommendedRecipesInitial value)? initial,
+    TResult? Function(RecommendedRecipesLoading value)? loading,
+    TResult? Function(RecommendedRecipesError value)? error,
+    TResult? Function(RecommendedRecipesReady value)? ready,
   }) {
-    return search?.call(this);
+    return ready?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
+    TResult Function(RecommendedRecipesInitial value)? initial,
+    TResult Function(RecommendedRecipesLoading value)? loading,
+    TResult Function(RecommendedRecipesError value)? error,
+    TResult Function(RecommendedRecipesReady value)? ready,
     required TResult orElse(),
   }) {
-    if (search != null) {
-      return search(this);
+    if (ready != null) {
+      return ready(this);
     }
     return orElse();
   }
 }
 
-abstract class RecipesSearch implements RecipesState {
-  factory RecipesSearch(
-      final List<Suggestion> suggestions,
-      final List<String> selectedIngredients,
-      final String search,
-      final bool searchingInProgress,
-      final SkillLevel skillLevel,
-      final MealType mealType,
-      final bool animateSettings) = _$RecipesSearch;
+abstract class RecommendedRecipesReady implements RecommendedRecipesState {
+  factory RecommendedRecipesReady(
+          final Map<String, List<Recipe>> recipes, final bool searchOpened) =
+      _$RecommendedRecipesReadyImpl;
 
-  List<Suggestion> get suggestions;
-  List<String> get selectedIngredients;
-  String get search;
-  bool get searchingInProgress;
-  SkillLevel get skillLevel;
-  MealType get mealType;
-  bool get animateSettings;
+  Map<String, List<Recipe>> get recipes;
+  bool get searchOpened;
   @JsonKey(ignore: true)
-  _$$RecipesSearchCopyWith<_$RecipesSearch> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RecipesSearchDoneCopyWith<$Res> {
-  factory _$$RecipesSearchDoneCopyWith(
-          _$RecipesSearchDone value, $Res Function(_$RecipesSearchDone) then) =
-      __$$RecipesSearchDoneCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<Recipe> recipes, String search, bool loadingNextPage});
-}
-
-/// @nodoc
-class __$$RecipesSearchDoneCopyWithImpl<$Res>
-    extends _$RecipesStateCopyWithImpl<$Res, _$RecipesSearchDone>
-    implements _$$RecipesSearchDoneCopyWith<$Res> {
-  __$$RecipesSearchDoneCopyWithImpl(
-      _$RecipesSearchDone _value, $Res Function(_$RecipesSearchDone) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? recipes = null,
-    Object? search = null,
-    Object? loadingNextPage = null,
-  }) {
-    return _then(_$RecipesSearchDone(
-      null == recipes
-          ? _value._recipes
-          : recipes // ignore: cast_nullable_to_non_nullable
-              as List<Recipe>,
-      null == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == loadingNextPage
-          ? _value.loadingNextPage
-          : loadingNextPage // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$RecipesSearchDone implements RecipesSearchDone {
-  _$RecipesSearchDone(
-      final List<Recipe> recipes, this.search, this.loadingNextPage)
-      : _recipes = recipes;
-
-  final List<Recipe> _recipes;
-  @override
-  List<Recipe> get recipes {
-    if (_recipes is EqualUnmodifiableListView) return _recipes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recipes);
-  }
-
-  @override
-  final String search;
-  @override
-  final bool loadingNextPage;
-
-  @override
-  String toString() {
-    return 'RecipesState.searchDone(recipes: $recipes, search: $search, loadingNextPage: $loadingNextPage)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RecipesSearchDone &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
-            (identical(other.search, search) || other.search == search) &&
-            (identical(other.loadingNextPage, loadingNextPage) ||
-                other.loadingNextPage == loadingNextPage));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_recipes), search, loadingNextPage);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RecipesSearchDoneCopyWith<_$RecipesSearchDone> get copyWith =>
-      __$$RecipesSearchDoneCopyWithImpl<_$RecipesSearchDone>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() error,
-    required TResult Function(Map<String, List<Recipe>> recipes) recommendation,
-    required TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)
-        search,
-    required TResult Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)
-        searchDone,
-  }) {
-    return searchDone(recipes, this.search, loadingNextPage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult? Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult? Function(
-            List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
-  }) {
-    return searchDone?.call(recipes, this.search, loadingNextPage);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes)? recommendation,
-    TResult Function(
-            List<Suggestion> suggestions,
-            List<String> selectedIngredients,
-            String search,
-            bool searchingInProgress,
-            SkillLevel skillLevel,
-            MealType mealType,
-            bool animateSettings)?
-        search,
-    TResult Function(List<Recipe> recipes, String search, bool loadingNextPage)?
-        searchDone,
-    required TResult orElse(),
-  }) {
-    if (searchDone != null) {
-      return searchDone(recipes, this.search, loadingNextPage);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(RecipesInitial value) initial,
-    required TResult Function(RecipesLoading value) loading,
-    required TResult Function(RecipesError value) error,
-    required TResult Function(RecipesRecommendation value) recommendation,
-    required TResult Function(RecipesSearch value) search,
-    required TResult Function(RecipesSearchDone value) searchDone,
-  }) {
-    return searchDone(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RecipesInitial value)? initial,
-    TResult? Function(RecipesLoading value)? loading,
-    TResult? Function(RecipesError value)? error,
-    TResult? Function(RecipesRecommendation value)? recommendation,
-    TResult? Function(RecipesSearch value)? search,
-    TResult? Function(RecipesSearchDone value)? searchDone,
-  }) {
-    return searchDone?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(RecipesInitial value)? initial,
-    TResult Function(RecipesLoading value)? loading,
-    TResult Function(RecipesError value)? error,
-    TResult Function(RecipesRecommendation value)? recommendation,
-    TResult Function(RecipesSearch value)? search,
-    TResult Function(RecipesSearchDone value)? searchDone,
-    required TResult orElse(),
-  }) {
-    if (searchDone != null) {
-      return searchDone(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RecipesSearchDone implements RecipesState {
-  factory RecipesSearchDone(final List<Recipe> recipes, final String search,
-      final bool loadingNextPage) = _$RecipesSearchDone;
-
-  List<Recipe> get recipes;
-  String get search;
-  bool get loadingNextPage;
-  @JsonKey(ignore: true)
-  _$$RecipesSearchDoneCopyWith<_$RecipesSearchDone> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RecommendedRecipesReadyImplCopyWith<_$RecommendedRecipesReadyImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

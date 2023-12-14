@@ -79,7 +79,6 @@ class Global {
     MealType.dinner,
     MealType.lunch,
     MealType.snack,
-    MealType.teatime,
   ];
 
   Map<String, String> ingredientLineToMeasurement(String ingredientLine) {

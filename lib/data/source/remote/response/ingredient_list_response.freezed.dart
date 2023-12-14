@@ -64,23 +64,25 @@ class _$IngredientListResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_IngredientListResponseCopyWith<$Res>
+abstract class _$$IngredientListResponseImplCopyWith<$Res>
     implements $IngredientListResponseCopyWith<$Res> {
-  factory _$$_IngredientListResponseCopyWith(_$_IngredientListResponse value,
-          $Res Function(_$_IngredientListResponse) then) =
-      __$$_IngredientListResponseCopyWithImpl<$Res>;
+  factory _$$IngredientListResponseImplCopyWith(
+          _$IngredientListResponseImpl value,
+          $Res Function(_$IngredientListResponseImpl) then) =
+      __$$IngredientListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Ingredient> edges});
 }
 
 /// @nodoc
-class __$$_IngredientListResponseCopyWithImpl<$Res>
+class __$$IngredientListResponseImplCopyWithImpl<$Res>
     extends _$IngredientListResponseCopyWithImpl<$Res,
-        _$_IngredientListResponse>
-    implements _$$_IngredientListResponseCopyWith<$Res> {
-  __$$_IngredientListResponseCopyWithImpl(_$_IngredientListResponse _value,
-      $Res Function(_$_IngredientListResponse) _then)
+        _$IngredientListResponseImpl>
+    implements _$$IngredientListResponseImplCopyWith<$Res> {
+  __$$IngredientListResponseImplCopyWithImpl(
+      _$IngredientListResponseImpl _value,
+      $Res Function(_$IngredientListResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +90,7 @@ class __$$_IngredientListResponseCopyWithImpl<$Res>
   $Res call({
     Object? edges = null,
   }) {
-    return _then(_$_IngredientListResponse(
+    return _then(_$IngredientListResponseImpl(
       edges: null == edges
           ? _value._edges
           : edges // ignore: cast_nullable_to_non_nullable
@@ -99,12 +101,12 @@ class __$$_IngredientListResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IngredientListResponse implements _IngredientListResponse {
-  _$_IngredientListResponse({required final List<Ingredient> edges})
+class _$IngredientListResponseImpl implements _IngredientListResponse {
+  _$IngredientListResponseImpl({required final List<Ingredient> edges})
       : _edges = edges;
 
-  factory _$_IngredientListResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_IngredientListResponseFromJson(json);
+  factory _$IngredientListResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IngredientListResponseImplFromJson(json);
 
   final List<Ingredient> _edges;
   @override
@@ -123,7 +125,7 @@ class _$_IngredientListResponse implements _IngredientListResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IngredientListResponse &&
+            other is _$IngredientListResponseImpl &&
             const DeepCollectionEquality().equals(other._edges, _edges));
   }
 
@@ -135,13 +137,13 @@ class _$_IngredientListResponse implements _IngredientListResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IngredientListResponseCopyWith<_$_IngredientListResponse> get copyWith =>
-      __$$_IngredientListResponseCopyWithImpl<_$_IngredientListResponse>(
-          this, _$identity);
+  _$$IngredientListResponseImplCopyWith<_$IngredientListResponseImpl>
+      get copyWith => __$$IngredientListResponseImplCopyWithImpl<
+          _$IngredientListResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IngredientListResponseToJson(
+    return _$$IngredientListResponseImplToJson(
       this,
     );
   }
@@ -149,15 +151,15 @@ class _$_IngredientListResponse implements _IngredientListResponse {
 
 abstract class _IngredientListResponse implements IngredientListResponse {
   factory _IngredientListResponse({required final List<Ingredient> edges}) =
-      _$_IngredientListResponse;
+      _$IngredientListResponseImpl;
 
   factory _IngredientListResponse.fromJson(Map<String, dynamic> json) =
-      _$_IngredientListResponse.fromJson;
+      _$IngredientListResponseImpl.fromJson;
 
   @override
   List<Ingredient> get edges;
   @override
   @JsonKey(ignore: true)
-  _$$_IngredientListResponseCopyWith<_$_IngredientListResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$IngredientListResponseImplCopyWith<_$IngredientListResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

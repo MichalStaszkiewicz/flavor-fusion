@@ -6,24 +6,12 @@ import '../../../data/models/suggestion.dart';
 part 'states.freezed.dart';
 
 @freezed
-abstract class RecipesState with _$RecipesState {
-  factory RecipesState.initial() = RecipesInitial;
-  factory RecipesState.loading() = RecipesLoading;
+abstract class RecommendedRecipesState with _$RecommendedRecipesState {
+  factory RecommendedRecipesState.initial() = RecommendedRecipesInitial;
+  factory RecommendedRecipesState.loading() = RecommendedRecipesLoading;
 
-  factory RecipesState.error() = RecipesError;
-  factory RecipesState.recommendation(Map<String, List<Recipe>> recipes) =
-      RecipesRecommendation;
-
-  factory RecipesState.search(
-    List<Suggestion> suggestions,
-    List<String> selectedIngredients,
-    String search,
-    bool searchingInProgress,
-    SkillLevel skillLevel,
-    MealType mealType,
-    bool animateSettings,
-  ) = RecipesSearch;
-
-  factory RecipesState.searchDone(List<Recipe> recipes, String search,bool loadingNextPage) =
-      RecipesSearchDone;
+  factory RecommendedRecipesState.error() = RecommendedRecipesError;
+  factory RecommendedRecipesState.ready(
+          Map<String, List<Recipe>> recipes, bool searchOpened) =
+      RecommendedRecipesReady;
 }

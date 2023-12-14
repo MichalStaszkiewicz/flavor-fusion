@@ -87,25 +87,25 @@ class _$FavoriteStateCopyWithImpl<$Res, $Val extends FavoriteState>
 }
 
 /// @nodoc
-abstract class _$$FavoriteInitialCopyWith<$Res> {
-  factory _$$FavoriteInitialCopyWith(
-          _$FavoriteInitial value, $Res Function(_$FavoriteInitial) then) =
-      __$$FavoriteInitialCopyWithImpl<$Res>;
+abstract class _$$FavoriteInitialImplCopyWith<$Res> {
+  factory _$$FavoriteInitialImplCopyWith(_$FavoriteInitialImpl value,
+          $Res Function(_$FavoriteInitialImpl) then) =
+      __$$FavoriteInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FavoriteInitialCopyWithImpl<$Res>
-    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteInitial>
-    implements _$$FavoriteInitialCopyWith<$Res> {
-  __$$FavoriteInitialCopyWithImpl(
-      _$FavoriteInitial _value, $Res Function(_$FavoriteInitial) _then)
+class __$$FavoriteInitialImplCopyWithImpl<$Res>
+    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteInitialImpl>
+    implements _$$FavoriteInitialImplCopyWith<$Res> {
+  __$$FavoriteInitialImplCopyWithImpl(
+      _$FavoriteInitialImpl _value, $Res Function(_$FavoriteInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FavoriteInitial implements FavoriteInitial {
-  _$FavoriteInitial();
+class _$FavoriteInitialImpl implements FavoriteInitial {
+  _$FavoriteInitialImpl();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$FavoriteInitial implements FavoriteInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FavoriteInitial);
+        (other.runtimeType == runtimeType && other is _$FavoriteInitialImpl);
   }
 
   @override
@@ -197,29 +197,29 @@ class _$FavoriteInitial implements FavoriteInitial {
 }
 
 abstract class FavoriteInitial implements FavoriteState {
-  factory FavoriteInitial() = _$FavoriteInitial;
+  factory FavoriteInitial() = _$FavoriteInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$FavoriteLoadingCopyWith<$Res> {
-  factory _$$FavoriteLoadingCopyWith(
-          _$FavoriteLoading value, $Res Function(_$FavoriteLoading) then) =
-      __$$FavoriteLoadingCopyWithImpl<$Res>;
+abstract class _$$FavoriteLoadingImplCopyWith<$Res> {
+  factory _$$FavoriteLoadingImplCopyWith(_$FavoriteLoadingImpl value,
+          $Res Function(_$FavoriteLoadingImpl) then) =
+      __$$FavoriteLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FavoriteLoadingCopyWithImpl<$Res>
-    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteLoading>
-    implements _$$FavoriteLoadingCopyWith<$Res> {
-  __$$FavoriteLoadingCopyWithImpl(
-      _$FavoriteLoading _value, $Res Function(_$FavoriteLoading) _then)
+class __$$FavoriteLoadingImplCopyWithImpl<$Res>
+    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteLoadingImpl>
+    implements _$$FavoriteLoadingImplCopyWith<$Res> {
+  __$$FavoriteLoadingImplCopyWithImpl(
+      _$FavoriteLoadingImpl _value, $Res Function(_$FavoriteLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FavoriteLoading implements FavoriteLoading {
-  _$FavoriteLoading();
+class _$FavoriteLoadingImpl implements FavoriteLoading {
+  _$FavoriteLoadingImpl();
 
   @override
   String toString() {
@@ -229,7 +229,7 @@ class _$FavoriteLoading implements FavoriteLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FavoriteLoading);
+        (other.runtimeType == runtimeType && other is _$FavoriteLoadingImpl);
   }
 
   @override
@@ -311,29 +311,29 @@ class _$FavoriteLoading implements FavoriteLoading {
 }
 
 abstract class FavoriteLoading implements FavoriteState {
-  factory FavoriteLoading() = _$FavoriteLoading;
+  factory FavoriteLoading() = _$FavoriteLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$FavoriteErrorCopyWith<$Res> {
-  factory _$$FavoriteErrorCopyWith(
-          _$FavoriteError value, $Res Function(_$FavoriteError) then) =
-      __$$FavoriteErrorCopyWithImpl<$Res>;
+abstract class _$$FavoriteErrorImplCopyWith<$Res> {
+  factory _$$FavoriteErrorImplCopyWith(
+          _$FavoriteErrorImpl value, $Res Function(_$FavoriteErrorImpl) then) =
+      __$$FavoriteErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$FavoriteErrorCopyWithImpl<$Res>
-    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteError>
-    implements _$$FavoriteErrorCopyWith<$Res> {
-  __$$FavoriteErrorCopyWithImpl(
-      _$FavoriteError _value, $Res Function(_$FavoriteError) _then)
+class __$$FavoriteErrorImplCopyWithImpl<$Res>
+    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteErrorImpl>
+    implements _$$FavoriteErrorImplCopyWith<$Res> {
+  __$$FavoriteErrorImplCopyWithImpl(
+      _$FavoriteErrorImpl _value, $Res Function(_$FavoriteErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$FavoriteError implements FavoriteError {
-  _$FavoriteError();
+class _$FavoriteErrorImpl implements FavoriteError {
+  _$FavoriteErrorImpl();
 
   @override
   String toString() {
@@ -343,7 +343,7 @@ class _$FavoriteError implements FavoriteError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FavoriteError);
+        (other.runtimeType == runtimeType && other is _$FavoriteErrorImpl);
   }
 
   @override
@@ -425,24 +425,24 @@ class _$FavoriteError implements FavoriteError {
 }
 
 abstract class FavoriteError implements FavoriteState {
-  factory FavoriteError() = _$FavoriteError;
+  factory FavoriteError() = _$FavoriteErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$FavoriteReadyCopyWith<$Res> {
-  factory _$$FavoriteReadyCopyWith(
-          _$FavoriteReady value, $Res Function(_$FavoriteReady) then) =
-      __$$FavoriteReadyCopyWithImpl<$Res>;
+abstract class _$$FavoriteReadyImplCopyWith<$Res> {
+  factory _$$FavoriteReadyImplCopyWith(
+          _$FavoriteReadyImpl value, $Res Function(_$FavoriteReadyImpl) then) =
+      __$$FavoriteReadyImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Recipe> recipies});
 }
 
 /// @nodoc
-class __$$FavoriteReadyCopyWithImpl<$Res>
-    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteReady>
-    implements _$$FavoriteReadyCopyWith<$Res> {
-  __$$FavoriteReadyCopyWithImpl(
-      _$FavoriteReady _value, $Res Function(_$FavoriteReady) _then)
+class __$$FavoriteReadyImplCopyWithImpl<$Res>
+    extends _$FavoriteStateCopyWithImpl<$Res, _$FavoriteReadyImpl>
+    implements _$$FavoriteReadyImplCopyWith<$Res> {
+  __$$FavoriteReadyImplCopyWithImpl(
+      _$FavoriteReadyImpl _value, $Res Function(_$FavoriteReadyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -450,7 +450,7 @@ class __$$FavoriteReadyCopyWithImpl<$Res>
   $Res call({
     Object? recipies = null,
   }) {
-    return _then(_$FavoriteReady(
+    return _then(_$FavoriteReadyImpl(
       null == recipies
           ? _value._recipies
           : recipies // ignore: cast_nullable_to_non_nullable
@@ -461,8 +461,8 @@ class __$$FavoriteReadyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FavoriteReady implements FavoriteReady {
-  _$FavoriteReady(final List<Recipe> recipies) : _recipies = recipies;
+class _$FavoriteReadyImpl implements FavoriteReady {
+  _$FavoriteReadyImpl(final List<Recipe> recipies) : _recipies = recipies;
 
   final List<Recipe> _recipies;
   @override
@@ -481,7 +481,7 @@ class _$FavoriteReady implements FavoriteReady {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FavoriteReady &&
+            other is _$FavoriteReadyImpl &&
             const DeepCollectionEquality().equals(other._recipies, _recipies));
   }
 
@@ -492,8 +492,8 @@ class _$FavoriteReady implements FavoriteReady {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$FavoriteReadyCopyWith<_$FavoriteReady> get copyWith =>
-      __$$FavoriteReadyCopyWithImpl<_$FavoriteReady>(this, _$identity);
+  _$$FavoriteReadyImplCopyWith<_$FavoriteReadyImpl> get copyWith =>
+      __$$FavoriteReadyImplCopyWithImpl<_$FavoriteReadyImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -571,10 +571,10 @@ class _$FavoriteReady implements FavoriteReady {
 }
 
 abstract class FavoriteReady implements FavoriteState {
-  factory FavoriteReady(final List<Recipe> recipies) = _$FavoriteReady;
+  factory FavoriteReady(final List<Recipe> recipies) = _$FavoriteReadyImpl;
 
   List<Recipe> get recipies;
   @JsonKey(ignore: true)
-  _$$FavoriteReadyCopyWith<_$FavoriteReady> get copyWith =>
+  _$$FavoriteReadyImplCopyWith<_$FavoriteReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

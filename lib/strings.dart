@@ -17,7 +17,7 @@ const String expertLabel = 'Expert';
 const String breakfastLabel = 'Breakfast';
 const String lunchLabel = 'Lunch';
 const String dinnerLabel = 'Dinner';
-const String teaTimeLabel = 'TeaTime';
+
 const String snackLabel = 'Snack';
 
 const String homeTitle = 'Home';

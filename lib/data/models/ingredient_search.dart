@@ -11,7 +11,5 @@ class IngredientSearch with _$IngredientSearch {
   factory IngredientSearch.fromJson(Map<String, dynamic> json) =>
       _$IngredientSearchFromJson(json['node']);
 
-  Ingredient toIngredient() {
-    return Ingredient(name: label);
-  }
+
 }

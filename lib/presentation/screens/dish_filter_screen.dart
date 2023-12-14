@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_filter/recipe_filter_view_model.dart';
-import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
+
 import 'package:flavor_fusion/presentation/widgets/apply_button.dart';
 import 'package:flavor_fusion/presentation/widgets/filter_radio.dart';
 import 'package:flavor_fusion/presentation/widgets/filter_radio_list.dart';
@@ -15,7 +15,6 @@ import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 import '../../utility/enums.dart';
 import '../../utility/global.dart';
 import '../view_models/recipe_filter/states.dart';
-import '../view_models/search_screen/states.dart';
 
 @RoutePage()
 class DishFilterScreen extends ConsumerStatefulWidget {

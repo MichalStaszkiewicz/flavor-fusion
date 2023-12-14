@@ -1,5 +1,6 @@
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/global.dart';
@@ -34,7 +35,7 @@ class SearchDoneState extends ConsumerState<SearchDone> {
           !reachedEnd) {
         reachedEnd = true;
         ref
-            .read(recipesViewModel.notifier)
+            .read(recipeSearchViewModel.notifier)
             .loadNextRecipesPage()
             .then((value) => reachedEnd = false);
       }

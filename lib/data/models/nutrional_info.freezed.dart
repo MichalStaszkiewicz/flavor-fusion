@@ -96,11 +96,11 @@ class _$NutrionalInfoCopyWithImpl<$Res, $Val extends NutrionalInfo>
 }
 
 /// @nodoc
-abstract class _$$_NutrionalInfoCopyWith<$Res>
+abstract class _$$NutrionalInfoImplCopyWith<$Res>
     implements $NutrionalInfoCopyWith<$Res> {
-  factory _$$_NutrionalInfoCopyWith(
-          _$_NutrionalInfo value, $Res Function(_$_NutrionalInfo) then) =
-      __$$_NutrionalInfoCopyWithImpl<$Res>;
+  factory _$$NutrionalInfoImplCopyWith(
+          _$NutrionalInfoImpl value, $Res Function(_$NutrionalInfoImpl) then) =
+      __$$NutrionalInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,11 +112,11 @@ abstract class _$$_NutrionalInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_NutrionalInfoCopyWithImpl<$Res>
-    extends _$NutrionalInfoCopyWithImpl<$Res, _$_NutrionalInfo>
-    implements _$$_NutrionalInfoCopyWith<$Res> {
-  __$$_NutrionalInfoCopyWithImpl(
-      _$_NutrionalInfo _value, $Res Function(_$_NutrionalInfo) _then)
+class __$$NutrionalInfoImplCopyWithImpl<$Res>
+    extends _$NutrionalInfoCopyWithImpl<$Res, _$NutrionalInfoImpl>
+    implements _$$NutrionalInfoImplCopyWith<$Res> {
+  __$$NutrionalInfoImplCopyWithImpl(
+      _$NutrionalInfoImpl _value, $Res Function(_$NutrionalInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -128,7 +128,7 @@ class __$$_NutrionalInfoCopyWithImpl<$Res>
     Object? sugar = null,
     Object? fat = null,
   }) {
-    return _then(_$_NutrionalInfo(
+    return _then(_$NutrionalInfoImpl(
       protein: null == protein
           ? _value.protein
           : protein // ignore: cast_nullable_to_non_nullable
@@ -155,16 +155,16 @@ class __$$_NutrionalInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NutrionalInfo implements _NutrionalInfo {
-  _$_NutrionalInfo(
+class _$NutrionalInfoImpl implements _NutrionalInfo {
+  _$NutrionalInfoImpl(
       {@HiveField(0) required this.protein,
       @HiveField(1) required this.carbs,
       @HiveField(2) required this.fiber,
       @HiveField(3) required this.sugar,
       @HiveField(4) required this.fat});
 
-  factory _$_NutrionalInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_NutrionalInfoFromJson(json);
+  factory _$NutrionalInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NutrionalInfoImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -191,7 +191,7 @@ class _$_NutrionalInfo implements _NutrionalInfo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NutrionalInfo &&
+            other is _$NutrionalInfoImpl &&
             (identical(other.protein, protein) || other.protein == protein) &&
             (identical(other.carbs, carbs) || other.carbs == carbs) &&
             (identical(other.fiber, fiber) || other.fiber == fiber) &&
@@ -207,12 +207,12 @@ class _$_NutrionalInfo implements _NutrionalInfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NutrionalInfoCopyWith<_$_NutrionalInfo> get copyWith =>
-      __$$_NutrionalInfoCopyWithImpl<_$_NutrionalInfo>(this, _$identity);
+  _$$NutrionalInfoImplCopyWith<_$NutrionalInfoImpl> get copyWith =>
+      __$$NutrionalInfoImplCopyWithImpl<_$NutrionalInfoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NutrionalInfoToJson(
+    return _$$NutrionalInfoImplToJson(
       this,
     );
   }
@@ -224,10 +224,10 @@ abstract class _NutrionalInfo implements NutrionalInfo {
       @HiveField(1) required final double carbs,
       @HiveField(2) required final double fiber,
       @HiveField(3) required final double sugar,
-      @HiveField(4) required final double fat}) = _$_NutrionalInfo;
+      @HiveField(4) required final double fat}) = _$NutrionalInfoImpl;
 
   factory _NutrionalInfo.fromJson(Map<String, dynamic> json) =
-      _$_NutrionalInfo.fromJson;
+      _$NutrionalInfoImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -246,6 +246,6 @@ abstract class _NutrionalInfo implements NutrionalInfo {
   double get fat;
   @override
   @JsonKey(ignore: true)
-  _$$_NutrionalInfoCopyWith<_$_NutrionalInfo> get copyWith =>
+  _$$NutrionalInfoImplCopyWith<_$NutrionalInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

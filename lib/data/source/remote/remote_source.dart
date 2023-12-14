@@ -17,13 +17,12 @@ import '../interfaces/remote_source.dart';
 class RemoteSource implements IRemoteSource {
   Future<Either<List<Recipe>, Exception>> getMeal(MealType mealType) async {
     try {
-     
       var response = await locator<GraphQLService>()
           .executeQuery(RecipeQueries.createRecommendedRecipesQuery(mealType));
 
       List<Recipe> recipes =
           RecipeListResponse.fromJson(response['recipeSearch']).edges;
-   
+
       return Left(recipes);
     } on Exception catch (e) {
       print(e);
@@ -99,7 +98,7 @@ class RemoteSource implements IRemoteSource {
           IngredientSearchListResponse.fromJson(response['ingredientSearch'])
               .edges;
       return Left(List<Ingredient>.from(
-          ingredients.map((e) => e.toIngredient()).toList()));
+          ingredients.map((e) => Ingredient(name: e.label)).toList()));
     } on Exception catch (e) {
       return Right(e);
     }

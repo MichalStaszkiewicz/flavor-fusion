@@ -112,11 +112,11 @@ class _$NutrientsPerServingCopyWithImpl<$Res, $Val extends NutrientsPerServing>
 }
 
 /// @nodoc
-abstract class _$$_NutriensPerServingCopyWith<$Res>
+abstract class _$$NutriensPerServingImplCopyWith<$Res>
     implements $NutrientsPerServingCopyWith<$Res> {
-  factory _$$_NutriensPerServingCopyWith(_$_NutriensPerServing value,
-          $Res Function(_$_NutriensPerServing) then) =
-      __$$_NutriensPerServingCopyWithImpl<$Res>;
+  factory _$$NutriensPerServingImplCopyWith(_$NutriensPerServingImpl value,
+          $Res Function(_$NutriensPerServingImpl) then) =
+      __$$NutriensPerServingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -130,11 +130,11 @@ abstract class _$$_NutriensPerServingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_NutriensPerServingCopyWithImpl<$Res>
-    extends _$NutrientsPerServingCopyWithImpl<$Res, _$_NutriensPerServing>
-    implements _$$_NutriensPerServingCopyWith<$Res> {
-  __$$_NutriensPerServingCopyWithImpl(
-      _$_NutriensPerServing _value, $Res Function(_$_NutriensPerServing) _then)
+class __$$NutriensPerServingImplCopyWithImpl<$Res>
+    extends _$NutrientsPerServingCopyWithImpl<$Res, _$NutriensPerServingImpl>
+    implements _$$NutriensPerServingImplCopyWith<$Res> {
+  __$$NutriensPerServingImplCopyWithImpl(_$NutriensPerServingImpl _value,
+      $Res Function(_$NutriensPerServingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -148,7 +148,7 @@ class __$$_NutriensPerServingCopyWithImpl<$Res>
     Object? magnesium = freezed,
     Object? calories = null,
   }) {
-    return _then(_$_NutriensPerServing(
+    return _then(_$NutriensPerServingImpl(
       sugar: freezed == sugar
           ? _value.sugar
           : sugar // ignore: cast_nullable_to_non_nullable
@@ -183,8 +183,8 @@ class __$$_NutriensPerServingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NutriensPerServing implements _NutriensPerServing {
-  _$_NutriensPerServing(
+class _$NutriensPerServingImpl implements _NutriensPerServing {
+  _$NutriensPerServingImpl(
       {@HiveField(0) required this.sugar,
       @HiveField(1) required this.carbs,
       @HiveField(2) required this.fat,
@@ -193,8 +193,8 @@ class _$_NutriensPerServing implements _NutriensPerServing {
       @HiveField(5) required this.magnesium,
       @HiveField(6) required this.calories});
 
-  factory _$_NutriensPerServing.fromJson(Map<String, dynamic> json) =>
-      _$$_NutriensPerServingFromJson(json);
+  factory _$NutriensPerServingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$NutriensPerServingImplFromJson(json);
 
   @override
   @HiveField(0)
@@ -227,7 +227,7 @@ class _$_NutriensPerServing implements _NutriensPerServing {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NutriensPerServing &&
+            other is _$NutriensPerServingImpl &&
             (identical(other.sugar, sugar) || other.sugar == sugar) &&
             (identical(other.carbs, carbs) || other.carbs == carbs) &&
             (identical(other.fat, fat) || other.fat == fat) &&
@@ -247,13 +247,13 @@ class _$_NutriensPerServing implements _NutriensPerServing {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NutriensPerServingCopyWith<_$_NutriensPerServing> get copyWith =>
-      __$$_NutriensPerServingCopyWithImpl<_$_NutriensPerServing>(
+  _$$NutriensPerServingImplCopyWith<_$NutriensPerServingImpl> get copyWith =>
+      __$$NutriensPerServingImplCopyWithImpl<_$NutriensPerServingImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NutriensPerServingToJson(
+    return _$$NutriensPerServingImplToJson(
       this,
     );
   }
@@ -267,10 +267,10 @@ abstract class _NutriensPerServing implements NutrientsPerServing {
       @HiveField(3) required final double? fiber,
       @HiveField(4) required final double? sodium,
       @HiveField(5) required final double? magnesium,
-      @HiveField(6) required final double calories}) = _$_NutriensPerServing;
+      @HiveField(6) required final double calories}) = _$NutriensPerServingImpl;
 
   factory _NutriensPerServing.fromJson(Map<String, dynamic> json) =
-      _$_NutriensPerServing.fromJson;
+      _$NutriensPerServingImpl.fromJson;
 
   @override
   @HiveField(0)
@@ -295,6 +295,6 @@ abstract class _NutriensPerServing implements NutrientsPerServing {
   double get calories;
   @override
   @JsonKey(ignore: true)
-  _$$_NutriensPerServingCopyWith<_$_NutriensPerServing> get copyWith =>
+  _$$NutriensPerServingImplCopyWith<_$NutriensPerServingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

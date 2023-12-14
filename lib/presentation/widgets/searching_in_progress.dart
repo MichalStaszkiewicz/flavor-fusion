@@ -8,6 +8,7 @@ class SearchingInProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: ValueKey(3),
       height: double.infinity,
       child: const Center(
         child: Column(

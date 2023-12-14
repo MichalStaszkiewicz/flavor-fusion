@@ -62,22 +62,22 @@ class _$IngredientSearchCopyWithImpl<$Res, $Val extends IngredientSearch>
 }
 
 /// @nodoc
-abstract class _$$_IngredientSearchCopyWith<$Res>
+abstract class _$$IngredientSearchImplCopyWith<$Res>
     implements $IngredientSearchCopyWith<$Res> {
-  factory _$$_IngredientSearchCopyWith(
-          _$_IngredientSearch value, $Res Function(_$_IngredientSearch) then) =
-      __$$_IngredientSearchCopyWithImpl<$Res>;
+  factory _$$IngredientSearchImplCopyWith(_$IngredientSearchImpl value,
+          $Res Function(_$IngredientSearchImpl) then) =
+      __$$IngredientSearchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String label});
 }
 
 /// @nodoc
-class __$$_IngredientSearchCopyWithImpl<$Res>
-    extends _$IngredientSearchCopyWithImpl<$Res, _$_IngredientSearch>
-    implements _$$_IngredientSearchCopyWith<$Res> {
-  __$$_IngredientSearchCopyWithImpl(
-      _$_IngredientSearch _value, $Res Function(_$_IngredientSearch) _then)
+class __$$IngredientSearchImplCopyWithImpl<$Res>
+    extends _$IngredientSearchCopyWithImpl<$Res, _$IngredientSearchImpl>
+    implements _$$IngredientSearchImplCopyWith<$Res> {
+  __$$IngredientSearchImplCopyWithImpl(_$IngredientSearchImpl _value,
+      $Res Function(_$IngredientSearchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_IngredientSearchCopyWithImpl<$Res>
   $Res call({
     Object? label = null,
   }) {
-    return _then(_$_IngredientSearch(
+    return _then(_$IngredientSearchImpl(
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -96,11 +96,11 @@ class __$$_IngredientSearchCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IngredientSearch implements _IngredientSearch {
-  _$_IngredientSearch({required this.label});
+class _$IngredientSearchImpl implements _IngredientSearch {
+  _$IngredientSearchImpl({required this.label});
 
-  factory _$_IngredientSearch.fromJson(Map<String, dynamic> json) =>
-      _$$_IngredientSearchFromJson(json);
+  factory _$IngredientSearchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$IngredientSearchImplFromJson(json);
 
   @override
   final String label;
@@ -114,7 +114,7 @@ class _$_IngredientSearch implements _IngredientSearch {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IngredientSearch &&
+            other is _$IngredientSearchImpl &&
             (identical(other.label, label) || other.label == label));
   }
 
@@ -125,33 +125,29 @@ class _$_IngredientSearch implements _IngredientSearch {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IngredientSearchCopyWith<_$_IngredientSearch> get copyWith =>
-      __$$_IngredientSearchCopyWithImpl<_$_IngredientSearch>(this, _$identity);
+  _$$IngredientSearchImplCopyWith<_$IngredientSearchImpl> get copyWith =>
+      __$$IngredientSearchImplCopyWithImpl<_$IngredientSearchImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IngredientSearchToJson(
+    return _$$IngredientSearchImplToJson(
       this,
     );
-  }
-
-  @override
-  Ingredient toIngredient() {
-    return Ingredient(name: label);
   }
 }
 
 abstract class _IngredientSearch implements IngredientSearch {
   factory _IngredientSearch({required final String label}) =
-      _$_IngredientSearch;
+      _$IngredientSearchImpl;
 
   factory _IngredientSearch.fromJson(Map<String, dynamic> json) =
-      _$_IngredientSearch.fromJson;
+      _$IngredientSearchImpl.fromJson;
 
   @override
   String get label;
   @override
   @JsonKey(ignore: true)
-  _$$_IngredientSearchCopyWith<_$_IngredientSearch> get copyWith =>
+  _$$IngredientSearchImplCopyWith<_$IngredientSearchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

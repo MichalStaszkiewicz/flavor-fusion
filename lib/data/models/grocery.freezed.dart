@@ -71,10 +71,10 @@ class _$GroceryCopyWithImpl<$Res, $Val extends Grocery>
 }
 
 /// @nodoc
-abstract class _$$_GroceryCopyWith<$Res> implements $GroceryCopyWith<$Res> {
-  factory _$$_GroceryCopyWith(
-          _$_Grocery value, $Res Function(_$_Grocery) then) =
-      __$$_GroceryCopyWithImpl<$Res>;
+abstract class _$$GroceryImplCopyWith<$Res> implements $GroceryCopyWith<$Res> {
+  factory _$$GroceryImplCopyWith(
+          _$GroceryImpl value, $Res Function(_$GroceryImpl) then) =
+      __$$GroceryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Recipe recipe, List<RecipeIngredient> ingredients});
@@ -84,10 +84,11 @@ abstract class _$$_GroceryCopyWith<$Res> implements $GroceryCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_GroceryCopyWithImpl<$Res>
-    extends _$GroceryCopyWithImpl<$Res, _$_Grocery>
-    implements _$$_GroceryCopyWith<$Res> {
-  __$$_GroceryCopyWithImpl(_$_Grocery _value, $Res Function(_$_Grocery) _then)
+class __$$GroceryImplCopyWithImpl<$Res>
+    extends _$GroceryCopyWithImpl<$Res, _$GroceryImpl>
+    implements _$$GroceryImplCopyWith<$Res> {
+  __$$GroceryImplCopyWithImpl(
+      _$GroceryImpl _value, $Res Function(_$GroceryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +97,7 @@ class __$$_GroceryCopyWithImpl<$Res>
     Object? recipe = null,
     Object? ingredients = null,
   }) {
-    return _then(_$_Grocery(
+    return _then(_$GroceryImpl(
       recipe: null == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
@@ -111,8 +112,8 @@ class __$$_GroceryCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Grocery implements _Grocery {
-  _$_Grocery(
+class _$GroceryImpl implements _Grocery {
+  _$GroceryImpl(
       {required this.recipe, required final List<RecipeIngredient> ingredients})
       : _ingredients = ingredients;
 
@@ -135,7 +136,7 @@ class _$_Grocery implements _Grocery {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Grocery &&
+            other is _$GroceryImpl &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
@@ -148,14 +149,14 @@ class _$_Grocery implements _Grocery {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroceryCopyWith<_$_Grocery> get copyWith =>
-      __$$_GroceryCopyWithImpl<_$_Grocery>(this, _$identity);
+  _$$GroceryImplCopyWith<_$GroceryImpl> get copyWith =>
+      __$$GroceryImplCopyWithImpl<_$GroceryImpl>(this, _$identity);
 }
 
 abstract class _Grocery implements Grocery {
   factory _Grocery(
       {required final Recipe recipe,
-      required final List<RecipeIngredient> ingredients}) = _$_Grocery;
+      required final List<RecipeIngredient> ingredients}) = _$GroceryImpl;
 
   @override
   Recipe get recipe;
@@ -163,6 +164,6 @@ abstract class _Grocery implements Grocery {
   List<RecipeIngredient> get ingredients;
   @override
   @JsonKey(ignore: true)
-  _$$_GroceryCopyWith<_$_Grocery> get copyWith =>
+  _$$GroceryImplCopyWith<_$GroceryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

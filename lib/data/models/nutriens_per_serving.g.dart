@@ -62,9 +62,9 @@ class NutrientsPerServingAdapter extends TypeAdapter<NutrientsPerServing> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NutriensPerServing _$$_NutriensPerServingFromJson(
+_$NutriensPerServingImpl _$$NutriensPerServingImplFromJson(
         Map<String, dynamic> json) =>
-    _$_NutriensPerServing(
+    _$NutriensPerServingImpl(
       sugar: (json['sugar'] as num?)?.toDouble(),
       carbs: (json['carbs'] as num?)?.toDouble(),
       fat: (json['fat'] as num?)?.toDouble(),
@@ -74,8 +74,8 @@ _$_NutriensPerServing _$$_NutriensPerServingFromJson(
       calories: (json['calories'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_NutriensPerServingToJson(
-        _$_NutriensPerServing instance) =>
+Map<String, dynamic> _$$NutriensPerServingImplToJson(
+        _$NutriensPerServingImpl instance) =>
     <String, dynamic>{
       'sugar': instance.sugar,
       'carbs': instance.carbs,

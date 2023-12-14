@@ -56,8 +56,8 @@ class NutrionalInfoAdapter extends TypeAdapter<NutrionalInfo> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NutrionalInfo _$$_NutrionalInfoFromJson(Map<String, dynamic> json) =>
-    _$_NutrionalInfo(
+_$NutrionalInfoImpl _$$NutrionalInfoImplFromJson(Map<String, dynamic> json) =>
+    _$NutrionalInfoImpl(
       protein: (json['protein'] as num).toDouble(),
       carbs: (json['carbs'] as num).toDouble(),
       fiber: (json['fiber'] as num).toDouble(),
@@ -65,7 +65,7 @@ _$_NutrionalInfo _$$_NutrionalInfoFromJson(Map<String, dynamic> json) =>
       fat: (json['fat'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_NutrionalInfoToJson(_$_NutrionalInfo instance) =>
+Map<String, dynamic> _$$NutrionalInfoImplToJson(_$NutrionalInfoImpl instance) =>
     <String, dynamic>{
       'protein': instance.protein,
       'carbs': instance.carbs,

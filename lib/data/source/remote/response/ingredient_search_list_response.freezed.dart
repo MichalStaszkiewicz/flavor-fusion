@@ -66,25 +66,25 @@ class _$IngredientSearchListResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_IngredientSearchListResponseCopyWith<$Res>
+abstract class _$$IngredientSearchListResponseImplCopyWith<$Res>
     implements $IngredientSearchListResponseCopyWith<$Res> {
-  factory _$$_IngredientSearchListResponseCopyWith(
-          _$_IngredientSearchListResponse value,
-          $Res Function(_$_IngredientSearchListResponse) then) =
-      __$$_IngredientSearchListResponseCopyWithImpl<$Res>;
+  factory _$$IngredientSearchListResponseImplCopyWith(
+          _$IngredientSearchListResponseImpl value,
+          $Res Function(_$IngredientSearchListResponseImpl) then) =
+      __$$IngredientSearchListResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<IngredientSearch> edges});
 }
 
 /// @nodoc
-class __$$_IngredientSearchListResponseCopyWithImpl<$Res>
+class __$$IngredientSearchListResponseImplCopyWithImpl<$Res>
     extends _$IngredientSearchListResponseCopyWithImpl<$Res,
-        _$_IngredientSearchListResponse>
-    implements _$$_IngredientSearchListResponseCopyWith<$Res> {
-  __$$_IngredientSearchListResponseCopyWithImpl(
-      _$_IngredientSearchListResponse _value,
-      $Res Function(_$_IngredientSearchListResponse) _then)
+        _$IngredientSearchListResponseImpl>
+    implements _$$IngredientSearchListResponseImplCopyWith<$Res> {
+  __$$IngredientSearchListResponseImplCopyWithImpl(
+      _$IngredientSearchListResponseImpl _value,
+      $Res Function(_$IngredientSearchListResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_IngredientSearchListResponseCopyWithImpl<$Res>
   $Res call({
     Object? edges = null,
   }) {
-    return _then(_$_IngredientSearchListResponse(
+    return _then(_$IngredientSearchListResponseImpl(
       edges: null == edges
           ? _value._edges
           : edges // ignore: cast_nullable_to_non_nullable
@@ -103,12 +103,15 @@ class __$$_IngredientSearchListResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_IngredientSearchListResponse implements _IngredientSearchListResponse {
-  _$_IngredientSearchListResponse({required final List<IngredientSearch> edges})
+class _$IngredientSearchListResponseImpl
+    implements _IngredientSearchListResponse {
+  _$IngredientSearchListResponseImpl(
+      {required final List<IngredientSearch> edges})
       : _edges = edges;
 
-  factory _$_IngredientSearchListResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_IngredientSearchListResponseFromJson(json);
+  factory _$IngredientSearchListResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$IngredientSearchListResponseImplFromJson(json);
 
   final List<IngredientSearch> _edges;
   @override
@@ -127,7 +130,7 @@ class _$_IngredientSearchListResponse implements _IngredientSearchListResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IngredientSearchListResponse &&
+            other is _$IngredientSearchListResponseImpl &&
             const DeepCollectionEquality().equals(other._edges, _edges));
   }
 
@@ -139,13 +142,14 @@ class _$_IngredientSearchListResponse implements _IngredientSearchListResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IngredientSearchListResponseCopyWith<_$_IngredientSearchListResponse>
-      get copyWith => __$$_IngredientSearchListResponseCopyWithImpl<
-          _$_IngredientSearchListResponse>(this, _$identity);
+  _$$IngredientSearchListResponseImplCopyWith<
+          _$IngredientSearchListResponseImpl>
+      get copyWith => __$$IngredientSearchListResponseImplCopyWithImpl<
+          _$IngredientSearchListResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_IngredientSearchListResponseToJson(
+    return _$$IngredientSearchListResponseImplToJson(
       this,
     );
   }
@@ -155,15 +159,16 @@ abstract class _IngredientSearchListResponse
     implements IngredientSearchListResponse {
   factory _IngredientSearchListResponse(
           {required final List<IngredientSearch> edges}) =
-      _$_IngredientSearchListResponse;
+      _$IngredientSearchListResponseImpl;
 
   factory _IngredientSearchListResponse.fromJson(Map<String, dynamic> json) =
-      _$_IngredientSearchListResponse.fromJson;
+      _$IngredientSearchListResponseImpl.fromJson;
 
   @override
   List<IngredientSearch> get edges;
   @override
   @JsonKey(ignore: true)
-  _$$_IngredientSearchListResponseCopyWith<_$_IngredientSearchListResponse>
+  _$$IngredientSearchListResponseImplCopyWith<
+          _$IngredientSearchListResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

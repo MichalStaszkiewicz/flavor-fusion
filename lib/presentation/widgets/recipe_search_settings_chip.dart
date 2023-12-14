@@ -1,4 +1,5 @@
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -48,9 +49,9 @@ class RecipeSearchSettingsChipState
       });
   }
 
-  void manageAnimations() {
-    ref.watch(recipesViewModel).maybeWhen(
-        search: (_, __, ___, ____, skillLevel, mealType, allowAnimations) {
+  void manageAnimations(bool allowAnimations) {
+    ref.watch(recipeSearchViewModel).maybeWhen(
+        ready: (suggestions, ingredients, mealType, skillLevel) {
           if (allowAnimations) {
             setupAnimation(
                 Colors.white, Colors.black, Colors.black, Colors.white);
@@ -79,50 +80,39 @@ class RecipeSearchSettingsChipState
   }
 
   void onTap() {
-    ref.watch(recipesViewModel).maybeWhen(
-        search: (suggestions, selectedIngredients, search, searchingInProgress,
-                skillLevel, mealType, allowAnimations) =>
-            {
-              if (widget.settingsType == RecipeSettings.meal)
-                {
-                  if (mealType.name.toLowerCase() == widget.label.toLowerCase())
-                    {
-                      ref
-                          .read(recipesViewModel.notifier)
-                          .selectMealType(MealType.none)
-                    }
-                  else
-                    {
-                      ref.read(recipesViewModel.notifier).selectMealType(
-                          MealType.values.firstWhere((element) =>
-                              element.name.toLowerCase() ==
-                              widget.label.toLowerCase()))
-                    }
-                }
-              else
-                {
-                  if (skillLevel.name.toLowerCase() ==
-                      widget.label.toLowerCase())
-                    {
-                      ref
-                          .read(recipesViewModel.notifier)
-                          .selectSkillLevel(SkillLevel.none)
-                    }
-                  else
-                    {
-                      ref.read(recipesViewModel.notifier).selectSkillLevel(
-                          SkillLevel.values.firstWhere((element) =>
-                              element.name.toLowerCase() ==
-                              widget.label.toLowerCase()))
-                    }
-                }
-            },
+    ref.watch(recipeSearchViewModel).maybeWhen(
+        ready: (suggestions, ingredients, mealType, skillLevel) {
+          if (widget.settingsType == RecipeSettings.meal) {
+            if (mealType.name.toLowerCase() == widget.label.toLowerCase()) {
+              ref
+                  .read(recipeSearchViewModel.notifier)
+                  .selectMealType(MealType.none);
+            } else {
+              ref.read(recipeSearchViewModel.notifier).selectMealType(
+                  MealType.values.firstWhere((element) =>
+                      element.name.toLowerCase() ==
+                      widget.label.toLowerCase()));
+            }
+          } else {
+            if (skillLevel.name.toLowerCase() == widget.label.toLowerCase()) {
+              ref
+                  .read(recipeSearchViewModel.notifier)
+                  .selectSkillLevel(SkillLevel.none);
+            } else {
+              ref.read(recipeSearchViewModel.notifier).selectSkillLevel(
+                  SkillLevel.values.firstWhere((element) =>
+                      element.name.toLowerCase() ==
+                      widget.label.toLowerCase()));
+            }
+          }
+        },
         orElse: () => {});
   }
 
   @override
   Widget build(BuildContext context) {
-    manageAnimations();
+    manageAnimations(true);
+
     return IntrinsicWidth(
       child: GestureDetector(
         onTap: onTap,

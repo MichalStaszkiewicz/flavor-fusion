@@ -1,4 +1,3 @@
-import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,7 +25,6 @@ class FilterRadio extends ConsumerWidget {
   }
 
   Container _buildReadyFilter(WidgetRef ref) {
-   
     return Container(
       child: Row(
         children: [

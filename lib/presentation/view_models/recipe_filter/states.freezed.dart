@@ -92,25 +92,25 @@ class _$RecipeFilterStateCopyWithImpl<$Res, $Val extends RecipeFilterState>
 }
 
 /// @nodoc
-abstract class _$$RecipeFilterInitialCopyWith<$Res> {
-  factory _$$RecipeFilterInitialCopyWith(_$RecipeFilterInitial value,
-          $Res Function(_$RecipeFilterInitial) then) =
-      __$$RecipeFilterInitialCopyWithImpl<$Res>;
+abstract class _$$RecipeFilterInitialImplCopyWith<$Res> {
+  factory _$$RecipeFilterInitialImplCopyWith(_$RecipeFilterInitialImpl value,
+          $Res Function(_$RecipeFilterInitialImpl) then) =
+      __$$RecipeFilterInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeFilterInitialCopyWithImpl<$Res>
-    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterInitial>
-    implements _$$RecipeFilterInitialCopyWith<$Res> {
-  __$$RecipeFilterInitialCopyWithImpl(
-      _$RecipeFilterInitial _value, $Res Function(_$RecipeFilterInitial) _then)
+class __$$RecipeFilterInitialImplCopyWithImpl<$Res>
+    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterInitialImpl>
+    implements _$$RecipeFilterInitialImplCopyWith<$Res> {
+  __$$RecipeFilterInitialImplCopyWithImpl(_$RecipeFilterInitialImpl _value,
+      $Res Function(_$RecipeFilterInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeFilterInitial implements RecipeFilterInitial {
-  _$RecipeFilterInitial();
+class _$RecipeFilterInitialImpl implements RecipeFilterInitial {
+  _$RecipeFilterInitialImpl();
 
   @override
   String toString() {
@@ -120,7 +120,8 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeFilterInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$RecipeFilterInitialImpl);
   }
 
   @override
@@ -207,29 +208,29 @@ class _$RecipeFilterInitial implements RecipeFilterInitial {
 }
 
 abstract class RecipeFilterInitial implements RecipeFilterState {
-  factory RecipeFilterInitial() = _$RecipeFilterInitial;
+  factory RecipeFilterInitial() = _$RecipeFilterInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipeFilterLoadingCopyWith<$Res> {
-  factory _$$RecipeFilterLoadingCopyWith(_$RecipeFilterLoading value,
-          $Res Function(_$RecipeFilterLoading) then) =
-      __$$RecipeFilterLoadingCopyWithImpl<$Res>;
+abstract class _$$RecipeFilterLoadingImplCopyWith<$Res> {
+  factory _$$RecipeFilterLoadingImplCopyWith(_$RecipeFilterLoadingImpl value,
+          $Res Function(_$RecipeFilterLoadingImpl) then) =
+      __$$RecipeFilterLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeFilterLoadingCopyWithImpl<$Res>
-    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterLoading>
-    implements _$$RecipeFilterLoadingCopyWith<$Res> {
-  __$$RecipeFilterLoadingCopyWithImpl(
-      _$RecipeFilterLoading _value, $Res Function(_$RecipeFilterLoading) _then)
+class __$$RecipeFilterLoadingImplCopyWithImpl<$Res>
+    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterLoadingImpl>
+    implements _$$RecipeFilterLoadingImplCopyWith<$Res> {
+  __$$RecipeFilterLoadingImplCopyWithImpl(_$RecipeFilterLoadingImpl _value,
+      $Res Function(_$RecipeFilterLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeFilterLoading implements RecipeFilterLoading {
-  _$RecipeFilterLoading();
+class _$RecipeFilterLoadingImpl implements RecipeFilterLoading {
+  _$RecipeFilterLoadingImpl();
 
   @override
   String toString() {
@@ -239,7 +240,8 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeFilterLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$RecipeFilterLoadingImpl);
   }
 
   @override
@@ -326,29 +328,29 @@ class _$RecipeFilterLoading implements RecipeFilterLoading {
 }
 
 abstract class RecipeFilterLoading implements RecipeFilterState {
-  factory RecipeFilterLoading() = _$RecipeFilterLoading;
+  factory RecipeFilterLoading() = _$RecipeFilterLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipeFilterErrorCopyWith<$Res> {
-  factory _$$RecipeFilterErrorCopyWith(
-          _$RecipeFilterError value, $Res Function(_$RecipeFilterError) then) =
-      __$$RecipeFilterErrorCopyWithImpl<$Res>;
+abstract class _$$RecipeFilterErrorImplCopyWith<$Res> {
+  factory _$$RecipeFilterErrorImplCopyWith(_$RecipeFilterErrorImpl value,
+          $Res Function(_$RecipeFilterErrorImpl) then) =
+      __$$RecipeFilterErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeFilterErrorCopyWithImpl<$Res>
-    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterError>
-    implements _$$RecipeFilterErrorCopyWith<$Res> {
-  __$$RecipeFilterErrorCopyWithImpl(
-      _$RecipeFilterError _value, $Res Function(_$RecipeFilterError) _then)
+class __$$RecipeFilterErrorImplCopyWithImpl<$Res>
+    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterErrorImpl>
+    implements _$$RecipeFilterErrorImplCopyWith<$Res> {
+  __$$RecipeFilterErrorImplCopyWithImpl(_$RecipeFilterErrorImpl _value,
+      $Res Function(_$RecipeFilterErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeFilterError implements RecipeFilterError {
-  _$RecipeFilterError();
+class _$RecipeFilterErrorImpl implements RecipeFilterError {
+  _$RecipeFilterErrorImpl();
 
   @override
   String toString() {
@@ -358,7 +360,7 @@ class _$RecipeFilterError implements RecipeFilterError {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeFilterError);
+        (other.runtimeType == runtimeType && other is _$RecipeFilterErrorImpl);
   }
 
   @override
@@ -445,24 +447,24 @@ class _$RecipeFilterError implements RecipeFilterError {
 }
 
 abstract class RecipeFilterError implements RecipeFilterState {
-  factory RecipeFilterError() = _$RecipeFilterError;
+  factory RecipeFilterError() = _$RecipeFilterErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipeFilterReadyCopyWith<$Res> {
-  factory _$$RecipeFilterReadyCopyWith(
-          _$RecipeFilterReady value, $Res Function(_$RecipeFilterReady) then) =
-      __$$RecipeFilterReadyCopyWithImpl<$Res>;
+abstract class _$$RecipeFilterReadyImplCopyWith<$Res> {
+  factory _$$RecipeFilterReadyImplCopyWith(_$RecipeFilterReadyImpl value,
+          $Res Function(_$RecipeFilterReadyImpl) then) =
+      __$$RecipeFilterReadyImplCopyWithImpl<$Res>;
   @useResult
   $Res call({SortBy sortBy, double minimumTime, double minimumCalories});
 }
 
 /// @nodoc
-class __$$RecipeFilterReadyCopyWithImpl<$Res>
-    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterReady>
-    implements _$$RecipeFilterReadyCopyWith<$Res> {
-  __$$RecipeFilterReadyCopyWithImpl(
-      _$RecipeFilterReady _value, $Res Function(_$RecipeFilterReady) _then)
+class __$$RecipeFilterReadyImplCopyWithImpl<$Res>
+    extends _$RecipeFilterStateCopyWithImpl<$Res, _$RecipeFilterReadyImpl>
+    implements _$$RecipeFilterReadyImplCopyWith<$Res> {
+  __$$RecipeFilterReadyImplCopyWithImpl(_$RecipeFilterReadyImpl _value,
+      $Res Function(_$RecipeFilterReadyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -472,7 +474,7 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
     Object? minimumTime = null,
     Object? minimumCalories = null,
   }) {
-    return _then(_$RecipeFilterReady(
+    return _then(_$RecipeFilterReadyImpl(
       null == sortBy
           ? _value.sortBy
           : sortBy // ignore: cast_nullable_to_non_nullable
@@ -491,8 +493,8 @@ class __$$RecipeFilterReadyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RecipeFilterReady implements RecipeFilterReady {
-  _$RecipeFilterReady(this.sortBy, this.minimumTime, this.minimumCalories);
+class _$RecipeFilterReadyImpl implements RecipeFilterReady {
+  _$RecipeFilterReadyImpl(this.sortBy, this.minimumTime, this.minimumCalories);
 
   @override
   final SortBy sortBy;
@@ -510,7 +512,7 @@ class _$RecipeFilterReady implements RecipeFilterReady {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecipeFilterReady &&
+            other is _$RecipeFilterReadyImpl &&
             (identical(other.sortBy, sortBy) || other.sortBy == sortBy) &&
             (identical(other.minimumTime, minimumTime) ||
                 other.minimumTime == minimumTime) &&
@@ -525,8 +527,9 @@ class _$RecipeFilterReady implements RecipeFilterReady {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RecipeFilterReadyCopyWith<_$RecipeFilterReady> get copyWith =>
-      __$$RecipeFilterReadyCopyWithImpl<_$RecipeFilterReady>(this, _$identity);
+  _$$RecipeFilterReadyImplCopyWith<_$RecipeFilterReadyImpl> get copyWith =>
+      __$$RecipeFilterReadyImplCopyWithImpl<_$RecipeFilterReadyImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -610,12 +613,12 @@ class _$RecipeFilterReady implements RecipeFilterReady {
 
 abstract class RecipeFilterReady implements RecipeFilterState {
   factory RecipeFilterReady(final SortBy sortBy, final double minimumTime,
-      final double minimumCalories) = _$RecipeFilterReady;
+      final double minimumCalories) = _$RecipeFilterReadyImpl;
 
   SortBy get sortBy;
   double get minimumTime;
   double get minimumCalories;
   @JsonKey(ignore: true)
-  _$$RecipeFilterReadyCopyWith<_$RecipeFilterReady> get copyWith =>
+  _$$RecipeFilterReadyImplCopyWith<_$RecipeFilterReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

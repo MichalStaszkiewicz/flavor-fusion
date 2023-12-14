@@ -6,12 +6,14 @@ part of 'ingredient_search.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_IngredientSearch _$$_IngredientSearchFromJson(Map<String, dynamic> json) =>
-    _$_IngredientSearch(
+_$IngredientSearchImpl _$$IngredientSearchImplFromJson(
+        Map<String, dynamic> json) =>
+    _$IngredientSearchImpl(
       label: json['label'] as String,
     );
 
-Map<String, dynamic> _$$_IngredientSearchToJson(_$_IngredientSearch instance) =>
+Map<String, dynamic> _$$IngredientSearchImplToJson(
+        _$IngredientSearchImpl instance) =>
     <String, dynamic>{
       'label': instance.label,
     };
