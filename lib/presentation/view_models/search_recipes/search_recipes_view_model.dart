@@ -52,10 +52,14 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
 
     _suggestionsCached.add(tempSuggestion);
 
-    _ingredientsCached.removeWhere((element) => element == ingredient);
+    _ingredientsCached.removeWhere(
+        (element) => element.toLowerCase() == ingredient.toLowerCase());
     final tempSuggestions = [tempSuggestion, ...state.suggestions];
+
     suggestionListKey.currentState
         ?.insertItem(0, duration: const Duration(milliseconds: 100));
+    _suggestionsCached.clear();
+    _suggestionsCached.addAll(tempSuggestions);
     this.state = RecipesSearchState.ready(
         tempSuggestions, _ingredientsCached, state.mealType, state.skillLevel);
   }
@@ -92,6 +96,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       _suggestionsCached.removeWhere(
         (element) => element.name.toLowerCase() == ingredient.toLowerCase(),
       );
+
       this.state = RecipesSearchState.ready(
           tempList, _ingredientsCached, state.mealType, state.skillLevel);
     }
