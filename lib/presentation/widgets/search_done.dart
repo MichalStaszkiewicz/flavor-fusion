@@ -64,8 +64,19 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                             child: ListView.builder(
                                 controller: _scrollController,
                                 itemCount: recipes.length,
-                                itemBuilder: (context, index) =>
-                                    DishItemWidget(recipe: recipes[index])),
+                                itemBuilder: (context, index) {
+                                  if (index == recipes.length - 1 &&
+                                      reachedEnd &&
+                                      nextPage) {
+                                    return Container(
+                                      height: 50,
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    );
+                                  }
+                                  return DishItemWidget(recipe: recipes[index]);
+                                }),
                           ),
                         )
                       : Container(
@@ -85,14 +96,6 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                             ],
                           )),
                         ),
-                  nextPage
-                      ? Container(
-                          height: 50,
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                      : Container()
                 ]),
               ),
             ));

@@ -17,5 +17,5 @@ abstract class RecipesSearchState with _$RecipesSearchState {
     MealType mealType,
     SkillLevel skillLevel,
   ) = RecipesSearchReady;
-  factory RecipesSearchState.done(List<Recipe> recipes,bool nextPage) = RecipeSearchDone;
+  factory RecipesSearchState.done(List<Recipe> recipes,bool loadingMoreItems) = RecipeSearchDone;
 }
