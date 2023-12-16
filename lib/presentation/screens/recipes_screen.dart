@@ -143,29 +143,20 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
                       orElse: () => Container(),
                       ready: (Map<String, List<Recipe>> recipes,
                           bool searchOpened) {
-                        final model = ref.read(recipeSearchViewModel.notifier);
-                        String search = model.search;
-                        List<String> selectedIngredients =
-                            model.selectedIngredients;
-                        bool searchingInProgress = model.searchingInProgress;
-                        List<Suggestion> suggestions = model.suggestionsCached;
                         if (searchOpened) {
                           manageAnimations(
-                              List.from(
-                                  suggestions.map((e) => e.name).toList()),
-                              selectedIngredients);
-                          if (searchingInProgress) {
-                            return SearchingInProgress();
-                          } else {
-                            return RecipesSearchBar(
-                              ingredientsOpacity: _ingredientsAnimation.value,
-                              search: search,
-                              selectedIngredients: selectedIngredients,
-                              suggestions:
-                                  suggestions.map((e) => e.name).toList(),
-                              suggestionsOpacity: _suggestionsAnimation.value,
-                            );
-                          }
+                              List.from(ref
+                                  .read(recipeSearchViewModel.notifier)
+                                  .suggestionsCached
+                                  .map((e) => e.name)
+                                  .toList()),
+                              ref
+                                  .read(recipeSearchViewModel.notifier)
+                                  .selectedIngredients);
+                          return RecipesSearchBar(
+                            ingredientsOpacity: _ingredientsAnimation.value,
+                            suggestionsOpacity: _suggestionsAnimation.value,
+                          );
                         }
                         return _buildReady(recipes);
                       }),
@@ -214,7 +205,6 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
   TextField _buildRecipesSearchFocused() {
     return TextField(
-   
       focusNode: _focusNode,
       autofocus: true,
       decoration: InputDecoration(
@@ -239,18 +229,13 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
             ref.read(recipeSearchViewModel).maybeWhen(
                   orElse: () => {},
                   ready: ((suggestions, ingredients, mealType, skillLevel) {
-                    bool searchingInProgress = ref
+                    _recipesSearchFocused = !_recipesSearchFocused;
+
+                    _focusNode.nearestScope!.unfocus();
+
+                    ref
                         .read(recipeSearchViewModel.notifier)
-                        .searchingInProgress;
-                    if (!searchingInProgress) {
-                      _recipesSearchFocused = !_recipesSearchFocused;
-
-                      _focusNode.nearestScope!.unfocus();
-
-                      ref
-                          .read(recipeSearchViewModel.notifier)
-                          .findRecipes(_recipesSearchController.text);
-                    }
+                        .findRecipes(_recipesSearchController.text);
                   }),
                 );
           },
@@ -327,7 +312,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
           child: Container(
             child: Center(
               child: Text(
-                'HOMEPAGE',
+                'Recipes',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),

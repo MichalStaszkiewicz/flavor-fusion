@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SearchingInProgress extends StatelessWidget {
-  const SearchingInProgress({
+class SearchingSuggestions extends StatelessWidget {
+  const SearchingSuggestions({
     super.key,
   });
 

@@ -1,9 +1,11 @@
+import 'package:flavor_fusion/presentation/view_models/filter_favorite_recipes/states.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_search_header.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_settings_chip.dart';
 import 'package:flavor_fusion/presentation/widgets/search_additional_setttings.dart';
+import 'package:flavor_fusion/presentation/widgets/searching_in_progress.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestions_list.dart';
 import 'package:flavor_fusion/strings.dart';
@@ -17,18 +19,12 @@ import '../../utility/service_locator.dart';
 class RecipesSearchBar extends ConsumerStatefulWidget {
   RecipesSearchBar({
     super.key,
-    required this.suggestions,
-    required this.selectedIngredients,
     required this.ingredientsOpacity,
     required this.suggestionsOpacity,
-    required this.search,
   });
 
-  List<String> suggestions;
-  List<String> selectedIngredients;
   double ingredientsOpacity;
   double suggestionsOpacity;
-  String search;
 
   @override
   RecipesSearchBarState createState() => RecipesSearchBarState();
@@ -37,10 +33,6 @@ class RecipesSearchBar extends ConsumerStatefulWidget {
 class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(recipeSearchViewModel.notifier).init();
-    });
-
     super.initState();
   }
 
@@ -48,8 +40,12 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
   Widget build(BuildContext context) {
     return ref.watch(recipeSearchViewModel).maybeWhen(
         orElse: () {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            ref.read(recipeSearchViewModel.notifier).init();
+          });
           return Container();
         },
+        loading: () => const SearchingSuggestions(),
         ready: (suggestions, ingredients, mealType, skillLevel) => Container(
               color: Colors.transparent,
               alignment: Alignment.topCenter,
@@ -123,7 +119,9 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
                                 : Container(),
                             suggestions.isNotEmpty
                                 ? SuggestionsList(
-                                    search: widget.search,
+                                    search: ref
+                                        .read(recipeSearchViewModel.notifier)
+                                        .search,
                                     suggestions: suggestions,
                                     opacity: 1,
                                   )

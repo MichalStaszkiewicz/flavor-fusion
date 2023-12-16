@@ -28,7 +28,6 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
   String search = '';
   String? endCursor;
 
-  bool searchingInProgress = false;
   List<String> get selectedIngredients => _ingredientsCached;
   List<Suggestion> get suggestionsCached => _suggestionsCached;
   MealType get mealTypeCached => _mealTypeCached;
@@ -122,8 +121,6 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
   }
 
   Future<void> loadNextRecipesPage() async {
-    final state = this.state as RecipesSearchReady;
-
     await locator<SourceRepository>()
         .searchRecipes(
       search,
@@ -133,10 +130,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       endCursor,
     )
         .then((data) {
-      List<Recipe> tempRecipes = searchedRecipes;
-      tempRecipes += data['recipes'];
-      this.state = RecipesSearchState.ready(_suggestionsCached,
-          _ingredientsCached, _mealTypeCached, _skillLevelCached);
+      state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
+          _mealTypeCached, _skillLevelCached);
     });
   }
 
@@ -164,27 +159,26 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       _suggestionsCached.clear();
       state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
           _mealTypeCached, _skillLevelCached);
+
       return;
     }
+    state = RecipesSearchState.loading();
 
-    final formattedSuggestions = _suggestionsCached;
     final newSuggestions = <Suggestion>[];
     final animatedIndexes = <int>[];
 
-    for (final Suggestion suggestion in formattedSuggestions) {
+    for (final Suggestion suggestion in _suggestionsCached) {
       if (suggestion.name.toLowerCase().contains(search.toLowerCase()) &&
           !_ingredientsCached.contains(suggestion.name.toLowerCase())) {
         newSuggestions.add(suggestion);
       } else {
-        final index = formattedSuggestions.indexWhere(
+        final index = _suggestionsCached.indexWhere(
           (element) =>
               element.name.toLowerCase() == suggestion.name.toLowerCase(),
         );
         animatedIndexes.add(index);
       }
     }
-    state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-        _mealTypeCached, _skillLevelCached);
 
     final index = _suggestionsRequests.length;
     _suggestionsRequests.add(RequestStatus(completed: false, type: index));
@@ -238,7 +232,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
     if (newSuggestions.isEmpty) {
     } else {
       for (int i = animatedIndexes.length - 1; i >= 0; i--) {
-        final suggestion = formattedSuggestions[animatedIndexes[i]];
+        final suggestion = _suggestionsCached[animatedIndexes[i]];
 
         suggestionListKey.currentState?.removeItem(
           animatedIndexes[i],
