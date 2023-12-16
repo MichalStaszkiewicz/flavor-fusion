@@ -5,5 +5,6 @@ class RouteName {
   static const String favoriteRecipes = 'favorite';
   static const String shoppingList = 'shopping_list';
   static const String recipeSearchDone = "done";
-  static const String rootPath = '/';
+  static const String recipePageWrapper = 'wrapper/recipes';
+  static const String rootPath = '/start';
 }

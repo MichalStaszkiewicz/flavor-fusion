@@ -188,7 +188,7 @@ class _$NutrionalInfoImpl implements _NutrionalInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NutrionalInfoImpl &&

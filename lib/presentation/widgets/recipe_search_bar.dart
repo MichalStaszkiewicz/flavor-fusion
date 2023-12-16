@@ -6,14 +6,14 @@ class RecipeSearchBar extends ConsumerStatefulWidget {
   const RecipeSearchBar({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RecipeSearchBarState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RecipeSearchBarState();
 }
 
 class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
-
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       key: ValueKey('recipes_search'),
       children: [
         Expanded(
@@ -21,16 +21,16 @@ class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
             alignment: Alignment.centerLeft,
             child: GestureDetector(
               onTap: () {
-             //   stateKey = UniqueKey();
+               // stateKey = UniqueKey();
                 ref.watch(recommendedRecipesViewModel).maybeWhen(
                       ready: (recipes, searchOpened) {
                         if (searchOpened) {
-                      //    _recipesSearchFocused = !_recipesSearchFocused;
+                          //    _recipesSearchFocused = !_recipesSearchFocused;
                         } else {
                           ref
                               .read(recommendedRecipesViewModel.notifier)
                               .openSearch();
-                     //     _recipesSearchFocused = !_recipesSearchFocused;
+                          //     _recipesSearchFocused = !_recipesSearchFocused;
                         }
                       },
                       orElse: () => {},

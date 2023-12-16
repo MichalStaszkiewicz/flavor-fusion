@@ -125,7 +125,7 @@ class _$SearchScreenInitialImpl implements SearchScreenInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchScreenInitialImpl);
@@ -252,7 +252,7 @@ class _$SearchScreenLoadingImpl implements SearchScreenLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchScreenLoadingImpl);
@@ -379,7 +379,7 @@ class _$SearchingInProgressImpl implements SearchingInProgress {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchingInProgressImpl);
@@ -506,7 +506,7 @@ class _$ChoosingFiltersImpl implements ChoosingFilters {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$ChoosingFiltersImpl);
   }
@@ -655,7 +655,7 @@ class _$SearchScreenReadyImpl implements SearchScreenReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchScreenReadyImpl &&
@@ -797,7 +797,7 @@ class _$SearchScreenErrorImpl implements SearchScreenError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$SearchScreenErrorImpl);
   }

@@ -119,7 +119,7 @@ class _$GroceriesInitialImpl implements GroceriesInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GroceriesInitialImpl);
   }
@@ -239,7 +239,7 @@ class _$GroceriesLoadingImpl implements GroceriesLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GroceriesLoadingImpl);
   }
@@ -359,7 +359,7 @@ class _$GroceriesErrorImpl implements GroceriesError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$GroceriesErrorImpl);
   }
@@ -529,7 +529,7 @@ class _$GroceriesReadyImpl implements GroceriesReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GroceriesReadyImpl &&

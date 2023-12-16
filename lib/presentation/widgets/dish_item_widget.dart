@@ -65,7 +65,8 @@ class DishItemWidget extends StatelessWidget {
             _buildBasicInfoRow(context),
             GestureDetector(
               onTap: () {
-                context.router.pushNamed(RouteName.recipeDetailsPath);
+                context.router
+                    .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
               },
               child: _buildDetailsButton(),
             ),

@@ -1,5 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+
+import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
+import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
@@ -20,6 +24,8 @@ import '../../../presentation/widgets/recipe_group.dart';
 import '../../../utility/app_router.dart';
 import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
+
+int refreshCounter = 0;
 
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
@@ -66,22 +72,18 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _focusNode = FocusNode();
-print("EXECUTED");
-    Hive.registerAdapter(IngredientAdapter());
-    Hive.registerAdapter(NutrientsPerServingAdapter());
-    Hive.registerAdapter(NutrionalInfoAdapter());
-    Hive.registerAdapter(RecipeAdapter());
-    locator<HiveDataProvider<Recipe>>().initHive();
+    refreshCounter++;
+    print("YOU SHOULD NOT SEE THIS MESSAGE MORE THAN ONCE : " +
+        refreshCounter.toString());
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
+    //_focusNode.dispose();
 
-    _favoriteSearchController.dispose();
+    //_favoriteSearchController.dispose();
     super.dispose();
   }
 
@@ -262,19 +264,39 @@ print("EXECUTED");
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          _currentScreen = index;
-          setState(() {});
-        },
-        currentIndex: _currentScreen,
-        items: _bottomNavItems,
-      ),
-      body: AutoRouter(
-        builder: (context, widget) => _screens[_currentScreen],
-      ),
-    );
+    return AutoTabsRouter(
+        transitionBuilder: (context, child, animation) => FadeTransition(
+              opacity: animation,
+              child: child,
+            ),
+        routes: [RecipesRoute(), ShoppingListRoute(), FavoriteRecipesRoute()],
+        builder: (context, child) {
+          final tabsRouter = AutoTabsRouter.of(context);
+          return Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: AppBar(
+                automaticallyImplyLeading: false,
+                title: ref.watch(recommendedRecipesViewModel).maybeWhen(
+                      orElse: () => Container(),
+                      ready: ((recipes, searchOpened) {
+                        if (searchOpened) {
+                          return RecipeSearchBarFocused();
+                        } else {
+                          return RecipeSearchBar();
+                        }
+                      }),
+                    )),
+            bottomNavigationBar: BottomNavigationBar(
+              onTap: (index) {
+                final tabsRouter = AutoTabsRouter.of(context);
+
+                tabsRouter.setActiveIndex(index);
+              },
+              currentIndex: tabsRouter.activeIndex,
+              items: _bottomNavItems,
+            ),
+            body: child,
+          );
+        });
   }
 }

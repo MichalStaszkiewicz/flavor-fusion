@@ -133,7 +133,7 @@ class _$GroceryImpl implements _Grocery {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GroceryImpl &&

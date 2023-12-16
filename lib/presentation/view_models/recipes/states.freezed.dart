@@ -121,7 +121,7 @@ class _$RecommendedRecipesInitialImpl implements RecommendedRecipesInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecommendedRecipesInitialImpl);
@@ -243,7 +243,7 @@ class _$RecommendedRecipesLoadingImpl implements RecommendedRecipesLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecommendedRecipesLoadingImpl);
@@ -365,7 +365,7 @@ class _$RecommendedRecipesErrorImpl implements RecommendedRecipesError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecommendedRecipesErrorImpl);
@@ -520,7 +520,7 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecommendedRecipesReadyImpl &&

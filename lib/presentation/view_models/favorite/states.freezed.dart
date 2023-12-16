@@ -113,7 +113,7 @@ class _$FavoriteInitialImpl implements FavoriteInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$FavoriteInitialImpl);
   }
@@ -227,7 +227,7 @@ class _$FavoriteLoadingImpl implements FavoriteLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$FavoriteLoadingImpl);
   }
@@ -341,7 +341,7 @@ class _$FavoriteErrorImpl implements FavoriteError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$FavoriteErrorImpl);
   }
@@ -478,7 +478,7 @@ class _$FavoriteReadyImpl implements FavoriteReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FavoriteReadyImpl &&

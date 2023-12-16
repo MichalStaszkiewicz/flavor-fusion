@@ -122,7 +122,7 @@ class _$IngredientListResponseImpl implements _IngredientListResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$IngredientListResponseImpl &&

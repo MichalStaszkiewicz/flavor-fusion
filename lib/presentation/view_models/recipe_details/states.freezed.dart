@@ -113,7 +113,7 @@ class _$RecipeDetailsInitialImpl implements RecipeDetailsInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipeDetailsInitialImpl);
@@ -228,7 +228,7 @@ class _$RecipeDetailsLoadingImpl implements RecipeDetailsLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipeDetailsLoadingImpl);
@@ -343,7 +343,7 @@ class _$RecipeDetailsErrorImpl implements RecipeDetailsError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$RecipeDetailsErrorImpl);
   }
@@ -482,7 +482,7 @@ class _$RecipeDetailsReadyImpl implements RecipeDetailsReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecipeDetailsReadyImpl &&

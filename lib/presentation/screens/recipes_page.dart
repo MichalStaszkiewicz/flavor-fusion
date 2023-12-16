@@ -9,7 +9,7 @@ import 'package:flavor_fusion/presentation/widgets/animated_wrap.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_search_bar_opened.dart';
+import 'package:flavor_fusion/presentation/widgets/recipe_search_bar_content.dart';
 import 'package:flavor_fusion/presentation/widgets/search_done.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
@@ -30,6 +30,7 @@ import '../widgets/suggestions_list.dart';
 
 final GlobalKey<AnimatedListState> suggestionListKey =
     GlobalKey<AnimatedListState>();
+
 @RoutePage()
 class RecipesPage extends ConsumerStatefulWidget {
   const RecipesPage({
@@ -77,9 +78,6 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
     }
   }
 
-  final TextEditingController _recipesSearchController =
-      TextEditingController();
-
   bool _recipesSearchFocused = false;
   late FocusNode _focusNode;
 
@@ -121,52 +119,38 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recommendedRecipesViewModel);
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          title: recipesState.maybeWhen(
-        orElse: () => Container(),
-        ready: ((recipes, searchOpened) {
-          if (searchOpened) {
-            return _buildRecipesSearchFocused();
-          } else {
-            return RecipeSearchBar();
-          }
-        }),
-      )),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: Stack(
-          children: [
-            AnimatedSwitcher(
-                duration: const Duration(milliseconds: 150),
-                child: Container(
-                  key: stateKey,
-                  child: recipesState.maybeWhen(
-                      loading: () => _buildLoading(),
-                      orElse: () => Container(),
-                      ready: (Map<String, List<Recipe>> recipes,
-                          bool searchOpened) {
-                        if (searchOpened) {
-                          manageAnimations(
-                              List.from(ref
-                                  .read(recipeSearchViewModel.notifier)
-                                  .suggestionsCached
-                                  .map((e) => e.name)
-                                  .toList()),
-                              ref
-                                  .read(recipeSearchViewModel.notifier)
-                                  .selectedIngredients);
-                          return RecipeSearchBarOpened(
-                            ingredientsOpacity: _ingredientsAnimation.value,
-                            suggestionsOpacity: _suggestionsAnimation.value,
-                          );
-                        }
-                        return _buildReady(recipes);
-                      }),
-                )),
-          ],
-        ),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Stack(
+        children: [
+          AnimatedSwitcher(
+              duration: const Duration(milliseconds: 150),
+              child: Container(
+                key: stateKey,
+                child: recipesState.maybeWhen(
+                    loading: () => _buildLoading(),
+                    orElse: () => Container(),
+                    ready:
+                        (Map<String, List<Recipe>> recipes, bool searchOpened) {
+                      if (searchOpened) {
+                        manageAnimations(
+                            List.from(ref
+                                .read(recipeSearchViewModel.notifier)
+                                .suggestionsCached
+                                .map((e) => e.name)
+                                .toList()),
+                            ref
+                                .read(recipeSearchViewModel.notifier)
+                                .selectedIngredients);
+                        return RecipeSearchBarContent(
+                          ingredientsOpacity: _ingredientsAnimation.value,
+                          suggestionsOpacity: _suggestionsAnimation.value,
+                        );
+                      }
+                      return _buildReady(recipes);
+                    }),
+              )),
+        ],
       ),
     );
   }
@@ -182,108 +166,6 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
     );
   }
 
-  Container _buildRecipesSearchSuffix() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      width: 100,
-      child: Center(
-        child: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.blueAccent,
-            borderRadius: BorderRadius.circular(210),
-          ),
-          height: 30,
-          width: 80,
-          child: Text(
-            'Search',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
-
-  TextField _buildRecipesSearchFocused() {
-    return TextField(
-      focusNode: _focusNode,
-      autofocus: true,
-      decoration: InputDecoration(
-        fillColor: Colors.transparent,
-        prefixIcon: Container(
-          alignment: Alignment.centerLeft,
-          width: 20,
-          child: GestureDetector(
-            onTap: () {
-              stateKey = UniqueKey();
-              _focusNode.nearestScope!.unfocus();
-              _recipesSearchFocused = !_recipesSearchFocused;
-              ref
-                  .read(recommendedRecipesViewModel.notifier)
-                  .loadRecipeRecommendation();
-            },
-            child: const Icon(Icons.arrow_back),
-          ),
-        ),
-        suffixIcon: GestureDetector(
-          onTap: () {
-            ref.read(recipeSearchViewModel).maybeWhen(
-                  orElse: () => {},
-                  ready: ((suggestions, ingredients, mealType, skillLevel) {
-                    _recipesSearchFocused = !_recipesSearchFocused;
-
-                    _focusNode.nearestScope!.unfocus();
-
-               
-                    context.router.pushNamed(RouteName.recipeSearchDone);
-                  }),
-                );
-          },
-          child: _buildRecipesSearchSuffix(),
-        ),
-        hintText: searchHint,
-        hintStyle: Theme.of(context).textTheme.labelMedium,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        disabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-      ),
-      onSubmitted: (search) {
-        _recipesSearchFocused = !_recipesSearchFocused;
-        if (search.isEmpty &&
-            ref
-                .read(recipeSearchViewModel.notifier)
-                .selectedIngredients
-                .isEmpty) {
-          ref
-              .read(recommendedRecipesViewModel.notifier)
-              .loadRecipeRecommendation();
-        } else {
-          ref.read(recipeSearchViewModel.notifier).findRecipes();
-        }
-      },
-      onChanged: (text) {
-        ref.read(recipeSearchViewModel.notifier).search = text;
-        ref.read(recipeSearchViewModel.notifier).searchRecipes(text);
-      },
-      onTapOutside: (ptr) {},
-      controller: _recipesSearchController,
-    );
-  }
-
-
-
   Container _buildLoading() => Container(
         key: const ValueKey('recipes_loading'),
         child: Center(
@@ -295,4 +177,3 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
 
   Container _buildError() => Container();
 }
-

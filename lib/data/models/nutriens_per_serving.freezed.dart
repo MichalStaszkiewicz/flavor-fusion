@@ -224,7 +224,7 @@ class _$NutriensPerServingImpl implements _NutriensPerServing {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NutriensPerServingImpl &&

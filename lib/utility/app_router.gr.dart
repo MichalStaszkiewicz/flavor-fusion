@@ -43,6 +43,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: MainPage(),
       );
     },
+    RecipeSearchRouteWrapper.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecipeSearchPageWrapper(),
+      );
+    },
     RecipesRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -140,6 +146,20 @@ class MainRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MainRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RecipeSearchPageWrapper]
+class RecipeSearchRouteWrapper extends PageRouteInfo<void> {
+  const RecipeSearchRouteWrapper({List<PageRouteInfo>? children})
+      : super(
+          RecipeSearchRouteWrapper.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecipeSearchRouteWrapper';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
