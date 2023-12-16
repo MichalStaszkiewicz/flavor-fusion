@@ -17,7 +17,7 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Recipe(
-      author: fields[0] as String,
+      author: fields[0] as String?,
       id: fields[1] as String,
       courses: (fields[2] as List?)?.cast<String>(),
       cuisines: (fields[3] as List?)?.cast<String>(),
@@ -93,7 +93,7 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
 // **************************************************************************
 
 _$RecipeImpl _$$RecipeImplFromJson(Map<String, dynamic> json) => _$RecipeImpl(
-      author: json['author'] as String,
+      author: json['author'] as String?,
       id: json['id'] as String,
       courses:
           (json['courses'] as List<dynamic>?)?.map((e) => e as String).toList(),

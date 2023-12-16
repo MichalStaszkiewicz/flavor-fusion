@@ -37,6 +37,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: MainPage(),
       );
     },
+    SearchDoneRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SearchDonePage(),
+      );
+    },
   };
 }
 
@@ -102,6 +108,20 @@ class MainRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MainRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SearchDonePage]
+class SearchDoneRoute extends PageRouteInfo<void> {
+  const SearchDoneRoute({List<PageRouteInfo>? children})
+      : super(
+          SearchDoneRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchDoneRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

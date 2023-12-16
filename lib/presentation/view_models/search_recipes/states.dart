@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/models/suggestion.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,4 +17,5 @@ abstract class RecipesSearchState with _$RecipesSearchState {
     MealType mealType,
     SkillLevel skillLevel,
   ) = RecipesSearchReady;
+  factory RecipesSearchState.done(List<Recipe> recipes,bool nextPage) = RecipeSearchDone;
 }

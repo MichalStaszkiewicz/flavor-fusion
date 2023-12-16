@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:ffi';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/data/models/suggestion.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
@@ -12,6 +13,7 @@ import 'package:flavor_fusion/presentation/widgets/search_done.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -233,9 +235,7 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
                     _focusNode.nearestScope!.unfocus();
 
-                    ref
-                        .read(recipeSearchViewModel.notifier)
-                        .findRecipes(_recipesSearchController.text);
+                    context.router.push(SearchDoneRoute());
                   }),
                 );
           },
@@ -267,12 +267,11 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
               .read(recommendedRecipesViewModel.notifier)
               .loadRecipeRecommendation();
         } else {
-          ref
-              .read(recipeSearchViewModel.notifier)
-              .findRecipes(_recipesSearchController.text);
+          ref.read(recipeSearchViewModel.notifier).findRecipes();
         }
       },
       onChanged: (text) {
+        ref.read(recipeSearchViewModel.notifier).search = text;
         ref.read(recipeSearchViewModel.notifier).searchRecipes(text);
       },
       onTapOutside: (ptr) {},

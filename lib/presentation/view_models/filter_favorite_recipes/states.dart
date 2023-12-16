@@ -5,7 +5,7 @@ import '../../../data/models/recipe.dart';
 part 'states.freezed.dart';
 
 @freezed
-abstract class FilterFavoriteState with _$SearchScreenState {
+abstract class FilterFavoriteState with _$FilterFavoriteState {
   factory FilterFavoriteState.initial() = SearchScreenInitial;
   factory FilterFavoriteState.loading() = SearchScreenLoading;
   factory FilterFavoriteState.searchingInProgress() = SearchingInProgress;

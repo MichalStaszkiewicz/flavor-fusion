@@ -121,21 +121,25 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
   }
 
   Future<void> loadNextRecipesPage() async {
-    await locator<SourceRepository>()
-        .searchRecipes(
-      search,
-      _ingredientsCached,
-      _mealTypeCached,
-      _skillLevelCached,
-      endCursor,
-    )
-        .then((data) {
-      state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-          _mealTypeCached, _skillLevelCached);
-    });
+    if (state is RecipeSearchDone) {
+      final state = this.state as RecipeSearchDone;
+      await locator<SourceRepository>()
+          .searchRecipes(
+        search,
+        _ingredientsCached,
+        _mealTypeCached,
+        _skillLevelCached,
+        endCursor,
+      )
+          .then((data) {
+        this.state = RecipesSearchState.done(
+            List.from(state.recipes)..addAll(data.recipes),
+            data.pageInfo.endCursor != null ? true : false);
+      });
+    }
   }
 
-  void findRecipes(String search) async {
+  void findRecipes() async {
     state = RecipesSearchState.loading();
 
     await locator<SourceRepository>()
@@ -147,8 +151,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       endCursor,
     )
         .then((data) {
-      state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-          _mealTypeCached, _skillLevelCached);
+      state = RecipesSearchState.done(
+          data.recipes, data.pageInfo.endCursor != null ? true : false);
     });
   }
 
@@ -192,7 +196,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
     )
         .then((data) {
       if ((index + 1) == _suggestionsRequests.length) {
-        for (final Recipe recipe in data['recipes']) {
+        for (final Recipe recipe in data.recipes) {
           for (Ingredient ingredient in recipe.ingredients) {
             final ingredientName = ingredient.name.toLowerCase();
             final suggestionExists = newSuggestions.indexWhere(
@@ -211,7 +215,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
             }
           }
         }
-        for (Recipe recipe in data['recipes']) {
+        for (Recipe recipe in data.recipes) {
           if (recipe.name.length < 20) {
             newSuggestions.add(Suggestion(
               name: recipe.name,

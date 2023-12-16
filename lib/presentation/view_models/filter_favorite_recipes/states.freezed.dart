@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchScreenState {
+mixin _$FilterFavoriteState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -81,16 +81,16 @@ mixin _$SearchScreenState {
 }
 
 /// @nodoc
-abstract class $SearchScreenStateCopyWith<$Res> {
-  factory $SearchScreenStateCopyWith(
+abstract class $FilterFavoriteStateCopyWith<$Res> {
+  factory $FilterFavoriteStateCopyWith(
           FilterFavoriteState value, $Res Function(FilterFavoriteState) then) =
-      _$SearchScreenStateCopyWithImpl<$Res, FilterFavoriteState>;
+      _$FilterFavoriteStateCopyWithImpl<$Res, FilterFavoriteState>;
 }
 
 /// @nodoc
-class _$SearchScreenStateCopyWithImpl<$Res, $Val extends FilterFavoriteState>
-    implements $SearchScreenStateCopyWith<$Res> {
-  _$SearchScreenStateCopyWithImpl(this._value, this._then);
+class _$FilterFavoriteStateCopyWithImpl<$Res, $Val extends FilterFavoriteState>
+    implements $FilterFavoriteStateCopyWith<$Res> {
+  _$FilterFavoriteStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -107,7 +107,7 @@ abstract class _$$SearchScreenInitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchScreenInitialImplCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenInitialImpl>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenInitialImpl>
     implements _$$SearchScreenInitialImplCopyWith<$Res> {
   __$$SearchScreenInitialImplCopyWithImpl(_$SearchScreenInitialImpl _value,
       $Res Function(_$SearchScreenInitialImpl) _then)
@@ -121,7 +121,7 @@ class _$SearchScreenInitialImpl implements SearchScreenInitial {
 
   @override
   String toString() {
-    return 'SearchScreenState.initial()';
+    return 'FilterFavoriteState.initial()';
   }
 
   @override
@@ -234,7 +234,7 @@ abstract class _$$SearchScreenLoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchScreenLoadingImplCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenLoadingImpl>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenLoadingImpl>
     implements _$$SearchScreenLoadingImplCopyWith<$Res> {
   __$$SearchScreenLoadingImplCopyWithImpl(_$SearchScreenLoadingImpl _value,
       $Res Function(_$SearchScreenLoadingImpl) _then)
@@ -248,7 +248,7 @@ class _$SearchScreenLoadingImpl implements SearchScreenLoading {
 
   @override
   String toString() {
-    return 'SearchScreenState.loading()';
+    return 'FilterFavoriteState.loading()';
   }
 
   @override
@@ -361,7 +361,7 @@ abstract class _$$SearchingInProgressImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchingInProgressImplCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchingInProgressImpl>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchingInProgressImpl>
     implements _$$SearchingInProgressImplCopyWith<$Res> {
   __$$SearchingInProgressImplCopyWithImpl(_$SearchingInProgressImpl _value,
       $Res Function(_$SearchingInProgressImpl) _then)
@@ -375,7 +375,7 @@ class _$SearchingInProgressImpl implements SearchingInProgress {
 
   @override
   String toString() {
-    return 'SearchScreenState.searchingInProgress()';
+    return 'FilterFavoriteState.searchingInProgress()';
   }
 
   @override
@@ -488,7 +488,7 @@ abstract class _$$ChoosingFiltersImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ChoosingFiltersImplCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$ChoosingFiltersImpl>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$ChoosingFiltersImpl>
     implements _$$ChoosingFiltersImplCopyWith<$Res> {
   __$$ChoosingFiltersImplCopyWithImpl(
       _$ChoosingFiltersImpl _value, $Res Function(_$ChoosingFiltersImpl) _then)
@@ -502,7 +502,7 @@ class _$ChoosingFiltersImpl implements ChoosingFilters {
 
   @override
   String toString() {
-    return 'SearchScreenState.choosingFilters()';
+    return 'FilterFavoriteState.choosingFilters()';
   }
 
   @override
@@ -616,7 +616,7 @@ abstract class _$$SearchScreenReadyImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchScreenReadyImplCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenReadyImpl>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenReadyImpl>
     implements _$$SearchScreenReadyImplCopyWith<$Res> {
   __$$SearchScreenReadyImplCopyWithImpl(_$SearchScreenReadyImpl _value,
       $Res Function(_$SearchScreenReadyImpl) _then)
@@ -651,7 +651,7 @@ class _$SearchScreenReadyImpl implements SearchScreenReady {
 
   @override
   String toString() {
-    return 'SearchScreenState.ready(recipies: $recipies)';
+    return 'FilterFavoriteState.ready(recipies: $recipies)';
   }
 
   @override
@@ -779,7 +779,7 @@ abstract class _$$SearchScreenErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SearchScreenErrorImplCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenErrorImpl>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenErrorImpl>
     implements _$$SearchScreenErrorImplCopyWith<$Res> {
   __$$SearchScreenErrorImplCopyWithImpl(_$SearchScreenErrorImpl _value,
       $Res Function(_$SearchScreenErrorImpl) _then)
@@ -793,7 +793,7 @@ class _$SearchScreenErrorImpl implements SearchScreenError {
 
   @override
   String toString() {
-    return 'SearchScreenState.error()';
+    return 'FilterFavoriteState.error()';
   }
 
   @override

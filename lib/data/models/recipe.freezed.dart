@@ -21,7 +21,7 @@ Recipe _$RecipeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Recipe {
   @HiveField(0)
-  String get author => throw _privateConstructorUsedError;
+  String? get author => throw _privateConstructorUsedError;
   @HiveField(1)
   String get id => throw _privateConstructorUsedError;
   @HiveField(2)
@@ -67,7 +67,7 @@ abstract class $RecipeCopyWith<$Res> {
       _$RecipeCopyWithImpl<$Res, Recipe>;
   @useResult
   $Res call(
-      {@HiveField(0) String author,
+      {@HiveField(0) String? author,
       @HiveField(1) String id,
       @HiveField(2) List<String>? courses,
       @HiveField(3) List<String>? cuisines,
@@ -102,7 +102,7 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? author = null,
+    Object? author = freezed,
     Object? id = null,
     Object? courses = freezed,
     Object? cuisines = freezed,
@@ -121,10 +121,10 @@ class _$RecipeCopyWithImpl<$Res, $Val extends Recipe>
     Object? mainImage = null,
   }) {
     return _then(_value.copyWith(
-      author: null == author
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ abstract class _$$RecipeImplCopyWith<$Res> implements $RecipeCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) String author,
+      {@HiveField(0) String? author,
       @HiveField(1) String id,
       @HiveField(2) List<String>? courses,
       @HiveField(3) List<String>? cuisines,
@@ -253,7 +253,7 @@ class __$$RecipeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? author = null,
+    Object? author = freezed,
     Object? id = null,
     Object? courses = freezed,
     Object? cuisines = freezed,
@@ -272,10 +272,10 @@ class __$$RecipeImplCopyWithImpl<$Res>
     Object? mainImage = null,
   }) {
     return _then(_$RecipeImpl(
-      author: null == author
+      author: freezed == author
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -376,7 +376,7 @@ class _$RecipeImpl implements _Recipe {
 
   @override
   @HiveField(0)
-  final String author;
+  final String? author;
   @override
   @HiveField(1)
   final String id;
@@ -537,7 +537,7 @@ class _$RecipeImpl implements _Recipe {
 
 abstract class _Recipe implements Recipe {
   factory _Recipe(
-      {@HiveField(0) required final String author,
+      {@HiveField(0) required final String? author,
       @HiveField(1) required final String id,
       @HiveField(2) required final List<String>? courses,
       @HiveField(3) required final List<String>? cuisines,
@@ -559,7 +559,7 @@ abstract class _Recipe implements Recipe {
 
   @override
   @HiveField(0)
-  String get author;
+  String? get author;
   @override
   @HiveField(1)
   String get id;

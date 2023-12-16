@@ -33,6 +33,9 @@ class RecipesSearchBar extends ConsumerStatefulWidget {
 class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(recipeSearchViewModel.notifier).init();
+    });
     super.initState();
   }
 
@@ -40,9 +43,6 @@ class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
   Widget build(BuildContext context) {
     return ref.watch(recipeSearchViewModel).maybeWhen(
         orElse: () {
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            ref.read(recipeSearchViewModel.notifier).init();
-          });
           return Container();
         },
         loading: () => const SearchingSuggestions(),
