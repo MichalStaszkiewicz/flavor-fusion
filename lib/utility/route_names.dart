@@ -1,6 +1,9 @@
 class RouteName {
-  static const String recipeDetailsPath = 'search/recipe_details';
-  static const String recipeFilter = 'search/filter';
-  static const String recipeSearchDone = "search/done";
+  static const String recipes = 'recipes';
+  static const String recipeDetailsPath = 'recipe_details';
+  static const String favoriteRecipeFilter = 'filter';
+  static const String favoriteRecipes = 'favorite';
+  static const String shoppingList = 'shopping_list';
+  static const String recipeSearchDone = "done";
   static const String rootPath = '/';
 }

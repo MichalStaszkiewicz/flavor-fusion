@@ -8,7 +8,7 @@ import '../../../data/models/recipe.dart';
 import '../../../data/models/request_status.dart';
 import '../../../data/models/suggestion.dart';
 import '../../../data/repository/source_repository.dart';
-import '../../../presentation/screens/recipes_screen.dart';
+import '../../screens/recipes_page.dart';
 import '../../../presentation/view_models/recipes/states.dart';
 import '../../../presentation/widgets/search_done.dart';
 import '../../../presentation/widgets/suggestion_item.dart';

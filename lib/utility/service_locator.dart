@@ -16,7 +16,7 @@ import '../domain/services/favorite_recipe.dart';
 
 GetIt locator = GetIt.instance;
 void initializeServices(String apiToken) {
-  
+  locator.registerLazySingleton<AppRouter>(() => AppRouter());
   locator.registerLazySingleton<Global>(() => Global());
 
   locator.registerLazySingleton<HiveDataProvider<Recipe>>(

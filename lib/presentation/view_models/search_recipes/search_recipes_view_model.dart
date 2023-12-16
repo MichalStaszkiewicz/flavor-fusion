@@ -3,7 +3,7 @@ import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/models/request_status.dart';
 import 'package:flavor_fusion/data/models/suggestion.dart';
 import 'package:flavor_fusion/data/repository/source_repository.dart';
-import 'package:flavor_fusion/presentation/screens/recipes_screen.dart';
+import 'package:flavor_fusion/presentation/screens/recipes_page.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/states.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/states.dart';

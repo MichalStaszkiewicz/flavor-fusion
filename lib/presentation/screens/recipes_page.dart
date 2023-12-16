@@ -16,6 +16,7 @@ import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
 import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/enums.dart';
+import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -29,16 +30,16 @@ import '../widgets/suggestions_list.dart';
 
 final GlobalKey<AnimatedListState> suggestionListKey =
     GlobalKey<AnimatedListState>();
-
-class RecipesScreen extends ConsumerStatefulWidget {
-  const RecipesScreen({
+@RoutePage()
+class RecipesPage extends ConsumerStatefulWidget {
+  const RecipesPage({
     super.key,
   });
   @override
   RecipesScreenState createState() => RecipesScreenState();
 }
 
-class RecipesScreenState extends ConsumerState<RecipesScreen>
+class RecipesScreenState extends ConsumerState<RecipesPage>
     with TickerProviderStateMixin {
   late AnimationController _ingredientsAnimationController;
   late Animation _ingredientsAnimation;
@@ -236,7 +237,8 @@ class RecipesScreenState extends ConsumerState<RecipesScreen>
 
                     _focusNode.nearestScope!.unfocus();
 
-                    context.router.push(SearchDoneRoute());
+               
+                    context.router.pushNamed(RouteName.recipeSearchDone);
                   }),
                 );
           },

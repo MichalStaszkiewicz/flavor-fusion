@@ -11,9 +11,9 @@ import '../../../data/models/nutrional_info.dart';
 import '../../../data/models/recipe.dart';
 import '../../../data/models/request_status.dart';
 import '../../../data/source/local/hive_data_provider.dart';
-import '../../../presentation/screens/favorite_screen.dart';
-import '../../../presentation/screens/groceries_screen.dart';
-import '../../../presentation/screens/recipes_screen.dart';
+import 'presentation/screens/favorite_page.dart';
+import 'presentation/screens/shopping_list_page.dart';
+import 'presentation/screens/recipes_page.dart';
 import '../../../presentation/view_models/favorite/favorite_view_model.dart';
 import '../../../presentation/view_models/recipes/recipes_view_model.dart';
 import '../../../presentation/widgets/recipe_group.dart';
@@ -48,9 +48,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     ),
   ];
   final List<Widget> _screens = const [
-    RecipesScreen(),
-    GroceriesScreen(),
-    FavoriteScreen()
+    RecipesPage(),
+    ShoppingListPage(),
+    FavoriteRecipesPage()
   ];
   final List<String> _appBarTitles = const [
     homeTitle,
@@ -67,7 +67,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   @override
   void initState() {
     _focusNode = FocusNode();
-
+print("EXECUTED");
     Hive.registerAdapter(IngredientAdapter());
     Hive.registerAdapter(NutrientsPerServingAdapter());
     Hive.registerAdapter(NutrionalInfoAdapter());

@@ -10,7 +10,7 @@ import '../../data/models/suggestion.dart';
 import '../../utility/app_router.dart';
 import '../../utility/enums.dart';
 import '../../utility/global.dart';
-import '../screens/recipes_screen.dart';
+import '../screens/recipes_page.dart';
 import '../view_models/recipes/recipes_view_model.dart';
 
 class SuggestionsList extends ConsumerStatefulWidget {

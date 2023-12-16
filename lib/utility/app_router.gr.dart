@@ -31,16 +31,34 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DishFilterScreen(),
       );
     },
+    FavoriteRecipesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FavoriteRecipesPage(),
+      );
+    },
     MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: MainPage(),
       );
     },
+    RecipesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecipesPage(),
+      );
+    },
     SearchDoneRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SearchDonePage(),
+      );
+    },
+    ShoppingListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ShoppingListPage(),
       );
     },
   };
@@ -99,6 +117,20 @@ class DishFilterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FavoriteRecipesPage]
+class FavoriteRecipesRoute extends PageRouteInfo<void> {
+  const FavoriteRecipesRoute({List<PageRouteInfo>? children})
+      : super(
+          FavoriteRecipesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteRecipesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [MainPage]
 class MainRoute extends PageRouteInfo<void> {
   const MainRoute({List<PageRouteInfo>? children})
@@ -113,6 +145,20 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RecipesPage]
+class RecipesRoute extends PageRouteInfo<void> {
+  const RecipesRoute({List<PageRouteInfo>? children})
+      : super(
+          RecipesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecipesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SearchDonePage]
 class SearchDoneRoute extends PageRouteInfo<void> {
   const SearchDoneRoute({List<PageRouteInfo>? children})
@@ -122,6 +168,20 @@ class SearchDoneRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SearchDoneRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ShoppingListPage]
+class ShoppingListRoute extends PageRouteInfo<void> {
+  const ShoppingListRoute({List<PageRouteInfo>? children})
+      : super(
+          ShoppingListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ShoppingListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
