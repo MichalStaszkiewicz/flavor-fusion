@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_header.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
@@ -56,7 +57,7 @@ class SuggestionsListState extends ConsumerState<SuggestionsList> {
                               .addSelectedIngredient(locator<Global>()
                                   .capitalize(widget.suggestions[index].name));
                         } else {
-                          locator<AppRouter>().push(DishDetailsRoute(
+                          context.router.push(DishDetailsRoute(
                               name: locator<Global>()
                                   .capitalize(widget.suggestions[index].name),
                               recipe: widget.suggestions[index].recipe!));

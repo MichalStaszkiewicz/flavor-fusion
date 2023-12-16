@@ -68,11 +68,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   void initState() {
     _focusNode = FocusNode();
 
-    Hive.registerAdapter(RecipeAdapter());
     Hive.registerAdapter(IngredientAdapter());
     Hive.registerAdapter(NutrientsPerServingAdapter());
     Hive.registerAdapter(NutrionalInfoAdapter());
-
+    Hive.registerAdapter(RecipeAdapter());
     locator<HiveDataProvider<Recipe>>().initHive();
 
     super.initState();
@@ -273,7 +272,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         currentIndex: _currentScreen,
         items: _bottomNavItems,
       ),
-      body: _screens[_currentScreen],
+      body: AutoRouter(
+        builder: (context, widget) => _screens[_currentScreen],
+      ),
     );
   }
 }

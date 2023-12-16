@@ -14,12 +14,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     locator<Global>().mediaQuery = MediaQuery.of(context);
     ThemeMode themeMode = ThemeMode.system;
+    final _appRouter = AppRouter();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: appName,
       theme: themeMode == ThemeMode.dark ? darkTheme : lightTheme,
       themeMode: themeMode,
-      routerConfig: locator<AppRouter>().config(),
+      routerConfig: _appRouter.config(),
     );
   }
 }

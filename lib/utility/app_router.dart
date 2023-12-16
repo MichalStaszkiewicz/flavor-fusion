@@ -3,6 +3,7 @@ import 'package:flavor_fusion/app.dart';
 import 'package:flavor_fusion/main_page.dart';
 import 'package:flavor_fusion/presentation/screens/dish_details_screen.dart';
 import 'package:flavor_fusion/presentation/widgets/search_done.dart';
+import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 
 import '../data/models/recipe.dart';
@@ -11,19 +12,23 @@ part 'app_router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
-  final String recipeDetailsPath = '/search/recipe_details';
-  final String recipeFilter = '/search/filter';
-  final String recipeSearchDone = "/search/done";
-  final String rootPath = '/';
-
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(path: recipeDetailsPath, page: DishDetailsRoute.page),
-        AutoRoute(path: recipeFilter, page: DishFilterRoute.page),
-        AutoRoute(path: rootPath, page: MainRoute.page, initial: true),
         AutoRoute(
-          path: recipeSearchDone,
-          page: SearchDoneRoute.page,
-        ),
+            path: RouteName.rootPath,
+            page: MainRoute.page,
+            initial: true,
+            children: [
+              AutoRoute(
+                  path: RouteName.recipeFilter, page: DishFilterRoute.page),
+              AutoRoute(
+                  path: RouteName.recipeSearchDone,
+                  page: SearchDoneRoute.page,
+                  children: [
+                    AutoRoute(
+                        path: RouteName.recipeDetailsPath,
+                        page: DishDetailsRoute.page),
+                  ]),
+            ]),
       ];
 }

@@ -13,7 +13,7 @@ void main() async {
       .then((value) async {
     String apiToken = dotenv.get("API_TOKEN");
     initializeServices(apiToken);
-
+    
     runApp(ProviderScope(child: App()));
   });
 }

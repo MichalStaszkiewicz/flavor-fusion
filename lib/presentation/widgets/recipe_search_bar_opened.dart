@@ -16,8 +16,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../utility/service_locator.dart';
 
-class RecipesSearchBar extends ConsumerStatefulWidget {
-  RecipesSearchBar({
+class RecipeSearchBarOpened extends ConsumerStatefulWidget {
+  RecipeSearchBarOpened({
     super.key,
     required this.ingredientsOpacity,
     required this.suggestionsOpacity,
@@ -30,7 +30,7 @@ class RecipesSearchBar extends ConsumerStatefulWidget {
   RecipesSearchBarState createState() => RecipesSearchBarState();
 }
 
-class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
+class RecipesSearchBarState extends ConsumerState<RecipeSearchBarOpened> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
