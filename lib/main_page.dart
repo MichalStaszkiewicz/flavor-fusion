@@ -25,8 +25,6 @@ import '../../../utility/app_router.dart';
 import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
 
-int refreshCounter = 0;
-
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
   const MainPage();
@@ -53,59 +51,6 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       icon: Icon(Icons.favorite),
     ),
   ];
-  final List<Widget> _screens = const [
-    RecipesPage(),
-    ShoppingListPage(),
-    FavoriteRecipesPage()
-  ];
-  final List<String> _appBarTitles = const [
-    homeTitle,
-    shopListTitle,
-    favoriteTitle
-  ];
-
-  bool _favoriteSearchFocused = false;
-
-  int _currentScreen = 0;
-
-  late FocusNode _focusNode;
-
-  @override
-  void initState() {
-    refreshCounter++;
-    print("YOU SHOULD NOT SEE THIS MESSAGE MORE THAN ONCE : " +
-        refreshCounter.toString());
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    //_focusNode.dispose();
-
-    //_favoriteSearchController.dispose();
-    super.dispose();
-  }
-
-  Row _buildGroceryAppBar() {
-    return Row(
-      children: [
-        Expanded(child: Container()),
-        Expanded(
-          flex: 8,
-          child: Container(
-            child: Center(
-              child: Text(
-                _appBarTitles[_currentScreen],
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
-          ),
-        ),
-        Expanded(child: Container()),
-      ],
-    );
-  }
 
   // Opacity _buildFavoriteSearchFocused() {
   //   return Opacity(
@@ -176,31 +121,6 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   //     ),
   //   );
   // }
-
-  Container _buildRecipesSearchSuffix() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      width: 100,
-      child: Center(
-        child: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.blueAccent,
-            borderRadius: BorderRadius.circular(210),
-          ),
-          height: 30,
-          width: 80,
-          child: Text(
-            'Search',
-            style: Theme.of(context)
-                .textTheme
-                .titleMedium!
-                .copyWith(color: Colors.white),
-          ),
-        ),
-      ),
-    );
-  }
 
   // Opacity _buildRecipesSearch() {
   //   return Opacity(
