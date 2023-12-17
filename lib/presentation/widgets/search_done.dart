@@ -49,10 +49,6 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   automaticallyImplyLeading: false,
-        //   title: RecipeSearchBar(),
-        // ),
         body: ref.watch(recipeSearchViewModel).maybeWhen(
               loading: () => SearchingSuggestions(),
               orElse: () {

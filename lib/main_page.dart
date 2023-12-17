@@ -184,6 +184,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final tabsRouter = AutoTabsRouter.of(context);
     return AutoTabsRouter(
         transitionBuilder: (context, child, animation) => FadeTransition(
               opacity: animation,
@@ -191,25 +192,11 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             ),
         routes: [RecipesRoute(), ShoppingListRoute(), FavoriteRecipesRoute()],
         builder: (context, child) {
-          final tabsRouter = AutoTabsRouter.of(context);
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: ref.watch(recommendedRecipesViewModel).maybeWhen(
-                      orElse: () => Container(),
-                      ready: ((recipes, searchOpened) {
-                        if (searchOpened) {
-                          return RecipeSearchBarFocused();
-                        } else {
-                          return RecipeSearchBar();
-                        }
-                      }),
-                    )),
+            appBar: _buildAppBar(tabsRouter),
             bottomNavigationBar: BottomNavigationBar(
               onTap: (index) {
-                final tabsRouter = AutoTabsRouter.of(context);
-
                 tabsRouter.setActiveIndex(index);
               },
               currentIndex: tabsRouter.activeIndex,
@@ -218,5 +205,24 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             body: child,
           );
         });
+  }
+
+  AppBar _buildAppBar(TabsRouter tabsRouter) {
+    if (tabsRouter.activeIndex == 0) {
+      return AppBar(
+          automaticallyImplyLeading: false,
+          title: ref.watch(recommendedRecipesViewModel).maybeWhen(
+                orElse: () => Container(),
+                ready: ((recipes, searchOpened) {
+                  if (searchOpened) {
+                    return RecipeSearchBarFocused();
+                  } else {
+                    return RecipeSearchBar();
+                  }
+                }),
+              ));
+    } else {
+      return AppBar();
+    }
   }
 }
