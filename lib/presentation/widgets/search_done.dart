@@ -81,8 +81,7 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                           ),
                         )
                       : Container(
-                          height:
-                              locator<Global>().deviceDimenstions.height / 1.3,
+                          height: MediaQuery.of(context).size.height / 1.3,
                           child: Center(
                               child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,

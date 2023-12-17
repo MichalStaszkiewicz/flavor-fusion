@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +22,7 @@ import 'presentation/screens/recipes_page.dart';
 import '../../../presentation/view_models/favorite/favorite_view_model.dart';
 import '../../../presentation/view_models/recipes/recipes_view_model.dart';
 import '../../../presentation/widgets/recipe_group.dart';
-import '../../../utility/app_router.dart';
+
 import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
 
@@ -36,6 +37,7 @@ class MainPage extends ConsumerStatefulWidget {
 class MainPageState extends ConsumerState with TickerProviderStateMixin {
   final TextEditingController _favoriteSearchController =
       TextEditingController();
+  final ValueNotifier<bool> _recipeSearchOpened = ValueNotifier<bool>(false);
 
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
@@ -184,7 +186,6 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final tabsRouter = AutoTabsRouter.of(context);
     return AutoTabsRouter(
         transitionBuilder: (context, child, animation) => FadeTransition(
               opacity: animation,
@@ -192,6 +193,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             ),
         routes: [RecipesRoute(), ShoppingListRoute(), FavoriteRecipesRoute()],
         builder: (context, child) {
+          final tabsRouter = AutoTabsRouter.of(context);
           return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: _buildAppBar(tabsRouter),
@@ -211,16 +213,16 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     if (tabsRouter.activeIndex == 0) {
       return AppBar(
           automaticallyImplyLeading: false,
-          title: ref.watch(recommendedRecipesViewModel).maybeWhen(
-                orElse: () => Container(),
-                ready: ((recipes, searchOpened) {
-                  if (searchOpened) {
-                    return RecipeSearchBarFocused();
-                  } else {
-                    return RecipeSearchBar();
-                  }
-                }),
-              ));
+          title: ValueListenableBuilder<bool>(
+            builder: (context, focused, child) => focused
+                ? RecipeSearchBarFocused(
+                    searchBarOpened: _recipeSearchOpened,
+                  )
+                : RecipeSearchBar(
+                    searchBarOpened: _recipeSearchOpened,
+                  ),
+            valueListenable: _recipeSearchOpened,
+          ));
     } else {
       return AppBar();
     }

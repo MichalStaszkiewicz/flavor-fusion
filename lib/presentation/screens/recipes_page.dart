@@ -33,9 +33,8 @@ final GlobalKey<AnimatedListState> suggestionListKey =
 
 @RoutePage()
 class RecipesPage extends ConsumerStatefulWidget {
-  const RecipesPage({
-    super.key,
-  });
+  RecipesPage();
+
   @override
   RecipesScreenState createState() => RecipesScreenState();
 }

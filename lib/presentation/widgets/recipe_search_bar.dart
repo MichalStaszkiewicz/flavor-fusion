@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecipeSearchBar extends ConsumerStatefulWidget {
-  const RecipeSearchBar({super.key});
-
+  RecipeSearchBar({super.key, required this.searchBarOpened});
+  ValueNotifier<bool> searchBarOpened;
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
       _RecipeSearchBarState();
@@ -21,20 +21,12 @@ class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
             alignment: Alignment.centerLeft,
             child: GestureDetector(
               onTap: () {
-               // stateKey = UniqueKey();
-                ref.watch(recommendedRecipesViewModel).maybeWhen(
-                      ready: (recipes, searchOpened) {
-                        if (searchOpened) {
-                          //    _recipesSearchFocused = !_recipesSearchFocused;
-                        } else {
-                          ref
-                              .read(recommendedRecipesViewModel.notifier)
-                              .openSearch();
-                          //     _recipesSearchFocused = !_recipesSearchFocused;
-                        }
-                      },
-                      orElse: () => {},
-                    );
+                // stateKey = UniqueKey();
+                if (widget.searchBarOpened.value) {
+                  widget.searchBarOpened.value = false;
+                } else {
+                  widget.searchBarOpened.value = true;
+                }
               },
               child: const Icon(Icons.search),
             ),

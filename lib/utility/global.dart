@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Global {
-  late MediaQueryData mediaQuery;
-
-  late Size deviceDimenstions = mediaQuery.size;
   Color greyText = Color.fromARGB(255, 68, 68, 68);
 
   Map<String, String> mapMeasurement = {

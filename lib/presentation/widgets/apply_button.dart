@@ -30,7 +30,7 @@ class _ApplyButtonState extends State<ApplyButton> {
           child: Center(
             child: Container(
               height: 50,
-              width: locator<Global>().mediaQuery.size.width,
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: context.theme.primaryColor),

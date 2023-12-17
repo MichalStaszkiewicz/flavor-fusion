@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecipeSearchBarFocused extends ConsumerStatefulWidget {
-  const RecipeSearchBarFocused({super.key});
+  RecipeSearchBarFocused({super.key, required this.searchBarOpened});
+  ValueNotifier<bool> searchBarOpened;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -19,7 +20,7 @@ class _RecipeSearchBarFocusedState
     extends ConsumerState<RecipeSearchBarFocused> {
   final TextEditingController _recipesSearchController =
       TextEditingController();
-  FocusNode _focusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -36,7 +37,6 @@ class _RecipeSearchBarFocusedState
   Widget build(BuildContext context) {
     return TextField(
       key: UniqueKey(),
-      focusNode: _focusNode,
       autofocus: true,
       controller: _recipesSearchController,
       decoration: InputDecoration(
@@ -47,8 +47,8 @@ class _RecipeSearchBarFocusedState
           child: GestureDetector(
             onTap: () {
               //    stateKey = UniqueKey();
-              _focusNode.nearestScope!.unfocus();
-              //      _recipesSearchFocused = !_recipesSearchFocused;
+              //   _focusNode.nearestScope!.unfocus();
+              widget.searchBarOpened.value = false;
               ref
                   .read(recommendedRecipesViewModel.notifier)
                   .loadRecipeRecommendation();
@@ -63,8 +63,8 @@ class _RecipeSearchBarFocusedState
                     ready: ((suggestions, ingredients, mealType, skillLevel) {
                       //    _recipesSearchFocused = !_recipesSearchFocused;
 
-                      _focusNode.nearestScope!.unfocus();
-
+                      //     _focusNode.nearestScope!.unfocus();
+                      widget.searchBarOpened.value = false;
                       context.router.push(SearchDoneRoute());
 
                       setState(() {});
@@ -119,6 +119,7 @@ class _RecipeSearchBarFocusedState
           ref
               .read(recommendedRecipesViewModel.notifier)
               .loadRecipeRecommendation();
+          widget.searchBarOpened.value = false;
         } else {
           ref.read(recipeSearchViewModel.notifier).findRecipes();
         }

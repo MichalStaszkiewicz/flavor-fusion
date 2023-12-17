@@ -9,6 +9,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
+
 @RoutePage()
 class FavoriteRecipesPage extends ConsumerStatefulWidget {
   const FavoriteRecipesPage({super.key});
@@ -21,7 +22,6 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    
       ref.read(favoriteViewModel.notifier).loadRecipies();
     });
 
@@ -56,7 +56,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
   Container _buildReady(List<Recipe> recipes) {
     return recipes.isNotEmpty
         ? Container(
-            height: locator<Global>().deviceDimenstions.height / 1.2,
+            height: MediaQuery.of(context).size.height / 1.2,
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: recipes.length,

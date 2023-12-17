@@ -28,7 +28,7 @@ class RecipeDetailsButtonState extends ConsumerState<RecipeDetailsButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: locator<Global>().deviceDimenstions.width,
+      width: MediaQuery.of(context).size.width,
       child: GestureDetector(
         onTap: widget.onTap,
         child: Center(
