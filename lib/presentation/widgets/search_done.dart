@@ -50,10 +50,10 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ref.watch(recipeSearchViewModel).maybeWhen(
-              loading: () => SearchingSuggestions(),
-              orElse: () {
+              initial: () {
                 return Container();
               },
+              loading: () => SearchingSuggestions(),
               done: (recipes, nextPage) => Container(
                 height: double.infinity,
                 key: const ValueKey('recipes_searching'),
@@ -98,6 +98,13 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                         ),
                 ]),
               ),
+              orElse: () {
+                return Container(
+                  child: Center(
+                    child: Text("You Should Never See This"),
+                  ),
+                );
+              },
             ));
   }
 }

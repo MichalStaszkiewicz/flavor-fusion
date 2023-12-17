@@ -43,10 +43,30 @@ abstract class _$AppRouter extends RootStackRouter {
         child: MainPage(),
       );
     },
+    RecipeSearchPanelRoute.name: (routeData) {
+      final args = routeData.argsAs<RecipeSearchPanelRouteArgs>(
+          orElse: () => const RecipeSearchPanelRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RecipeSearchBarPanel(key: args.key),
+      );
+    },
+    RecipeSearchDoneAutoRouter.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecipeSearchDoneWrapper(),
+      );
+    },
     RecipeSearchRouteWrapper.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const RecipeSearchPageWrapper(),
+      );
+    },
+    RecipeSearchPanelAutoRouter.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RecipeSearchPanelWrapper(),
       );
     },
     RecipesRoute.name: (routeData) {
@@ -151,6 +171,49 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RecipeSearchBarPanel]
+class RecipeSearchPanelRoute extends PageRouteInfo<RecipeSearchPanelRouteArgs> {
+  RecipeSearchPanelRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RecipeSearchPanelRoute.name,
+          args: RecipeSearchPanelRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'RecipeSearchPanelRoute';
+
+  static const PageInfo<RecipeSearchPanelRouteArgs> page =
+      PageInfo<RecipeSearchPanelRouteArgs>(name);
+}
+
+class RecipeSearchPanelRouteArgs {
+  const RecipeSearchPanelRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'RecipeSearchPanelRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [RecipeSearchDoneWrapper]
+class RecipeSearchDoneAutoRouter extends PageRouteInfo<void> {
+  const RecipeSearchDoneAutoRouter({List<PageRouteInfo>? children})
+      : super(
+          RecipeSearchDoneAutoRouter.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecipeSearchDoneAutoRouter';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [RecipeSearchPageWrapper]
 class RecipeSearchRouteWrapper extends PageRouteInfo<void> {
   const RecipeSearchRouteWrapper({List<PageRouteInfo>? children})
@@ -160,6 +223,20 @@ class RecipeSearchRouteWrapper extends PageRouteInfo<void> {
         );
 
   static const String name = 'RecipeSearchRouteWrapper';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RecipeSearchPanelWrapper]
+class RecipeSearchPanelAutoRouter extends PageRouteInfo<void> {
+  const RecipeSearchPanelAutoRouter({List<PageRouteInfo>? children})
+      : super(
+          RecipeSearchPanelAutoRouter.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RecipeSearchPanelAutoRouter';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

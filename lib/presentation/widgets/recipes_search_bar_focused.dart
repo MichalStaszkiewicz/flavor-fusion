@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
@@ -8,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecipeSearchBarFocused extends ConsumerStatefulWidget {
-  RecipeSearchBarFocused({super.key, required this.searchBarOpened});
-  ValueNotifier<bool> searchBarOpened;
+  RecipeSearchBarFocused({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -46,12 +46,13 @@ class _RecipeSearchBarFocusedState
           width: 20,
           child: GestureDetector(
             onTap: () {
-              //    stateKey = UniqueKey();
-              //   _focusNode.nearestScope!.unfocus();
-              widget.searchBarOpened.value = false;
+              ref.read(searchBarModel.notifier).expandSearchBar();
+
               ref
                   .read(recommendedRecipesViewModel.notifier)
                   .loadRecipeRecommendation();
+
+              context.router.pop();
             },
             child: const Icon(Icons.arrow_back),
           ),
@@ -61,13 +62,9 @@ class _RecipeSearchBarFocusedState
               ref.read(recipeSearchViewModel).maybeWhen(
                     orElse: () => {},
                     ready: ((suggestions, ingredients, mealType, skillLevel) {
-                      //    _recipesSearchFocused = !_recipesSearchFocused;
+                      ref.read(searchBarModel.notifier).expandSearchBar();
 
-                      //     _focusNode.nearestScope!.unfocus();
-                      widget.searchBarOpened.value = false;
                       context.router.push(SearchDoneRoute());
-
-                      setState(() {});
                     }),
                   );
             },
@@ -119,7 +116,7 @@ class _RecipeSearchBarFocusedState
           ref
               .read(recommendedRecipesViewModel.notifier)
               .loadRecipeRecommendation();
-          widget.searchBarOpened.value = false;
+          ref.read(searchBarModel.notifier).expandSearchBar();
         } else {
           ref.read(recipeSearchViewModel.notifier).findRecipes();
         }

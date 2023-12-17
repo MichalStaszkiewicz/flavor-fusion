@@ -11,7 +11,6 @@ abstract class RecommendedRecipesState with _$RecommendedRecipesState {
   factory RecommendedRecipesState.loading() = RecommendedRecipesLoading;
 
   factory RecommendedRecipesState.error() = RecommendedRecipesError;
-  factory RecommendedRecipesState.ready(
-          Map<String, List<Recipe>> recipes, bool searchOpened) =
+  factory RecommendedRecipesState.ready(Map<String, List<Recipe>> recipes) =
       RecommendedRecipesReady;
 }

@@ -36,7 +36,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
 
   RecipesSearchViewModel(super._state);
   void init() {
-    state = RecipesSearchReady(_suggestionsCached, _ingredientsCached,
+    state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
         _mealTypeCached, _skillLevelCached);
   }
 

@@ -4,12 +4,13 @@ import 'dart:ffi';
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/data/models/suggestion.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/animated_wrap.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_search_bar_content.dart';
+import 'package:flavor_fusion/presentation/widgets/recipe_search_bar_panel.dart';
 import 'package:flavor_fusion/presentation/widgets/search_done.dart';
 import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
@@ -77,7 +78,6 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
     }
   }
 
-  bool _recipesSearchFocused = false;
   late FocusNode _focusNode;
 
   @override
@@ -129,23 +129,9 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
                 child: recipesState.maybeWhen(
                     loading: () => _buildLoading(),
                     orElse: () => Container(),
-                    ready:
-                        (Map<String, List<Recipe>> recipes, bool searchOpened) {
-                      if (searchOpened) {
-                        manageAnimations(
-                            List.from(ref
-                                .read(recipeSearchViewModel.notifier)
-                                .suggestionsCached
-                                .map((e) => e.name)
-                                .toList()),
-                            ref
-                                .read(recipeSearchViewModel.notifier)
-                                .selectedIngredients);
-                        return RecipeSearchBarContent(
-                          ingredientsOpacity: _ingredientsAnimation.value,
-                          suggestionsOpacity: _suggestionsAnimation.value,
-                        );
-                      }
+                    ready: (
+                      Map<String, List<Recipe>> recipes,
+                    ) {
                       return _buildReady(recipes);
                     }),
               )),

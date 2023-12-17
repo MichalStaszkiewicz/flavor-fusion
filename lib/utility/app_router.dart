@@ -6,7 +6,10 @@ import 'package:flavor_fusion/presentation/screens/favorite_page.dart';
 
 import 'package:flavor_fusion/presentation/screens/recipes_page.dart';
 import 'package:flavor_fusion/presentation/screens/shopping_list_page.dart';
+import 'package:flavor_fusion/presentation/screens/wrapper/recipe_search_done_wrapper.dart';
+import 'package:flavor_fusion/presentation/screens/wrapper/recipe_search_panel_wrapper.dart';
 import 'package:flavor_fusion/presentation/screens/wrapper/recipe_search_wrapper.dart';
+import 'package:flavor_fusion/presentation/widgets/recipe_search_bar_panel.dart';
 import 'package:flavor_fusion/presentation/widgets/search_done.dart';
 import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
@@ -25,14 +28,24 @@ class AppRouter extends _$AppRouter {
             page: MainRoute.page,
             children: [
               AutoRoute(
-                  path: '',
+                  initial: true,
+                  path: RouteName.recipes,
                   page: RecipeSearchRouteWrapper.page,
                   children: [
-                    AutoRoute(path: '', page: RecipesRoute.page, children: []),
                     AutoRoute(
-                        path: RouteName.recipeSearchDone,
-                        page: SearchDoneRoute.page,
-                        children: []),
+                        initial: true, page: RecipesRoute.page, children: []),
+                    AutoRoute(
+                        page: RecipeSearchPanelAutoRouter.page,
+                        children: [
+                          AutoRoute(
+                              initial: true,
+                              path: RouteName.recipeSearchPanel,
+                              page: RecipeSearchPanelRoute.page),
+                          AutoRoute(
+                              path: RouteName.recipeSearchDone,
+                              page: SearchDoneRoute.page,
+                              children: []),
+                        ]),
                     AutoRoute(
                         path: RouteName.recipeDetailsPath,
                         page: DishDetailsRoute.page),

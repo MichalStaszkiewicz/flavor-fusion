@@ -32,16 +32,16 @@ class RecipesViewModel extends StateNotifier<RecommendedRecipesState> {
 
     _cachedRecommendedRecipes =
         await locator<SourceRepository>().getRecommendedRecipes().then((value) {
-      state = RecommendedRecipesState.ready(value, false);
+      state = RecommendedRecipesState.ready(value);
       return value;
     });
   }
 
   void openSearch() {
-    state = RecommendedRecipesState.ready(_cachedRecommendedRecipes, true);
+    state = RecommendedRecipesState.ready(_cachedRecommendedRecipes);
   }
 
   void loadRecipeRecommendation() {
-    state = RecommendedRecipesState.ready(_cachedRecommendedRecipes, false);
+    state = RecommendedRecipesState.ready(_cachedRecommendedRecipes);
   }
 }

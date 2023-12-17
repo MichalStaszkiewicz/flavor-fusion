@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/filter_favorite_recipes/states.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
@@ -16,26 +17,19 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../utility/service_locator.dart';
 
-class RecipeSearchBarContent extends ConsumerStatefulWidget {
-  RecipeSearchBarContent({
+@RoutePage(name: "RecipeSearchPanelRoute")
+class RecipeSearchBarPanel extends ConsumerStatefulWidget {
+  RecipeSearchBarPanel({
     super.key,
-    required this.ingredientsOpacity,
-    required this.suggestionsOpacity,
   });
 
-  double ingredientsOpacity;
-  double suggestionsOpacity;
-
   @override
-  RecipesSearchBarState createState() => RecipesSearchBarState();
+  RecipeSearchBarPanelState createState() => RecipeSearchBarPanelState();
 }
 
-class RecipesSearchBarState extends ConsumerState<RecipeSearchBarContent> {
+class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(recipeSearchViewModel.notifier).init();
-    });
     super.initState();
   }
 
@@ -43,6 +37,12 @@ class RecipesSearchBarState extends ConsumerState<RecipeSearchBarContent> {
   Widget build(BuildContext context) {
     return ref.watch(recipeSearchViewModel).maybeWhen(
         orElse: () {
+          return Container();
+        },
+        initial: () {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            ref.read(recipeSearchViewModel.notifier).init();
+          });
           return Container();
         },
         loading: () => const SearchingSuggestions(),

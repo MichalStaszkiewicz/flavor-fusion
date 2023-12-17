@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
 import 'package:flavor_fusion/strings.dart';
-import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +22,7 @@ import 'presentation/screens/recipes_page.dart';
 import '../../../presentation/view_models/favorite/favorite_view_model.dart';
 import '../../../presentation/view_models/recipes/recipes_view_model.dart';
 import '../../../presentation/widgets/recipe_group.dart';
-
+import '../../../utility/app_router.dart';
 import '../../../utility/global.dart';
 import '../../../utility/service_locator.dart';
 
@@ -37,7 +37,7 @@ class MainPage extends ConsumerStatefulWidget {
 class MainPageState extends ConsumerState with TickerProviderStateMixin {
   final TextEditingController _favoriteSearchController =
       TextEditingController();
-  final ValueNotifier<bool> _recipeSearchOpened = ValueNotifier<bool>(false);
+  bool recipeSearchOpened = false;
 
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
@@ -213,16 +213,18 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     if (tabsRouter.activeIndex == 0) {
       return AppBar(
           automaticallyImplyLeading: false,
-          title: ValueListenableBuilder<bool>(
-            builder: (context, focused, child) => focused
-                ? RecipeSearchBarFocused(
-                    searchBarOpened: _recipeSearchOpened,
-                  )
-                : RecipeSearchBar(
-                    searchBarOpened: _recipeSearchOpened,
-                  ),
-            valueListenable: _recipeSearchOpened,
-          ));
+          title: ref.watch(searchBarModel).maybeWhen(
+              initial: () {
+                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                  ref.read(searchBarModel.notifier).init();
+                });
+
+                return Container();
+              },
+              ready: (expanded) {
+                return expanded ? RecipeSearchBarFocused() : RecipeSearchBar();
+              },
+              orElse: () => Container()));
     } else {
       return AppBar();
     }

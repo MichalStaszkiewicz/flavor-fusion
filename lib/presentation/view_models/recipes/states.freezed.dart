@@ -21,9 +21,7 @@ mixin _$RecommendedRecipesState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            Map<String, List<Recipe>> recipes, bool searchOpened)
-        ready,
+    required TResult Function(Map<String, List<Recipe>> recipes) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,8 +29,7 @@ mixin _$RecommendedRecipesState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult? Function(Map<String, List<Recipe>> recipes)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,8 +37,7 @@ mixin _$RecommendedRecipesState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult Function(Map<String, List<Recipe>> recipes)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,9 +132,7 @@ class _$RecommendedRecipesInitialImpl implements RecommendedRecipesInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            Map<String, List<Recipe>> recipes, bool searchOpened)
-        ready,
+    required TResult Function(Map<String, List<Recipe>> recipes) ready,
   }) {
     return initial();
   }
@@ -149,8 +143,7 @@ class _$RecommendedRecipesInitialImpl implements RecommendedRecipesInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult? Function(Map<String, List<Recipe>> recipes)? ready,
   }) {
     return initial?.call();
   }
@@ -161,8 +154,7 @@ class _$RecommendedRecipesInitialImpl implements RecommendedRecipesInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult Function(Map<String, List<Recipe>> recipes)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -258,9 +250,7 @@ class _$RecommendedRecipesLoadingImpl implements RecommendedRecipesLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            Map<String, List<Recipe>> recipes, bool searchOpened)
-        ready,
+    required TResult Function(Map<String, List<Recipe>> recipes) ready,
   }) {
     return loading();
   }
@@ -271,8 +261,7 @@ class _$RecommendedRecipesLoadingImpl implements RecommendedRecipesLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult? Function(Map<String, List<Recipe>> recipes)? ready,
   }) {
     return loading?.call();
   }
@@ -283,8 +272,7 @@ class _$RecommendedRecipesLoadingImpl implements RecommendedRecipesLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult Function(Map<String, List<Recipe>> recipes)? ready,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -380,9 +368,7 @@ class _$RecommendedRecipesErrorImpl implements RecommendedRecipesError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            Map<String, List<Recipe>> recipes, bool searchOpened)
-        ready,
+    required TResult Function(Map<String, List<Recipe>> recipes) ready,
   }) {
     return error();
   }
@@ -393,8 +379,7 @@ class _$RecommendedRecipesErrorImpl implements RecommendedRecipesError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult? Function(Map<String, List<Recipe>> recipes)? ready,
   }) {
     return error?.call();
   }
@@ -405,8 +390,7 @@ class _$RecommendedRecipesErrorImpl implements RecommendedRecipesError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult Function(Map<String, List<Recipe>> recipes)? ready,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -464,7 +448,7 @@ abstract class _$$RecommendedRecipesReadyImplCopyWith<$Res> {
           $Res Function(_$RecommendedRecipesReadyImpl) then) =
       __$$RecommendedRecipesReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Map<String, List<Recipe>> recipes, bool searchOpened});
+  $Res call({Map<String, List<Recipe>> recipes});
 }
 
 /// @nodoc
@@ -481,17 +465,12 @@ class __$$RecommendedRecipesReadyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipes = null,
-    Object? searchOpened = null,
   }) {
     return _then(_$RecommendedRecipesReadyImpl(
       null == recipes
           ? _value._recipes
           : recipes // ignore: cast_nullable_to_non_nullable
               as Map<String, List<Recipe>>,
-      null == searchOpened
-          ? _value.searchOpened
-          : searchOpened // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -499,8 +478,7 @@ class __$$RecommendedRecipesReadyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
-  _$RecommendedRecipesReadyImpl(
-      final Map<String, List<Recipe>> recipes, this.searchOpened)
+  _$RecommendedRecipesReadyImpl(final Map<String, List<Recipe>> recipes)
       : _recipes = recipes;
 
   final Map<String, List<Recipe>> _recipes;
@@ -512,11 +490,8 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
   }
 
   @override
-  final bool searchOpened;
-
-  @override
   String toString() {
-    return 'RecommendedRecipesState.ready(recipes: $recipes, searchOpened: $searchOpened)';
+    return 'RecommendedRecipesState.ready(recipes: $recipes)';
   }
 
   @override
@@ -524,14 +499,12 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RecommendedRecipesReadyImpl &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
-            (identical(other.searchOpened, searchOpened) ||
-                other.searchOpened == searchOpened));
+            const DeepCollectionEquality().equals(other._recipes, _recipes));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_recipes), searchOpened);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_recipes));
 
   @JsonKey(ignore: true)
   @override
@@ -546,11 +519,9 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            Map<String, List<Recipe>> recipes, bool searchOpened)
-        ready,
+    required TResult Function(Map<String, List<Recipe>> recipes) ready,
   }) {
-    return ready(recipes, searchOpened);
+    return ready(recipes);
   }
 
   @override
@@ -559,10 +530,9 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult? Function(Map<String, List<Recipe>> recipes)? ready,
   }) {
-    return ready?.call(recipes, searchOpened);
+    return ready?.call(recipes);
   }
 
   @override
@@ -571,12 +541,11 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(Map<String, List<Recipe>> recipes, bool searchOpened)?
-        ready,
+    TResult Function(Map<String, List<Recipe>> recipes)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(recipes, searchOpened);
+      return ready(recipes);
     }
     return orElse();
   }
@@ -620,12 +589,10 @@ class _$RecommendedRecipesReadyImpl implements RecommendedRecipesReady {
 }
 
 abstract class RecommendedRecipesReady implements RecommendedRecipesState {
-  factory RecommendedRecipesReady(
-          final Map<String, List<Recipe>> recipes, final bool searchOpened) =
+  factory RecommendedRecipesReady(final Map<String, List<Recipe>> recipes) =
       _$RecommendedRecipesReadyImpl;
 
   Map<String, List<Recipe>> get recipes;
-  bool get searchOpened;
   @JsonKey(ignore: true)
   _$$RecommendedRecipesReadyImplCopyWith<_$RecommendedRecipesReadyImpl>
       get copyWith => throw _privateConstructorUsedError;
