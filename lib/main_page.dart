@@ -239,27 +239,11 @@ class _CustomAnimatedAppBar extends ConsumerState<CustomAppBar>
   @override
   void initState() {
     _sizeAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 820));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 150));
 
     _sizeAnimation =
         CurvedAnimation(parent: _sizeAnimationController, curve: Curves.linear);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.watch(searchBarModel).maybeWhen(
-          orElse: () {},
-          ready: (expanded, renderAppBar, animateAppBar) {
-            if (renderAppBar && animateAppBar) {
-              print("RENDER THE BAR");
-              _sizeAnimationController.forward();
-            } else if (!renderAppBar && animateAppBar) {
-              print("DO NOT RENDER THE BAR");
-              _sizeAnimationController.reverse();
-            } else {
-              print("RENDER THE BAR INSTANTLY");
-              _sizeAnimationController.duration = Duration(microseconds: 1);
-              _sizeAnimationController.forward();
-            }
-          });
-    });
+
     super.initState();
   }
 
@@ -275,16 +259,16 @@ class _CustomAnimatedAppBar extends ConsumerState<CustomAppBar>
       return Container();
     }, ready: (expanded, renderAppBar, animateAppBar) {
       if (renderAppBar && animateAppBar) {
-        print("RENDER THE BAR");
+        print("Rendering the app bar with animation.");
         _sizeAnimationController.forward();
         return _buildAppBarWithAnimation(context);
       } else if (!renderAppBar && animateAppBar) {
-        print("DO NOT RENDER THE BAR");
+        print("Not rendering the app bar with animation.");
         _sizeAnimationController.reverse();
         return _buildAppBarWithAnimation(context);
       } else {
-        print("RENDER THE BAR INSTANTLY");
-
+        print("Rendering the app bar instantly.");
+        _sizeAnimationController.forward();
         return _buildAppBar(context);
       }
     });
