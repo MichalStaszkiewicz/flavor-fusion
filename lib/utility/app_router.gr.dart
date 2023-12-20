@@ -66,7 +66,7 @@ abstract class _$AppRouter extends RootStackRouter {
     RecipeSearchPanelAutoRouter.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const RecipeSearchPanelWrapper(),
+        child: RecipeSearchPanelWrapper(),
       );
     },
     RecipesRoute.name: (routeData) {

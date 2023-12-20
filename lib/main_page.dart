@@ -1,30 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+
 import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
 import 'package:flavor_fusion/strings.dart';
-import 'package:flavor_fusion/utility/route_names.dart';
+import 'package:flavor_fusion/utility/app_router.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
-
-import '../../../data/models/grocery.dart';
-import '../../../data/models/ingredient.dart';
-import '../../../data/models/nutriens_per_serving.dart';
-import '../../../data/models/nutrional_info.dart';
-import '../../../data/models/recipe.dart';
-import '../../../data/models/request_status.dart';
-import '../../../data/source/local/hive_data_provider.dart';
-import 'presentation/screens/favorite_page.dart';
-import 'presentation/screens/shopping_list_page.dart';
-import 'presentation/screens/recipes_page.dart';
-import '../../../presentation/view_models/favorite/favorite_view_model.dart';
-import '../../../presentation/view_models/recipes/recipes_view_model.dart';
-import '../../../presentation/widgets/recipe_group.dart';
-import '../../../utility/app_router.dart';
-import '../../../utility/global.dart';
-import '../../../utility/service_locator.dart';
+import 'package:get/get.dart';
 
 @RoutePage()
 class MainPage extends ConsumerStatefulWidget {
@@ -194,9 +179,20 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         routes: [RecipesRoute(), ShoppingListRoute(), FavoriteRecipesRoute()],
         builder: (context, child) {
           final tabsRouter = AutoTabsRouter.of(context);
+
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: _buildAppBar(tabsRouter),
+            appBar: ref.watch(searchBarModel).maybeWhen(initial: () {
+              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                ref.read(searchBarModel.notifier).init();
+              });
+
+              return null;
+            }, orElse: () {
+              return null;
+            }, ready: (expanded, renderAppBar, animateAppBar) {
+              return _buildAppBar(tabsRouter, expanded);
+            }),
             bottomNavigationBar: BottomNavigationBar(
               onTap: (index) {
                 tabsRouter.setActiveIndex(index);
@@ -209,24 +205,106 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         });
   }
 
-  AppBar _buildAppBar(TabsRouter tabsRouter) {
+  CustomAppBar _buildAppBar(TabsRouter tabsRouter, bool expanded) {
     if (tabsRouter.activeIndex == 0) {
-      return AppBar(
-          automaticallyImplyLeading: false,
-          title: ref.watch(searchBarModel).maybeWhen(
-              initial: () {
-                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                  ref.read(searchBarModel.notifier).init();
-                });
-
-                return Container();
-              },
-              ready: (expanded) {
-                return expanded ? RecipeSearchBarFocused() : RecipeSearchBar();
-              },
-              orElse: () => Container()));
+      return CustomAppBar(
+          child: expanded ? RecipeSearchBarFocused() : RecipeSearchBar());
     } else {
-      return AppBar();
+      return CustomAppBar(
+        child: Container(),
+      );
     }
+  }
+}
+
+class CustomAppBar extends ConsumerStatefulWidget
+    implements PreferredSizeWidget {
+  CustomAppBar({required this.child});
+
+  Widget child;
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _CustomAnimatedAppBar();
+
+  @override
+  Size get preferredSize => Size(double.infinity, 76);
+}
+
+class _CustomAnimatedAppBar extends ConsumerState<CustomAppBar>
+    with TickerProviderStateMixin {
+  late AnimationController _sizeAnimationController;
+  late Animation<double> _sizeAnimation;
+
+  @override
+  void initState() {
+    _sizeAnimationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 820));
+
+    _sizeAnimation =
+        CurvedAnimation(parent: _sizeAnimationController, curve: Curves.linear);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.watch(searchBarModel).maybeWhen(
+          orElse: () {},
+          ready: (expanded, renderAppBar, animateAppBar) {
+            if (renderAppBar && animateAppBar) {
+              print("RENDER THE BAR");
+              _sizeAnimationController.forward();
+            } else if (!renderAppBar && animateAppBar) {
+              print("DO NOT RENDER THE BAR");
+              _sizeAnimationController.reverse();
+            } else {
+              print("RENDER THE BAR INSTANTLY");
+              _sizeAnimationController.duration = Duration(microseconds: 1);
+              _sizeAnimationController.forward();
+            }
+          });
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _sizeAnimationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ref.watch(searchBarModel).maybeWhen(orElse: () {
+      return Container();
+    }, ready: (expanded, renderAppBar, animateAppBar) {
+      if (renderAppBar && animateAppBar) {
+        print("RENDER THE BAR");
+        _sizeAnimationController.forward();
+        return _buildAppBarWithAnimation(context);
+      } else if (!renderAppBar && animateAppBar) {
+        print("DO NOT RENDER THE BAR");
+        _sizeAnimationController.reverse();
+        return _buildAppBarWithAnimation(context);
+      } else {
+        print("RENDER THE BAR INSTANTLY");
+
+        return _buildAppBar(context);
+      }
+    });
+  }
+
+  SizeTransition _buildAppBarWithAnimation(BuildContext context) {
+    return SizeTransition(
+        sizeFactor: _sizeAnimation,
+        axis: Axis.vertical,
+        child: _buildAppBar(context));
+  }
+
+  Theme _buildAppBar(BuildContext context) {
+    return Theme(
+      data: context.theme,
+      child: Container(
+        color: context.theme.primaryColor,
+        height: widget.preferredSize.height,
+        child: widget.child,
+      ),
+    );
   }
 }

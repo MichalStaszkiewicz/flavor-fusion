@@ -1,33 +1,14 @@
-import 'dart:collection';
-import 'dart:ffi';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:flavor_fusion/data/models/suggestion.dart';
+
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
-import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
-import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
-import 'package:flavor_fusion/presentation/widgets/animated_wrap.dart';
-import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
+
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_search_bar_panel.dart';
-import 'package:flavor_fusion/presentation/widgets/search_done.dart';
-import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
-import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
-import 'package:flavor_fusion/strings.dart';
-import 'package:flavor_fusion/utility/app_router.dart';
-import 'package:flavor_fusion/utility/enums.dart';
-import 'package:flavor_fusion/utility/route_names.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../data/models/recipe.dart';
-import '../../utility/global.dart';
-import '../../utility/service_locator.dart';
-import '../widgets/ingredient_chip.dart';
-import '../widgets/searching_in_progress.dart';
-import '../widgets/suggestions_list.dart';
 
 final GlobalKey<AnimatedListState> suggestionListKey =
     GlobalKey<AnimatedListState>();
@@ -118,24 +99,26 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recommendedRecipesViewModel);
 
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Stack(
-        children: [
-          AnimatedSwitcher(
-              duration: const Duration(milliseconds: 150),
-              child: Container(
-                key: stateKey,
-                child: recipesState.maybeWhen(
-                    loading: () => _buildLoading(),
-                    orElse: () => Container(),
-                    ready: (
-                      Map<String, List<Recipe>> recipes,
-                    ) {
-                      return _buildReady(recipes);
-                    }),
-              )),
-        ],
+    return Scaffold(
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: Stack(
+          children: [
+            AnimatedSwitcher(
+                duration: const Duration(milliseconds: 150),
+                child: Container(
+                  key: stateKey,
+                  child: recipesState.maybeWhen(
+                      loading: () => _buildLoading(),
+                      orElse: () => Container(),
+                      ready: (
+                        Map<String, List<Recipe>> recipes,
+                      ) {
+                        return _buildReady(recipes);
+                      }),
+                )),
+          ],
+        ),
       ),
     );
   }

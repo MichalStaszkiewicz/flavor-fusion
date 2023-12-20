@@ -25,11 +25,12 @@ class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
       children: [
         Expanded(
           child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
             alignment: Alignment.centerLeft,
             child: GestureDetector(
               onTap: () {
-                ref.read(searchBarModel.notifier).expandSearchBar();
                 ref.read(recipeSearchViewModel.notifier).init();
+                ref.read(searchBarModel.notifier).expandSearchBar();
                 context.router.push(RecipeSearchPanelRoute());
               },
               child: const Icon(Icons.search),

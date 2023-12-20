@@ -35,97 +35,101 @@ class _RecipeSearchBarFocusedState
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      key: UniqueKey(),
-      autofocus: true,
-      controller: _recipesSearchController,
-      decoration: InputDecoration(
-        fillColor: Colors.transparent,
-        prefixIcon: Container(
-          alignment: Alignment.centerLeft,
-          width: 20,
-          child: GestureDetector(
-            onTap: () {
-              ref.read(searchBarModel.notifier).expandSearchBar();
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: TextField(
+        key: UniqueKey(),
+        autofocus: true,
+        controller: _recipesSearchController,
+        decoration: InputDecoration(
+          fillColor: Colors.transparent,
+          prefixIcon: Container(
+            alignment: Alignment.centerLeft,
+            width: 20,
+            child: GestureDetector(
+              onTap: () {
+                ref.read(searchBarModel.notifier).expandSearchBar();
 
-              ref
-                  .read(recommendedRecipesViewModel.notifier)
-                  .loadRecipeRecommendation();
+                ref
+                    .read(recommendedRecipesViewModel.notifier)
+                    .loadRecipeRecommendation();
+                ref.read(searchBarModel.notifier).toggleAppBar(true, true);
 
-              context.router.pop();
-            },
-            child: const Icon(Icons.arrow_back),
+                context.router.push(RecipesRoute());
+              },
+              child: const Icon(Icons.arrow_back),
+            ),
           ),
-        ),
-        suffixIcon: GestureDetector(
-            onTap: () {
-              ref.read(recipeSearchViewModel).maybeWhen(
-                    orElse: () => {},
-                    ready: ((suggestions, ingredients, mealType, skillLevel) {
-                      ref.read(searchBarModel.notifier).expandSearchBar();
+          suffixIcon: GestureDetector(
+              onTap: () {
+                ref.read(recipeSearchViewModel).maybeWhen(
+                      orElse: () => {},
+                      ready: ((suggestions, ingredients, mealType, skillLevel) {
+                        ref.read(searchBarModel.notifier).expandSearchBar();
 
-                      context.router.push(SearchDoneRoute());
-                    }),
-                  );
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              width: 100,
-              child: Center(
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(210),
-                  ),
-                  height: 30,
-                  width: 80,
-                  child: Text(
-                    'Search',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.white),
+                        context.router.push(SearchDoneRoute());
+                      }),
+                    );
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                width: 100,
+                child: Center(
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blueAccent,
+                      borderRadius: BorderRadius.circular(210),
+                    ),
+                    height: 30,
+                    width: 80,
+                    child: Text(
+                      'Search',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(color: Colors.white),
+                    ),
                   ),
                 ),
-              ),
-            )),
-        hintText: searchHint,
-        hintStyle: Theme.of(context).textTheme.labelMedium,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
+              )),
+          hintText: searchHint,
+          hintStyle: Theme.of(context).textTheme.labelMedium,
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          disabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-        disabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.transparent),
-        ),
-      ),
-      onSubmitted: (search) {
-        //  _recipesSearchFocused = !_recipesSearchFocused;
+        onSubmitted: (search) {
+          //  _recipesSearchFocused = !_recipesSearchFocused;
 
-        if (search.isEmpty &&
+          if (search.isEmpty &&
+              ref
+                  .read(recipeSearchViewModel.notifier)
+                  .selectedIngredients
+                  .isEmpty) {
             ref
-                .read(recipeSearchViewModel.notifier)
-                .selectedIngredients
-                .isEmpty) {
-          ref
-              .read(recommendedRecipesViewModel.notifier)
-              .loadRecipeRecommendation();
-          ref.read(searchBarModel.notifier).expandSearchBar();
-        } else {
-          ref.read(recipeSearchViewModel.notifier).findRecipes();
-        }
-      },
-      onChanged: (text) {
-        ref.read(recipeSearchViewModel.notifier).search = text;
-        ref.read(recipeSearchViewModel.notifier).searchRecipes(text);
-      },
-      onTapOutside: (ptr) {},
+                .read(recommendedRecipesViewModel.notifier)
+                .loadRecipeRecommendation();
+            ref.read(searchBarModel.notifier).expandSearchBar();
+          } else {
+            ref.read(recipeSearchViewModel.notifier).findRecipes();
+          }
+        },
+        onChanged: (text) {
+          ref.read(recipeSearchViewModel.notifier).search = text;
+          ref.read(recipeSearchViewModel.notifier).searchRecipes(text);
+        },
+        onTapOutside: (ptr) {},
+      ),
     );
   }
 }

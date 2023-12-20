@@ -7,12 +7,13 @@ class RecipeSearchPageWrapper extends StatefulWidget {
   const RecipeSearchPageWrapper({super.key});
 
   @override
-  State<RecipeSearchPageWrapper> createState() => _RecipeSearchPageWrapperState();
+  State<RecipeSearchPageWrapper> createState() =>
+      _RecipeSearchPageWrapperState();
 }
 
 class _RecipeSearchPageWrapperState extends State<RecipeSearchPageWrapper> {
   @override
   Widget build(BuildContext context) {
-    return const AutoRouter();
+    return AutoRouter();
   }
 }

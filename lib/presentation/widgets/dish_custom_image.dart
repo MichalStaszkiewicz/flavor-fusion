@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/widgets/bubble_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,8 +53,8 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    
                     ref.read(favoriteViewModel.notifier).loadRecipies();
+                    ref.read(searchBarModel.notifier).toggleAppBar(true, true);
                     context.router.pop();
                   },
                   child: BubbleIconButton(

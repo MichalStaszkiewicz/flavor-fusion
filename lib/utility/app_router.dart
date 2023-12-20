@@ -35,17 +35,12 @@ class AppRouter extends _$AppRouter {
                     AutoRoute(
                         initial: true, page: RecipesRoute.page, children: []),
                     AutoRoute(
-                        page: RecipeSearchPanelAutoRouter.page,
-                        children: [
-                          AutoRoute(
-                              initial: true,
-                              path: RouteName.recipeSearchPanel,
-                              page: RecipeSearchPanelRoute.page),
-                          AutoRoute(
-                              path: RouteName.recipeSearchDone,
-                              page: SearchDoneRoute.page,
-                              children: []),
-                        ]),
+                        path: RouteName.recipeSearchPanel,
+                        page: RecipeSearchPanelRoute.page),
+                    AutoRoute(
+                        path: RouteName.recipeSearchDone,
+                        page: SearchDoneRoute.page,
+                        children: []),
                     AutoRoute(
                         path: RouteName.recipeDetailsPath,
                         page: DishDetailsRoute.page),

@@ -19,19 +19,25 @@ mixin _$SearchBarModelState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool recipeSearchBarExpanded) ready,
+    required TResult Function(
+            bool recipeSearchBarExpanded, bool renderAppBar, bool animateAppBar)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool recipeSearchBarExpanded)? ready,
+    TResult? Function(bool recipeSearchBarExpanded, bool renderAppBar,
+            bool animateAppBar)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool recipeSearchBarExpanded)? ready,
+    TResult Function(bool recipeSearchBarExpanded, bool renderAppBar,
+            bool animateAppBar)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,7 +121,9 @@ class _$SearchBarModelInitialImpl implements SearchBarModelInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool recipeSearchBarExpanded) ready,
+    required TResult Function(
+            bool recipeSearchBarExpanded, bool renderAppBar, bool animateAppBar)
+        ready,
   }) {
     return initial();
   }
@@ -124,7 +132,9 @@ class _$SearchBarModelInitialImpl implements SearchBarModelInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool recipeSearchBarExpanded)? ready,
+    TResult? Function(bool recipeSearchBarExpanded, bool renderAppBar,
+            bool animateAppBar)?
+        ready,
   }) {
     return initial?.call();
   }
@@ -133,7 +143,9 @@ class _$SearchBarModelInitialImpl implements SearchBarModelInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool recipeSearchBarExpanded)? ready,
+    TResult Function(bool recipeSearchBarExpanded, bool renderAppBar,
+            bool animateAppBar)?
+        ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -184,7 +196,8 @@ abstract class _$$SearchBarModelReadyImplCopyWith<$Res> {
           $Res Function(_$SearchBarModelReadyImpl) then) =
       __$$SearchBarModelReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool recipeSearchBarExpanded});
+  $Res call(
+      {bool recipeSearchBarExpanded, bool renderAppBar, bool animateAppBar});
 }
 
 /// @nodoc
@@ -199,11 +212,21 @@ class __$$SearchBarModelReadyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipeSearchBarExpanded = null,
+    Object? renderAppBar = null,
+    Object? animateAppBar = null,
   }) {
     return _then(_$SearchBarModelReadyImpl(
       null == recipeSearchBarExpanded
           ? _value.recipeSearchBarExpanded
           : recipeSearchBarExpanded // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == renderAppBar
+          ? _value.renderAppBar
+          : renderAppBar // ignore: cast_nullable_to_non_nullable
+              as bool,
+      null == animateAppBar
+          ? _value.animateAppBar
+          : animateAppBar // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -212,14 +235,19 @@ class __$$SearchBarModelReadyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SearchBarModelReadyImpl implements SearchBarModelReady {
-  _$SearchBarModelReadyImpl(this.recipeSearchBarExpanded);
+  _$SearchBarModelReadyImpl(
+      this.recipeSearchBarExpanded, this.renderAppBar, this.animateAppBar);
 
   @override
   final bool recipeSearchBarExpanded;
+  @override
+  final bool renderAppBar;
+  @override
+  final bool animateAppBar;
 
   @override
   String toString() {
-    return 'SearchBarModelState.ready(recipeSearchBarExpanded: $recipeSearchBarExpanded)';
+    return 'SearchBarModelState.ready(recipeSearchBarExpanded: $recipeSearchBarExpanded, renderAppBar: $renderAppBar, animateAppBar: $animateAppBar)';
   }
 
   @override
@@ -229,11 +257,16 @@ class _$SearchBarModelReadyImpl implements SearchBarModelReady {
             other is _$SearchBarModelReadyImpl &&
             (identical(
                     other.recipeSearchBarExpanded, recipeSearchBarExpanded) ||
-                other.recipeSearchBarExpanded == recipeSearchBarExpanded));
+                other.recipeSearchBarExpanded == recipeSearchBarExpanded) &&
+            (identical(other.renderAppBar, renderAppBar) ||
+                other.renderAppBar == renderAppBar) &&
+            (identical(other.animateAppBar, animateAppBar) ||
+                other.animateAppBar == animateAppBar));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, recipeSearchBarExpanded);
+  int get hashCode => Object.hash(
+      runtimeType, recipeSearchBarExpanded, renderAppBar, animateAppBar);
 
   @JsonKey(ignore: true)
   @override
@@ -246,29 +279,35 @@ class _$SearchBarModelReadyImpl implements SearchBarModelReady {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(bool recipeSearchBarExpanded) ready,
+    required TResult Function(
+            bool recipeSearchBarExpanded, bool renderAppBar, bool animateAppBar)
+        ready,
   }) {
-    return ready(recipeSearchBarExpanded);
+    return ready(recipeSearchBarExpanded, renderAppBar, animateAppBar);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(bool recipeSearchBarExpanded)? ready,
+    TResult? Function(bool recipeSearchBarExpanded, bool renderAppBar,
+            bool animateAppBar)?
+        ready,
   }) {
-    return ready?.call(recipeSearchBarExpanded);
+    return ready?.call(recipeSearchBarExpanded, renderAppBar, animateAppBar);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(bool recipeSearchBarExpanded)? ready,
+    TResult Function(bool recipeSearchBarExpanded, bool renderAppBar,
+            bool animateAppBar)?
+        ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(recipeSearchBarExpanded);
+      return ready(recipeSearchBarExpanded, renderAppBar, animateAppBar);
     }
     return orElse();
   }
@@ -306,10 +345,14 @@ class _$SearchBarModelReadyImpl implements SearchBarModelReady {
 }
 
 abstract class SearchBarModelReady implements SearchBarModelState {
-  factory SearchBarModelReady(final bool recipeSearchBarExpanded) =
-      _$SearchBarModelReadyImpl;
+  factory SearchBarModelReady(
+      final bool recipeSearchBarExpanded,
+      final bool renderAppBar,
+      final bool animateAppBar) = _$SearchBarModelReadyImpl;
 
   bool get recipeSearchBarExpanded;
+  bool get renderAppBar;
+  bool get animateAppBar;
   @JsonKey(ignore: true)
   _$$SearchBarModelReadyImplCopyWith<_$SearchBarModelReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;

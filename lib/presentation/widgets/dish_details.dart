@@ -24,7 +24,7 @@ class DishDetails extends ConsumerWidget {
         initial: () => _buildInitial(),
         loading: () => _buildLoading(),
         ready: (bool expanded, bool isFavorite) =>
-            DishDetailsReadyWidget(recipe: recipe, ref: ref));
+            DishDetailsReadyWidget(recipe: recipe));
   }
 
   Container _buildInitial() => Container();

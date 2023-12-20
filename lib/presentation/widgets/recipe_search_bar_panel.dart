@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/filter_favorite_recipes/states.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_search_header.dart';
@@ -41,95 +42,98 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
         },
         initial: () {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            ref.read(searchBarModel.notifier).toggleAppBar(true, false);
             ref.read(recipeSearchViewModel.notifier).init();
           });
           return Container();
         },
-        loading: () => const SearchingSuggestions(),
-        ready: (suggestions, ingredients, mealType, skillLevel) => Container(
-              color: Colors.transparent,
-              alignment: Alignment.topCenter,
-              child: SingleChildScrollView(
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Flex(
-                    direction: Axis.vertical,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      RecipeSearchHeader(
-                        label: mealTypeLabel,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SearchAdditioalSettings(
-                        choiceItems: [
-                          RecipeSearchSettingsChip(
-                            label: breakfastLabel,
-                            settingsType: RecipeSettings.meal,
-                          ),
-                          RecipeSearchSettingsChip(
-                            label: lunchLabel,
-                            settingsType: RecipeSettings.meal,
-                          ),
-                          RecipeSearchSettingsChip(
-                            label: dinnerLabel,
-                            settingsType: RecipeSettings.meal,
-                          ),
-                          RecipeSearchSettingsChip(
-                            label: snackLabel,
-                            settingsType: RecipeSettings.meal,
-                          ),
-                        ],
-                      ),
-                      RecipeSearchHeader(
-                        label: cookingSkillLabel,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SearchAdditioalSettings(
-                        choiceItems: [
-                          RecipeSearchSettingsChip(
-                            label: easyLabel,
-                            settingsType: RecipeSettings.skill,
-                          ),
-                          RecipeSearchSettingsChip(
-                            label: mediumLabel,
-                            settingsType: RecipeSettings.skill,
-                          ),
-                          RecipeSearchSettingsChip(
-                            label: expertLabel,
-                            settingsType: RecipeSettings.skill,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ingredients.isNotEmpty
-                                ? SelectedIngredientsList()
-                                : Container(),
-                            suggestions.isNotEmpty
-                                ? SuggestionsList(
-                                    search: ref
-                                        .read(recipeSearchViewModel.notifier)
-                                        .search,
-                                    suggestions: suggestions,
-                                    opacity: 1,
-                                  )
-                                : Container(),
+        loading: () => Searching(),
+        ready: (suggestions, ingredients, mealType, skillLevel) => Scaffold(
+              body: Container(
+                color: Colors.transparent,
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Flex(
+                      direction: Axis.vertical,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        RecipeSearchHeader(
+                          label: mealTypeLabel,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SearchAdditioalSettings(
+                          choiceItems: [
+                            RecipeSearchSettingsChip(
+                              label: breakfastLabel,
+                              settingsType: RecipeSettings.meal,
+                            ),
+                            RecipeSearchSettingsChip(
+                              label: lunchLabel,
+                              settingsType: RecipeSettings.meal,
+                            ),
+                            RecipeSearchSettingsChip(
+                              label: dinnerLabel,
+                              settingsType: RecipeSettings.meal,
+                            ),
+                            RecipeSearchSettingsChip(
+                              label: snackLabel,
+                              settingsType: RecipeSettings.meal,
+                            ),
                           ],
                         ),
-                      ),
-                    ],
+                        RecipeSearchHeader(
+                          label: cookingSkillLabel,
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SearchAdditioalSettings(
+                          choiceItems: [
+                            RecipeSearchSettingsChip(
+                              label: easyLabel,
+                              settingsType: RecipeSettings.skill,
+                            ),
+                            RecipeSearchSettingsChip(
+                              label: mediumLabel,
+                              settingsType: RecipeSettings.skill,
+                            ),
+                            RecipeSearchSettingsChip(
+                              label: expertLabel,
+                              settingsType: RecipeSettings.skill,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ingredients.isNotEmpty
+                                  ? SelectedIngredientsList()
+                                  : Container(),
+                              suggestions.isNotEmpty
+                                  ? SuggestionsList(
+                                      search: ref
+                                          .read(recipeSearchViewModel.notifier)
+                                          .search,
+                                      suggestions: suggestions,
+                                      opacity: 1,
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
