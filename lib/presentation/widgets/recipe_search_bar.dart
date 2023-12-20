@@ -25,7 +25,7 @@ class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
       children: [
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             alignment: Alignment.centerLeft,
             child: GestureDetector(
               onTap: () {

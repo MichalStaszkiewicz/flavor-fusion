@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
+import 'package:flavor_fusion/presentation/widgets/custom_app_bar.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
@@ -214,81 +215,5 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
         child: Container(),
       );
     }
-  }
-}
-
-class CustomAppBar extends ConsumerStatefulWidget
-    implements PreferredSizeWidget {
-  CustomAppBar({required this.child});
-
-  Widget child;
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _CustomAnimatedAppBar();
-
-  @override
-  Size get preferredSize => Size(double.infinity, 76);
-}
-
-class _CustomAnimatedAppBar extends ConsumerState<CustomAppBar>
-    with TickerProviderStateMixin {
-  late AnimationController _sizeAnimationController;
-  late Animation<double> _sizeAnimation;
-
-  @override
-  void initState() {
-    _sizeAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 150));
-
-    _sizeAnimation =
-        CurvedAnimation(parent: _sizeAnimationController, curve: Curves.linear);
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _sizeAnimationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ref.watch(searchBarModel).maybeWhen(orElse: () {
-      return Container();
-    }, ready: (expanded, renderAppBar, animateAppBar) {
-      if (renderAppBar && animateAppBar) {
-        print("Rendering the app bar with animation.");
-        _sizeAnimationController.forward();
-        return _buildAppBarWithAnimation(context);
-      } else if (!renderAppBar && animateAppBar) {
-        print("Not rendering the app bar with animation.");
-        _sizeAnimationController.reverse();
-        return _buildAppBarWithAnimation(context);
-      } else {
-        print("Rendering the app bar instantly.");
-        _sizeAnimationController.forward();
-        return _buildAppBar(context);
-      }
-    });
-  }
-
-  SizeTransition _buildAppBarWithAnimation(BuildContext context) {
-    return SizeTransition(
-        sizeFactor: _sizeAnimation,
-        axis: Axis.vertical,
-        child: _buildAppBar(context));
-  }
-
-  Theme _buildAppBar(BuildContext context) {
-    return Theme(
-      data: context.theme,
-      child: Container(
-        color: context.theme.primaryColor,
-        height: widget.preferredSize.height,
-        child: widget.child,
-      ),
-    );
   }
 }
