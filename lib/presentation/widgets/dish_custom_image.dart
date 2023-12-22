@@ -21,7 +21,7 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
   @override
   Widget build(BuildContext context) {
     final dishDetailsState = ref.watch(recipeDetailsViewModel);
-    //print(dishDetailsState);
+
     return dishDetailsState.when(
         initial: () => _buildInitial(),
         loading: () => _buildLoading(),

@@ -50,6 +50,7 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: ref.watch(recipeSearchViewModel).maybeWhen(
               initial: () {
                 return Container();
@@ -103,11 +104,7 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                 );
               },
               orElse: () {
-                return Container(
-                  child: Center(
-                    child: Text("You Should Never See This"),
-                  ),
-                );
+                return Container();
               },
             ));
   }

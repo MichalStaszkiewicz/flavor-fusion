@@ -209,7 +209,19 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
   CustomAppBar _buildAppBar(TabsRouter tabsRouter, bool expanded) {
     if (tabsRouter.activeIndex == 0) {
       return CustomAppBar(
-          child: expanded ? RecipeSearchBarFocused() : RecipeSearchBar());
+        child: AnimatedSwitcher(
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          duration: Duration(milliseconds: 250),
+          child: Container(
+              key: ValueKey(expanded),
+              child: expanded ? RecipeSearchBarFocused() : RecipeSearchBar()),
+        ),
+      );
     } else {
       return CustomAppBar(
         child: Container(),

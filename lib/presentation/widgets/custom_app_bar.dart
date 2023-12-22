@@ -46,31 +46,42 @@ class _CustomAnimatedAppBar extends ConsumerState<CustomAppBar>
     }, ready: (expanded, renderAppBar, animateAppBar) {
       if (renderAppBar && animateAppBar) {
         print("Rendering the app bar with animation.");
+        setAnimationDuration(Duration(milliseconds: 150));
         _sizeAnimationController.forward();
-        return _buildAppBarWithAnimation(context, true);
+        return _buildAppBarWithAnimation(context);
       } else if (!renderAppBar && animateAppBar) {
         print("Not rendering the app bar with animation.");
+        setAnimationDuration(Duration(milliseconds: 150));
         _sizeAnimationController.reverse();
-        return _buildAppBarWithAnimation(context, false);
+        return _buildAppBarWithAnimation(context);
       } else {
         print("Rendering the app bar instantly.");
+        setAnimationDuration(Duration(microseconds: 1));
+
         _sizeAnimationController.forward();
-        return _buildAppBar(context, true);
+        return _buildAppBarWithAnimation(context);
       }
     });
   }
 
+  void setAnimationDuration(Duration duration) {
+    _sizeAnimationController.duration = duration;
+  }
+
   SizeTransition _buildAppBarWithAnimation(
-      BuildContext context, bool safeAreaTop) {
+    BuildContext context,
+  ) {
     return SizeTransition(
         sizeFactor: _sizeAnimation,
         axis: Axis.vertical,
-        child: _buildAppBar(context, safeAreaTop));
+        child: _buildAppBar(
+          context,
+        ));
   }
 
-  SafeArea _buildAppBar(BuildContext context, bool safeAreaTop) {
+  SafeArea _buildAppBar(BuildContext context) {
     return SafeArea(
-      top: safeAreaTop,
+      top: true,
       child: Theme(
         data: context.theme,
         child: Container(

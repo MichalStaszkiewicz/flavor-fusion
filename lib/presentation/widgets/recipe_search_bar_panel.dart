@@ -31,6 +31,10 @@ class RecipeSearchBarPanel extends ConsumerStatefulWidget {
 class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(searchBarModel.notifier).toggleAppBar(true, false);
+      ref.read(recipeSearchViewModel.notifier).init();
+    });
     super.initState();
   }
 
@@ -41,13 +45,9 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
           return Container();
         },
         initial: () {
-          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-            ref.read(searchBarModel.notifier).toggleAppBar(true, false);
-            ref.read(recipeSearchViewModel.notifier).init();
-          });
           return Container();
         },
-        loading: () => Searching(),
+        loading: () => Scaffold(body: Center(child: Searching())),
         ready: (suggestions, ingredients, mealType, skillLevel) => Scaffold(
               body: Container(
                 color: Colors.transparent,

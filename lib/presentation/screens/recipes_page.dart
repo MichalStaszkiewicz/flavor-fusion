@@ -100,6 +100,7 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
     final recipesState = ref.watch(recommendedRecipesViewModel);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Align(
         alignment: Alignment.topCenter,
         child: Stack(

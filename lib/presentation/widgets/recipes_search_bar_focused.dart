@@ -20,9 +20,16 @@ class _RecipeSearchBarFocusedState
     extends ConsumerState<RecipeSearchBarFocused> {
   final TextEditingController _recipesSearchController =
       TextEditingController();
+  late FocusNode _focusNode;
 
   @override
   void initState() {
+    _focusNode = FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _focusNode.requestFocus();
+    });
+
     super.initState();
   }
 
@@ -38,8 +45,7 @@ class _RecipeSearchBarFocusedState
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
-        key: UniqueKey(),
-        autofocus: true,
+        focusNode: _focusNode,
         controller: _recipesSearchController,
         decoration: InputDecoration(
           fillColor: Colors.transparent,
@@ -109,8 +115,6 @@ class _RecipeSearchBarFocusedState
           ),
         ),
         onSubmitted: (search) {
-          //  _recipesSearchFocused = !_recipesSearchFocused;
-
           if (search.isEmpty &&
               ref
                   .read(recipeSearchViewModel.notifier)

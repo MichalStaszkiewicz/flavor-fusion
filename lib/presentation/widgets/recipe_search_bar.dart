@@ -20,6 +20,12 @@ class RecipeSearchBar extends ConsumerStatefulWidget {
 class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
   @override
   Widget build(BuildContext context) {
+    bool recipeSearch = ref.watch(recipeSearchViewModel).maybeWhen(
+          orElse: () => false,
+          loading: () => true,
+          done: (_, __) => false,
+        );
+
     return Row(
       key: ValueKey('recipes_search'),
       children: [
@@ -29,9 +35,12 @@ class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
             alignment: Alignment.centerLeft,
             child: GestureDetector(
               onTap: () {
-                ref.read(recipeSearchViewModel.notifier).init();
-                ref.read(searchBarModel.notifier).expandSearchBar();
-                context.router.push(RecipeSearchPanelRoute());
+                if (!recipeSearch) {
+                  ref.read(searchBarModel.notifier).expandSearchBar();
+
+                  context.router.push(RecipeSearchPanelRoute());
+                 
+                }
               },
               child: const Icon(Icons.search),
             ),
