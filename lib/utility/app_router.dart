@@ -37,7 +37,7 @@ class AppRouter extends _$AppRouter {
                     AutoRoute(
                         path: RouteName.recipeSearchPanel,
                         page: RecipeSearchPanelRoute.page),
-                    CustomRoute(transitionsBuilder: TransitionsBuilders.noTransition,
+                    CustomRoute(transitionsBuilder: TransitionsBuilders.fadeIn,
                         path: RouteName.recipeSearchDone,
                         page: SearchDoneRoute.page,
                         children: []),

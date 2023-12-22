@@ -47,7 +47,8 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
         initial: () {
           return Container();
         },
-        loading: () => Scaffold(body: Center(child: Searching())),
+        loading: () => Scaffold(
+            resizeToAvoidBottomInset: false, body: Center(child: Searching())),
         ready: (suggestions, ingredients, mealType, skillLevel) => Scaffold(
               body: Container(
                 color: Colors.transparent,
