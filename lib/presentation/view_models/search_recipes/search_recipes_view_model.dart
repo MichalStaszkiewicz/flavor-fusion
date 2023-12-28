@@ -37,9 +37,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
 
   RecipesSearchViewModel(super._state);
   void init() {
-    // state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-    //     _mealTypeCached, _skillLevelCached);
-    state = RecipesSearchState.ready([], [], MealType.none, SkillLevel.none);
+    state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
+        _mealTypeCached, _skillLevelCached);
   }
 
   void removeSelectedIngredient(String ingredient) {

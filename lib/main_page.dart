@@ -222,6 +222,40 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
               child: expanded ? RecipeSearchBarFocused() : RecipeSearchBar()),
         ),
       );
+    } else if (tabsRouter.activeIndex == 1) {
+      return CustomAppBar(
+        child: AnimatedSwitcher(
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          duration: Duration(milliseconds: 250),
+          child: Container(
+              key: ValueKey(expanded),
+              child: Center(
+                child: Text('Shopping List'),
+              )),
+        ),
+      );
+    } else if (tabsRouter.activeIndex == 2) {
+      return CustomAppBar(
+        child: AnimatedSwitcher(
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          duration: Duration(milliseconds: 250),
+          child: Container(
+              key: ValueKey(expanded),
+              child: Center(
+                child: Text('Shopping List'),
+              )),
+        ),
+      );
     } else {
       return CustomAppBar(
         child: Container(),
