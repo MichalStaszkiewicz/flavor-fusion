@@ -18,6 +18,16 @@ class RecipeSearchBar extends ConsumerStatefulWidget {
 }
 
 class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
+  void manageNavigation(String path) {
+    if (path.contains('/done')) {
+      context.router.replace(RecipeSearchPanelRoute());
+      print(context.router.currentUrl);
+    } else {
+      context.router.push(RecipeSearchPanelRoute());
+      print(context.router.currentUrl);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     bool recipeSearch = ref.watch(recipeSearchViewModel).maybeWhen(
@@ -37,9 +47,7 @@ class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
               onTap: () {
                 if (!recipeSearch) {
                   ref.read(searchBarModel.notifier).expandSearchBar();
-
-                  context.router.push(RecipeSearchPanelRoute());
-                 
+                  manageNavigation(context.router.currentPath);
                 }
               },
               child: const Icon(Icons.search),

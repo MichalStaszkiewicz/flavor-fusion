@@ -10,8 +10,6 @@ import 'package:lottie/lottie.dart';
 
 import '../../data/models/recipe.dart';
 
-final GlobalKey<AnimatedListState> suggestionListKey =
-    GlobalKey<AnimatedListState>();
 
 @RoutePage()
 class RecipesPage extends ConsumerStatefulWidget {

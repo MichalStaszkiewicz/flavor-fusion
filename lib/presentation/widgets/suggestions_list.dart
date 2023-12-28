@@ -13,6 +13,9 @@ import '../../utility/global.dart';
 import '../screens/recipes_page.dart';
 import '../view_models/recipes/recipes_view_model.dart';
 
+final GlobalKey<AnimatedListState> suggestionListKey =
+    GlobalKey<AnimatedListState>();
+
 class SuggestionsList extends ConsumerStatefulWidget {
   SuggestionsList(
       {super.key,
@@ -29,8 +32,15 @@ class SuggestionsList extends ConsumerStatefulWidget {
 }
 
 class SuggestionsListState extends ConsumerState<SuggestionsList> {
+
+
+
+  
   @override
   Widget build(BuildContext context) {
+  
+  
+  
     return Opacity(
       opacity: widget.opacity,
       child: Container(
@@ -42,44 +52,43 @@ class SuggestionsListState extends ConsumerState<SuggestionsList> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              child: AnimatedList(
-                  key: suggestionListKey,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  initialItemCount: widget.suggestions.length,
-                  itemBuilder: (context, index, animation) => GestureDetector(
-                      onTap: () {
-                        if (widget.suggestions[index].type ==
-                            SuggestionType.ingredient) {
-                          ref
-                              .read(recipeSearchViewModel.notifier)
-                              .addSelectedIngredient(locator<Global>()
-                                  .capitalize(widget.suggestions[index].name));
-                        } else {
-                          context.router.push(DishDetailsRoute(
-                              name: locator<Global>()
-                                  .capitalize(widget.suggestions[index].name),
-                              recipe: widget.suggestions[index].recipe!));
-                        }
-                      },
-                      child: Container(
-                        child: Column(
-                          children: [
-                            index == 0 || index == widget.suggestions.length
-                                ? Container()
-                                : Container(
-                                    color: Colors.black,
-                                    height: 1,
-                                  ),
-                            SuggestionItem(
-                                suggestion: widget.suggestions[index],
-                                animation: animation,
-                                search: widget.search),
-                          ],
-                        ),
-                      ))),
-            )
+            AnimatedList(
+                key: suggestionListKey,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                initialItemCount: widget.suggestions.length,
+                itemBuilder: (context, index, animation) => GestureDetector(
+                    key: UniqueKey(),
+                    onTap: () {
+                      if (widget.suggestions[index].type ==
+                          SuggestionType.ingredient) {
+                        ref
+                            .read(recipeSearchViewModel.notifier)
+                            .addSelectedIngredient(locator<Global>()
+                                .capitalize(widget.suggestions[index].name));
+                      } else {
+                        context.router.push(DishDetailsRoute(
+                            name: locator<Global>()
+                                .capitalize(widget.suggestions[index].name),
+                            recipe: widget.suggestions[index].recipe!));
+                      }
+                    },
+                    child: Container(
+                      child: Column(
+                        children: [
+                          index == 0 || index == widget.suggestions.length
+                              ? Container()
+                              : Container(
+                                  color: Colors.black,
+                                  height: 1,
+                                ),
+                          SuggestionItem(
+                              suggestion: widget.suggestions[index],
+                              animation: animation,
+                              search: widget.search),
+                        ],
+                      ),
+                    ))),
           ],
         ),
       ),

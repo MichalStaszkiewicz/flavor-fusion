@@ -8,6 +8,7 @@ import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_mode
 import 'package:flavor_fusion/presentation/view_models/recipes/states.dart';
 import 'package:flavor_fusion/presentation/view_models/search_recipes/states.dart';
 import 'package:flavor_fusion/presentation/widgets/suggestion_item.dart';
+import 'package:flavor_fusion/presentation/widgets/suggestions_list.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,8 +37,9 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
 
   RecipesSearchViewModel(super._state);
   void init() {
-    state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-        _mealTypeCached, _skillLevelCached);
+    // state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
+    //     _mealTypeCached, _skillLevelCached);
+    state = RecipesSearchState.ready([], [], MealType.none, SkillLevel.none);
   }
 
   void removeSelectedIngredient(String ingredient) {

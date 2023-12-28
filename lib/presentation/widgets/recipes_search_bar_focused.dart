@@ -61,7 +61,7 @@ class _RecipeSearchBarFocusedState
                     .loadRecipeRecommendation();
                 ref.read(searchBarModel.notifier).toggleAppBar(true, true);
 
-                context.router.push(RecipesRoute());
+                context.router.replace(RecipesRoute());
               },
               child: const Icon(Icons.arrow_back),
             ),
