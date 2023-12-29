@@ -11,7 +11,7 @@ const String cookingSkillLabel = 'Cooking Skill';
 
 const String easyLabel = 'Easy';
 const String mediumLabel = 'Medium';
-const String hardLabel = 'Hard';
+
 const String expertLabel = 'Expert';
 
 const String breakfastLabel = 'Breakfast';

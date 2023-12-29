@@ -62,12 +62,6 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
 
   @override
   Widget build(BuildContext context) {
-    Map<String, String> ingredientLineMeasureInfo =
-        locator<Global>().ingredientLineToMeasurement(widget.ingredientLine);
-    String measurement = ingredientLineMeasureInfo.keys.elementAt(0);
-
-   
-    String count = ingredientLineMeasureInfo.values.elementAt(0);
     return FadeTransition(
       opacity: _sizeAnimation,
       child: SizeTransition(
@@ -132,24 +126,11 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                   child: Container(
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
-                        widget.ingredient.description.name,
+                        widget.ingredientLine,
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                             color: widget.ingredient.owned
                                 ? Colors.grey
                                 : Colors.black),
-                      )),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(
-                      alignment: Alignment.centerLeft,
-                      margin: const EdgeInsets.only(left: 20),
-                      child: Text(
-                        "$count $measurement",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge!
-                            .copyWith(color: Colors.grey),
                       )),
                 ),
               ],
