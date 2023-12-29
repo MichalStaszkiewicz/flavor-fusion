@@ -23,8 +23,8 @@ const String snackLabel = 'Snack';
 const String homeTitle = 'Home';
 const String shopListTitle = 'Shopping List';
 const String favoriteTitle = 'Favorite';
-const String searchHint = 'Type ingredient or recipe';
-
+const String recipeSearchHint = 'Type ingredient or recipe';
+const String favoriteSearchHint = 'Type recipe';
 const String stepText = 'Step';
 const String enjoyMealText = 'Enjoy your meal !';
 const String backButtonLabel = 'Back';

@@ -99,7 +99,7 @@ class _RecipeSearchBarFocusedState
                   ),
                 ),
               )),
-          hintText: searchHint,
+          hintText: recipeSearchHint,
           hintStyle: Theme.of(context).textTheme.labelMedium,
           border: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.transparent),

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/widgets/custom_app_bar.dart';
+import 'package:flavor_fusion/presentation/widgets/favorite_search_bar.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
@@ -241,20 +242,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       );
     } else if (tabsRouter.activeIndex == 2) {
       return CustomAppBar(
-        child: AnimatedSwitcher(
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            return FadeTransition(
-              opacity: animation,
-              child: child,
-            );
-          },
-          duration: Duration(milliseconds: 250),
-          child: Container(
-              key: ValueKey(expanded),
-              child: Center(
-                child: Text('Shopping List'),
-              )),
-        ),
+        child: FavoriteSearchBar(),
       );
     } else {
       return CustomAppBar(
