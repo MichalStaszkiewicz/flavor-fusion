@@ -25,7 +25,7 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    DishFilterRoute.name: (routeData) {
+    DishFilterPanel.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const DishFilterScreen(),
@@ -35,6 +35,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const FavoriteRecipesPage(),
+      );
+    },
+    FavoriteSearchAutoRouter.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FavoriteSearchWrapper(),
       );
     },
     MainRoute.name: (routeData) {
@@ -130,14 +136,14 @@ class DishDetailsRouteArgs {
 
 /// generated route for
 /// [DishFilterScreen]
-class DishFilterRoute extends PageRouteInfo<void> {
-  const DishFilterRoute({List<PageRouteInfo>? children})
+class DishFilterPanel extends PageRouteInfo<void> {
+  const DishFilterPanel({List<PageRouteInfo>? children})
       : super(
-          DishFilterRoute.name,
+          DishFilterPanel.name,
           initialChildren: children,
         );
 
-  static const String name = 'DishFilterRoute';
+  static const String name = 'DishFilterPanel';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -152,6 +158,20 @@ class FavoriteRecipesRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FavoriteRecipesRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FavoriteSearchWrapper]
+class FavoriteSearchAutoRouter extends PageRouteInfo<void> {
+  const FavoriteSearchAutoRouter({List<PageRouteInfo>? children})
+      : super(
+          FavoriteSearchAutoRouter.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FavoriteSearchAutoRouter';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

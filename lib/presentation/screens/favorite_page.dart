@@ -46,11 +46,13 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
   Widget build(BuildContext context) {
     var state = ref.watch(favoriteViewModel);
 
-    return state.when(
-        initial: () => _buildInitial(),
-        loading: () => _buildLoading(),
-        error: () => _buildError(),
-        ready: (recipes) => _buildReady(recipes));
+    return Scaffold(
+      body: state.when(
+          initial: () => _buildInitial(),
+          loading: () => _buildLoading(),
+          error: () => _buildError(),
+          ready: (recipes) => _buildReady(recipes)),
+    );
   }
 
   Container _buildReady(List<Recipe> recipes) {

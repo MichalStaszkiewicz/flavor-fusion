@@ -16,7 +16,7 @@ import '../../utility/enums.dart';
 import '../../utility/global.dart';
 import '../view_models/recipe_filter/states.dart';
 
-@RoutePage()
+@RoutePage(name: "DishFilterPanel")
 class DishFilterScreen extends ConsumerStatefulWidget {
   const DishFilterScreen({super.key});
 
@@ -53,7 +53,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: _buildAppBar(ref),
+   
       body: Container(
         child: SingleChildScrollView(
             child: Container(
@@ -108,68 +108,6 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
             ],
           ),
         )),
-      ),
-    );
-  }
-
-  AppBar _buildAppBar(WidgetRef ref) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Container(
-        child: Row(
-          children: [
-            Expanded(
-                child: Container(
-              alignment: Alignment.center,
-              child: IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () {
-                  if (ref
-                          .read(recipeFilterViewModel.notifier)
-                          .sortMethodChanged() &&
-                      ref
-                          .read(recipeFilterViewModel.notifier)
-                          .sortMethodChanged()) {
-                    ref.read(recipeFilterViewModel.notifier).confirmChanges();
-                    context.router.pop();
-                  } else {
-                    DialogManager.confirmDialog('You did not apply changes',
-                        'Do you want to apply them before quit ?', context, () {
-                      context.router.pop().then((value) {
-                        context.router.pop();
-                        ref
-                            .read(recipeFilterViewModel.notifier)
-                            .rejectChanges();
-                      });
-                    }, () {
-                      context.router
-                          .pop()
-                          .then((value) => context.router.pop());
-                      ref.read(recipeFilterViewModel).when(
-                          initial: () => (),
-                          loading: () => (),
-                          error: () => (),
-                          ready: (sortBy, minTime, minCal) => ref
-                              .read(favoriteViewModel.notifier)
-                              .apply(sortBy, minTime, minCal));
-                      ref.read(recipeFilterViewModel.notifier).confirmChanges();
-                    });
-                  }
-                },
-              ),
-            )),
-            Expanded(
-                flex: 5,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Dishes Filter',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                )),
-            Expanded(child: Container())
-          ],
-        ),
       ),
     );
   }
