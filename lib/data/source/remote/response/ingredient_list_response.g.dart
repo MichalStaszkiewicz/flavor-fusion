@@ -6,16 +6,16 @@ part of 'ingredient_list_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_IngredientListResponse _$$_IngredientListResponseFromJson(
+_$IngredientListResponseImpl _$$IngredientListResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$_IngredientListResponse(
+    _$IngredientListResponseImpl(
       edges: (json['edges'] as List<dynamic>)
           .map((e) => Ingredient.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_IngredientListResponseToJson(
-        _$_IngredientListResponse instance) =>
+Map<String, dynamic> _$$IngredientListResponseImplToJson(
+        _$IngredientListResponseImpl instance) =>
     <String, dynamic>{
       'edges': instance.edges,
     };

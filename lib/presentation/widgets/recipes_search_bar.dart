@@ -1,141 +1,71 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
-import 'package:flavor_fusion/presentation/view_models/search_screen/states.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_search_header.dart';
-import 'package:flavor_fusion/presentation/widgets/recipe_search_settings_chip.dart';
-import 'package:flavor_fusion/presentation/widgets/search_additional_setttings.dart';
-import 'package:flavor_fusion/presentation/widgets/selected_ingredients_list.dart';
-import 'package:flavor_fusion/presentation/widgets/suggestions_list.dart';
-import 'package:flavor_fusion/strings.dart';
-import 'package:flavor_fusion/utility/enums.dart';
-import 'package:flavor_fusion/utility/global.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
+import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
-import '../../utility/service_locator.dart';
-
-class RecipesSearchBar extends ConsumerStatefulWidget {
-  RecipesSearchBar({
+class RecipeSearchBar extends ConsumerStatefulWidget {
+  RecipeSearchBar({
     super.key,
-    required this.suggestions,
-    required this.selectedIngredients,
-    required this.ingredientsOpacity,
-    required this.suggestionsOpacity,
-    required this.search,
   });
 
-  List<String> suggestions;
-  List<String> selectedIngredients;
-  double ingredientsOpacity;
-  double suggestionsOpacity;
-  String search;
-
   @override
-  RecipesSearchBarState createState() => RecipesSearchBarState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _RecipeSearchBarState();
 }
 
-class RecipesSearchBarState extends ConsumerState<RecipesSearchBar> {
+class _RecipeSearchBarState extends ConsumerState<RecipeSearchBar> {
+  void manageNavigation(String path) {
+    if (path.contains('/done')) {
+      context.router.replace(RecipeSearchPanelRoute());
+      print(context.router.currentUrl);
+    } else {
+      context.router.push(RecipeSearchPanelRoute());
+      print(context.router.currentUrl);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      key: const ValueKey('recipes_search'),
-      color: Colors.transparent,
-      child: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: Flex(
-            direction: Axis.vertical,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              RecipeSearchHeader(
-                label: mealTypeLabel,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SearchAdditioalSettings(
-                choiceItems: [
-                  RecipeSearchSettingsChip(
-                    label: breakfastLabel,
-                    settingsType: RecipeSettings.meal,
-                  ),
-                  RecipeSearchSettingsChip(
-                    label: lunchLabel,
-                    settingsType: RecipeSettings.meal,
-                  ),
-                  RecipeSearchSettingsChip(
-                    label: dinnerLabel,
-                    settingsType: RecipeSettings.meal,
-                  ),
-                  RecipeSearchSettingsChip(
-                    label: teaTimeLabel,
-                    settingsType: RecipeSettings.meal,
-                  ),
-                  RecipeSearchSettingsChip(
-                    label: snackLabel,
-                    settingsType: RecipeSettings.meal,
-                  ),
-                ],
-              ),
-              RecipeSearchHeader(
-                label: cookingSkillLabel,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              SearchAdditioalSettings(
-                choiceItems: [
-                  RecipeSearchSettingsChip(
-                    label: easyLabel,
-                    settingsType: RecipeSettings.skill,
-                  ),
-                  RecipeSearchSettingsChip(
-                    label: mediumLabel,
-                    settingsType: RecipeSettings.skill,
-                  ),
-                  RecipeSearchSettingsChip(
-                    label: expertLabel,
-                    settingsType: RecipeSettings.skill,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ref.watch(recipesViewModel).maybeWhen(
-                    search: (suggestions,
-                        selectedIngredients,
-                        search,
-                        searchingInProgress,
-                        skillLevel,
-                        mealType,
-                        allowedAnimations) {
-                      return Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            selectedIngredients.isNotEmpty
-                                ? SelectedIngredientsList()
-                                : Container(),
-                            suggestions.isNotEmpty
-                                ? SuggestionsList(
-                                    search: search,
-                                    suggestions: suggestions,
-                                    opacity: widget.suggestionsOpacity,
-                                  )
-                                : Container(),
-                          ],
-                        ),
-                      );
-                    },
-                    orElse: () => Container(),
-                  ),
-            ],
+    bool recipeSearch = ref.watch(recipeSearchViewModel).maybeWhen(
+          orElse: () => false,
+          loading: () => true,
+          done: (_, __) => false,
+        );
+
+    return Row(
+      key: ValueKey('recipes_search'),
+      children: [
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              onTap: () {
+                if (!recipeSearch) {
+                  ref.read(searchBarModel.notifier).expandSearchBar();
+                  manageNavigation(context.router.currentPath);
+                }
+              },
+              child: const Icon(Icons.search),
+            ),
           ),
         ),
-      ),
+        Expanded(
+          child: Container(
+            child: Center(
+              child: Text(
+                'Recipes',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+          ),
+        ),
+        Expanded(child: Container()),
+      ],
     );
   }
 }

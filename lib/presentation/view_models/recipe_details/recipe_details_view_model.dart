@@ -47,10 +47,10 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
     }
   }
 
-  void setDescriptionExpand(String text) {
+  void setDescriptionExpand(String text, BuildContext context) {
     if (state is RecipeDetailsReady) {
       final state = this.state as RecipeDetailsReady;
-      descriptionHeight = calculateContainerHeight(text);
+      descriptionHeight = calculateContainerHeight(text, context);
       this.state = RecipeDetailsState.ready(!state.expanded, state.isFavorite);
     }
   }
@@ -59,7 +59,7 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
     locator<SavedGroceryService>().saveGrocery(recipe);
   }
 
-  double calculateContainerHeight(String text) {
+  double calculateContainerHeight(String text, BuildContext context) {
     if (state is RecipeDetailsReady) {
       final state = this.state as RecipeDetailsReady;
       if (!state.expanded) {
@@ -67,7 +67,7 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
           text: TextSpan(text: text, style: const TextStyle(fontSize: 16)),
           maxLines: 1000,
           textDirection: TextDirection.ltr,
-        )..layout(maxWidth: locator<Global>().deviceDimenstions.width - 40);
+        )..layout(maxWidth: MediaQuery.of(context).size.width - 40);
 
         return textPainter.size.height;
       } else {
@@ -75,7 +75,7 @@ class RecipeDetailsViewModel extends StateNotifier<RecipeDetailsState> {
           text: TextSpan(text: text, style: const TextStyle(fontSize: 16)),
           maxLines: 4,
           textDirection: TextDirection.ltr,
-        )..layout(maxWidth: locator<Global>().deviceDimenstions.width - 40);
+        )..layout(maxWidth: MediaQuery.of(context).size.width - 40);
 
         return textPainter.size.height;
       }

@@ -93,25 +93,25 @@ class _$GroceriesStateCopyWithImpl<$Res, $Val extends GroceriesState>
 }
 
 /// @nodoc
-abstract class _$$GroceriesInitialCopyWith<$Res> {
-  factory _$$GroceriesInitialCopyWith(
-          _$GroceriesInitial value, $Res Function(_$GroceriesInitial) then) =
-      __$$GroceriesInitialCopyWithImpl<$Res>;
+abstract class _$$GroceriesInitialImplCopyWith<$Res> {
+  factory _$$GroceriesInitialImplCopyWith(_$GroceriesInitialImpl value,
+          $Res Function(_$GroceriesInitialImpl) then) =
+      __$$GroceriesInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GroceriesInitialCopyWithImpl<$Res>
-    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesInitial>
-    implements _$$GroceriesInitialCopyWith<$Res> {
-  __$$GroceriesInitialCopyWithImpl(
-      _$GroceriesInitial _value, $Res Function(_$GroceriesInitial) _then)
+class __$$GroceriesInitialImplCopyWithImpl<$Res>
+    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesInitialImpl>
+    implements _$$GroceriesInitialImplCopyWith<$Res> {
+  __$$GroceriesInitialImplCopyWithImpl(_$GroceriesInitialImpl _value,
+      $Res Function(_$GroceriesInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GroceriesInitial implements GroceriesInitial {
-  _$GroceriesInitial();
+class _$GroceriesInitialImpl implements GroceriesInitial {
+  _$GroceriesInitialImpl();
 
   @override
   String toString() {
@@ -119,9 +119,9 @@ class _$GroceriesInitial implements GroceriesInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GroceriesInitial);
+        (other.runtimeType == runtimeType && other is _$GroceriesInitialImpl);
   }
 
   @override
@@ -209,29 +209,29 @@ class _$GroceriesInitial implements GroceriesInitial {
 }
 
 abstract class GroceriesInitial implements GroceriesState {
-  factory GroceriesInitial() = _$GroceriesInitial;
+  factory GroceriesInitial() = _$GroceriesInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$GroceriesLoadingCopyWith<$Res> {
-  factory _$$GroceriesLoadingCopyWith(
-          _$GroceriesLoading value, $Res Function(_$GroceriesLoading) then) =
-      __$$GroceriesLoadingCopyWithImpl<$Res>;
+abstract class _$$GroceriesLoadingImplCopyWith<$Res> {
+  factory _$$GroceriesLoadingImplCopyWith(_$GroceriesLoadingImpl value,
+          $Res Function(_$GroceriesLoadingImpl) then) =
+      __$$GroceriesLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GroceriesLoadingCopyWithImpl<$Res>
-    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesLoading>
-    implements _$$GroceriesLoadingCopyWith<$Res> {
-  __$$GroceriesLoadingCopyWithImpl(
-      _$GroceriesLoading _value, $Res Function(_$GroceriesLoading) _then)
+class __$$GroceriesLoadingImplCopyWithImpl<$Res>
+    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesLoadingImpl>
+    implements _$$GroceriesLoadingImplCopyWith<$Res> {
+  __$$GroceriesLoadingImplCopyWithImpl(_$GroceriesLoadingImpl _value,
+      $Res Function(_$GroceriesLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GroceriesLoading implements GroceriesLoading {
-  _$GroceriesLoading();
+class _$GroceriesLoadingImpl implements GroceriesLoading {
+  _$GroceriesLoadingImpl();
 
   @override
   String toString() {
@@ -239,9 +239,9 @@ class _$GroceriesLoading implements GroceriesLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GroceriesLoading);
+        (other.runtimeType == runtimeType && other is _$GroceriesLoadingImpl);
   }
 
   @override
@@ -329,29 +329,29 @@ class _$GroceriesLoading implements GroceriesLoading {
 }
 
 abstract class GroceriesLoading implements GroceriesState {
-  factory GroceriesLoading() = _$GroceriesLoading;
+  factory GroceriesLoading() = _$GroceriesLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$GroceriesErrorCopyWith<$Res> {
-  factory _$$GroceriesErrorCopyWith(
-          _$GroceriesError value, $Res Function(_$GroceriesError) then) =
-      __$$GroceriesErrorCopyWithImpl<$Res>;
+abstract class _$$GroceriesErrorImplCopyWith<$Res> {
+  factory _$$GroceriesErrorImplCopyWith(_$GroceriesErrorImpl value,
+          $Res Function(_$GroceriesErrorImpl) then) =
+      __$$GroceriesErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$GroceriesErrorCopyWithImpl<$Res>
-    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesError>
-    implements _$$GroceriesErrorCopyWith<$Res> {
-  __$$GroceriesErrorCopyWithImpl(
-      _$GroceriesError _value, $Res Function(_$GroceriesError) _then)
+class __$$GroceriesErrorImplCopyWithImpl<$Res>
+    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesErrorImpl>
+    implements _$$GroceriesErrorImplCopyWith<$Res> {
+  __$$GroceriesErrorImplCopyWithImpl(
+      _$GroceriesErrorImpl _value, $Res Function(_$GroceriesErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$GroceriesError implements GroceriesError {
-  _$GroceriesError();
+class _$GroceriesErrorImpl implements GroceriesError {
+  _$GroceriesErrorImpl();
 
   @override
   String toString() {
@@ -359,9 +359,9 @@ class _$GroceriesError implements GroceriesError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GroceriesError);
+        (other.runtimeType == runtimeType && other is _$GroceriesErrorImpl);
   }
 
   @override
@@ -449,14 +449,14 @@ class _$GroceriesError implements GroceriesError {
 }
 
 abstract class GroceriesError implements GroceriesState {
-  factory GroceriesError() = _$GroceriesError;
+  factory GroceriesError() = _$GroceriesErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$GroceriesReadyCopyWith<$Res> {
-  factory _$$GroceriesReadyCopyWith(
-          _$GroceriesReady value, $Res Function(_$GroceriesReady) then) =
-      __$$GroceriesReadyCopyWithImpl<$Res>;
+abstract class _$$GroceriesReadyImplCopyWith<$Res> {
+  factory _$$GroceriesReadyImplCopyWith(_$GroceriesReadyImpl value,
+          $Res Function(_$GroceriesReadyImpl) then) =
+      __$$GroceriesReadyImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<Grocery> groceries,
@@ -465,11 +465,11 @@ abstract class _$$GroceriesReadyCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$GroceriesReadyCopyWithImpl<$Res>
-    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesReady>
-    implements _$$GroceriesReadyCopyWith<$Res> {
-  __$$GroceriesReadyCopyWithImpl(
-      _$GroceriesReady _value, $Res Function(_$GroceriesReady) _then)
+class __$$GroceriesReadyImplCopyWithImpl<$Res>
+    extends _$GroceriesStateCopyWithImpl<$Res, _$GroceriesReadyImpl>
+    implements _$$GroceriesReadyImplCopyWith<$Res> {
+  __$$GroceriesReadyImplCopyWithImpl(
+      _$GroceriesReadyImpl _value, $Res Function(_$GroceriesReadyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -479,7 +479,7 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
     Object? selected = null,
     Object? ingredinetsControllers = null,
   }) {
-    return _then(_$GroceriesReady(
+    return _then(_$GroceriesReadyImpl(
       null == groceries
           ? _value._groceries
           : groceries // ignore: cast_nullable_to_non_nullable
@@ -498,8 +498,8 @@ class __$$GroceriesReadyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GroceriesReady implements GroceriesReady {
-  _$GroceriesReady(final List<Grocery> groceries, this.selected,
+class _$GroceriesReadyImpl implements GroceriesReady {
+  _$GroceriesReadyImpl(final List<Grocery> groceries, this.selected,
       final List<Map<int, AnimationController>> ingredinetsControllers)
       : _groceries = groceries,
         _ingredinetsControllers = ingredinetsControllers;
@@ -529,10 +529,10 @@ class _$GroceriesReady implements GroceriesReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GroceriesReady &&
+            other is _$GroceriesReadyImpl &&
             const DeepCollectionEquality()
                 .equals(other._groceries, _groceries) &&
             (identical(other.selected, selected) ||
@@ -551,8 +551,9 @@ class _$GroceriesReady implements GroceriesReady {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GroceriesReadyCopyWith<_$GroceriesReady> get copyWith =>
-      __$$GroceriesReadyCopyWithImpl<_$GroceriesReady>(this, _$identity);
+  _$$GroceriesReadyImplCopyWith<_$GroceriesReadyImpl> get copyWith =>
+      __$$GroceriesReadyImplCopyWithImpl<_$GroceriesReadyImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -638,12 +639,12 @@ class _$GroceriesReady implements GroceriesReady {
 abstract class GroceriesReady implements GroceriesState {
   factory GroceriesReady(final List<Grocery> groceries, final int selected,
           final List<Map<int, AnimationController>> ingredinetsControllers) =
-      _$GroceriesReady;
+      _$GroceriesReadyImpl;
 
   List<Grocery> get groceries;
   int get selected;
   List<Map<int, AnimationController>> get ingredinetsControllers;
   @JsonKey(ignore: true)
-  _$$GroceriesReadyCopyWith<_$GroceriesReady> get copyWith =>
+  _$$GroceriesReadyImplCopyWith<_$GroceriesReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchScreenState {
+mixin _$FilterFavoriteState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -81,16 +81,16 @@ mixin _$SearchScreenState {
 }
 
 /// @nodoc
-abstract class $SearchScreenStateCopyWith<$Res> {
-  factory $SearchScreenStateCopyWith(
-          SearchScreenState value, $Res Function(SearchScreenState) then) =
-      _$SearchScreenStateCopyWithImpl<$Res, SearchScreenState>;
+abstract class $FilterFavoriteStateCopyWith<$Res> {
+  factory $FilterFavoriteStateCopyWith(
+          FilterFavoriteState value, $Res Function(FilterFavoriteState) then) =
+      _$FilterFavoriteStateCopyWithImpl<$Res, FilterFavoriteState>;
 }
 
 /// @nodoc
-class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
-    implements $SearchScreenStateCopyWith<$Res> {
-  _$SearchScreenStateCopyWithImpl(this._value, this._then);
+class _$FilterFavoriteStateCopyWithImpl<$Res, $Val extends FilterFavoriteState>
+    implements $FilterFavoriteStateCopyWith<$Res> {
+  _$FilterFavoriteStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -99,35 +99,36 @@ class _$SearchScreenStateCopyWithImpl<$Res, $Val extends SearchScreenState>
 }
 
 /// @nodoc
-abstract class _$$SearchScreenInitialCopyWith<$Res> {
-  factory _$$SearchScreenInitialCopyWith(_$SearchScreenInitial value,
-          $Res Function(_$SearchScreenInitial) then) =
-      __$$SearchScreenInitialCopyWithImpl<$Res>;
+abstract class _$$SearchScreenInitialImplCopyWith<$Res> {
+  factory _$$SearchScreenInitialImplCopyWith(_$SearchScreenInitialImpl value,
+          $Res Function(_$SearchScreenInitialImpl) then) =
+      __$$SearchScreenInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SearchScreenInitialCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenInitial>
-    implements _$$SearchScreenInitialCopyWith<$Res> {
-  __$$SearchScreenInitialCopyWithImpl(
-      _$SearchScreenInitial _value, $Res Function(_$SearchScreenInitial) _then)
+class __$$SearchScreenInitialImplCopyWithImpl<$Res>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenInitialImpl>
+    implements _$$SearchScreenInitialImplCopyWith<$Res> {
+  __$$SearchScreenInitialImplCopyWithImpl(_$SearchScreenInitialImpl _value,
+      $Res Function(_$SearchScreenInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SearchScreenInitial implements SearchScreenInitial {
-  _$SearchScreenInitial();
+class _$SearchScreenInitialImpl implements SearchScreenInitial {
+  _$SearchScreenInitialImpl();
 
   @override
   String toString() {
-    return 'SearchScreenState.initial()';
+    return 'FilterFavoriteState.initial()';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchScreenInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$SearchScreenInitialImpl);
   }
 
   @override
@@ -220,40 +221,41 @@ class _$SearchScreenInitial implements SearchScreenInitial {
   }
 }
 
-abstract class SearchScreenInitial implements SearchScreenState {
-  factory SearchScreenInitial() = _$SearchScreenInitial;
+abstract class SearchScreenInitial implements FilterFavoriteState {
+  factory SearchScreenInitial() = _$SearchScreenInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$SearchScreenLoadingCopyWith<$Res> {
-  factory _$$SearchScreenLoadingCopyWith(_$SearchScreenLoading value,
-          $Res Function(_$SearchScreenLoading) then) =
-      __$$SearchScreenLoadingCopyWithImpl<$Res>;
+abstract class _$$SearchScreenLoadingImplCopyWith<$Res> {
+  factory _$$SearchScreenLoadingImplCopyWith(_$SearchScreenLoadingImpl value,
+          $Res Function(_$SearchScreenLoadingImpl) then) =
+      __$$SearchScreenLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SearchScreenLoadingCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenLoading>
-    implements _$$SearchScreenLoadingCopyWith<$Res> {
-  __$$SearchScreenLoadingCopyWithImpl(
-      _$SearchScreenLoading _value, $Res Function(_$SearchScreenLoading) _then)
+class __$$SearchScreenLoadingImplCopyWithImpl<$Res>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenLoadingImpl>
+    implements _$$SearchScreenLoadingImplCopyWith<$Res> {
+  __$$SearchScreenLoadingImplCopyWithImpl(_$SearchScreenLoadingImpl _value,
+      $Res Function(_$SearchScreenLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SearchScreenLoading implements SearchScreenLoading {
-  _$SearchScreenLoading();
+class _$SearchScreenLoadingImpl implements SearchScreenLoading {
+  _$SearchScreenLoadingImpl();
 
   @override
   String toString() {
-    return 'SearchScreenState.loading()';
+    return 'FilterFavoriteState.loading()';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchScreenLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$SearchScreenLoadingImpl);
   }
 
   @override
@@ -346,40 +348,41 @@ class _$SearchScreenLoading implements SearchScreenLoading {
   }
 }
 
-abstract class SearchScreenLoading implements SearchScreenState {
-  factory SearchScreenLoading() = _$SearchScreenLoading;
+abstract class SearchScreenLoading implements FilterFavoriteState {
+  factory SearchScreenLoading() = _$SearchScreenLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$SearchingInProgressCopyWith<$Res> {
-  factory _$$SearchingInProgressCopyWith(_$SearchingInProgress value,
-          $Res Function(_$SearchingInProgress) then) =
-      __$$SearchingInProgressCopyWithImpl<$Res>;
+abstract class _$$SearchingInProgressImplCopyWith<$Res> {
+  factory _$$SearchingInProgressImplCopyWith(_$SearchingInProgressImpl value,
+          $Res Function(_$SearchingInProgressImpl) then) =
+      __$$SearchingInProgressImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SearchingInProgressCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchingInProgress>
-    implements _$$SearchingInProgressCopyWith<$Res> {
-  __$$SearchingInProgressCopyWithImpl(
-      _$SearchingInProgress _value, $Res Function(_$SearchingInProgress) _then)
+class __$$SearchingInProgressImplCopyWithImpl<$Res>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchingInProgressImpl>
+    implements _$$SearchingInProgressImplCopyWith<$Res> {
+  __$$SearchingInProgressImplCopyWithImpl(_$SearchingInProgressImpl _value,
+      $Res Function(_$SearchingInProgressImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SearchingInProgress implements SearchingInProgress {
-  _$SearchingInProgress();
+class _$SearchingInProgressImpl implements SearchingInProgress {
+  _$SearchingInProgressImpl();
 
   @override
   String toString() {
-    return 'SearchScreenState.searchingInProgress()';
+    return 'FilterFavoriteState.searchingInProgress()';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchingInProgress);
+        (other.runtimeType == runtimeType &&
+            other is _$SearchingInProgressImpl);
   }
 
   @override
@@ -472,40 +475,40 @@ class _$SearchingInProgress implements SearchingInProgress {
   }
 }
 
-abstract class SearchingInProgress implements SearchScreenState {
-  factory SearchingInProgress() = _$SearchingInProgress;
+abstract class SearchingInProgress implements FilterFavoriteState {
+  factory SearchingInProgress() = _$SearchingInProgressImpl;
 }
 
 /// @nodoc
-abstract class _$$ChoosingFiltersCopyWith<$Res> {
-  factory _$$ChoosingFiltersCopyWith(
-          _$ChoosingFilters value, $Res Function(_$ChoosingFilters) then) =
-      __$$ChoosingFiltersCopyWithImpl<$Res>;
+abstract class _$$ChoosingFiltersImplCopyWith<$Res> {
+  factory _$$ChoosingFiltersImplCopyWith(_$ChoosingFiltersImpl value,
+          $Res Function(_$ChoosingFiltersImpl) then) =
+      __$$ChoosingFiltersImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ChoosingFiltersCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$ChoosingFilters>
-    implements _$$ChoosingFiltersCopyWith<$Res> {
-  __$$ChoosingFiltersCopyWithImpl(
-      _$ChoosingFilters _value, $Res Function(_$ChoosingFilters) _then)
+class __$$ChoosingFiltersImplCopyWithImpl<$Res>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$ChoosingFiltersImpl>
+    implements _$$ChoosingFiltersImplCopyWith<$Res> {
+  __$$ChoosingFiltersImplCopyWithImpl(
+      _$ChoosingFiltersImpl _value, $Res Function(_$ChoosingFiltersImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ChoosingFilters implements ChoosingFilters {
-  _$ChoosingFilters();
+class _$ChoosingFiltersImpl implements ChoosingFilters {
+  _$ChoosingFiltersImpl();
 
   @override
   String toString() {
-    return 'SearchScreenState.choosingFilters()';
+    return 'FilterFavoriteState.choosingFilters()';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ChoosingFilters);
+        (other.runtimeType == runtimeType && other is _$ChoosingFiltersImpl);
   }
 
   @override
@@ -598,25 +601,25 @@ class _$ChoosingFilters implements ChoosingFilters {
   }
 }
 
-abstract class ChoosingFilters implements SearchScreenState {
-  factory ChoosingFilters() = _$ChoosingFilters;
+abstract class ChoosingFilters implements FilterFavoriteState {
+  factory ChoosingFilters() = _$ChoosingFiltersImpl;
 }
 
 /// @nodoc
-abstract class _$$SearchScreenReadyCopyWith<$Res> {
-  factory _$$SearchScreenReadyCopyWith(
-          _$SearchScreenReady value, $Res Function(_$SearchScreenReady) then) =
-      __$$SearchScreenReadyCopyWithImpl<$Res>;
+abstract class _$$SearchScreenReadyImplCopyWith<$Res> {
+  factory _$$SearchScreenReadyImplCopyWith(_$SearchScreenReadyImpl value,
+          $Res Function(_$SearchScreenReadyImpl) then) =
+      __$$SearchScreenReadyImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Recipe> recipies});
 }
 
 /// @nodoc
-class __$$SearchScreenReadyCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenReady>
-    implements _$$SearchScreenReadyCopyWith<$Res> {
-  __$$SearchScreenReadyCopyWithImpl(
-      _$SearchScreenReady _value, $Res Function(_$SearchScreenReady) _then)
+class __$$SearchScreenReadyImplCopyWithImpl<$Res>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenReadyImpl>
+    implements _$$SearchScreenReadyImplCopyWith<$Res> {
+  __$$SearchScreenReadyImplCopyWithImpl(_$SearchScreenReadyImpl _value,
+      $Res Function(_$SearchScreenReadyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -624,7 +627,7 @@ class __$$SearchScreenReadyCopyWithImpl<$Res>
   $Res call({
     Object? recipies = null,
   }) {
-    return _then(_$SearchScreenReady(
+    return _then(_$SearchScreenReadyImpl(
       null == recipies
           ? _value._recipies
           : recipies // ignore: cast_nullable_to_non_nullable
@@ -635,8 +638,8 @@ class __$$SearchScreenReadyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchScreenReady implements SearchScreenReady {
-  _$SearchScreenReady(final List<Recipe> recipies) : _recipies = recipies;
+class _$SearchScreenReadyImpl implements SearchScreenReady {
+  _$SearchScreenReadyImpl(final List<Recipe> recipies) : _recipies = recipies;
 
   final List<Recipe> _recipies;
   @override
@@ -648,14 +651,14 @@ class _$SearchScreenReady implements SearchScreenReady {
 
   @override
   String toString() {
-    return 'SearchScreenState.ready(recipies: $recipies)';
+    return 'FilterFavoriteState.ready(recipies: $recipies)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchScreenReady &&
+            other is _$SearchScreenReadyImpl &&
             const DeepCollectionEquality().equals(other._recipies, _recipies));
   }
 
@@ -666,8 +669,9 @@ class _$SearchScreenReady implements SearchScreenReady {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchScreenReadyCopyWith<_$SearchScreenReady> get copyWith =>
-      __$$SearchScreenReadyCopyWithImpl<_$SearchScreenReady>(this, _$identity);
+  _$$SearchScreenReadyImplCopyWith<_$SearchScreenReadyImpl> get copyWith =>
+      __$$SearchScreenReadyImplCopyWithImpl<_$SearchScreenReadyImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -756,45 +760,46 @@ class _$SearchScreenReady implements SearchScreenReady {
   }
 }
 
-abstract class SearchScreenReady implements SearchScreenState {
-  factory SearchScreenReady(final List<Recipe> recipies) = _$SearchScreenReady;
+abstract class SearchScreenReady implements FilterFavoriteState {
+  factory SearchScreenReady(final List<Recipe> recipies) =
+      _$SearchScreenReadyImpl;
 
   List<Recipe> get recipies;
   @JsonKey(ignore: true)
-  _$$SearchScreenReadyCopyWith<_$SearchScreenReady> get copyWith =>
+  _$$SearchScreenReadyImplCopyWith<_$SearchScreenReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SearchScreenErrorCopyWith<$Res> {
-  factory _$$SearchScreenErrorCopyWith(
-          _$SearchScreenError value, $Res Function(_$SearchScreenError) then) =
-      __$$SearchScreenErrorCopyWithImpl<$Res>;
+abstract class _$$SearchScreenErrorImplCopyWith<$Res> {
+  factory _$$SearchScreenErrorImplCopyWith(_$SearchScreenErrorImpl value,
+          $Res Function(_$SearchScreenErrorImpl) then) =
+      __$$SearchScreenErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SearchScreenErrorCopyWithImpl<$Res>
-    extends _$SearchScreenStateCopyWithImpl<$Res, _$SearchScreenError>
-    implements _$$SearchScreenErrorCopyWith<$Res> {
-  __$$SearchScreenErrorCopyWithImpl(
-      _$SearchScreenError _value, $Res Function(_$SearchScreenError) _then)
+class __$$SearchScreenErrorImplCopyWithImpl<$Res>
+    extends _$FilterFavoriteStateCopyWithImpl<$Res, _$SearchScreenErrorImpl>
+    implements _$$SearchScreenErrorImplCopyWith<$Res> {
+  __$$SearchScreenErrorImplCopyWithImpl(_$SearchScreenErrorImpl _value,
+      $Res Function(_$SearchScreenErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SearchScreenError implements SearchScreenError {
-  _$SearchScreenError();
+class _$SearchScreenErrorImpl implements SearchScreenError {
+  _$SearchScreenErrorImpl();
 
   @override
   String toString() {
-    return 'SearchScreenState.error()';
+    return 'FilterFavoriteState.error()';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SearchScreenError);
+        (other.runtimeType == runtimeType && other is _$SearchScreenErrorImpl);
   }
 
   @override
@@ -887,6 +892,6 @@ class _$SearchScreenError implements SearchScreenError {
   }
 }
 
-abstract class SearchScreenError implements SearchScreenState {
-  factory SearchScreenError() = _$SearchScreenError;
+abstract class SearchScreenError implements FilterFavoriteState {
+  factory SearchScreenError() = _$SearchScreenErrorImpl;
 }

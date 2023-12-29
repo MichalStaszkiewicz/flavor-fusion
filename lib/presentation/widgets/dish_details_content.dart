@@ -42,7 +42,7 @@ class DishDetailsContent extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: locator<Global>().mediaQuery.size.width,
+              width: MediaQuery.of(context).size.width,
               child: Text(
                 recipe.name,
                 style: Theme.of(context).textTheme.titleLarge,

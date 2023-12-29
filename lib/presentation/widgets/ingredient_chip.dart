@@ -1,4 +1,7 @@
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/search_recipes/search_recipes_view_model.dart';
+import 'package:flavor_fusion/utility/global.dart';
+import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -49,24 +52,27 @@ class IngredientChipState extends ConsumerState<IngredientChip>
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(recipesViewModel).maybeWhen(
-        search: (suggestions, ingredients, search, searching, skillType,
-            mealType, allowAnimations) {
-          if (!allowAnimations) {
+    ref.watch(recipeSearchViewModel).maybeWhen(
+        ready: (suggestions, ingredients, mealType, skillLevel) {
+          //allowAnimations
+          if (true) {
             if (!animationSetToEnd) {
               _sizeAnimationController.value = 1.0;
               _opacityAnimationController.value = 1.0;
               animationSetToEnd = true;
             }
-          } else {
+          } /*else {
             if (!sizeAnimationDone) {
               _sizeAnimationController.forward().then((value) {
                 sizeAnimationDone = true;
 
                 _opacityAnimationController.forward();
               });
+              
             }
+            
           }
+          */
         },
         orElse: () => {});
     return FadeTransition(
@@ -95,7 +101,7 @@ class IngredientChipState extends ConsumerState<IngredientChip>
                       alignment: Alignment.center,
                       padding: const EdgeInsets.only(bottom: 5),
                       child: Text(
-                        widget.label,
+                        locator<Global>().capitalize(widget.label),
                         textAlign: TextAlign.center,
                       ),
                     ),

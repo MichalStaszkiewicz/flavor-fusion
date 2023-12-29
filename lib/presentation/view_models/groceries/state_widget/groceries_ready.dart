@@ -64,7 +64,7 @@ class GroceriesReadyWidgetState extends ConsumerState<GroceriesReadyWidget>
     manageRemoveButtonAnimation();
     return widget.groceries.isNotEmpty
         ? Container(
-            height: locator<Global>().deviceDimenstions.height,
+            height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
                 Container(
@@ -74,8 +74,8 @@ class GroceriesReadyWidgetState extends ConsumerState<GroceriesReadyWidget>
                   ),
                 ),
                 Positioned(
-                  left: locator<Global>().deviceDimenstions.width / 4,
-                  top: locator<Global>().deviceDimenstions.height / 1.4,
+                  left: MediaQuery.of(context).size.width / 4,
+                  top: MediaQuery.of(context).size.height / 1.4,
                   child: RemoveSelectedIngredientsButton(
                     ref: ref,
                     opacity: _selectedIngredientsRemoveButtonAnimation,

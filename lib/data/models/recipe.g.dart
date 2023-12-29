@@ -17,7 +17,7 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Recipe(
-      author: fields[0] as String,
+      author: fields[0] as String?,
       id: fields[1] as String,
       courses: (fields[2] as List?)?.cast<String>(),
       cuisines: (fields[3] as List?)?.cast<String>(),
@@ -92,8 +92,8 @@ class RecipeAdapter extends TypeAdapter<Recipe> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
-      author: json['author'] as String,
+_$RecipeImpl _$$RecipeImplFromJson(Map<String, dynamic> json) => _$RecipeImpl(
+      author: json['author'] as String?,
       id: json['id'] as String,
       courses:
           (json['courses'] as List<dynamic>?)?.map((e) => e as String).toList(),
@@ -123,7 +123,8 @@ _$_Recipe _$$_RecipeFromJson(Map<String, dynamic> json) => _$_Recipe(
       mainImage: json['mainImage'] as String,
     );
 
-Map<String, dynamic> _$$_RecipeToJson(_$_Recipe instance) => <String, dynamic>{
+Map<String, dynamic> _$$RecipeImplToJson(_$RecipeImpl instance) =>
+    <String, dynamic>{
       'author': instance.author,
       'id': instance.id,
       'courses': instance.courses,

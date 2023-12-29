@@ -44,12 +44,12 @@ class IngredientAdapter extends TypeAdapter<Ingredient> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Ingredient _$$_IngredientFromJson(Map<String, dynamic> json) =>
-    _$_Ingredient(
+_$IngredientImpl _$$IngredientImplFromJson(Map<String, dynamic> json) =>
+    _$IngredientImpl(
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_IngredientToJson(_$_Ingredient instance) =>
+Map<String, dynamic> _$$IngredientImplToJson(_$IngredientImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
     };

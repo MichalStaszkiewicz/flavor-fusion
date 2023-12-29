@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_filter/recipe_filter_view_model.dart';
-import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
+
 import 'package:flavor_fusion/presentation/widgets/apply_button.dart';
-import 'package:flavor_fusion/presentation/widgets/filter_check_box.dart';
-import 'package:flavor_fusion/presentation/widgets/filter_check_box_list.dart';
+import 'package:flavor_fusion/presentation/widgets/filter_radio.dart';
+import 'package:flavor_fusion/presentation/widgets/filter_radio_list.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_filter_slider.dart';
 import 'package:flavor_fusion/utility/dialog_manager.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
@@ -15,9 +15,8 @@ import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 import '../../utility/enums.dart';
 import '../../utility/global.dart';
 import '../view_models/recipe_filter/states.dart';
-import '../view_models/search_screen/states.dart';
 
-@RoutePage()
+@RoutePage(name: "DishFilterPanel")
 class DishFilterScreen extends ConsumerStatefulWidget {
   const DishFilterScreen({super.key});
 
@@ -28,11 +27,13 @@ class DishFilterScreen extends ConsumerStatefulWidget {
 class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   List<Widget> generateSortMethods(String itemName, List<SortBy> methods) {
     List<Widget> result = [];
-    result.add(FilterCheckBox(
+    result.add(FilterRadio(
+      groupValue: itemName,
       label: 'Ascending',
       selectedMethod: methods[0],
     ));
-    result.add(FilterCheckBox(
+    result.add(FilterRadio(
+      groupValue: itemName,
       label: 'Descending',
       selectedMethod: methods[1],
     ));
@@ -52,7 +53,7 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: _buildAppBar(ref),
+   
       body: Container(
         child: SingleChildScrollView(
             child: Container(
@@ -74,101 +75,39 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
               FilterCheckBoxList(
                 items: [
                   ...generateSortMethods("calories",
-                      [SortBy.caloriesAscending, SortBy.caloriesDescending])
+                      [SortBy.caloriesDescending, SortBy.caloriesAscending])
                 ],
                 label: 'Calories',
               ),
               FilterCheckBoxList(
                 items: [
                   ...generateSortMethods(
-                      "time", [SortBy.timeAscending, SortBy.timeDescending])
+                      "time", [SortBy.timeDescending, SortBy.timeAscending])
                 ],
                 label: 'Time',
               ),
-              ApplyButton(onPressed: () {
-                ref.read(recipeFilterViewModel).when(
-                    initial: () => (),
-                    loading: () => (),
-                    error: () => (),
-                    ready: (sortBy, minTime, minCal) {
-                      print(sortBy.name.toString() +
-                          " " +
-                          minTime.toString() +
-                          ' ' +
-                          minCal.toString());
-                      ref
-                          .read(favoriteViewModel.notifier)
-                          .apply(sortBy, minTime, minCal);
-                      ref.read(recipeFilterViewModel.notifier).confirmChanges();
+              ApplyButton(
+                onPressed: () {
+                  ref.read(recipeFilterViewModel).when(
+                      initial: () => (),
+                      loading: () => (),
+                      error: () => (),
+                      ready: (sortBy, minTime, minCal) {
+                        ref
+                            .read(favoriteViewModel.notifier)
+                            .apply(sortBy, minTime, minCal);
+                        ref
+                            .read(recipeFilterViewModel.notifier)
+                            .confirmChanges();
 
-                      context.router.pop();
-                    });
-              }, label: 'Apply',)
+                        context.router.pop();
+                      });
+                },
+                label: 'Apply',
+              )
             ],
           ),
         )),
-      ),
-    );
-  }
-
-  AppBar _buildAppBar(WidgetRef ref) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Container(
-        child: Row(
-          children: [
-            Expanded(
-                child: Container(
-              alignment: Alignment.center,
-              child: IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () {
-                  if (ref
-                          .read(recipeFilterViewModel.notifier)
-                          .sortMethodChanged() &&
-                      ref
-                          .read(recipeFilterViewModel.notifier)
-                          .sortMethodChanged()) {
-                    ref.read(recipeFilterViewModel.notifier).confirmChanges();
-                    context.router.pop();
-                  } else {
-                    DialogManager.confirmDialog('You did not apply changes',
-                        'Do you want to apply them before quit ?', context, () {
-                      context.router.pop().then((value) {
-                        context.router.pop();
-                        ref
-                            .read(recipeFilterViewModel.notifier)
-                            .rejectChanges();
-                      });
-                    }, () {
-                      context.router
-                          .pop()
-                          .then((value) => context.router.pop());
-                      ref.read(recipeFilterViewModel).when(
-                          initial: () => (),
-                          loading: () => (),
-                          error: () => (),
-                          ready: (sortBy, minTime, minCal) => ref
-                              .read(favoriteViewModel.notifier)
-                              .apply(sortBy, minTime, minCal));
-                      ref.read(recipeFilterViewModel.notifier).confirmChanges();
-                    });
-                  }
-                },
-              ),
-            )),
-            Expanded(
-                flex: 5,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Dishes Filter',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                )),
-            Expanded(child: Container())
-          ],
-        ),
       ),
     );
   }

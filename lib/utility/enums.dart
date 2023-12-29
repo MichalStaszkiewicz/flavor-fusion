@@ -1,4 +1,4 @@
-enum MealType { breakfast, dinner, lunch, snack, teatime, none }
+enum MealType { breakfast, dinner, lunch, snack, none }
 
 enum SkillLevel { easy, medium, expert, none }
 

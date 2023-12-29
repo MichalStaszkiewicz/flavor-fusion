@@ -20,8 +20,8 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: locator<Global>().deviceDimenstions.height - 430,
-        width: locator<Global>().deviceDimenstions.width - 40,
+        height: MediaQuery.of(context).size.height - 430,
+        width: MediaQuery.of(context).size.width - 40,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(10)),
         child: Column(

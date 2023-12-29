@@ -24,26 +24,29 @@ class RecipeFilterSliderState extends ConsumerState<RecipeFilterSlider> {
     double sliderValue = ref
         .watch(recipeFilterViewModel.notifier)
         .getSliderValue(widget.sliderType);
-    return Column(
-      children: [
-        Text(
-          widget.label,
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-        Slider(
-          divisions: widget.max.toDouble() ~/ widget.divisionDivider,
-          label: "${sliderValue.floor()}",
-          min: 0,
-          max: widget.max,
-          onChanged: (value) {
-            ref
-                .read(recipeFilterViewModel.notifier)
-                .setMinimum(value, widget.sliderType);
-            setState(() {});
-          },
-          value: sliderValue,
-        ),
-      ],
+    return Theme(
+      data: Theme.of(context),
+      child: Column(
+        children: [
+          Text(
+            widget.label,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Slider(
+            divisions: widget.max.toDouble() ~/ widget.divisionDivider,
+            label: "${sliderValue.floor()}",
+            min: 0,
+            max: widget.max,
+            onChanged: (value) {
+              ref
+                  .read(recipeFilterViewModel.notifier)
+                  .setMinimum(value, widget.sliderType);
+              setState(() {});
+            },
+            value: sliderValue,
+          ),
+        ],
+      ),
     );
   }
 }
