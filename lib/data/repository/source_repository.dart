@@ -5,6 +5,7 @@ import 'package:flavor_fusion/data/models/recipe.dart';
 
 import 'package:flavor_fusion/data/source/local/local_source.dart';
 import 'package:flavor_fusion/data/source/remote/remote_source.dart';
+import 'package:flavor_fusion/data/source/remote/response/search_recipe_result.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 
@@ -41,12 +42,11 @@ class SourceRepository {
   }
 
   Future<Map<String, List<Recipe>>> getRecommendedRecipes() async {
-       
     Either<Map<String, List<Recipe>>, Exception> result =
         await _remoteSource.getRecommendedRecipes();
     return result.fold(
       (recipes) {
-             print("HERE");
+      
         return recipes;
       },
       (error) {
@@ -70,20 +70,21 @@ class SourceRepository {
     );
   }
 
-  Future<Map<String, dynamic>> searchRecipes(
+  Future<SearchRecipeResult> searchRecipes(
       String search,
       List<String> ingredients,
       MealType mealType,
-      SkillLevel skillLevel,String? endCursor) async {
-    Either<Map<String, dynamic>, Exception> result = await _remoteSource
-        .searchRecipes(search, ingredients, mealType, skillLevel,endCursor);
+      SkillLevel skillLevel,
+      String? endCursor) async {
+    Either<SearchRecipeResult, Exception> result = await _remoteSource
+        .searchRecipes(search, ingredients, mealType, skillLevel, endCursor);
     return result.fold(
-      (recipes) {
-        return recipes;
+      (result) {
+        return result;
       },
       (error) {
         print("Error occured: $error");
-        return {};
+        throw error;
       },
     );
   }

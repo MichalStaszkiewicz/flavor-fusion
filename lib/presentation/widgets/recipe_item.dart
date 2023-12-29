@@ -19,18 +19,6 @@ class _RecipeItemState extends State<RecipeItem> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      _getDottedDecorationPosition();
-    });
-  }
-
-  void _getDottedDecorationPosition() {
-    RenderBox? dottedDecorationBox =
-        dottedDecorationKey.currentContext?.findRenderObject() as RenderBox?;
-    if (dottedDecorationBox != null) {
-      dottedDecorationPosition = dottedDecorationBox.localToGlobal(Offset.zero);
-      setState(() {});
-    }
   }
 
   @override
@@ -44,7 +32,6 @@ class _RecipeItemState extends State<RecipeItem> {
         alignment: Alignment.bottomCenter,
         margin: const EdgeInsets.all(30),
         width: 230,
-     
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -72,10 +59,9 @@ class _RecipeItemState extends State<RecipeItem> {
             child: AutoSizeText(
               maxLines: 2,
               widget.recipe.name,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.white,),
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: Colors.white,
+                  ),
             ),
           ),
         ),

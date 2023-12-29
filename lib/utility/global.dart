@@ -1,12 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Global {
-  late MediaQueryData mediaQuery;
-
-  late Size deviceDimenstions = mediaQuery.size;
   Color greyText = Color.fromARGB(255, 68, 68, 68);
+
+  bool shouldRenderAppBar(BuildContext context) {
+    final router = context.router;
+    final routes = router.routeCollection.routes;
+
+    if (routes.last.name == "DishDetailsRoute") {
+      return false;
+    }
+
+    return true;
+  }
 
   Map<String, String> mapMeasurement = {
     "Milliliter": "ml",
@@ -79,7 +88,6 @@ class Global {
     MealType.dinner,
     MealType.lunch,
     MealType.snack,
-    MealType.teatime,
   ];
 
   Map<String, String> ingredientLineToMeasurement(String ingredientLine) {

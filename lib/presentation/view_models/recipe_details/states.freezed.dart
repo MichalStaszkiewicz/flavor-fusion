@@ -87,25 +87,25 @@ class _$RecipeDetailsStateCopyWithImpl<$Res, $Val extends RecipeDetailsState>
 }
 
 /// @nodoc
-abstract class _$$RecipeDetailsInitialCopyWith<$Res> {
-  factory _$$RecipeDetailsInitialCopyWith(_$RecipeDetailsInitial value,
-          $Res Function(_$RecipeDetailsInitial) then) =
-      __$$RecipeDetailsInitialCopyWithImpl<$Res>;
+abstract class _$$RecipeDetailsInitialImplCopyWith<$Res> {
+  factory _$$RecipeDetailsInitialImplCopyWith(_$RecipeDetailsInitialImpl value,
+          $Res Function(_$RecipeDetailsInitialImpl) then) =
+      __$$RecipeDetailsInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeDetailsInitialCopyWithImpl<$Res>
-    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsInitial>
-    implements _$$RecipeDetailsInitialCopyWith<$Res> {
-  __$$RecipeDetailsInitialCopyWithImpl(_$RecipeDetailsInitial _value,
-      $Res Function(_$RecipeDetailsInitial) _then)
+class __$$RecipeDetailsInitialImplCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsInitialImpl>
+    implements _$$RecipeDetailsInitialImplCopyWith<$Res> {
+  __$$RecipeDetailsInitialImplCopyWithImpl(_$RecipeDetailsInitialImpl _value,
+      $Res Function(_$RecipeDetailsInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeDetailsInitial implements RecipeDetailsInitial {
-  _$RecipeDetailsInitial();
+class _$RecipeDetailsInitialImpl implements RecipeDetailsInitial {
+  _$RecipeDetailsInitialImpl();
 
   @override
   String toString() {
@@ -113,9 +113,10 @@ class _$RecipeDetailsInitial implements RecipeDetailsInitial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeDetailsInitial);
+        (other.runtimeType == runtimeType &&
+            other is _$RecipeDetailsInitialImpl);
   }
 
   @override
@@ -197,29 +198,29 @@ class _$RecipeDetailsInitial implements RecipeDetailsInitial {
 }
 
 abstract class RecipeDetailsInitial implements RecipeDetailsState {
-  factory RecipeDetailsInitial() = _$RecipeDetailsInitial;
+  factory RecipeDetailsInitial() = _$RecipeDetailsInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipeDetailsLoadingCopyWith<$Res> {
-  factory _$$RecipeDetailsLoadingCopyWith(_$RecipeDetailsLoading value,
-          $Res Function(_$RecipeDetailsLoading) then) =
-      __$$RecipeDetailsLoadingCopyWithImpl<$Res>;
+abstract class _$$RecipeDetailsLoadingImplCopyWith<$Res> {
+  factory _$$RecipeDetailsLoadingImplCopyWith(_$RecipeDetailsLoadingImpl value,
+          $Res Function(_$RecipeDetailsLoadingImpl) then) =
+      __$$RecipeDetailsLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeDetailsLoadingCopyWithImpl<$Res>
-    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsLoading>
-    implements _$$RecipeDetailsLoadingCopyWith<$Res> {
-  __$$RecipeDetailsLoadingCopyWithImpl(_$RecipeDetailsLoading _value,
-      $Res Function(_$RecipeDetailsLoading) _then)
+class __$$RecipeDetailsLoadingImplCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsLoadingImpl>
+    implements _$$RecipeDetailsLoadingImplCopyWith<$Res> {
+  __$$RecipeDetailsLoadingImplCopyWithImpl(_$RecipeDetailsLoadingImpl _value,
+      $Res Function(_$RecipeDetailsLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeDetailsLoading implements RecipeDetailsLoading {
-  _$RecipeDetailsLoading();
+class _$RecipeDetailsLoadingImpl implements RecipeDetailsLoading {
+  _$RecipeDetailsLoadingImpl();
 
   @override
   String toString() {
@@ -227,9 +228,10 @@ class _$RecipeDetailsLoading implements RecipeDetailsLoading {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeDetailsLoading);
+        (other.runtimeType == runtimeType &&
+            other is _$RecipeDetailsLoadingImpl);
   }
 
   @override
@@ -311,29 +313,29 @@ class _$RecipeDetailsLoading implements RecipeDetailsLoading {
 }
 
 abstract class RecipeDetailsLoading implements RecipeDetailsState {
-  factory RecipeDetailsLoading() = _$RecipeDetailsLoading;
+  factory RecipeDetailsLoading() = _$RecipeDetailsLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipeDetailsErrorCopyWith<$Res> {
-  factory _$$RecipeDetailsErrorCopyWith(_$RecipeDetailsError value,
-          $Res Function(_$RecipeDetailsError) then) =
-      __$$RecipeDetailsErrorCopyWithImpl<$Res>;
+abstract class _$$RecipeDetailsErrorImplCopyWith<$Res> {
+  factory _$$RecipeDetailsErrorImplCopyWith(_$RecipeDetailsErrorImpl value,
+          $Res Function(_$RecipeDetailsErrorImpl) then) =
+      __$$RecipeDetailsErrorImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RecipeDetailsErrorCopyWithImpl<$Res>
-    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsError>
-    implements _$$RecipeDetailsErrorCopyWith<$Res> {
-  __$$RecipeDetailsErrorCopyWithImpl(
-      _$RecipeDetailsError _value, $Res Function(_$RecipeDetailsError) _then)
+class __$$RecipeDetailsErrorImplCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsErrorImpl>
+    implements _$$RecipeDetailsErrorImplCopyWith<$Res> {
+  __$$RecipeDetailsErrorImplCopyWithImpl(_$RecipeDetailsErrorImpl _value,
+      $Res Function(_$RecipeDetailsErrorImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$RecipeDetailsError implements RecipeDetailsError {
-  _$RecipeDetailsError();
+class _$RecipeDetailsErrorImpl implements RecipeDetailsError {
+  _$RecipeDetailsErrorImpl();
 
   @override
   String toString() {
@@ -341,9 +343,9 @@ class _$RecipeDetailsError implements RecipeDetailsError {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RecipeDetailsError);
+        (other.runtimeType == runtimeType && other is _$RecipeDetailsErrorImpl);
   }
 
   @override
@@ -425,24 +427,24 @@ class _$RecipeDetailsError implements RecipeDetailsError {
 }
 
 abstract class RecipeDetailsError implements RecipeDetailsState {
-  factory RecipeDetailsError() = _$RecipeDetailsError;
+  factory RecipeDetailsError() = _$RecipeDetailsErrorImpl;
 }
 
 /// @nodoc
-abstract class _$$RecipeDetailsReadyCopyWith<$Res> {
-  factory _$$RecipeDetailsReadyCopyWith(_$RecipeDetailsReady value,
-          $Res Function(_$RecipeDetailsReady) then) =
-      __$$RecipeDetailsReadyCopyWithImpl<$Res>;
+abstract class _$$RecipeDetailsReadyImplCopyWith<$Res> {
+  factory _$$RecipeDetailsReadyImplCopyWith(_$RecipeDetailsReadyImpl value,
+          $Res Function(_$RecipeDetailsReadyImpl) then) =
+      __$$RecipeDetailsReadyImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool expanded, bool isFavorite});
 }
 
 /// @nodoc
-class __$$RecipeDetailsReadyCopyWithImpl<$Res>
-    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsReady>
-    implements _$$RecipeDetailsReadyCopyWith<$Res> {
-  __$$RecipeDetailsReadyCopyWithImpl(
-      _$RecipeDetailsReady _value, $Res Function(_$RecipeDetailsReady) _then)
+class __$$RecipeDetailsReadyImplCopyWithImpl<$Res>
+    extends _$RecipeDetailsStateCopyWithImpl<$Res, _$RecipeDetailsReadyImpl>
+    implements _$$RecipeDetailsReadyImplCopyWith<$Res> {
+  __$$RecipeDetailsReadyImplCopyWithImpl(_$RecipeDetailsReadyImpl _value,
+      $Res Function(_$RecipeDetailsReadyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -451,7 +453,7 @@ class __$$RecipeDetailsReadyCopyWithImpl<$Res>
     Object? expanded = null,
     Object? isFavorite = null,
   }) {
-    return _then(_$RecipeDetailsReady(
+    return _then(_$RecipeDetailsReadyImpl(
       null == expanded
           ? _value.expanded
           : expanded // ignore: cast_nullable_to_non_nullable
@@ -466,8 +468,8 @@ class __$$RecipeDetailsReadyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RecipeDetailsReady implements RecipeDetailsReady {
-  _$RecipeDetailsReady(this.expanded, this.isFavorite);
+class _$RecipeDetailsReadyImpl implements RecipeDetailsReady {
+  _$RecipeDetailsReadyImpl(this.expanded, this.isFavorite);
 
   @override
   final bool expanded;
@@ -480,10 +482,10 @@ class _$RecipeDetailsReady implements RecipeDetailsReady {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecipeDetailsReady &&
+            other is _$RecipeDetailsReadyImpl &&
             (identical(other.expanded, expanded) ||
                 other.expanded == expanded) &&
             (identical(other.isFavorite, isFavorite) ||
@@ -496,8 +498,8 @@ class _$RecipeDetailsReady implements RecipeDetailsReady {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RecipeDetailsReadyCopyWith<_$RecipeDetailsReady> get copyWith =>
-      __$$RecipeDetailsReadyCopyWithImpl<_$RecipeDetailsReady>(
+  _$$RecipeDetailsReadyImplCopyWith<_$RecipeDetailsReadyImpl> get copyWith =>
+      __$$RecipeDetailsReadyImplCopyWithImpl<_$RecipeDetailsReadyImpl>(
           this, _$identity);
 
   @override
@@ -577,11 +579,11 @@ class _$RecipeDetailsReady implements RecipeDetailsReady {
 
 abstract class RecipeDetailsReady implements RecipeDetailsState {
   factory RecipeDetailsReady(final bool expanded, final bool isFavorite) =
-      _$RecipeDetailsReady;
+      _$RecipeDetailsReadyImpl;
 
   bool get expanded;
   bool get isFavorite;
   @JsonKey(ignore: true)
-  _$$RecipeDetailsReadyCopyWith<_$RecipeDetailsReady> get copyWith =>
+  _$$RecipeDetailsReadyImplCopyWith<_$RecipeDetailsReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

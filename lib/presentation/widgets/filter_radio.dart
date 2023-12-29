@@ -1,4 +1,3 @@
-import 'package:flavor_fusion/presentation/view_models/search_screen/search_screen_view_model.dart';
 import 'package:flavor_fusion/utility/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,10 +6,14 @@ import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
 import '../view_models/recipe_filter/recipe_filter_view_model.dart';
 
-class FilterCheckBox extends ConsumerWidget {
-  FilterCheckBox({required this.label, required this.selectedMethod});
+class FilterRadio extends ConsumerWidget {
+  FilterRadio(
+      {required this.label,
+      required this.selectedMethod,
+      required this.groupValue});
   SortBy selectedMethod;
   String label;
+  String groupValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,10 +28,11 @@ class FilterCheckBox extends ConsumerWidget {
     return Container(
       child: Row(
         children: [
-          Checkbox(
-              value: ref
-                  .read(recipeFilterViewModel.notifier)
-                  .selected(selectedMethod, label),
+          Radio(
+              groupValue: ref.read(recipeFilterViewModel.notifier).selected(
+                    selectedMethod,
+                  ),
+              value: selectedMethod,
               onChanged: (value) {
                 ref
                     .read(recipeFilterViewModel.notifier)

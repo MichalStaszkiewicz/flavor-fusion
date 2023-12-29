@@ -35,7 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
-  auto_route: ^7.7.1
+  auto_route: ^7.8.4
   riverpod: ^2.3.6
   flutter_riverpod: ^2.3.6
   hooks_riverpod: ^2.3.6
@@ -61,6 +61,8 @@ dependencies:
   lottie: ^2.6.0
   logger: ^2.0.1
   flutter_dotenv: ^5.1.0
+  flex_color_scheme: ^7.3.1
+  riverpod_lint: ^2.3.7
 
 dev_dependencies:
   flutter_test:

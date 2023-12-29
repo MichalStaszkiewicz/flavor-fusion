@@ -1,6 +1,7 @@
-String favoriteNoRecipes =
+const String appName = "Flavor Fusion";
+const String favoriteNoRecipes =
     'If you will like any recipe it will appear fight here !';
-String favoriteRecipesText = 'Favorite Recipes';
+const String favoriteRecipesText = 'Favorite Recipes';
 const String nutrionPerServingLabel = 'Nutrion Per Serving';
 const String ingredientsLabel = 'Ingredients';
 const String addToShoppingListLabel = 'Add To Shopping List';
@@ -16,15 +17,14 @@ const String expertLabel = 'Expert';
 const String breakfastLabel = 'Breakfast';
 const String lunchLabel = 'Lunch';
 const String dinnerLabel = 'Dinner';
-const String teaTimeLabel = 'TeaTime';
+
 const String snackLabel = 'Snack';
 
 const String homeTitle = 'Home';
 const String shopListTitle = 'Shopping List';
 const String favoriteTitle = 'Favorite';
-const String searchHint = 'Type ingredient or recipe';
-
-
+const String recipeSearchHint = 'Type ingredient or recipe';
+const String favoriteSearchHint = 'Type recipe';
 const String stepText = 'Step';
 const String enjoyMealText = 'Enjoy your meal !';
 const String backButtonLabel = 'Back';

@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flavor_fusion/presentation/screens/dish_details_screen.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
+import 'package:get/get.dart';
 
 import '../../data/models/recipe.dart';
 import 'dish_details_basic_info.dart';
@@ -63,10 +65,9 @@ class DishItemWidget extends StatelessWidget {
             _buildBasicInfoRow(context),
             GestureDetector(
               onTap: () {
-                locator<AppRouter>().push(DishDetailsRoute(
-                  name: recipe.name,
-                  recipe: recipe,
-                ));
+                
+                context.router
+                    .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
               },
               child: _buildDetailsButton(),
             ),

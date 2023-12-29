@@ -34,9 +34,7 @@ class HiveDataProvider<T> {
   }
 
   Future<void> put(T data, String key) async {
-    await _box
-        ?.put(key, data)
-        .then((value) => {});
+    await _box?.put(key, data).then((value) => {});
   }
 
   Future<void> deleteData(String key) async {

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/groceries/groceries_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/groceries/state_widget/groceries_ready.dart';
 
@@ -5,16 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
-
-
-class GroceriesScreen extends ConsumerStatefulWidget {
-  const GroceriesScreen({super.key});
+@RoutePage()
+class ShoppingListPage extends ConsumerStatefulWidget {
+  const ShoppingListPage({super.key});
 
   @override
   SearchScreenState createState() => SearchScreenState();
 }
 
-class SearchScreenState extends ConsumerState<GroceriesScreen> {
+class SearchScreenState extends ConsumerState<ShoppingListPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -40,9 +40,7 @@ class SearchScreenState extends ConsumerState<GroceriesScreen> {
 
   Container _buildGroceriesLoading() => Container(
         child: Center(
-          child: Lottie.asset(
-            height:250,
-            'assets/loading.json'),
+          child: Lottie.asset(height: 250, 'assets/loading.json'),
         ),
       );
 

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
@@ -9,18 +10,18 @@ import 'package:lottie/lottie.dart';
 import '../../utility/global.dart';
 import '../../utility/service_locator.dart';
 
-class FavoriteScreen extends ConsumerStatefulWidget {
-  const FavoriteScreen({super.key});
+@RoutePage()
+class FavoriteRecipesPage extends ConsumerStatefulWidget {
+  const FavoriteRecipesPage({super.key});
 
   @override
   FavoriteScreenState createState() => FavoriteScreenState();
 }
 
-class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
+class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    
       ref.read(favoriteViewModel.notifier).loadRecipies();
     });
 
@@ -45,17 +46,19 @@ class FavoriteScreenState extends ConsumerState<FavoriteScreen> {
   Widget build(BuildContext context) {
     var state = ref.watch(favoriteViewModel);
 
-    return state.when(
-        initial: () => _buildInitial(),
-        loading: () => _buildLoading(),
-        error: () => _buildError(),
-        ready: (recipes) => _buildReady(recipes));
+    return Scaffold(
+      body: state.when(
+          initial: () => _buildInitial(),
+          loading: () => _buildLoading(),
+          error: () => _buildError(),
+          ready: (recipes) => _buildReady(recipes)),
+    );
   }
 
   Container _buildReady(List<Recipe> recipes) {
     return recipes.isNotEmpty
         ? Container(
-            height: locator<Global>().deviceDimenstions.height / 1.2,
+            height: MediaQuery.of(context).size.height / 1.2,
             child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: recipes.length,

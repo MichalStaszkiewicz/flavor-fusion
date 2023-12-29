@@ -6,6 +6,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 part 'recipe.freezed.dart';
 part 'recipe.g.dart';
+ 
+
+
+
 
 @HiveType(
   typeId: 1,
@@ -13,7 +17,7 @@ part 'recipe.g.dart';
 @freezed
 class Recipe with _$Recipe {
   factory Recipe({
-    @HiveField(0) required String author,
+    @HiveField(0) required String? author,
     @HiveField(1) required String id,
     @HiveField(2) required List<String>? courses,
     @HiveField(3) required List<String>? cuisines,
@@ -32,5 +36,6 @@ class Recipe with _$Recipe {
     @HiveField(16) required String mainImage,
   }) = _Recipe;
 
-  factory Recipe.fromJson(Map<String, dynamic> json) => _$RecipeFromJson(json['node']);
+  factory Recipe.fromJson(Map<String, dynamic> json) =>
+      _$RecipeFromJson(json['node']);
 }

@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flavor_fusion/data/models/recipe.dart';
-import 'package:flavor_fusion/presentation/view_models/search_screen/states.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../utility/enums.dart';
+import 'states.dart';
 
 List<String> temporaryNames = [
   "Sphagetti",
@@ -21,18 +21,18 @@ List<String> temporaryDishesTypes = [
   'cookies'
 ];
 final searchScreenViewModel =
-    StateNotifierProvider<SearchScreenViewModel, SearchScreenState>(
-        (ref) => SearchScreenViewModel());
+    StateNotifierProvider<FilterFavoriteRecipes, FilterFavoriteState>(
+        (ref) => FilterFavoriteRecipes());
 
-class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
-  SearchScreenViewModel() : super(SearchScreenInitial());
+class FilterFavoriteRecipes extends StateNotifier<FilterFavoriteState> {
+  FilterFavoriteRecipes() : super(SearchScreenInitial());
 
   final List<Recipe> _recipies = [];
 
   void loadRecipies() {
-    state = SearchScreenState.loading();
+    state = FilterFavoriteState.loading();
 
-    state = SearchScreenState.ready(List.from(_recipies));
+    state = FilterFavoriteState.ready(List.from(_recipies));
   }
 
   void searchRecipies(String text) {
@@ -48,9 +48,9 @@ class SearchScreenViewModel extends StateNotifier<SearchScreenState> {
           }
         }
 
-        this.state = SearchScreenState.ready(filteredRecipies);
+        this.state = FilterFavoriteState.ready(filteredRecipies);
       } else {
-        this.state = SearchScreenState.ready(_recipies);
+        this.state = FilterFavoriteState.ready(_recipies);
       }
     } else {}
   }

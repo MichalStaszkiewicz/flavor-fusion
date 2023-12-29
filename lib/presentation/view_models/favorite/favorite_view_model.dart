@@ -10,7 +10,7 @@ import '../../../data/repository/source_repository.dart';
 import '../../../domain/services/favorite_recipe.dart';
 import '../../../utility/enums.dart';
 import '../../../utility/service_locator.dart';
-import '../search_screen/search_screen_view_model.dart';
+
 import 'states.dart';
 
 var favoriteViewModel = StateNotifierProvider<FavoriteViewModel, FavoriteState>(

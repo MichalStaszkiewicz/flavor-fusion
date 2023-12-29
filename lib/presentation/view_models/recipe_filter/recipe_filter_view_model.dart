@@ -32,12 +32,10 @@ class RecipeFilterViewModel extends StateNotifier<RecipeFilterState> {
     state = RecipeFilterState.ready(_sortBy, _minimumTime, _minimumCalories);
   }
 
-  bool selected(SortBy selectedSortMethod, String label) {
-    if (_sortBy == selectedSortMethod) {
-      return true;
-    }
-
-    return false;
+  SortBy selected(
+    SortBy selectedSortMethod,
+  ) {
+    return _sortBy;
   }
 
   void setMinimum(double updatedMinimum, FilterSliderType type) {
@@ -81,6 +79,7 @@ class RecipeFilterViewModel extends StateNotifier<RecipeFilterState> {
 
   void selectCheckBox(SortBy selectedSortMethod) {
     _sortBy = selectedSortMethod;
+
     state = RecipeFilterState.ready(_sortBy, _minimumTime, _minimumCalories);
   }
 }

@@ -37,7 +37,10 @@ class _SuggestionItemState extends State<SuggestionItem> {
                 style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
                   ...locator<Global>().boldSuggestion(
-                      widget.suggestion.name, widget.search, context),
+                      locator<Global>()
+                          .capitalize(widget.suggestion.name),
+                      widget.search,
+                      context),
                 ],
               ),
             ),
