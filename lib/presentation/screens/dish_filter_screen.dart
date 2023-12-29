@@ -75,14 +75,14 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
               FilterCheckBoxList(
                 items: [
                   ...generateSortMethods("calories",
-                      [SortBy.caloriesAscending, SortBy.caloriesDescending])
+                      [SortBy.caloriesDescending, SortBy.caloriesAscending])
                 ],
                 label: 'Calories',
               ),
               FilterCheckBoxList(
                 items: [
                   ...generateSortMethods(
-                      "time", [SortBy.timeAscending, SortBy.timeDescending])
+                      "time", [SortBy.timeDescending, SortBy.timeAscending])
                 ],
                 label: 'Time',
               ),
