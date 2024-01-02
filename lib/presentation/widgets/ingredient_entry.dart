@@ -66,18 +66,22 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
         locator<Global>().ingredientLineToMeasurement(widget.ingredientLine);
     String measurement = ingredientLineMeasureInfo.keys.elementAt(0);
 
-   
     String count = ingredientLineMeasureInfo.values.elementAt(0);
     return FadeTransition(
       opacity: _sizeAnimation,
       child: SizeTransition(
         sizeFactor: _sizeAnimation,
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 250),
           padding: const EdgeInsets.symmetric(vertical: 5),
           margin: const EdgeInsets.symmetric(vertical: 15),
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             border: Border(
-              left: BorderSide(color: Colors.black, width: 1.0),
+              left: BorderSide(
+                  color: widget.ingredient.owned
+                      ? Theme.of(context).primaryColor
+                      : Colors.black,
+                  width: 1.0),
             ),
           ),
           child: Center(
@@ -110,7 +114,7 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
                       width: 25,
                       decoration: BoxDecoration(
                           color: widget.ingredient.owned
-                              ? Colors.black87
+                              ? Theme.of(context).primaryColor
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(50),
                           border: Border.all(
@@ -186,10 +190,10 @@ class AnimatedTextDecoration extends CustomPainter {
       ..strokeWidth = 1;
 
     if (lineThrough) {
-      canvas.translate(65, 11);
+      canvas.translate(65, size.height / 2);
       canvas.drawLine(Offset.zero, Offset(progress * textWidth, 0), paint);
     } else {
-      canvas.translate(65, 11);
+      canvas.translate(65, size.height / 2);
       canvas.drawLine(Offset(progress * textWidth, 0), Offset.zero, paint);
     }
   }

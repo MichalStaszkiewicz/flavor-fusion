@@ -70,7 +70,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
               currentIndex: tabsRouter.activeIndex,
               items: _bottomNavItems,
             ),
-            body: child,
+            body: SafeArea(child: child),
           );
         });
   }

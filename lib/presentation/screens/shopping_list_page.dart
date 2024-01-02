@@ -19,6 +19,7 @@ class SearchScreenState extends ConsumerState<ShoppingListPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      
       ref.read(groceryViewModel.notifier).loadGroceries();
     });
     super.initState();

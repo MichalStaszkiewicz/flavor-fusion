@@ -3,6 +3,7 @@ import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/data/models/recipe_ingredient.dart';
 import 'package:flavor_fusion/domain/services/grocery.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/groceries/groceries_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/states.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/notification_manager.dart';

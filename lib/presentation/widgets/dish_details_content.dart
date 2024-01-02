@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/presentation/view_models/groceries/groceries_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
 
 import 'package:flavor_fusion/presentation/widgets/cooking_steps_list.dart';
@@ -93,6 +94,7 @@ class DishDetailsContent extends StatelessWidget {
                 ref
                     .read(recipeDetailsViewModel.notifier)
                     .saveRecipeIngredients(recipe);
+                ref.read(groceryViewModel.notifier).loadGroceries();
                 NotificationManager.success(
                   'Added ${recipe.name} ingredients to your shopping cart!',
                   AppStrings.newRecipe,

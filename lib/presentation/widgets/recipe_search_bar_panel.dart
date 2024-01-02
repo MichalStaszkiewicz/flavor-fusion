@@ -29,12 +29,17 @@ class RecipeSearchBarPanel extends ConsumerStatefulWidget {
 }
 
 class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+  void setUp(){
+ WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref.read(searchBarModel.notifier).toggleAppBar(true, false);
       ref.read(recipeSearchViewModel.notifier).init();
     });
+
+  }
+  @override
+  void initState() {
+   setUp();
     super.initState();
   }
 

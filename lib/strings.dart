@@ -37,7 +37,7 @@ class AppStrings {
   static const String backButtonLabel = 'Back';
   static const String nextButtonLabel = 'Next';
   static const String doneButtonLabel = 'Done';
-
+  static const String deleteSelected = "Delete Selected";
   static const String caloriesNutritionName = 'calories';
   static const String fatNutritionName = 'fat';
   static const String proteinNutritionName = 'protein';
