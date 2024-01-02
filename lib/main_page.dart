@@ -26,15 +26,15 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
 
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
-      label: homeTitle,
+      label: AppStrings.homeTitle,
       icon: Icon(Icons.home),
     ),
     BottomNavigationBarItem(
-      label: shopListTitle,
+      label: AppStrings.shopListTitle,
       icon: Icon(Icons.shopping_cart_sharp),
     ),
     BottomNavigationBarItem(
-      label: favoriteTitle,
+      label: AppStrings.favoriteTitle,
       icon: Icon(Icons.favorite),
     ),
   ];
@@ -104,7 +104,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           child: Container(
               key: ValueKey(expanded),
               child: Center(
-                child: Text(shoppingList),
+                child: Text(AppStrings.shoppingList),
               )),
         ),
       );

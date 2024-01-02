@@ -97,7 +97,7 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                                 Lottie.asset(AssetPath.nothingFound),
                                 const Text(
                                     textAlign: TextAlign.center,
-                                    emptySearchMessage),
+                                    AppStrings.emptySearchMessage),
                               ],
                             )),
                           ),

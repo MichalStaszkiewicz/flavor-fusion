@@ -78,7 +78,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
                       width: double.infinity,
                       child: Text(
                         textAlign: TextAlign.left,
-                        favoriteRecipesText,
+                        AppStrings.favoriteRecipesText,
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge!
@@ -87,7 +87,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
                     ),
                     Container(
                       child: Text(
-                        favoriteNoRecipes,
+                        AppStrings.favoriteNoRecipes,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!

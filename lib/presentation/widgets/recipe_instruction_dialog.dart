@@ -39,7 +39,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                         children: [
                           Expanded(
                             flex: 5,
-                            child: Text(stepText,
+                            child: Text(AppStrings.stepText,
                                 textAlign: TextAlign.right,
                                 style: Theme.of(context)
                                     .textTheme
@@ -57,7 +57,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                           ),
                         ],
                       )
-                    : Text(enjoyMealText,
+                    : Text(AppStrings.enjoyMealText,
                         textAlign: TextAlign.left,
                         style: Theme.of(context)
                             .textTheme
@@ -93,7 +93,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                          label: backButtonLabel,
+                          label: AppStrings.backButtonLabel,
                           onTap: () {
                             setState(() {});
                             if (index > 0) {
@@ -112,7 +112,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                          label: nextButtonLabel,
+                          label: AppStrings.nextButtonLabel,
                           onTap: () {
                             setState(() {});
                             index++;
@@ -130,7 +130,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                 : Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
                     child: RecipeDetailsButton(
-                      label: doneButtonLabel,
+                      label: AppStrings.doneButtonLabel,
                       onTap: () {
                         context.router.pop();
                       },

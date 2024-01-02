@@ -52,7 +52,7 @@ class DishDetailsContent extends StatelessWidget {
             DishBasicInfoRow(recipe: recipe),
             const SizedBox(height: 20),
             DishDetailsHeader(
-              label: nutrionPerServingLabel,
+              label: AppStrings.nutrionPerServingLabel,
             ),
             const SizedBox(height: 20),
             NutrionInfoTable(
@@ -63,7 +63,7 @@ class DishDetailsContent extends StatelessWidget {
               children: [
                 Expanded(
                   child: DishDetailsHeader(
-                    label: ingredientsLabel,
+                    label: AppStrings.ingredientsLabel,
                   ),
                 ),
                 Expanded(
@@ -99,7 +99,7 @@ class DishDetailsContent extends StatelessWidget {
                   context,
                 );
               },
-              label: addToShoppingListLabel,
+              label: AppStrings.addToShoppingListLabel,
               borderColor: Colors.black,
               backgroundColor: Colors.white,
               textColor: Colors.amber,
@@ -110,7 +110,7 @@ class DishDetailsContent extends StatelessWidget {
                 DialogManager.showRecipeInstructions(
                     recipe.instructions, context);
               },
-              label: startCookingLabel,
+              label: AppStrings.startCookingLabel,
               borderColor: Colors.amber,
               backgroundColor: Colors.amber,
               textColor: Colors.white,

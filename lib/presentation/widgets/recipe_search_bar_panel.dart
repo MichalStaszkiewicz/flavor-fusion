@@ -64,7 +64,7 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                           height: 10,
                         ),
                         RecipeSearchHeader(
-                          label: mealTypeLabel,
+                          label: AppStrings.mealTypeLabel,
                         ),
                         const SizedBox(
                           height: 10,
@@ -72,25 +72,25 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                         SearchAdditioalSettings(
                           choiceItems: [
                             RecipeSearchSettingsChip(
-                              label: breakfastLabel,
+                              label: AppStrings.breakfastLabel,
                               settingsType: RecipeSettings.meal,
                             ),
                             RecipeSearchSettingsChip(
-                              label: lunchLabel,
+                              label: AppStrings.lunchLabel,
                               settingsType: RecipeSettings.meal,
                             ),
                             RecipeSearchSettingsChip(
-                              label: dinnerLabel,
+                              label: AppStrings.dinnerLabel,
                               settingsType: RecipeSettings.meal,
                             ),
                             RecipeSearchSettingsChip(
-                              label: snackLabel,
+                              label: AppStrings.snackLabel,
                               settingsType: RecipeSettings.meal,
                             ),
                           ],
                         ),
                         RecipeSearchHeader(
-                          label: cookingSkillLabel,
+                          label: AppStrings.cookingSkillLabel,
                         ),
                         const SizedBox(
                           height: 10,
@@ -98,15 +98,15 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                         SearchAdditioalSettings(
                           choiceItems: [
                             RecipeSearchSettingsChip(
-                              label: easyLabel,
+                              label: AppStrings.easyLabel,
                               settingsType: RecipeSettings.skill,
                             ),
                             RecipeSearchSettingsChip(
-                              label: mediumLabel,
+                              label: AppStrings.mediumLabel,
                               settingsType: RecipeSettings.skill,
                             ),
                             RecipeSearchSettingsChip(
-                              label: expertLabel,
+                              label: AppStrings.expertLabel,
                               settingsType: RecipeSettings.skill,
                             ),
                           ],

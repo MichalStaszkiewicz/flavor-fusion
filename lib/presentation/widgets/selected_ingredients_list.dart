@@ -21,7 +21,7 @@ class _SelectedIngredientsListState extends State<SelectedIngredientsList> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           RecipeSearchHeader(
-            label: ingredientsLabel,
+            label: AppStrings.ingredientsLabel,
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 10),
