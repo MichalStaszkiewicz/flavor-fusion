@@ -30,6 +30,9 @@ class _RecipeSearchBarFocusedState
     });
   }
 
+  var transparentBorder = const OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.transparent),
+  );
   @override
   void initState() {
     setUp();
@@ -55,7 +58,8 @@ class _RecipeSearchBarFocusedState
   void suffixIconOnTap() {
     ref.read(recipeSearchViewModel).maybeWhen(
           orElse: () => {},
-          ready: ((suggestions, ingredients, mealType, skillLevel) {
+          ready: ((suggestions, ingredients, mealType, skillLevel,
+              allowAnimations) {
             ref.read(searchBarModel.notifier).expandSearchBar();
 
             context.router.push(SearchDoneRoute());
@@ -123,18 +127,10 @@ class _RecipeSearchBarFocusedState
                 )),
             hintText: AppStrings.recipeSearchHint,
             hintStyle: Theme.of(context).textTheme.labelMedium,
-            border: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-            ),
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-            ),
-            disabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-            ),
+            border: transparentBorder,
+            enabledBorder: transparentBorder,
+            focusedBorder: transparentBorder,
+            disabledBorder: transparentBorder,
           ),
           onSubmitted: onSubmitted,
           onChanged: onChanged,

@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class RecipeSearchSettingsChip extends ConsumerStatefulWidget {
-  RecipeSearchSettingsChip({required this.label, required this.settingsType});
+  RecipeSearchSettingsChip(
+      {required this.label,
+      required this.settingsType,
+      required this.chipColor});
   String label;
+  Color chipColor;
   RecipeSettings settingsType;
 
   @override
@@ -24,7 +28,8 @@ class RecipeSearchSettingsChipState
   void initState() {
     _controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 150));
-    setupAnimation(Colors.white, Colors.black, Colors.black, Colors.white);
+    setupAnimation(
+        Colors.white, widget.chipColor, widget.chipColor, Colors.white);
 
     super.initState();
   }
@@ -49,12 +54,13 @@ class RecipeSearchSettingsChipState
       });
   }
 
-  void manageAnimations(bool allowAnimations) {
+  void manageAnimations() {
     ref.watch(recipeSearchViewModel).maybeWhen(
-        ready: (suggestions, ingredients, mealType, skillLevel) {
+        ready:
+            (suggestions, ingredients, mealType, skillLevel, allowAnimations) {
           if (allowAnimations) {
             setupAnimation(
-                Colors.white, Colors.black, Colors.black, Colors.white);
+                Colors.white, widget.chipColor, widget.chipColor, Colors.white);
 
             if (widget.settingsType == RecipeSettings.meal) {
               if (mealType.name.toLowerCase() == widget.label.toLowerCase()) {
@@ -73,6 +79,9 @@ class RecipeSearchSettingsChipState
             if (mealType.name.toLowerCase() == widget.label.toLowerCase() ||
                 skillLevel.name.toLowerCase() == widget.label.toLowerCase()) {
               _controller.value = 1.0;
+              setState(() {});
+            } else {
+              _controller.value = 0.0;
             }
           }
         },
@@ -81,7 +90,8 @@ class RecipeSearchSettingsChipState
 
   void onTap() {
     ref.watch(recipeSearchViewModel).maybeWhen(
-        ready: (suggestions, ingredients, mealType, skillLevel) {
+        ready:
+            (suggestions, ingredients, mealType, skillLevel, allowAnimations) {
           if (widget.settingsType == RecipeSettings.meal) {
             if (mealType.name.toLowerCase() == widget.label.toLowerCase()) {
               ref
@@ -111,7 +121,7 @@ class RecipeSearchSettingsChipState
 
   @override
   Widget build(BuildContext context) {
-    manageAnimations(true);
+    manageAnimations();
 
     return IntrinsicWidth(
       child: GestureDetector(
@@ -120,7 +130,7 @@ class RecipeSearchSettingsChipState
           height: 40,
           padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
-              border: Border.all(width: 2, color: Colors.black),
+              border: Border.all(width: 2, color: widget.chipColor),
               color: _backgroundAnimation.value,
               borderRadius: BorderRadius.circular(20)),
           child: Center(

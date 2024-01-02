@@ -12,9 +12,11 @@ class AppStrings {
   static const String shoppingList = "Shopping List";
   static const String search = "Search";
   static const String easyLabel = 'Easy';
-  static const String mediumLabel = 'Medium';
+static const String mediumLabel = 'Medium';
   static const String hardLabel = 'Hard';
   static const String expertLabel = 'Expert';
+
+  static const String recipes = "Recipes";
 
   static const String breakfastLabel = 'Breakfast';
   static const String lunchLabel = 'Lunch';

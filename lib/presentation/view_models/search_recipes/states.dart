@@ -16,6 +16,8 @@ abstract class RecipesSearchState with _$RecipesSearchState {
     List<String> ingredients,
     MealType mealType,
     SkillLevel skillLevel,
+    bool allowAnimations,
   ) = RecipesSearchReady;
-  factory RecipesSearchState.done(List<Recipe> recipes,bool loadingMoreItems) = RecipeSearchDone;
+  factory RecipesSearchState.done(List<Recipe> recipes, bool loadingMoreItems) =
+      RecipeSearchDone;
 }

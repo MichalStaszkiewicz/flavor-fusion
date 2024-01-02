@@ -21,20 +21,22 @@ class AnimatedWrapState extends ConsumerState<AnimatedWrap>
   Widget build(BuildContext context) {
     return ref.watch(recipeSearchViewModel).maybeWhen(
         orElse: () => Container(),
-        ready: (suggestions, ingredients, mealType, skillLevl) => Wrap(
-              spacing: 15,
-              runSpacing: 15,
-              children: List.generate(ingredients.length, (index) {
-                return IngredientChip(
-                  label: ingredients[index],
-                  onDeleted: () {
-                    ref
-                        .read(recipeSearchViewModel.notifier)
-                        .removeSelectedIngredient(ingredients[index]);
-                  },
-                  key: Key(ingredients[index]),
-                );
-              }),
-            ));
+        ready:
+            (suggestions, ingredients, mealType, skillLevl, allowAnimations) =>
+                Wrap(
+                  spacing: 15,
+                  runSpacing: 15,
+                  children: List.generate(ingredients.length, (index) {
+                    return IngredientChip(
+                      label: ingredients[index],
+                      onDeleted: () {
+                        ref
+                            .read(recipeSearchViewModel.notifier)
+                            .removeSelectedIngredient(ingredients[index]);
+                      },
+                      key: Key(ingredients[index]),
+                    );
+                  }),
+                ));
   }
 }

@@ -53,9 +53,10 @@ class IngredientChipState extends ConsumerState<IngredientChip>
   @override
   Widget build(BuildContext context) {
     ref.watch(recipeSearchViewModel).maybeWhen(
-        ready: (suggestions, ingredients, mealType, skillLevel) {
+        ready:
+            (suggestions, ingredients, mealType, skillLevel, allowAnimations) {
           //allowAnimations
-          if (true) {
+          if (allowAnimations) {
             if (!animationSetToEnd) {
               _sizeAnimationController.value = 1.0;
               _opacityAnimationController.value = 1.0;

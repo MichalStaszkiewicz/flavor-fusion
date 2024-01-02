@@ -21,8 +21,12 @@ mixin _$RecipesSearchState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Suggestion> suggestions,
-            List<String> ingredients, MealType mealType, SkillLevel skillLevel)
+    required TResult Function(
+            List<Suggestion> suggestions,
+            List<String> ingredients,
+            MealType mealType,
+            SkillLevel skillLevel,
+            bool allowAnimations)
         ready,
     required TResult Function(List<Recipe> recipes, bool loadingMoreItems) done,
   }) =>
@@ -33,7 +37,7 @@ mixin _$RecipesSearchState {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult? Function(List<Recipe> recipes, bool loadingMoreItems)? done,
   }) =>
@@ -44,7 +48,7 @@ mixin _$RecipesSearchState {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult Function(List<Recipe> recipes, bool loadingMoreItems)? done,
     required TResult orElse(),
@@ -140,8 +144,12 @@ class _$RecipesSearchInitialImpl implements RecipesSearchInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Suggestion> suggestions,
-            List<String> ingredients, MealType mealType, SkillLevel skillLevel)
+    required TResult Function(
+            List<Suggestion> suggestions,
+            List<String> ingredients,
+            MealType mealType,
+            SkillLevel skillLevel,
+            bool allowAnimations)
         ready,
     required TResult Function(List<Recipe> recipes, bool loadingMoreItems) done,
   }) {
@@ -155,7 +163,7 @@ class _$RecipesSearchInitialImpl implements RecipesSearchInitial {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult? Function(List<Recipe> recipes, bool loadingMoreItems)? done,
   }) {
@@ -169,7 +177,7 @@ class _$RecipesSearchInitialImpl implements RecipesSearchInitial {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult Function(List<Recipe> recipes, bool loadingMoreItems)? done,
     required TResult orElse(),
@@ -267,8 +275,12 @@ class _$RecipesSearchLoadingImpl implements RecipesSearchLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Suggestion> suggestions,
-            List<String> ingredients, MealType mealType, SkillLevel skillLevel)
+    required TResult Function(
+            List<Suggestion> suggestions,
+            List<String> ingredients,
+            MealType mealType,
+            SkillLevel skillLevel,
+            bool allowAnimations)
         ready,
     required TResult Function(List<Recipe> recipes, bool loadingMoreItems) done,
   }) {
@@ -282,7 +294,7 @@ class _$RecipesSearchLoadingImpl implements RecipesSearchLoading {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult? Function(List<Recipe> recipes, bool loadingMoreItems)? done,
   }) {
@@ -296,7 +308,7 @@ class _$RecipesSearchLoadingImpl implements RecipesSearchLoading {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult Function(List<Recipe> recipes, bool loadingMoreItems)? done,
     required TResult orElse(),
@@ -393,8 +405,12 @@ class _$RecipesSearchErrorImpl implements RecipesSearchError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Suggestion> suggestions,
-            List<String> ingredients, MealType mealType, SkillLevel skillLevel)
+    required TResult Function(
+            List<Suggestion> suggestions,
+            List<String> ingredients,
+            MealType mealType,
+            SkillLevel skillLevel,
+            bool allowAnimations)
         ready,
     required TResult Function(List<Recipe> recipes, bool loadingMoreItems) done,
   }) {
@@ -408,7 +424,7 @@ class _$RecipesSearchErrorImpl implements RecipesSearchError {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult? Function(List<Recipe> recipes, bool loadingMoreItems)? done,
   }) {
@@ -422,7 +438,7 @@ class _$RecipesSearchErrorImpl implements RecipesSearchError {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult Function(List<Recipe> recipes, bool loadingMoreItems)? done,
     required TResult orElse(),
@@ -488,7 +504,8 @@ abstract class _$$RecipesSearchReadyImplCopyWith<$Res> {
       {List<Suggestion> suggestions,
       List<String> ingredients,
       MealType mealType,
-      SkillLevel skillLevel});
+      SkillLevel skillLevel,
+      bool allowAnimations});
 }
 
 /// @nodoc
@@ -506,6 +523,7 @@ class __$$RecipesSearchReadyImplCopyWithImpl<$Res>
     Object? ingredients = null,
     Object? mealType = null,
     Object? skillLevel = null,
+    Object? allowAnimations = null,
   }) {
     return _then(_$RecipesSearchReadyImpl(
       null == suggestions
@@ -524,6 +542,10 @@ class __$$RecipesSearchReadyImplCopyWithImpl<$Res>
           ? _value.skillLevel
           : skillLevel // ignore: cast_nullable_to_non_nullable
               as SkillLevel,
+      null == allowAnimations
+          ? _value.allowAnimations
+          : allowAnimations // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -531,8 +553,12 @@ class __$$RecipesSearchReadyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RecipesSearchReadyImpl implements RecipesSearchReady {
-  _$RecipesSearchReadyImpl(final List<Suggestion> suggestions,
-      final List<String> ingredients, this.mealType, this.skillLevel)
+  _$RecipesSearchReadyImpl(
+      final List<Suggestion> suggestions,
+      final List<String> ingredients,
+      this.mealType,
+      this.skillLevel,
+      this.allowAnimations)
       : _suggestions = suggestions,
         _ingredients = ingredients;
 
@@ -556,10 +582,12 @@ class _$RecipesSearchReadyImpl implements RecipesSearchReady {
   final MealType mealType;
   @override
   final SkillLevel skillLevel;
+  @override
+  final bool allowAnimations;
 
   @override
   String toString() {
-    return 'RecipesSearchState.ready(suggestions: $suggestions, ingredients: $ingredients, mealType: $mealType, skillLevel: $skillLevel)';
+    return 'RecipesSearchState.ready(suggestions: $suggestions, ingredients: $ingredients, mealType: $mealType, skillLevel: $skillLevel, allowAnimations: $allowAnimations)';
   }
 
   @override
@@ -574,7 +602,9 @@ class _$RecipesSearchReadyImpl implements RecipesSearchReady {
             (identical(other.mealType, mealType) ||
                 other.mealType == mealType) &&
             (identical(other.skillLevel, skillLevel) ||
-                other.skillLevel == skillLevel));
+                other.skillLevel == skillLevel) &&
+            (identical(other.allowAnimations, allowAnimations) ||
+                other.allowAnimations == allowAnimations));
   }
 
   @override
@@ -583,7 +613,8 @@ class _$RecipesSearchReadyImpl implements RecipesSearchReady {
       const DeepCollectionEquality().hash(_suggestions),
       const DeepCollectionEquality().hash(_ingredients),
       mealType,
-      skillLevel);
+      skillLevel,
+      allowAnimations);
 
   @JsonKey(ignore: true)
   @override
@@ -598,12 +629,17 @@ class _$RecipesSearchReadyImpl implements RecipesSearchReady {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Suggestion> suggestions,
-            List<String> ingredients, MealType mealType, SkillLevel skillLevel)
+    required TResult Function(
+            List<Suggestion> suggestions,
+            List<String> ingredients,
+            MealType mealType,
+            SkillLevel skillLevel,
+            bool allowAnimations)
         ready,
     required TResult Function(List<Recipe> recipes, bool loadingMoreItems) done,
   }) {
-    return ready(suggestions, ingredients, mealType, skillLevel);
+    return ready(
+        suggestions, ingredients, mealType, skillLevel, allowAnimations);
   }
 
   @override
@@ -613,11 +649,12 @@ class _$RecipesSearchReadyImpl implements RecipesSearchReady {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult? Function(List<Recipe> recipes, bool loadingMoreItems)? done,
   }) {
-    return ready?.call(suggestions, ingredients, mealType, skillLevel);
+    return ready?.call(
+        suggestions, ingredients, mealType, skillLevel, allowAnimations);
   }
 
   @override
@@ -627,13 +664,14 @@ class _$RecipesSearchReadyImpl implements RecipesSearchReady {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult Function(List<Recipe> recipes, bool loadingMoreItems)? done,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(suggestions, ingredients, mealType, skillLevel);
+      return ready(
+          suggestions, ingredients, mealType, skillLevel, allowAnimations);
     }
     return orElse();
   }
@@ -684,12 +722,14 @@ abstract class RecipesSearchReady implements RecipesSearchState {
       final List<Suggestion> suggestions,
       final List<String> ingredients,
       final MealType mealType,
-      final SkillLevel skillLevel) = _$RecipesSearchReadyImpl;
+      final SkillLevel skillLevel,
+      final bool allowAnimations) = _$RecipesSearchReadyImpl;
 
   List<Suggestion> get suggestions;
   List<String> get ingredients;
   MealType get mealType;
   SkillLevel get skillLevel;
+  bool get allowAnimations;
   @JsonKey(ignore: true)
   _$$RecipesSearchReadyImplCopyWith<_$RecipesSearchReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -780,8 +820,12 @@ class _$RecipeSearchDoneImpl implements RecipeSearchDone {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(List<Suggestion> suggestions,
-            List<String> ingredients, MealType mealType, SkillLevel skillLevel)
+    required TResult Function(
+            List<Suggestion> suggestions,
+            List<String> ingredients,
+            MealType mealType,
+            SkillLevel skillLevel,
+            bool allowAnimations)
         ready,
     required TResult Function(List<Recipe> recipes, bool loadingMoreItems) done,
   }) {
@@ -795,7 +839,7 @@ class _$RecipeSearchDoneImpl implements RecipeSearchDone {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult? Function(List<Recipe> recipes, bool loadingMoreItems)? done,
   }) {
@@ -809,7 +853,7 @@ class _$RecipeSearchDoneImpl implements RecipeSearchDone {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(List<Suggestion> suggestions, List<String> ingredients,
-            MealType mealType, SkillLevel skillLevel)?
+            MealType mealType, SkillLevel skillLevel, bool allowAnimations)?
         ready,
     TResult Function(List<Recipe> recipes, bool loadingMoreItems)? done,
     required TResult orElse(),
