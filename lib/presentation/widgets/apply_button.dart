@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class _ApplyButtonState extends State<ApplyButton> {
                   color: context.theme.primaryColor),
               child: Center(
                 child: Text(
-                  'Apply',
+                  AppStrings.apply,
                   style: Theme.of(context)
                       .textTheme
                       .labelLarge!

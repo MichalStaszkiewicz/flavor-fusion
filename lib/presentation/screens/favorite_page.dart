@@ -3,6 +3,7 @@ import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
@@ -77,7 +78,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
                       width: double.infinity,
                       child: Text(
                         textAlign: TextAlign.left,
-                        favoriteRecipesText,
+                        AppStrings.favoriteRecipesText,
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge!
@@ -86,7 +87,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
                     ),
                     Container(
                       child: Text(
-                        favoriteNoRecipes,
+                        AppStrings.favoriteNoRecipes,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
@@ -109,7 +110,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
   Container _buildLoading() {
     return Container(
       child: Center(
-        child: Lottie.asset(height: 250, 'assets/loading.json'),
+        child: Lottie.asset(height: 250, AssetPath.pageLoading),
       ),
     );
   }

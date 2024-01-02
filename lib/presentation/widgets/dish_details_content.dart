@@ -1,5 +1,6 @@
+import 'package:flavor_fusion/presentation/view_models/groceries/groceries_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
-import 'package:flavor_fusion/presentation/widgets/cooking_instruction_link.dart';
+
 import 'package:flavor_fusion/presentation/widgets/cooking_steps_list.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_ingradients_list.dart';
@@ -52,7 +53,7 @@ class DishDetailsContent extends StatelessWidget {
             DishBasicInfoRow(recipe: recipe),
             const SizedBox(height: 20),
             DishDetailsHeader(
-              label: nutrionPerServingLabel,
+              label: AppStrings.nutrionPerServingLabel,
             ),
             const SizedBox(height: 20),
             NutrionInfoTable(
@@ -63,7 +64,7 @@ class DishDetailsContent extends StatelessWidget {
               children: [
                 Expanded(
                   child: DishDetailsHeader(
-                    label: ingredientsLabel,
+                    label: AppStrings.ingredientsLabel,
                   ),
                 ),
                 Expanded(
@@ -93,16 +94,17 @@ class DishDetailsContent extends StatelessWidget {
                 ref
                     .read(recipeDetailsViewModel.notifier)
                     .saveRecipeIngredients(recipe);
+                ref.read(groceryViewModel.notifier).loadGroceries();
                 NotificationManager.success(
                   'Added ${recipe.name} ingredients to your shopping cart!',
-                  'New Recipe!',
+                  AppStrings.newRecipe,
                   context,
                 );
               },
-              label: addToShoppingListLabel,
-              borderColor: Colors.black,
+              label: AppStrings.addToShoppingListLabel,
+              borderColor: Theme.of(context).primaryColor,
               backgroundColor: Colors.white,
-              textColor: Colors.amber,
+              textColor: Theme.of(context).primaryColor,
             ),
             const SizedBox(height: 10),
             RecipeDetailsButton(
@@ -110,9 +112,9 @@ class DishDetailsContent extends StatelessWidget {
                 DialogManager.showRecipeInstructions(
                     recipe.instructions, context);
               },
-              label: startCookingLabel,
-              borderColor: Colors.amber,
-              backgroundColor: Colors.amber,
+              label: AppStrings.startCookingLabel,
+              borderColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
             ),
             const SizedBox(height: 10),

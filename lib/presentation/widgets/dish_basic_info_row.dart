@@ -1,5 +1,6 @@
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_basic_info.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 
 class DishBasicInfoRow extends StatelessWidget {
@@ -16,10 +17,10 @@ class DishBasicInfoRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           DishDetailsBasicInfo(
-              label: recipe.totalTime!, imagePath: 'stopwatch.png'),
+              label: recipe.totalTime!, imagePath: AssetPath.stopwatch),
           DishDetailsBasicInfo(
             label: '${recipe.serving} servings',
-            imagePath: 'restaurant.png',
+            imagePath: AssetPath.restaurant,
           ),
         ],
       ),

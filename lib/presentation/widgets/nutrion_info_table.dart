@@ -8,7 +8,6 @@ import '../../data/models/recipe.dart';
 import '../../utility/global.dart';
 import '../view_models/recipe_details/recipe_details_view_model.dart';
 
-
 class NutrionInfoTable extends StatelessWidget {
   const NutrionInfoTable({required this.recipe});
 
@@ -25,25 +24,25 @@ class NutrionInfoTable extends StatelessWidget {
                 .toDouble()
                 .round()
                 .toString(),
-            nutrionName: caloriesNutritionName,
+            nutrionName: AppStrings.caloriesNutritionName,
           ),
           _buildDivider(),
           NutrionInfoEntry(
             nutrionCount:
                 '${recipe.nutritionalInfo.fat.toStringAsPrecision(1).toString()} g',
-            nutrionName: fatNutritionName,
+            nutrionName: AppStrings.fatNutritionName,
           ),
           _buildDivider(),
           NutrionInfoEntry(
             nutrionCount:
                 '${recipe.nutritionalInfo.protein.toStringAsPrecision(1).toString()} g',
-            nutrionName: proteinNutritionName,
+            nutrionName: AppStrings.proteinNutritionName,
           ),
           _buildDivider(),
           NutrionInfoEntry(
             nutrionCount:
                 '${recipe.nutritionalInfo.carbs.toStringAsPrecision(1).toString()} g',
-            nutrionName: carbsNutritionName,
+            nutrionName: AppStrings.carbsNutritionName,
           ),
         ],
       ),

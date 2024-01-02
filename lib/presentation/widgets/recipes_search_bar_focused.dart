@@ -22,14 +22,20 @@ class _RecipeSearchBarFocusedState
       TextEditingController();
   late FocusNode _focusNode;
 
-  @override
-  void initState() {
+  void setUp() {
     _focusNode = FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       _focusNode.requestFocus();
     });
+  }
 
+  var transparentBorder = const OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.transparent),
+  );
+  @override
+  void initState() {
+    setUp();
     super.initState();
   }
 
@@ -40,99 +46,95 @@ class _RecipeSearchBarFocusedState
     super.dispose();
   }
 
+  void prefixIconOnTap() {
+    ref.read(searchBarModel.notifier).expandSearchBar();
+
+    ref.read(recommendedRecipesViewModel.notifier).loadRecipeRecommendation();
+    ref.read(searchBarModel.notifier).toggleAppBar(true, true);
+
+    context.router.replace(RecipesRoute());
+  }
+
+  void suffixIconOnTap() {
+    ref.read(recipeSearchViewModel).maybeWhen(
+          orElse: () => {},
+          ready: ((suggestions, ingredients, mealType, skillLevel,
+              allowAnimations) {
+            ref.read(searchBarModel.notifier).expandSearchBar();
+
+            context.router.push(SearchDoneRoute());
+          }),
+        );
+  }
+
+  void onSubmitted(String search) {
+    if (search.isEmpty &&
+        ref.read(recipeSearchViewModel.notifier).selectedIngredients.isEmpty) {
+      ref.read(recommendedRecipesViewModel.notifier).loadRecipeRecommendation();
+      ref.read(searchBarModel.notifier).expandSearchBar();
+    } else {
+      ref.read(recipeSearchViewModel.notifier).findRecipes();
+    }
+  }
+
+  void onChanged(String search) {
+    ref.read(recipeSearchViewModel.notifier).search = search;
+    ref.read(recipeSearchViewModel.notifier).searchRecipes(search);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: TextField(
-        focusNode: _focusNode,
-        controller: _recipesSearchController,
-        decoration: InputDecoration(
-          fillColor: Colors.transparent,
-          prefixIcon: Container(
-            alignment: Alignment.centerLeft,
-            width: 20,
-            child: GestureDetector(
-              onTap: () {
-                ref.read(searchBarModel.notifier).expandSearchBar();
-
-                ref
-                    .read(recommendedRecipesViewModel.notifier)
-                    .loadRecipeRecommendation();
-                ref.read(searchBarModel.notifier).toggleAppBar(true, true);
-
-                context.router.replace(RecipesRoute());
-              },
-              child: const Icon(Icons.arrow_back),
+    return Theme(
+      data: Theme.of(context),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: TextField(
+          focusNode: _focusNode,
+          controller: _recipesSearchController,
+          decoration: InputDecoration(
+            fillColor: Colors.transparent,
+            prefixIcon: Container(
+              alignment: Alignment.centerLeft,
+              width: 20,
+              child: GestureDetector(
+                onTap: prefixIconOnTap,
+                child: const Icon(Icons.arrow_back),
+              ),
             ),
-          ),
-          suffixIcon: GestureDetector(
-              onTap: () {
-                ref.read(recipeSearchViewModel).maybeWhen(
-                      orElse: () => {},
-                      ready: ((suggestions, ingredients, mealType, skillLevel) {
-                        ref.read(searchBarModel.notifier).expandSearchBar();
-
-                        context.router.push(SearchDoneRoute());
-                      }),
-                    );
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                width: 100,
-                child: Center(
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.blueAccent,
-                      borderRadius: BorderRadius.circular(210),
-                    ),
-                    height: 30,
-                    width: 80,
-                    child: Text(
-                      'Search',
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(color: Colors.white),
+            suffixIcon: GestureDetector(
+                onTap: suffixIconOnTap,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  width: 100,
+                  child: Center(
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(210),
+                      ),
+                      height: 30,
+                      width: 80,
+                      child: Text(
+                        AppStrings.search,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: Colors.white),
+                      ),
                     ),
                   ),
-                ),
-              )),
-          hintText: recipeSearchHint,
-          hintStyle: Theme.of(context).textTheme.labelMedium,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
+                )),
+            hintText: AppStrings.recipeSearchHint,
+            hintStyle: Theme.of(context).textTheme.labelMedium,
+            border: transparentBorder,
+            enabledBorder: transparentBorder,
+            focusedBorder: transparentBorder,
+            disabledBorder: transparentBorder,
           ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-          ),
-          focusedBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-          ),
-          disabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.transparent),
-          ),
+          onSubmitted: onSubmitted,
+          onChanged: onChanged,
         ),
-        onSubmitted: (search) {
-          if (search.isEmpty &&
-              ref
-                  .read(recipeSearchViewModel.notifier)
-                  .selectedIngredients
-                  .isEmpty) {
-            ref
-                .read(recommendedRecipesViewModel.notifier)
-                .loadRecipeRecommendation();
-            ref.read(searchBarModel.notifier).expandSearchBar();
-          } else {
-            ref.read(recipeSearchViewModel.notifier).findRecipes();
-          }
-        },
-        onChanged: (text) {
-          ref.read(recipeSearchViewModel.notifier).search = text;
-          ref.read(recipeSearchViewModel.notifier).searchRecipes(text);
-        },
-        onTapOutside: (ptr) {},
       ),
     );
   }

@@ -68,9 +68,8 @@ class FavoriteSearchBarState extends ConsumerState<FavoriteSearchBar> {
                             .rejectChanges();
                       });
                     }, () {
-                      context.router
-                          .pop()
-                          .then((value) =>   context.router.replace(FavoriteRecipesRoute()));
+                      context.router.pop().then((value) =>
+                          context.router.replace(FavoriteRecipesRoute()));
                       ref.read(recipeFilterViewModel).when(
                           initial: () => (),
                           loading: () => (),
@@ -152,7 +151,7 @@ class FavoriteSearchBarState extends ConsumerState<FavoriteSearchBar> {
         controller: _controller,
         decoration: InputDecoration(
           fillColor: Colors.transparent,
-          hintText: favoriteSearchHint,
+          hintText: AppStrings.favoriteSearchHint,
           hintStyle: Theme.of(context).textTheme.labelMedium,
           border: const OutlineInputBorder(
             gapPadding: 0,

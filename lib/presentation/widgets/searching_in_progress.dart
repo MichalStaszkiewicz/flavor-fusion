@@ -1,3 +1,4 @@
+import 'package:flavor_fusion/strings.dart';
 import 'package:flutter/material.dart';
 
 class Searching extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SearchingState extends State<Searching> {
               SizedBox(
                 height: 30,
               ),
-              Container(child: Text("Searching in progress")),
+              Container(child: Text(AppStrings.searchingInProgress)),
             ],
           ),
         ),

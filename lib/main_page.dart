@@ -22,154 +22,22 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class MainPageState extends ConsumerState with TickerProviderStateMixin {
-  final TextEditingController _favoriteSearchController =
-      TextEditingController();
   bool recipeSearchOpened = false;
 
   final List<BottomNavigationBarItem> _bottomNavItems = const [
     BottomNavigationBarItem(
-      label: homeTitle,
+      label: AppStrings.homeTitle,
       icon: Icon(Icons.home),
     ),
     BottomNavigationBarItem(
-      label: shopListTitle,
+      label: AppStrings.shopListTitle,
       icon: Icon(Icons.shopping_cart_sharp),
     ),
     BottomNavigationBarItem(
-      label: favoriteTitle,
+      label: AppStrings.favoriteTitle,
       icon: Icon(Icons.favorite),
     ),
   ];
-
-  // Opacity _buildFavoriteSearchFocused() {
-  //   return Opacity(
-  //     opacity: _opacityAnimation.value,
-  //     child: TextField(
-  //       autofocus: true,
-  //       onSubmitted: (search) {
-  //         _opacityController.forward().then((value) {
-  //           _favoriteSearchFocused = !_favoriteSearchFocused;
-  //           _opacityController.reverse();
-  //         });
-  //       },
-  //       onTapOutside: (ptr) {
-  //         _opacityController.forward().then((value) {
-  //           _favoriteSearchFocused = !_favoriteSearchFocused;
-  //           _opacityController.reverse();
-  //         });
-  //       },
-  //       onChanged: (search) {
-  //         ref.watch(favoriteViewModel.notifier).searchRecipies(search);
-  //       },
-  //       controller: _favoriteSearchController,
-  //     ),
-  //   );
-  // }
-
-  // Opacity _buildFavoriteSearch() {
-  //   return Opacity(
-  //     opacity: _opacityAnimation.value,
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //           child: Container(
-  //             alignment: Alignment.centerLeft,
-  //             child: GestureDetector(
-  //               onTap: () {
-  //                 _opacityController.forward().then((value) {
-  //                   _favoriteSearchFocused = !_favoriteSearchFocused;
-  //                   _opacityController.reverse();
-  //                 });
-  //               },
-  //               child: Icon(Icons.search),
-  //             ),
-  //           ),
-  //         ),
-  //         Expanded(
-  //           child: Container(
-  //             child: Center(
-  //               child: Text(
-  //                 _appBarTitles[_currentScreen],
-  //                 style: Theme.of(context).textTheme.titleMedium,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //         Expanded(
-  //           child: Container(
-  //             alignment: Alignment.centerRight,
-  //             child: GestureDetector(
-  //               onTap: () {
-  //                 context.router.push(DishFilterRoute());
-  //               },
-  //               child: const Icon(Icons.filter_1),
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  // Opacity _buildRecipesSearch() {
-  //   return Opacity(
-  //     opacity: _opacityAnimation.value,
-  //     child: Row(
-  //       children: [
-  //         Expanded(
-  //           child: Container(
-  //             alignment: Alignment.centerLeft,
-  //             child: GestureDetector(
-  //               onTap: () {
-  //                 ref.watch(recipesViewModel).maybeWhen(
-  //                       recommendation: (recipes) {
-  //                         _opacityController.forward().then((value) {
-  //                           ref
-  //                               .read(recipesViewModel.notifier)
-  //                               .initSearchRecipe(
-  //                                   _recipesSearchController.text);
-  //                           _recipesSearchFocused = !_recipesSearchFocused;
-  //                           _opacityController.reverse();
-  //                         });
-  //                       },
-  //                       search: (_, __, ___, ____, _____, ______, _______) => {
-  //                         _opacityController.forward().then((value) {
-  //                           _recipesSearchFocused = !_recipesSearchFocused;
-  //                           _opacityController.reverse();
-  //                         })
-  //                       },
-  //                       searchDone: (recipes, search, _) {
-  //                         _opacityController.forward().then((value) {
-  //                           ref
-  //                               .read(recipesViewModel.notifier)
-  //                               .initSearchRecipe(
-  //                                   _recipesSearchController.text);
-  //                           _recipesSearchFocused = !_recipesSearchFocused;
-  //                           _opacityController.reverse();
-  //                         });
-  //                       },
-  //                       orElse: () => {},
-  //                     );
-  //               },
-  //               child: Icon(Icons.search),
-  //             ),
-  //           ),
-  //         ),
-  //         Expanded(
-  //           child: Container(
-  //             child: Center(
-  //               child: Text(
-  //                 _appBarTitles[_currentScreen],
-  //                 style: Theme.of(context).textTheme.titleMedium,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //         Expanded(child: Container()),
-  //       ],
-  //     ),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +70,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
               currentIndex: tabsRouter.activeIndex,
               items: _bottomNavItems,
             ),
-            body: child,
+            body: SafeArea(child: child),
           );
         });
   }
@@ -236,7 +104,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           child: Container(
               key: ValueKey(expanded),
               child: Center(
-                child: Text('Shopping List'),
+                child: Text(AppStrings.shoppingList),
               )),
         ),
       );

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/recipe.dart';
@@ -35,8 +36,6 @@ class _RecipeItemState extends State<RecipeItem> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          image: DecorationImage(
-              fit: BoxFit.fill, image: NetworkImage(widget.recipe.mainImage)),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -46,24 +45,42 @@ class _RecipeItemState extends State<RecipeItem> {
             ),
           ],
         ),
-        child: Container(
-          height: 55,
-          width: 230,
-          decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2),
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(5),
-                  bottomRight: Radius.circular(5))),
-          padding: const EdgeInsets.all(10),
-          child: Container(
-            child: AutoSizeText(
-              maxLines: 2,
-              widget.recipe.name,
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Colors.white,
-                  ),
+    
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: FadeInImage.assetNetwork(
+                  placeholderFit: BoxFit.none,
+                  placeholderFilterQuality: FilterQuality.high,
+                  placeholder: AssetPath.imageLoading,
+                  placeholderScale: 1,
+                  image: widget.recipe.mainImage,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.fill,
+                )),
+            Container(
+              height: 55,
+              width: 230,
+              decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.2),
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(5))),
+              padding: const EdgeInsets.all(10),
+              child: Container(
+                child: AutoSizeText(
+                  maxLines: 2,
+                  widget.recipe.name,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

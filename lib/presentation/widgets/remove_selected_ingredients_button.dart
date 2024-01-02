@@ -1,4 +1,5 @@
 import 'package:flavor_fusion/data/models/recipe_ingredient.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,12 +43,12 @@ class RemoveSelectedIngredientsButton extends StatelessWidget {
                     offset: const Offset(0, 0),
                   ),
                 ],
-                color: const Color.fromARGB(255, 86, 144, 245),
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(5)),
             child: Container(
-              padding: const EdgeInsets.only(top: 5),
+          
               child: Text(
-                'Delete Selected ($selectedIngredients)',
+                '${AppStrings.deleteSelected} ($selectedIngredients)',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     color: Colors.white, letterSpacing: 0.5, fontSize: 15),
               ),

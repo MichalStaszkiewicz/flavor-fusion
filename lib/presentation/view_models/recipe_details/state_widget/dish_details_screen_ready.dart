@@ -1,5 +1,6 @@
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../widgets/dish_custom_image.dart';
@@ -16,8 +17,6 @@ class DishDetailsScreenReady extends ConsumerStatefulWidget {
 
 class DishDetailsScreenReadyState
     extends ConsumerState<DishDetailsScreenReady> {
-  
-
   double imageOpacity = 1.0;
   int opacityIterator = 0;
   late ScrollController _scrollController;
@@ -51,7 +50,7 @@ class DishDetailsScreenReadyState
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-        decoration: const BoxDecoration(),
+      
         child: SingleChildScrollView(
           controller: _scrollController,
           child: Stack(children: [
@@ -60,7 +59,6 @@ class DishDetailsScreenReadyState
               recipe: widget.recipe,
             ),
             DishDetails(
-           
               recipe: widget.recipe,
             ),
           ]),

@@ -38,7 +38,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
   RecipesSearchViewModel(super._state);
   void init() {
     state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-        _mealTypeCached, _skillLevelCached);
+        _mealTypeCached, _skillLevelCached, false);
   }
 
   void removeSelectedIngredient(String ingredient) {
@@ -60,8 +60,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
         ?.insertItem(0, duration: const Duration(milliseconds: 100));
     _suggestionsCached.clear();
     _suggestionsCached.addAll(tempSuggestions);
-    this.state = RecipesSearchState.ready(
-        tempSuggestions, _ingredientsCached, state.mealType, state.skillLevel);
+    this.state = RecipesSearchState.ready(tempSuggestions, _ingredientsCached,
+        state.mealType, state.skillLevel, true);
   }
 
   void addSelectedIngredient(
@@ -69,12 +69,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
   ) {
     final state = this.state as RecipesSearchReady;
     if (_ingredientsCached.contains(ingredient)) {
-      this.state = RecipesSearchState.ready(
-        state.suggestions,
-        _ingredientsCached,
-        _mealTypeCached,
-        _skillLevelCached,
-      );
+      this.state = RecipesSearchState.ready(state.suggestions,
+          _ingredientsCached, _mealTypeCached, _skillLevelCached, true);
     } else {
       _ingredientsCached.add(ingredient.toLowerCase());
       final tempList = [..._suggestionsCached];
@@ -98,7 +94,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       );
 
       this.state = RecipesSearchState.ready(
-          tempList, _ingredientsCached, state.mealType, state.skillLevel);
+          tempList, _ingredientsCached, state.mealType, state.skillLevel, true);
     }
   }
 
@@ -107,8 +103,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       final state = this.state as RecipesSearchReady;
 
       _skillLevelCached = skillLevel;
-      this.state = RecipesSearchState.ready(
-          state.suggestions, state.ingredients, state.mealType, skillLevel);
+      this.state = RecipesSearchState.ready(state.suggestions,
+          state.ingredients, state.mealType, skillLevel, true);
     }
   }
 
@@ -116,8 +112,8 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
     if (state is RecipesSearchReady) {
       final state = this.state as RecipesSearchReady;
       _mealTypeCached = mealType;
-      this.state = RecipesSearchState.ready(
-          state.suggestions, state.ingredients, mealType, state.skillLevel);
+      this.state = RecipesSearchState.ready(state.suggestions,
+          state.ingredients, mealType, state.skillLevel, true);
     }
   }
 
@@ -162,7 +158,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
 
       _suggestionsCached.clear();
       state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-          _mealTypeCached, _skillLevelCached);
+          _mealTypeCached, _skillLevelCached, false);
 
       return;
     }
@@ -230,7 +226,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
         _suggestionsRequests.elementAt(index).completed = true;
 
         state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-            _mealTypeCached, _skillLevelCached);
+            _mealTypeCached, _skillLevelCached, false);
       }
     });
     if (newSuggestions.isEmpty) {
@@ -250,7 +246,7 @@ class RecipesSearchViewModel extends StateNotifier<RecipesSearchState> {
       }
 
       state = RecipesSearchState.ready(_suggestionsCached, _ingredientsCached,
-          _mealTypeCached, _skillLevelCached);
+          _mealTypeCached, _skillLevelCached, false);
     }
   }
 }

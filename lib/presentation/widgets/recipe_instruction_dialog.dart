@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_details_button.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                         children: [
                           Expanded(
                             flex: 5,
-                            child: Text(stepText,
+                            child: Text(AppStrings.stepText,
                                 textAlign: TextAlign.right,
                                 style: Theme.of(context)
                                     .textTheme
@@ -56,7 +57,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                           ),
                         ],
                       )
-                    : Text(enjoyMealText,
+                    : Text(AppStrings.enjoyMealText,
                         textAlign: TextAlign.left,
                         style: Theme.of(context)
                             .textTheme
@@ -79,8 +80,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       child: Stack(children: [
                         Transform.translate(
                           offset: Offset(0, -30),
-                          child:
-                              Lottie.asset('assets/dish_ready_animation.json'),
+                          child: Lottie.asset(AssetPath.dishReady),
                         ),
                       ]),
                     ),
@@ -93,7 +93,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                          label: backButtonLabel,
+                          label: AppStrings.backButtonLabel,
                           onTap: () {
                             setState(() {});
                             if (index > 0) {
@@ -102,9 +102,9 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                               context.router.pop();
                             }
                           },
-                          borderColor: Colors.black,
+                          borderColor: Theme.of(context).primaryColor,
                           backgroundColor: Colors.white,
-                          textColor: Colors.blueAccent,
+                          textColor: Theme.of(context).primaryColor,
                         ),
                       ),
                       SizedBox(
@@ -112,13 +112,13 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       ),
                       Expanded(
                         child: RecipeDetailsButton(
-                          label: nextButtonLabel,
+                          label: AppStrings.nextButtonLabel,
                           onTap: () {
                             setState(() {});
                             index++;
                           },
-                          borderColor: Colors.blueAccent,
-                          backgroundColor: Colors.blueAccent,
+                          borderColor: Theme.of(context).primaryColor,
+                          backgroundColor: Theme.of(context).primaryColor,
                           textColor: Colors.white,
                         ),
                       ),
@@ -130,12 +130,12 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                 : Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
                     child: RecipeDetailsButton(
-                      label: doneButtonLabel,
+                      label: AppStrings.doneButtonLabel,
                       onTap: () {
                         context.router.pop();
                       },
-                      borderColor: Colors.blueAccent,
-                      backgroundColor: Colors.blueAccent,
+                      borderColor: Theme.of(context).primaryColor,
+                      backgroundColor: Theme.of(context).primaryColor,
                       textColor: Colors.white,
                     ),
                   ),

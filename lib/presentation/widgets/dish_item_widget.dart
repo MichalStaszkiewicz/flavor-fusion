@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flavor_fusion/presentation/screens/dish_details_screen.dart';
@@ -42,12 +44,17 @@ class DishItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image(
-            fit: BoxFit.fill,
-            image: NetworkImage(recipe.mainImage),
-          ),
-        ),
+            borderRadius: BorderRadius.circular(10),
+            child: FadeInImage.assetNetwork(
+              placeholderFit: BoxFit.none,
+              placeholderFilterQuality: FilterQuality.high,
+              placeholder: AssetPath.imageLoading,
+              placeholderScale: 1,
+              fit: BoxFit.fill,
+              image: recipe.mainImage,
+              width: double.infinity,
+              height: double.infinity,
+            )),
       ),
     );
   }
@@ -65,11 +72,10 @@ class DishItemWidget extends StatelessWidget {
             _buildBasicInfoRow(context),
             GestureDetector(
               onTap: () {
-                
                 context.router
                     .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
               },
-              child: _buildDetailsButton(),
+              child: _buildDetailsButton(context),
             ),
           ],
         ),
@@ -100,11 +106,11 @@ class DishItemWidget extends StatelessWidget {
           children: [
             DishDetailsBasicInfo(
               label: recipe.totalTime.toString(),
-              imagePath: 'stopwatch.png',
+              imagePath: AssetPath.stopwatch,
             ),
             DishDetailsBasicInfo(
               label: '${recipe.nutrientsPerServing.calories.floor()} cal',
-              imagePath: 'fire-flame-curved.png',
+              imagePath: AssetPath.fireFlame,
             ),
           ],
         ),
@@ -112,17 +118,23 @@ class DishItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailsButton() {
+  Widget _buildDetailsButton(BuildContext context) {
     return Container(
       alignment: Alignment.bottomRight,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: Colors.amber,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
-          child: Text('Details'),
+          child: Text(
+            AppStrings.details,
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: Colors.white),
+          ),
         ),
       ),
     );

@@ -29,12 +29,17 @@ class RecipeSearchBarPanel extends ConsumerStatefulWidget {
 }
 
 class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+  void setUp(){
+ WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref.read(searchBarModel.notifier).toggleAppBar(true, false);
       ref.read(recipeSearchViewModel.notifier).init();
     });
+
+  }
+  @override
+  void initState() {
+   setUp();
     super.initState();
   }
 
@@ -49,7 +54,9 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
         },
         loading: () => Scaffold(
             resizeToAvoidBottomInset: false, body: Center(child: Searching())),
-        ready: (suggestions, ingredients, mealType, skillLevel) => Scaffold(
+        ready: (suggestions, ingredients, mealType, skillLevel,
+                allowAnimations) =>
+            Scaffold(
               body: Container(
                 color: Colors.transparent,
                 alignment: Alignment.topCenter,
@@ -64,7 +71,7 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                           height: 10,
                         ),
                         RecipeSearchHeader(
-                          label: mealTypeLabel,
+                          label: AppStrings.mealTypeLabel,
                         ),
                         const SizedBox(
                           height: 10,
@@ -72,25 +79,29 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                         SearchAdditioalSettings(
                           choiceItems: [
                             RecipeSearchSettingsChip(
-                              label: breakfastLabel,
+                              label: AppStrings.breakfastLabel,
                               settingsType: RecipeSettings.meal,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                             RecipeSearchSettingsChip(
-                              label: lunchLabel,
+                              label: AppStrings.lunchLabel,
                               settingsType: RecipeSettings.meal,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                             RecipeSearchSettingsChip(
-                              label: dinnerLabel,
+                              label: AppStrings.dinnerLabel,
                               settingsType: RecipeSettings.meal,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                             RecipeSearchSettingsChip(
-                              label: snackLabel,
+                              label: AppStrings.snackLabel,
                               settingsType: RecipeSettings.meal,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                           ],
                         ),
                         RecipeSearchHeader(
-                          label: cookingSkillLabel,
+                          label: AppStrings.cookingSkillLabel,
                         ),
                         const SizedBox(
                           height: 10,
@@ -98,16 +109,19 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                         SearchAdditioalSettings(
                           choiceItems: [
                             RecipeSearchSettingsChip(
-                              label: easyLabel,
+                              label: AppStrings.easyLabel,
                               settingsType: RecipeSettings.skill,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                             RecipeSearchSettingsChip(
-                              label: mediumLabel,
+                              label: AppStrings.mediumLabel,
                               settingsType: RecipeSettings.skill,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                             RecipeSearchSettingsChip(
-                              label: expertLabel,
+                              label: AppStrings.expertLabel,
                               settingsType: RecipeSettings.skill,
+                              chipColor: Theme.of(context).primaryColor,
                             ),
                           ],
                         ),

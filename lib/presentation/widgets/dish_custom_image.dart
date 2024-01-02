@@ -3,6 +3,7 @@ import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_mo
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/widgets/bubble_icon_button.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -40,44 +41,57 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
       opacity: widget.opacity,
       child: Container(
           alignment: Alignment.topCenter,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            fit: BoxFit.fill,
-            image: NetworkImage(widget.recipe.mainImage),
-          )),
           height: 340,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    ref.read(favoriteViewModel.notifier).loadRecipies();
-                    ref.read(searchBarModel.notifier).toggleAppBar(true, true);
-                    context.router.pop();
-                  },
-                  child: BubbleIconButton(
-                    icon: Icons.arrow_back,
-                    iconColor: Colors.black,
-                  ),
+          child: Stack(
+            children: [
+              Container(
+                child: FadeInImage.assetNetwork(
+                  placeholderFit: BoxFit.none,
+                  placeholderFilterQuality: FilterQuality.high,
+                  placeholder: AssetPath.imageLoading,
+                  placeholderScale: 1,
+                  image: widget.recipe.mainImage,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.fill,
                 ),
-                const SizedBox(
-                  width: 80,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        ref.read(favoriteViewModel.notifier).loadRecipies();
+                        ref
+                            .read(searchBarModel.notifier)
+                            .toggleAppBar(true, true);
+                        context.router.pop();
+                      },
+                      child: BubbleIconButton(
+                        icon: Icons.arrow_back,
+                        iconColor: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 80,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        ref
+                            .read(recipeDetailsViewModel.notifier)
+                            .setFavorite(widget.recipe, context);
+                      },
+                      child: BubbleIconButton(
+                        icon: Icons.favorite,
+                        iconColor: isFavorite ? Colors.red : Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    ref
-                        .read(recipeDetailsViewModel.notifier)
-                        .setFavorite(widget.recipe, context);
-                  },
-                  child: BubbleIconButton(
-                    icon: Icons.favorite,
-                    iconColor: isFavorite ? Colors.red : Colors.grey,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           )),
     );
   }
