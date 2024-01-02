@@ -18,7 +18,7 @@ class DishDetailsBasicInfo extends StatelessWidget {
               color: Colors.black12.withOpacity(0.4),
               height: 20,
               width: 20,
-              image: AssetImage('assets/$imagePath')),
+              image: AssetImage(imagePath)),
           const SizedBox(
             width: 5,
           ),

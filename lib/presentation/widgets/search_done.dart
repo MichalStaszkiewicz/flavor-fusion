@@ -7,6 +7,7 @@ import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/searching_in_progress.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +94,7 @@ class SearchDonePageState extends ConsumerState<SearchDonePage> {
                                 SizedBox(
                                   height: 100,
                                 ),
-                                Lottie.asset('assets/empty_search.json'),
+                                Lottie.asset(AssetPath.nothingFound),
                                 const Text(
                                     textAlign: TextAlign.center,
                                     emptySearchMessage),

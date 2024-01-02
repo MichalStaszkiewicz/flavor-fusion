@@ -44,7 +44,8 @@ class DishDetailsScreenState extends ConsumerState<DishDetailsScreen>
             initial: () => Container(),
             loading: () => Container(),
             ready: (bool expanded, bool isFavorite) => SafeArea(
-              left: false,right: false,
+                  left: false,
+                  right: false,
                   child: DishDetailsScreenReady(
                     recipe: widget.recipe,
                   ),

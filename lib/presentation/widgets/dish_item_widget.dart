@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flavor_fusion/presentation/screens/dish_details_screen.dart';
@@ -46,7 +47,7 @@ class DishItemWidget extends StatelessWidget {
             child: FadeInImage.assetNetwork(
               placeholderFit: BoxFit.none,
               placeholderFilterQuality: FilterQuality.high,
-              placeholder: 'assets/loading-image.gif',
+              placeholder: AssetPath.imageLoading,
               placeholderScale: 1,
               fit: BoxFit.fill,
               image: recipe.mainImage,
@@ -104,11 +105,11 @@ class DishItemWidget extends StatelessWidget {
           children: [
             DishDetailsBasicInfo(
               label: recipe.totalTime.toString(),
-              imagePath: 'stopwatch.png',
+              imagePath: AssetPath.stopwatch,
             ),
             DishDetailsBasicInfo(
               label: '${recipe.nutrientsPerServing.calories.floor()} cal',
-              imagePath: 'fire-flame-curved.png',
+              imagePath: AssetPath.fireFlame,
             ),
           ],
         ),

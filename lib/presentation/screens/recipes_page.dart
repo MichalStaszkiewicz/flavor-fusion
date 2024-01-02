@@ -3,13 +3,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/recipes_view_model.dart';
 
 import 'package:flavor_fusion/presentation/widgets/recipe_group.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../data/models/recipe.dart';
-
 
 @RoutePage()
 class RecipesPage extends ConsumerStatefulWidget {
@@ -136,7 +136,7 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
   Container _buildLoading() => Container(
         key: const ValueKey('recipes_loading'),
         child: Center(
-          child: Lottie.asset(height: 250, 'assets/loading.json'),
+          child: Lottie.asset(height: 250, AssetPath.pageLoading),
         ),
       );
 

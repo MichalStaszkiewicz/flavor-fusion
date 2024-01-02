@@ -22,8 +22,6 @@ class MainPage extends ConsumerStatefulWidget {
 }
 
 class MainPageState extends ConsumerState with TickerProviderStateMixin {
-  final TextEditingController _favoriteSearchController =
-      TextEditingController();
   bool recipeSearchOpened = false;
 
   final List<BottomNavigationBarItem> _bottomNavItems = const [
@@ -106,7 +104,7 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           child: Container(
               key: ValueKey(expanded),
               child: Center(
-                child: Text('Shopping List'),
+                child: Text(shoppingList),
               )),
         ),
       );

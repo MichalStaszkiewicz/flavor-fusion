@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/models/recipe.dart';
@@ -53,7 +54,7 @@ class _RecipeItemState extends State<RecipeItem> {
                 child: FadeInImage.assetNetwork(
                   placeholderFit: BoxFit.none,
                   placeholderFilterQuality: FilterQuality.high,
-                  placeholder: 'assets/loading-image.gif',
+                  placeholder: AssetPath.imageLoading,
                   placeholderScale: 1,
                   image: widget.recipe.mainImage,
                   width: double.infinity,

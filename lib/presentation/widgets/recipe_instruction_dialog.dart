@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/widgets/recipe_details_button.dart';
 import 'package:flavor_fusion/strings.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flavor_fusion/utility/global.dart';
 import 'package:flavor_fusion/utility/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -79,8 +80,7 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       child: Stack(children: [
                         Transform.translate(
                           offset: Offset(0, -30),
-                          child:
-                              Lottie.asset('assets/dish_ready_animation.json'),
+                          child: Lottie.asset(AssetPath.dishReady),
                         ),
                       ]),
                     ),

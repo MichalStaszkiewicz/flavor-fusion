@@ -8,6 +8,7 @@ const String addToShoppingListLabel = 'Add To Shopping List';
 const String startCookingLabel = 'Start Cooking';
 const String mealTypeLabel = 'Meal Type';
 const String cookingSkillLabel = 'Cooking Skill';
+const String shoppingList = "Shopping List";
 
 const String easyLabel = 'Easy';
 const String mediumLabel = 'Medium';

@@ -3,6 +3,7 @@ import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_mo
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/widgets/bubble_icon_button.dart';
+import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -47,7 +48,7 @@ class DishCustomImageState extends ConsumerState<DishCustomImage> {
                 child: FadeInImage.assetNetwork(
                   placeholderFit: BoxFit.none,
                   placeholderFilterQuality: FilterQuality.high,
-                  placeholder: 'assets/loading-image.gif',
+                  placeholder: AssetPath.imageLoading,
                   placeholderScale: 1,
                   image: widget.recipe.mainImage,
                   width: double.infinity,
