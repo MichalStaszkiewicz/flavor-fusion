@@ -42,12 +42,17 @@ class DishItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image(
-            fit: BoxFit.fill,
-            image: NetworkImage(recipe.mainImage),
-          ),
-        ),
+            borderRadius: BorderRadius.circular(10),
+            child: FadeInImage.assetNetwork(
+              placeholderFit: BoxFit.none,
+              placeholderFilterQuality: FilterQuality.high,
+              placeholder: 'assets/loading-image.gif',
+              placeholderScale: 1,
+              fit: BoxFit.fill,
+              image: recipe.mainImage,
+              width: double.infinity,
+              height: double.infinity,
+            )),
       ),
     );
   }
@@ -65,7 +70,6 @@ class DishItemWidget extends StatelessWidget {
             _buildBasicInfoRow(context),
             GestureDetector(
               onTap: () {
-                
                 context.router
                     .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
               },
