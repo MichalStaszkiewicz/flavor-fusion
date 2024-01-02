@@ -22,9 +22,12 @@ class RecipesPage extends ConsumerStatefulWidget {
 class RecipesScreenState extends ConsumerState<RecipesPage>
     with TickerProviderStateMixin {
   late AnimationController _ingredientsAnimationController;
-  late Animation _ingredientsAnimation;
-  late AnimationController _suggestionsAnimationController;
-  late Animation _suggestionsAnimation;
+
+  void setUp() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      ref.read(recommendedRecipesViewModel.notifier).initRecommendedRecipes();
+    });
+  }
 
   List<RecipeGroup> createRecipeGroups(Map<String, List<Recipe>> recipes) {
     List<Recipe> breakfast = recipes['breakfast']!;
@@ -38,61 +41,18 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
     return recipeGroups;
   }
 
-  void manageAnimations(List<String> suggestions, List<String> ingredients) {
-    if (ingredients.isNotEmpty &&
-        _ingredientsAnimationController.status != AnimationStatus.completed) {
-      _ingredientsAnimationController.forward();
-    }
-    if (ingredients.isEmpty &&
-        _ingredientsAnimationController.status == AnimationStatus.completed) {
-      _ingredientsAnimationController.reverse();
-    }
-    if (suggestions.isNotEmpty &&
-        _suggestionsAnimationController.status != AnimationStatus.completed) {
-      _suggestionsAnimationController.forward();
-    }
-    if (suggestions.isEmpty &&
-        _suggestionsAnimationController.status == AnimationStatus.completed) {
-      _suggestionsAnimationController.reverse();
-    }
-  }
-
-  late FocusNode _focusNode;
-
   @override
   void initState() {
-    _focusNode = FocusNode();
-    _ingredientsAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150));
-    _ingredientsAnimation = Tween<double>(begin: 0.0, end: 1.0)
-        .animate(_ingredientsAnimationController)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    _suggestionsAnimationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 150));
-    _suggestionsAnimation = Tween<double>(begin: 0.0, end: 1.0)
-        .animate(_suggestionsAnimationController)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ref.read(recommendedRecipesViewModel.notifier).initRecommendedRecipes();
-    });
-
+    setUp();
     super.initState();
   }
 
   @override
   void dispose() {
-    _focusNode.dispose();
     _ingredientsAnimationController.dispose();
     super.dispose();
   }
 
-  UniqueKey stateKey = UniqueKey();
   @override
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recommendedRecipesViewModel);
@@ -104,18 +64,16 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
         child: Stack(
           children: [
             AnimatedSwitcher(
-                duration: const Duration(milliseconds: 150),
-                child: Container(
-                  key: stateKey,
-                  child: recipesState.maybeWhen(
-                      loading: () => _buildLoading(),
-                      orElse: () => Container(),
-                      ready: (
-                        Map<String, List<Recipe>> recipes,
-                      ) {
-                        return _buildReady(recipes);
-                      }),
-                )),
+              duration: const Duration(milliseconds: 250),
+              child: recipesState.maybeWhen(
+                  loading: () => _buildLoading(),
+                  orElse: () => Container(),
+                  ready: (
+                    Map<String, List<Recipe>> recipes,
+                  ) {
+                    return _buildReady(recipes);
+                  }),
+            ),
           ],
         ),
       ),
@@ -124,7 +82,6 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
 
   Center _buildReady(Map<String, List<Recipe>> recipes) {
     return Center(
-      key: ValueKey(2),
       child: SingleChildScrollView(
         child: Column(
           children: [...createRecipeGroups(recipes)],
@@ -134,7 +91,6 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
   }
 
   Container _buildLoading() => Container(
-        key: const ValueKey('recipes_loading'),
         child: Center(
           child: Lottie.asset(height: 250, AssetPath.pageLoading),
         ),
