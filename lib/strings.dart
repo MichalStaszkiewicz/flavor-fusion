@@ -8,22 +8,25 @@ class AppStrings {
   static const String addToShoppingListLabel = 'Add To Shopping List';
   static const String startCookingLabel = 'Start Cooking';
   static const String mealTypeLabel = 'Meal Type';
+
+  static const String suggestions = "Suggestions";
   static const String cookingSkillLabel = 'Cooking Skill';
   static const String shoppingList = "Shopping List";
   static const String search = "Search";
   static const String easyLabel = 'Easy';
-static const String mediumLabel = 'Medium';
+  static const String mediumLabel = 'Medium';
   static const String hardLabel = 'Hard';
   static const String expertLabel = 'Expert';
 
   static const String recipes = "Recipes";
-
+  static const String searchingInProgress = "Searching in progress";
   static const String breakfastLabel = 'Breakfast';
   static const String lunchLabel = 'Lunch';
   static const String dinnerLabel = 'Dinner';
-
+  static const String apply = 'Apply';
   static const String snackLabel = 'Snack';
-
+  static const String newRecipe = "New Recipe!";
+  static const String details = "Details";
   static const String homeTitle = 'Home';
   static const String shopListTitle = 'Shopping List';
   static const String favoriteTitle = 'Favorite';

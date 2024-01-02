@@ -1,5 +1,5 @@
 import 'package:flavor_fusion/presentation/view_models/recipe_details/recipe_details_view_model.dart';
-import 'package:flavor_fusion/presentation/widgets/cooking_instruction_link.dart';
+
 import 'package:flavor_fusion/presentation/widgets/cooking_steps_list.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_basic_info_row.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_details_ingradients_list.dart';
@@ -95,14 +95,14 @@ class DishDetailsContent extends StatelessWidget {
                     .saveRecipeIngredients(recipe);
                 NotificationManager.success(
                   'Added ${recipe.name} ingredients to your shopping cart!',
-                  'New Recipe!',
+                  AppStrings.newRecipe,
                   context,
                 );
               },
               label: AppStrings.addToShoppingListLabel,
-              borderColor: Colors.black,
+              borderColor: Theme.of(context).primaryColor,
               backgroundColor: Colors.white,
-              textColor: Colors.amber,
+              textColor: Theme.of(context).primaryColor,
             ),
             const SizedBox(height: 10),
             RecipeDetailsButton(
@@ -111,8 +111,8 @@ class DishDetailsContent extends StatelessWidget {
                     recipe.instructions, context);
               },
               label: AppStrings.startCookingLabel,
-              borderColor: Colors.amber,
-              backgroundColor: Colors.amber,
+              borderColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).primaryColor,
               textColor: Colors.white,
             ),
             const SizedBox(height: 10),

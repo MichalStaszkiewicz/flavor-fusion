@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/asset_path.dart';
 import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,7 @@ class DishItemWidget extends StatelessWidget {
                 context.router
                     .push(DishDetailsRoute(name: recipe.name, recipe: recipe));
               },
-              child: _buildDetailsButton(),
+              child: _buildDetailsButton(context),
             ),
           ],
         ),
@@ -117,17 +118,23 @@ class DishItemWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailsButton() {
+  Widget _buildDetailsButton(BuildContext context) {
     return Container(
       alignment: Alignment.bottomRight,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: Colors.amber,
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Center(
-          child: Text('Details'),
+          child: Text(
+            AppStrings.details,
+            style: Theme.of(context)
+                .textTheme
+                .labelLarge!
+                .copyWith(color: Colors.white),
+          ),
         ),
       ),
     );

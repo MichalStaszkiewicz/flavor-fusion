@@ -102,9 +102,9 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                               context.router.pop();
                             }
                           },
-                          borderColor: Colors.black,
+                          borderColor: Theme.of(context).primaryColor,
                           backgroundColor: Colors.white,
-                          textColor: Colors.blueAccent,
+                          textColor: Theme.of(context).primaryColor,
                         ),
                       ),
                       SizedBox(
@@ -117,8 +117,8 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                             setState(() {});
                             index++;
                           },
-                          borderColor: Colors.blueAccent,
-                          backgroundColor: Colors.blueAccent,
+                          borderColor: Theme.of(context).primaryColor,
+                          backgroundColor: Theme.of(context).primaryColor,
                           textColor: Colors.white,
                         ),
                       ),
@@ -134,8 +134,8 @@ class _RecipeInstructionDialogState extends State<RecipeInstructionDialog> {
                       onTap: () {
                         context.router.pop();
                       },
-                      borderColor: Colors.blueAccent,
-                      backgroundColor: Colors.blueAccent,
+                      borderColor: Theme.of(context).primaryColor,
+                      backgroundColor: Theme.of(context).primaryColor,
                       textColor: Colors.white,
                     ),
                   ),
