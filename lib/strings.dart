@@ -16,7 +16,6 @@ class AppStrings {
   static const String easyLabel = 'Easy';
   static const String mediumLabel = 'Medium';
   static const String hardLabel = 'Hard';
-  static const String expertLabel = 'Expert';
 
   static const String recipes = "Recipes";
   static const String searchingInProgress = "Searching in progress";
