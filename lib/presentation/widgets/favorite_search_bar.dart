@@ -11,6 +11,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../view_models/recipe_filter/recipe_filter_view_model.dart';
 
+//TODO: fix issue with navigation in filter by finding correct router and pop the route
+final GlobalKey<NavigatorState> favoriteWrapperNavigatorKey = GlobalKey();
+
 class FavoriteSearchBar extends ConsumerStatefulWidget {
   const FavoriteSearchBar({super.key});
 
@@ -56,20 +59,35 @@ class FavoriteSearchBarState extends ConsumerState<FavoriteSearchBar> {
                       ref
                           .read(recipeFilterViewModel.notifier)
                           .sortMethodChanged()) {
-                    ref.read(recipeFilterViewModel.notifier).confirmChanges();
-                    context.router.replace(FavoriteRecipesRoute());
+                    ref.read(recipeFilterViewModel).when(
+                        initial: () => (),
+                        loading: () => (),
+                        error: () => (),
+                        ready: (sortBy, minTime, minCal) {
+                          ref
+                              .read(favoriteViewModel.notifier)
+                              .apply(sortBy, minTime, minCal);
+                          ref
+                              .read(recipeFilterViewModel.notifier)
+                              .confirmChanges();
+
+                          favoriteWrapperNavigatorKey.currentState!.context
+                              .popRoute();
+                        });
                   } else {
                     DialogManager.confirmDialog('You did not apply changes',
                         'Do you want to apply them before quit ?', context, () {
                       context.router.pop().then((value) {
-                        context.router.replace(FavoriteRecipesRoute());
+                        favoriteWrapperNavigatorKey.currentState!.context
+                            .popRoute();
                         ref
                             .read(recipeFilterViewModel.notifier)
                             .rejectChanges();
                       });
                     }, () {
                       context.router.pop().then((value) =>
-                          context.router.replace(FavoriteRecipesRoute()));
+                          favoriteWrapperNavigatorKey.currentState!.context
+                              .popRoute());
                       ref.read(recipeFilterViewModel).when(
                           initial: () => (),
                           loading: () => (),
@@ -138,7 +156,12 @@ class FavoriteSearchBarState extends ConsumerState<FavoriteSearchBar> {
 
   Container _buildAppBarTitle() {
     return Container(
-        width: 250, child: Center(child: Text(AppStrings.favoriteRecipesText, style: Theme.of(context).textTheme.titleMedium,)));
+        width: 250,
+        child: Center(
+            child: Text(
+          AppStrings.favoriteRecipesText,
+          style: Theme.of(context).textTheme.titleMedium,
+        )));
   }
 
   Container _buildSearchBarFocused(BuildContext context) {

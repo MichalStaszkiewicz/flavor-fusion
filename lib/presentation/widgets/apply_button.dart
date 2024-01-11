@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:tdk_bouncingwidget/tdk_bouncingwidget.dart';
 
 class ApplyButton extends StatefulWidget {
-  ApplyButton({required this.onPressed, required this.label});
-  String label;
+  ApplyButton({required this.onPressed,});
+
   VoidCallback onPressed;
 
   @override

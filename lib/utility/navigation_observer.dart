@@ -10,14 +10,14 @@ class NavigationObserver extends AutoRouterObserver {
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('New route Popped: ${route.settings.name}');
-    print("Path After Pop: " + route.data!.route.fullPath);
+  //  print('New route Popped: ${route.settings.name}');
+  //  print("Path After Pop: " + route.data!.route.fullPath);
   }
 
   @override
   void didPush(Route route, Route? previousRoute) {
-    print('New route pushed: ${route.settings.name}');
-    print("Path After Push: " + route.data!.route.fullPath);
+   // print('New route pushed: ${route.settings.name}');
+   // print("Path After Push: " + route.data!.route.fullPath);
   }
 
   @override

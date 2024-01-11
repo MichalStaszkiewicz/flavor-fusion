@@ -53,7 +53,6 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-   
       body: Container(
         child: SingleChildScrollView(
             child: Container(
@@ -103,7 +102,6 @@ class DishFilterScreenState extends ConsumerState<DishFilterScreen> {
                         context.router.pop();
                       });
                 },
-                label: 'Apply',
               )
             ],
           ),
