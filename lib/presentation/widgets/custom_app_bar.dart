@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,6 +52,7 @@ class _CustomAnimatedAppBar extends ConsumerState<CustomAppBar>
         return _buildAppBarWithAnimation(context);
       } else if (!renderAppBar && animateAppBar) {
         print("Not rendering the app bar with animation.");
+
         setAnimationDuration(Duration(milliseconds: 150));
         _sizeAnimationController.reverse();
         return _buildAppBarWithAnimation(context);

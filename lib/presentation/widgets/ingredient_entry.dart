@@ -62,14 +62,6 @@ class IngredientGroceryEntryState extends ConsumerState<IngredientEntry>
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    Map<String, String> ingredientLineMeasureInfo =
-        locator<Global>().ingredientLineToMeasurement(widget.ingredientLine);
-    String measurement = ingredientLineMeasureInfo.keys.elementAt(0);
-
-    String count = ingredientLineMeasureInfo.values.elementAt(0);
-=======
->>>>>>> main
     return FadeTransition(
       opacity: _sizeAnimation,
       child: SizeTransition(

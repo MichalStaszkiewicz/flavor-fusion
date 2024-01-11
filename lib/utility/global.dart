@@ -1,10 +1,43 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/utility/enums.dart';
+import 'package:flavor_fusion/utility/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
 class Global {
   Color greyText = Color.fromARGB(255, 68, 68, 68);
+  void manageAppBarVisibility(WidgetRef ref, int tabIndex, String currentPath) {
+    if (tabIndex == 0) {
+      if (currentPath.contains(RouteName.recipeDetailsPath)) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          ref.read(searchBarModel.notifier).toggleAppBar(false, true);
+        });
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          ref.read(searchBarModel.notifier).toggleAppBar(true, true);
+        });
+      }
+    }
+    if (tabIndex == 1) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        ref.read(searchBarModel.notifier).toggleAppBar(true, true);
+      });
+    }
+    if (tabIndex == 2) {
+      if (currentPath.contains(RouteName.recipeDetailsPath)) {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          ref.read(searchBarModel.notifier).toggleAppBar(false, true);
+        });
+      } else {
+        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+          ref.read(searchBarModel.notifier).toggleAppBar(true, true);
+        });
+      }
+    }
+    print("Current Tab Path : " + currentPath);
+  }
 
   bool shouldRenderAppBar(BuildContext context) {
     final router = context.router;

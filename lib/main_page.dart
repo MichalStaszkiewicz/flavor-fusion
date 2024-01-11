@@ -8,6 +8,9 @@ import 'package:flavor_fusion/presentation/widgets/recipe_search_bar.dart';
 import 'package:flavor_fusion/presentation/widgets/recipes_search_bar_focused.dart';
 import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/app_router.dart';
+import 'package:flavor_fusion/utility/global.dart';
+import 'package:flavor_fusion/utility/route_names.dart';
+import 'package:flavor_fusion/utility/service_locator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,6 +41,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
       icon: Icon(Icons.favorite),
     ),
   ];
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +60,6 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             appBar: ref.watch(searchBarModel).maybeWhen(initial: () {
-              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                ref.read(searchBarModel.notifier).init();
-              });
-
               return null;
             }, orElse: () {
               return null;
@@ -66,6 +69,9 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
             bottomNavigationBar: BottomNavigationBar(
               onTap: (index) {
                 tabsRouter.setActiveIndex(index);
+                var router = context.router;
+                var currentPath = router.currentPath;
+                locator<Global>().manageAppBarVisibility(ref, index, currentPath);
               },
               currentIndex: tabsRouter.activeIndex,
               items: _bottomNavItems,
@@ -119,3 +125,4 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     }
   }
 }
+

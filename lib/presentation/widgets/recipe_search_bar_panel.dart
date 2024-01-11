@@ -29,17 +29,16 @@ class RecipeSearchBarPanel extends ConsumerStatefulWidget {
 }
 
 class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
-
-  void setUp(){
- WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  void setUp() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref.read(searchBarModel.notifier).toggleAppBar(true, false);
       ref.read(recipeSearchViewModel.notifier).init();
     });
-
   }
+
   @override
   void initState() {
-   setUp();
+    setUp();
     super.initState();
   }
 
@@ -115,11 +114,6 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                             ),
                             RecipeSearchSettingsChip(
                               label: AppStrings.mediumLabel,
-                              settingsType: RecipeSettings.skill,
-                              chipColor: Theme.of(context).primaryColor,
-                            ),
-                            RecipeSearchSettingsChip(
-                              label: AppStrings.expertLabel,
                               settingsType: RecipeSettings.skill,
                               chipColor: Theme.of(context).primaryColor,
                             ),

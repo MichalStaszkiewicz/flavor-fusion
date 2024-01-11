@@ -6,6 +6,7 @@ import 'package:flavor_fusion/presentation/screens/favorite_page.dart';
 
 import 'package:flavor_fusion/presentation/screens/recipes_page.dart';
 import 'package:flavor_fusion/presentation/screens/shopping_list_page.dart';
+import 'package:flavor_fusion/presentation/screens/wrapper/favorite_filter_wrapper.dart';
 import 'package:flavor_fusion/presentation/screens/wrapper/favorite_search_wrapper.dart';
 import 'package:flavor_fusion/presentation/screens/wrapper/recipe_search_done_wrapper.dart';
 import 'package:flavor_fusion/presentation/screens/wrapper/recipe_search_panel_wrapper.dart';
@@ -17,6 +18,7 @@ import 'package:flutter/material.dart';
 
 import '../data/models/recipe.dart';
 import '../presentation/screens/dish_filter_screen.dart';
+import '../presentation/screens/wrapper/dish_details_wrapper.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig()
@@ -30,11 +32,14 @@ class AppRouter extends _$AppRouter {
             children: [
               AutoRoute(
                   initial: true,
-                  path: RouteName.recipes,
+                  path: RouteName.recipes_wrapper,
                   page: RecipeSearchRouteWrapper.page,
                   children: [
                     AutoRoute(
-                        initial: true, page: RecipesRoute.page, children: []),
+                        path: RouteName.recipes,
+                        initial: true,
+                        page: RecipesRoute.page,
+                        children: []),
                     AutoRoute(
                         path: RouteName.recipeSearchPanel,
                         page: RecipeSearchPanelRoute.page),
@@ -50,7 +55,7 @@ class AppRouter extends _$AppRouter {
               AutoRoute(
                   path: RouteName.shoppingList, page: ShoppingListRoute.page),
               AutoRoute(
-                  path: RouteName.favoriteRecipeFilterWrapper,
+                  path: RouteName.favoriteRecipeWrapper,
                   page: FavoriteSearchAutoRouter.page,
                   children: [
                     AutoRoute(
@@ -62,6 +67,7 @@ class AppRouter extends _$AppRouter {
                         path: RouteName.favoriteRecipeFilter,
                         page: DishFilterPanel.page),
                     AutoRoute(
+                      
                         path: RouteName.recipeDetailsPath,
                         page: DishDetailsRoute.page),
                   ]),

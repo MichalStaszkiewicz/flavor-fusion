@@ -138,7 +138,7 @@ class FavoriteSearchBarState extends ConsumerState<FavoriteSearchBar> {
 
   Container _buildAppBarTitle() {
     return Container(
-        width: 250, child: Center(child: Text('Favorite Recipes')));
+        width: 250, child: Center(child: Text(AppStrings.favoriteRecipesText)));
   }
 
   Container _buildSearchBarFocused(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/data/models/recipe.dart';
 import 'package:flavor_fusion/presentation/view_models/favorite/favorite_view_model.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/presentation/widgets/dish_item_widget.dart';
 import 'package:flavor_fusion/strings.dart';
 import 'package:flavor_fusion/utility/asset_path.dart';
@@ -46,7 +47,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
   @override
   Widget build(BuildContext context) {
     var state = ref.watch(favoriteViewModel);
-
+ 
     return Scaffold(
       body: state.when(
           initial: () => _buildInitial(),

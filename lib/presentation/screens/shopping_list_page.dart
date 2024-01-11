@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flavor_fusion/presentation/view_models/groceries/groceries_view_model.dart';
 import 'package:flavor_fusion/presentation/view_models/groceries/state_widget/groceries_ready.dart';
+import 'package:flavor_fusion/presentation/view_models/recipes/search_bar_model/search_bar_model.dart';
 import 'package:flavor_fusion/utility/asset_path.dart';
 
 import 'package:flutter/material.dart';
@@ -19,7 +20,6 @@ class SearchScreenState extends ConsumerState<ShoppingListPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      
       ref.read(groceryViewModel.notifier).loadGroceries();
     });
     super.initState();
@@ -28,6 +28,8 @@ class SearchScreenState extends ConsumerState<ShoppingListPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(groceryViewModel);
+
+   
     return state.when(
         initial: () => _buildGroceriesInitial(),
         loading: () => _buildGroceriesLoading(),
