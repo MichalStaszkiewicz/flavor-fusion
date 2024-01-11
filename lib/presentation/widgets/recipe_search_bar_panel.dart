@@ -117,6 +117,11 @@ class RecipeSearchBarPanelState extends ConsumerState<RecipeSearchBarPanel> {
                               settingsType: RecipeSettings.skill,
                               chipColor: Theme.of(context).primaryColor,
                             ),
+                            RecipeSearchSettingsChip(
+                              label: AppStrings.expertLabel,
+                              settingsType: RecipeSettings.skill,
+                              chipColor: Theme.of(context).primaryColor,
+                            ),
                           ],
                         ),
                         const SizedBox(
