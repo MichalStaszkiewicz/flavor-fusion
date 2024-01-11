@@ -48,12 +48,6 @@ class RecipesScreenState extends ConsumerState<RecipesPage>
   }
 
   @override
-  void dispose() {
-    _ingredientsAnimationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final recipesState = ref.watch(recommendedRecipesViewModel);
 
