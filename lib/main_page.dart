@@ -71,7 +71,8 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
                 tabsRouter.setActiveIndex(index);
                 var router = context.router;
                 var currentPath = router.currentPath;
-                locator<Global>().manageAppBarVisibility(ref, index, currentPath);
+                locator<Global>()
+                    .manageAppBarVisibility(ref, index, currentPath);
               },
               currentIndex: tabsRouter.activeIndex,
               items: _bottomNavItems,
@@ -110,7 +111,10 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
           child: Container(
               key: ValueKey(expanded),
               child: Center(
-                child: Text(AppStrings.shoppingList),
+                child: Text(
+                  AppStrings.shoppingList,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               )),
         ),
       );
@@ -125,4 +129,3 @@ class MainPageState extends ConsumerState with TickerProviderStateMixin {
     }
   }
 }
-

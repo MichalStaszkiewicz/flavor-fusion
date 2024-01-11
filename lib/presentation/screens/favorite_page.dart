@@ -83,7 +83,7 @@ class FavoriteScreenState extends ConsumerState<FavoriteRecipesPage> {
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge!
-                            .copyWith(color: Colors.black),
+                            .copyWith(color: Colors.black,fontWeight: FontWeight.bold),
                       ),
                     ),
                     Container(
